@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="6660a71e30804c0094a903298793cac1" Name="Diagram1">
+      <Diagram DiagramId="6660a71e30804c0094a903298793cac1" Name="Diagram1" ZoomLevel="124">
         <EntityTypeShape EntityType="WowCarryModel.Product" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="WowCarryModel.ProductCategory" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="WowCarryModel.ProductGame" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
@@ -12,6 +12,14 @@
         <AssociationConnector Association="WowCarryModel.FK_ProductPrice_Product" ManuallyRouted="false" />
         <AssociationConnector Association="WowCarryModel.FK_Products_ProductCategory" ManuallyRouted="false" />
         <AssociationConnector Association="WowCarryModel.FK_ProductCategory_ProductGame" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="WowCarryModel.OptionParams" Width="1.5" PointX="0.75" PointY="7" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductCEO" Width="1.5" PointX="3.375" PointY="10.125" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductDescription" Width="1.5" PointX="3.375" PointY="14.125" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductOption" Width="1.5" PointX="3" PointY="6.875" />
+        <AssociationConnector Association="WowCarryModel.FK__ProductOp__Optio__05D8E0BE" />
+        <AssociationConnector Association="WowCarryModel.FK__Product__Product__02FC7413" />
+        <AssociationConnector Association="WowCarryModel.FK__Product__Product__08B54D69" />
+        <AssociationConnector Association="WowCarryModel.FK__Product__Product__6FE99F9F" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

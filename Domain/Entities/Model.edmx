@@ -4,7 +4,16 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище WowCarryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище WowCarryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="OptionParams">
+          <Key>
+            <PropertyRef Name="OptionParamsId" />
+          </Key>
+          <Property Name="OptionParamsId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParamName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParamTooltip" Type="nvarchar" MaxLength="255" />
+          <Property Name="ParamPrice" Type="float" />
+        </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -18,6 +27,9 @@
           <Property Name="ProductImage" Type="nvarchar" MaxLength="100" />
           <Property Name="ProductCreateDate" Type="datetime2" Precision="7" Nullable="false" />
           <Property Name="ProductUpdateDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProductDescriptionId" Type="uniqueidentifier" />
+          <Property Name="ProductOptionId" Type="uniqueidentifier" />
+          <Property Name="ProductCEOId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -28,6 +40,34 @@
           <Property Name="ProductGameId" Type="uniqueidentifier" />
           <Property Name="CategoryDescription" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="ProductCEO">
+          <Key>
+            <PropertyRef Name="ProductCEOId" />
+          </Key>
+          <Property Name="ProductCEOId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="MetaTagTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="MetaTagDescription" Type="nvarchar(max)" />
+          <Property Name="MetaTagKeyWords" Type="nvarchar(max)" />
+          <Property Name="ProductTags" Type="nvarchar" MaxLength="255" />
+          <Property Name="CustomTitle1" Type="nvarchar" MaxLength="255" />
+          <Property Name="CustomTitle2" Type="nvarchar" MaxLength="255" />
+          <Property Name="CustomImageTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="CustomImageAlt" Type="nvarchar" MaxLength="255" />
+          <Property Name="MetaRobots" Type="nvarchar" MaxLength="255" />
+          <Property Name="UrlKeyWord" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ProductDescription">
+          <Key>
+            <PropertyRef Name="ProductDescriptionId" />
+          </Key>
+          <Property Name="ProductDescriptionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductDescription" Type="nvarchar(max)" />
+          <Property Name="TitleDescription1" Type="nvarchar(max)" />
+          <Property Name="TitleDescription2" Type="nvarchar(max)" />
+          <Property Name="TitleDescription3" Type="nvarchar(max)" />
+          <Property Name="TitleDescription4" Type="nvarchar(max)" />
+          <Property Name="TitleDescription5" Type="nvarchar(max)" />
+        </EntityType>
         <EntityType Name="ProductGame">
           <Key>
             <PropertyRef Name="ProductGameId" />
@@ -35,6 +75,15 @@
           <Property Name="ProductGameId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="GameName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="GameDescription" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ProductOption">
+          <Key>
+            <PropertyRef Name="ProductOptionId" />
+          </Key>
+          <Property Name="ProductOptionId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="OptionName" Type="nchar" MaxLength="50" />
+          <Property Name="OptionType" Type="nchar" MaxLength="10" />
+          <Property Name="OptionParamsId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ProductPrice">
           <Key>
@@ -47,6 +96,54 @@
           <Property Name="MinPrice" Type="decimal" Precision="18" Scale="0" />
           <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <Association Name="FK__Product__Product__02FC7413">
+          <End Role="ProductOption" Type="Self.ProductOption" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOption">
+              <PropertyRef Name="ProductOptionId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Product__08B54D69">
+          <End Role="ProductCEO" Type="Self.ProductCEO" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCEO">
+              <PropertyRef Name="ProductCEOId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCEOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Product__6FE99F9F">
+          <End Role="ProductDescription" Type="Self.ProductDescription" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductDescription">
+              <PropertyRef Name="ProductDescriptionId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductDescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductOp__Optio__05D8E0BE">
+          <End Role="OptionParams" Type="Self.OptionParams" Multiplicity="0..1" />
+          <End Role="ProductOption" Type="Self.ProductOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OptionParams">
+              <PropertyRef Name="OptionParamsId" />
+            </Principal>
+            <Dependent Role="ProductOption">
+              <PropertyRef Name="OptionParamsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductCategory_ProductGame">
           <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
@@ -90,10 +187,30 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище WowCarryModelContainer">
+          <EntitySet Name="OptionParams" EntityType="Self.OptionParams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCEO" EntityType="Self.ProductCEO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductDescription" EntityType="Self.ProductDescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductGame" EntityType="Self.ProductGame" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Product__Product__02FC7413" Association="Self.FK__Product__Product__02FC7413">
+            <End Role="ProductOption" EntitySet="ProductOption" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__08B54D69" Association="Self.FK__Product__Product__08B54D69">
+            <End Role="ProductCEO" EntitySet="ProductCEO" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__6FE99F9F" Association="Self.FK__Product__Product__6FE99F9F">
+            <End Role="ProductDescription" EntitySet="ProductDescription" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductOp__Optio__05D8E0BE" Association="Self.FK__ProductOp__Optio__05D8E0BE">
+            <End Role="OptionParams" EntitySet="OptionParams" />
+            <End Role="ProductOption" EntitySet="ProductOption" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductCategory_ProductGame" Association="Self.FK_ProductCategory_ProductGame">
             <End Role="ProductGame" EntitySet="ProductGame" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
@@ -107,8 +224,7 @@
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WowCarryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -127,6 +243,12 @@
           <Property Name="ProductUpdateDate" Type="DateTime" Nullable="false" Precision="7" />
           <NavigationProperty Name="ProductPrice" Relationship="Self.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK_Products_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
+          <Property Name="ProductDescriptionId" Type="Guid" />
+          <Property Name="ProductOptionId" Type="Guid" />
+          <Property Name="ProductCEOId" Type="Guid" />
+          <NavigationProperty Name="ProductOption" Relationship="WowCarryModel.FK__Product__Product__02FC7413" FromRole="Product" ToRole="ProductOption" />
+          <NavigationProperty Name="ProductCEO" Relationship="WowCarryModel.FK__Product__Product__08B54D69" FromRole="Product" ToRole="ProductCEO" />
+          <NavigationProperty Name="ProductDescription" Relationship="WowCarryModel.FK__Product__Product__6FE99F9F" FromRole="Product" ToRole="ProductDescription" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -219,7 +341,126 @@
             <End Role="ProductGame" EntitySet="ProductGame" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
+          <EntitySet Name="OptionParams" EntityType="WowCarryModel.OptionParams" />
+          <EntitySet Name="ProductCEO" EntityType="WowCarryModel.ProductCEO" />
+          <EntitySet Name="ProductDescription" EntityType="WowCarryModel.ProductDescription" />
+          <EntitySet Name="ProductOption" EntityType="WowCarryModel.ProductOption" />
+          <AssociationSet Name="FK__ProductOp__Optio__05D8E0BE" Association="WowCarryModel.FK__ProductOp__Optio__05D8E0BE">
+            <End Role="OptionParams" EntitySet="OptionParams" />
+            <End Role="ProductOption" EntitySet="ProductOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__02FC7413" Association="WowCarryModel.FK__Product__Product__02FC7413">
+            <End Role="ProductOption" EntitySet="ProductOption" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__08B54D69" Association="WowCarryModel.FK__Product__Product__08B54D69">
+            <End Role="ProductCEO" EntitySet="ProductCEO" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__6FE99F9F" Association="WowCarryModel.FK__Product__Product__6FE99F9F">
+            <End Role="ProductDescription" EntitySet="ProductDescription" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="OptionParams">
+          <Key>
+            <PropertyRef Name="OptionParamsId" />
+          </Key>
+          <Property Name="OptionParamsId" Type="Guid" Nullable="false" />
+          <Property Name="ParamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParamTooltip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ParamPrice" Type="Double" />
+          <NavigationProperty Name="ProductOption" Relationship="WowCarryModel.FK__ProductOp__Optio__05D8E0BE" FromRole="OptionParams" ToRole="ProductOption" />
+        </EntityType>
+        <EntityType Name="ProductCEO">
+          <Key>
+            <PropertyRef Name="ProductCEOId" />
+          </Key>
+          <Property Name="ProductCEOId" Type="Guid" Nullable="false" />
+          <Property Name="MetaTagTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTagDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="MetaTagKeyWords" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProductTags" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CustomTitle1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CustomTitle2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CustomImageTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CustomImageAlt" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MetaRobots" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="UrlKeyWord" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__08B54D69" FromRole="ProductCEO" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductDescription">
+          <Key>
+            <PropertyRef Name="ProductDescriptionId" />
+          </Key>
+          <Property Name="ProductDescriptionId" Type="Guid" Nullable="false" />
+          <Property Name="ProductDescription1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TitleDescription1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TitleDescription2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TitleDescription3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TitleDescription4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TitleDescription5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__6FE99F9F" FromRole="ProductDescription" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductOption">
+          <Key>
+            <PropertyRef Name="ProductOptionId" />
+          </Key>
+          <Property Name="ProductOptionId" Type="Guid" Nullable="false" />
+          <Property Name="OptionName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="OptionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="OptionParamsId" Type="Guid" />
+          <NavigationProperty Name="OptionParams" Relationship="WowCarryModel.FK__ProductOp__Optio__05D8E0BE" FromRole="ProductOption" ToRole="OptionParams" />
+          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__02FC7413" FromRole="ProductOption" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__ProductOp__Optio__05D8E0BE">
+          <End Type="WowCarryModel.OptionParams" Role="OptionParams" Multiplicity="0..1" />
+          <End Type="WowCarryModel.ProductOption" Role="ProductOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OptionParams">
+              <PropertyRef Name="OptionParamsId" />
+            </Principal>
+            <Dependent Role="ProductOption">
+              <PropertyRef Name="OptionParamsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Product__02FC7413">
+          <End Type="WowCarryModel.ProductOption" Role="ProductOption" Multiplicity="0..1" />
+          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOption">
+              <PropertyRef Name="ProductOptionId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Product__08B54D69">
+          <End Type="WowCarryModel.ProductCEO" Role="ProductCEO" Multiplicity="0..1" />
+          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCEO">
+              <PropertyRef Name="ProductCEOId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCEOId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Product__6FE99F9F">
+          <End Type="WowCarryModel.ProductDescription" Role="ProductDescription" Multiplicity="0..1" />
+          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductDescription">
+              <PropertyRef Name="ProductDescriptionId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductDescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -229,6 +470,9 @@
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="WowCarryModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductCEOId" ColumnName="ProductCEOId" />
+                <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
+                <ScalarProperty Name="ProductDescriptionId" ColumnName="ProductDescriptionId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
@@ -269,6 +513,56 @@
                 <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
                 <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OptionParams">
+            <EntityTypeMapping TypeName="WowCarryModel.OptionParams">
+              <MappingFragment StoreEntitySet="OptionParams">
+                <ScalarProperty Name="ParamPrice" ColumnName="ParamPrice" />
+                <ScalarProperty Name="ParamTooltip" ColumnName="ParamTooltip" />
+                <ScalarProperty Name="ParamName" ColumnName="ParamName" />
+                <ScalarProperty Name="OptionParamsId" ColumnName="OptionParamsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCEO">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductCEO">
+              <MappingFragment StoreEntitySet="ProductCEO">
+                <ScalarProperty Name="UrlKeyWord" ColumnName="UrlKeyWord" />
+                <ScalarProperty Name="MetaRobots" ColumnName="MetaRobots" />
+                <ScalarProperty Name="CustomImageAlt" ColumnName="CustomImageAlt" />
+                <ScalarProperty Name="CustomImageTitle" ColumnName="CustomImageTitle" />
+                <ScalarProperty Name="CustomTitle2" ColumnName="CustomTitle2" />
+                <ScalarProperty Name="CustomTitle1" ColumnName="CustomTitle1" />
+                <ScalarProperty Name="ProductTags" ColumnName="ProductTags" />
+                <ScalarProperty Name="MetaTagKeyWords" ColumnName="MetaTagKeyWords" />
+                <ScalarProperty Name="MetaTagDescription" ColumnName="MetaTagDescription" />
+                <ScalarProperty Name="MetaTagTitle" ColumnName="MetaTagTitle" />
+                <ScalarProperty Name="ProductCEOId" ColumnName="ProductCEOId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductDescription">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductDescription">
+              <MappingFragment StoreEntitySet="ProductDescription">
+                <ScalarProperty Name="TitleDescription5" ColumnName="TitleDescription5" />
+                <ScalarProperty Name="TitleDescription4" ColumnName="TitleDescription4" />
+                <ScalarProperty Name="TitleDescription3" ColumnName="TitleDescription3" />
+                <ScalarProperty Name="TitleDescription2" ColumnName="TitleDescription2" />
+                <ScalarProperty Name="TitleDescription1" ColumnName="TitleDescription1" />
+                <ScalarProperty Name="ProductDescription1" ColumnName="ProductDescription" />
+                <ScalarProperty Name="ProductDescriptionId" ColumnName="ProductDescriptionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductOption">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductOption">
+              <MappingFragment StoreEntitySet="ProductOption">
+                <ScalarProperty Name="OptionParamsId" ColumnName="OptionParamsId" />
+                <ScalarProperty Name="OptionType" ColumnName="OptionType" />
+                <ScalarProperty Name="OptionName" ColumnName="OptionName" />
+                <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

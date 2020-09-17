@@ -29,9 +29,15 @@ namespace WowCarry.Domain.Entities
         public string ProductImage { get; set; }
         public System.DateTime ProductCreateDate { get; set; }
         public System.DateTime ProductUpdateDate { get; set; }
+        public Nullable<System.Guid> ProductDescriptionId { get; set; }
+        public Nullable<System.Guid> ProductOptionId { get; set; }
+        public Nullable<System.Guid> ProductCEOId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrice { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
+        public virtual ProductOption ProductOption { get; set; }
+        public virtual ProductCEO ProductCEO { get; set; }
+        public virtual ProductDescription ProductDescription { get; set; }
     }
 }

@@ -92,13 +92,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OptionParams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ProductCategory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ProductCEO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ProductDescription.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\ProductGame.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ProductOption.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ProductPrice.cs">
