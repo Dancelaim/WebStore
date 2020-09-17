@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/CSS/Styles.css" rel="stylesheet" />
+
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+    <div class="cover">
+        <header>
+            <div class="top">
+                <div id="content">
+                    <a class="navbar-brand" href="#">WowCarry</a>
+                </div>
+            </div>
+        </header>
+
+        <div class="container-fluid">
+            <div class="row">
+                <div id="categories" class="col-xs-3">
+                    <nav class="navbar navbar-expand-lg navbar-light">
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <ul class="navbar-nav mr-auto">
+                                @Html.Action("Menu", "Nav")
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+                <div id="content" class="col-sm-12">
+
+                    @RenderBody()
+                    <div class="clear"></div>
+
+                </div>
+            </div>
+        </div>
+        <div class="clear-footer"></div>
+    </div>
+
+    <footer>
+        <div id="content">
+            footer
+        </div>
+    </footer>
+</body>
+</html>
+<!-- Классы navbar и navbar-default (базовые классы меню) -->
+<nav class="navbar navbar-default">
+    <!-- Контейнер (определяет ширину Navbar) -->
+    <div class="container-fluid">
+        <!-- Заголовок -->
+        <div class="navbar-header">
+            <!-- Кнопка «Гамбургер» отображается только в мобильном виде (предназначена для открытия основного содержимого Navbar) -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-main">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <!-- Бренд или название сайта (отображается в левой части меню) -->
+            <a class="navbar-brand" href="#">Brand</a>
+        </div>
+        <!-- Основная часть меню (может содержать ссылки, формы и другие элементы) -->
+        <div class="collapse navbar-collapse" id="navbar-main">
+            <!-- Содержимое основной части -->
+        </div>
+    </div>
+</nav>

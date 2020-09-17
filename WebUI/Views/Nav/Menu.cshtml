@@ -1,0 +1,14 @@
+﻿@model IEnumerable<string>
+
+@foreach (var cat in Model)
+{
+    <li>
+    @Html.RouteLink(cat,
+       new
+       {
+           categoryName = cat,
+       },
+        new { @class = Html.IsSelected(cat)}
+       )
+    </li>
+}

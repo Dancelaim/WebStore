@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище WowCarryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="InStock" Type="bit" Nullable="false" />
+          <Property Name="PreOrder" Type="bit" Nullable="false" />
+          <Property Name="ProductQuantity" Type="int" />
+          <Property Name="ProductImage" Type="nvarchar" MaxLength="100" />
+          <Property Name="ProductCreateDate" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="ProductUpdateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryId" />
+          </Key>
+          <Property Name="ProductCategoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductGameId" Type="uniqueidentifier" />
+          <Property Name="CategoryDescription" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ProductGame">
+          <Key>
+            <PropertyRef Name="ProductGameId" />
+          </Key>
+          <Property Name="ProductGameId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="GameName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="GameDescription" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="ProductPriceId" />
+          </Key>
+          <Property Name="ProductPriceId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Region" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MaxPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="MinPrice" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_ProductCategory_ProductGame">
+          <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGame">
+              <PropertyRef Name="ProductGameId" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="ProductGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductPrice_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductPrice" Type="Self.ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductCategory">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище WowCarryModelContainer">
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductGame" EntityType="Self.ProductGame" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_ProductCategory_ProductGame" Association="Self.FK_ProductCategory_ProductGame">
+            <End Role="ProductGame" EntitySet="ProductGame" />
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductPrice_Product" Association="Self.FK_ProductPrice_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductPrice" EntitySet="ProductPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductCategory" Association="Self.FK_Products_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WowCarryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="Guid" Nullable="false" />
+          <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductCategoryId" Type="Guid" Nullable="false" />
+          <Property Name="InStock" Type="Boolean" Nullable="false" />
+          <Property Name="PreOrder" Type="Boolean" Nullable="false" />
+          <Property Name="ProductQuantity" Type="Int32" />
+          <Property Name="ProductImage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ProductCreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="ProductUpdateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="ProductPrice" Relationship="Self.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.FK_Products_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
+        </EntityType>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryId" />
+          </Key>
+          <Property Name="ProductCategoryId" Type="Guid" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductGameId" Type="Guid" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Products_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
+          <NavigationProperty Name="ProductGame" Relationship="Self.FK_ProductCategory_ProductGame" FromRole="ProductCategory" ToRole="ProductGame" />
+        </EntityType>
+        <EntityType Name="ProductGame">
+          <Key>
+            <PropertyRef Name="ProductGameId" />
+          </Key>
+          <Property Name="ProductGameId" Type="Guid" Nullable="false" />
+          <Property Name="GameName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="GameDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="ProductCategory" Relationship="Self.FK_ProductCategory_ProductGame" FromRole="ProductGame" ToRole="ProductCategory" />
+        </EntityType>
+        <EntityType Name="ProductPrice">
+          <Key>
+            <PropertyRef Name="ProductPriceId" />
+          </Key>
+          <Property Name="ProductPriceId" Type="Guid" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="MaxPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="MinPrice" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ProductId" Type="Guid" Nullable="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_ProductPrice_Product" FromRole="ProductPrice" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK_ProductPrice_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductPrice" Type="Self.ProductPrice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
+            </Principal>
+            <Dependent Role="ProductPrice">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductCategory">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategory_ProductGame">
+          <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGame">
+              <PropertyRef Name="ProductGameId" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="ProductGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WowCarryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Product" EntityType="Self.Product" />
+          <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" />
+          <EntitySet Name="ProductGame" EntityType="Self.ProductGame" />
+          <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" />
+          <AssociationSet Name="FK_ProductPrice_Product" Association="Self.FK_ProductPrice_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductPrice" EntitySet="ProductPrice" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductCategory" Association="Self.FK_Products_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategory_ProductGame" Association="Self.FK_ProductCategory_ProductGame">
+            <End Role="ProductGame" EntitySet="ProductGame" />
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище WowCarryModelContainer" CdmEntityContainer="WowCarryEntities">
+          <EntitySetMapping Name="Product">
+            <EntityTypeMapping TypeName="WowCarryModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="ProductName" ColumnName="ProductName" />
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="InStock" ColumnName="InStock" />
+                <ScalarProperty Name="PreOrder" ColumnName="PreOrder" />
+                <ScalarProperty Name="ProductQuantity" ColumnName="ProductQuantity" />
+                <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="ProductCreateDate" ColumnName="ProductCreateDate" />
+                <ScalarProperty Name="ProductUpdateDate" ColumnName="ProductUpdateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategory">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
+                <ScalarProperty Name="ProductGameId" ColumnName="ProductGameId" />
+                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductGame">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductGame">
+              <MappingFragment StoreEntitySet="ProductGame">
+                <ScalarProperty Name="ProductGameId" ColumnName="ProductGameId" />
+                <ScalarProperty Name="GameName" ColumnName="GameName" />
+                <ScalarProperty Name="GameDescription" ColumnName="GameDescription" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductPrice">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductPrice">
+              <MappingFragment StoreEntitySet="ProductPrice">
+                <ScalarProperty Name="ProductPriceId" ColumnName="ProductPriceId" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="MaxPrice" ColumnName="MaxPrice" />
+                <ScalarProperty Name="MinPrice" ColumnName="MinPrice" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
