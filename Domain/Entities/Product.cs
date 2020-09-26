@@ -32,6 +32,8 @@ namespace WowCarry.Domain.Entities
         public Nullable<System.Guid> ProductDescriptionId { get; set; }
         public Nullable<System.Guid> ProductOptionId { get; set; }
         public Nullable<System.Guid> ProductCEOId { get; set; }
+        public Nullable<System.Guid> ProductGameId { get; set; }
+        public Nullable<System.Guid> ProductSubCategoryId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrice { get; set; }
@@ -39,5 +41,7 @@ namespace WowCarry.Domain.Entities
         public virtual ProductOption ProductOption { get; set; }
         public virtual ProductCEO ProductCEO { get; set; }
         public virtual ProductDescription ProductDescription { get; set; }
+        public virtual ProductGame ProductGame { get; set; }
+        public virtual ProductSubCategory ProductSubCategory { get; set; }
     }
 }

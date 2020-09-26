@@ -12,23 +12,20 @@ namespace WowCarry.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductCategory
+    public partial class HtmlBlocks
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductCategory()
+        public HtmlBlocks()
         {
-            this.Product = new HashSet<Product>();
+            this.HtmlBlocksChildren = new HashSet<HtmlBlocksChildren>();
         }
     
-        public System.Guid ProductCategoryId { get; set; }
-        public string ProductCategoryName { get; set; }
-        public Nullable<System.Guid> ProductGameId { get; set; }
-        public string CategoryDescription { get; set; }
-        public Nullable<System.Guid> ProductSubCategoryId { get; set; }
+        public System.Guid SiteBlockId { get; set; }
+        public string ParentCSSClass { get; set; }
+        public string ParentTitle { get; set; }
+        public string ChildCSSClass { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Product { get; set; }
-        public virtual ProductGame ProductGame { get; set; }
-        public virtual ProductSubCategory ProductSubCategory { get; set; }
+        public virtual ICollection<HtmlBlocksChildren> HtmlBlocksChildren { get; set; }
     }
 }

@@ -33,5 +33,8 @@ namespace WowCarry.Domain.Entities
         public virtual DbSet<ProductCEO> ProductCEO { get; set; }
         public virtual DbSet<ProductDescription> ProductDescription { get; set; }
         public virtual DbSet<ProductOption> ProductOption { get; set; }
+        public virtual DbSet<ProductSubCategory> ProductSubCategory { get; set; }
+        public virtual DbSet<HtmlBlocks> HtmlBlocks { get; set; }
+        public virtual DbSet<HtmlBlocksChildren> HtmlBlocksChildren { get; set; }
     }
 }

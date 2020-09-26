@@ -5,6 +5,26 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="Хранилище WowCarryModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="HtmlBlocks">
+          <Key>
+            <PropertyRef Name="SiteBlockId" />
+          </Key>
+          <Property Name="SiteBlockId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentCSSClass" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParentTitle" Type="nvarchar" MaxLength="55" />
+          <Property Name="ChildCSSClass" Type="nchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="HtmlBlocksChildren">
+          <Key>
+            <PropertyRef Name="SiteBlockChildsId" />
+          </Key>
+          <Property Name="SiteBlockChildsId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SiteBlockId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Text" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Image" Type="nvarchar" MaxLength="255" />
+          <Property Name="CSSClass" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="OptionParams">
           <Key>
             <PropertyRef Name="OptionParamsId" />
@@ -108,6 +128,18 @@
           <Property Name="ProductCategoryId" Type="nvarchar" MaxLength="50" />
           <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
         </EntityType>
+        <Association Name="FK__HtmlBlock__SiteB__31B762FC">
+          <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
+          <End Role="HtmlBlocksChildren" Type="Self.HtmlBlocksChildren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HtmlBlocks">
+              <PropertyRef Name="SiteBlockId" />
+            </Principal>
+            <Dependent Role="HtmlBlocksChildren">
+              <PropertyRef Name="SiteBlockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Product__Product__02FC7413">
           <End Role="ProductOption" Type="Self.ProductOption" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -235,6 +267,8 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Хранилище WowCarryModelContainer">
+          <EntitySet Name="HtmlBlocks" EntityType="Self.HtmlBlocks" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HtmlBlocksChildren" EntityType="Self.HtmlBlocksChildren" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OptionParams" EntityType="Self.OptionParams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
@@ -244,6 +278,10 @@
           <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSubCategory" EntityType="Self.ProductSubCategory" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HtmlBlock__SiteB__31B762FC" Association="Self.FK__HtmlBlock__SiteB__31B762FC">
+            <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
+            <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
+          </AssociationSet>
           <AssociationSet Name="FK__Product__Product__02FC7413" Association="Self.FK__Product__Product__02FC7413">
             <End Role="ProductOption" EntitySet="ProductOption" />
             <End Role="Product" EntitySet="Product" />
@@ -442,6 +480,12 @@
             <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
+          <EntitySet Name="HtmlBlocks" EntityType="WowCarryModel.HtmlBlocks" />
+          <EntitySet Name="HtmlBlocksChildren" EntityType="WowCarryModel.HtmlBlocksChildren" />
+          <AssociationSet Name="FK__HtmlBlock__SiteB__31B762FC" Association="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC">
+            <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
+            <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="OptionParams">
           <Key>
@@ -589,6 +633,40 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="HtmlBlocks">
+          <Key>
+            <PropertyRef Name="SiteBlockId" />
+          </Key>
+          <Property Name="SiteBlockId" Type="Guid" Nullable="false" />
+          <Property Name="ParentCSSClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParentTitle" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="ChildCSSClass" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="HtmlBlocksChildren" Relationship="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" FromRole="HtmlBlocks" ToRole="HtmlBlocksChildren" />
+        </EntityType>
+        <EntityType Name="HtmlBlocksChildren">
+          <Key>
+            <PropertyRef Name="SiteBlockChildsId" />
+          </Key>
+          <Property Name="SiteBlockChildsId" Type="Guid" Nullable="false" />
+          <Property Name="SiteBlockId" Type="Guid" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CSSClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="HtmlBlocks" Relationship="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" FromRole="HtmlBlocksChildren" ToRole="HtmlBlocks" />
+        </EntityType>
+        <Association Name="FK__HtmlBlock__SiteB__31B762FC">
+          <End Type="WowCarryModel.HtmlBlocks" Role="HtmlBlocks" Multiplicity="1" />
+          <End Type="WowCarryModel.HtmlBlocksChildren" Role="HtmlBlocksChildren" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HtmlBlocks">
+              <PropertyRef Name="SiteBlockId" />
+            </Principal>
+            <Dependent Role="HtmlBlocksChildren">
+              <PropertyRef Name="SiteBlockId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -704,6 +782,28 @@
                 <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
                 <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
                 <ScalarProperty Name="ProductSubCategoryId" ColumnName="ProductSubCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HtmlBlocks">
+            <EntityTypeMapping TypeName="WowCarryModel.HtmlBlocks">
+              <MappingFragment StoreEntitySet="HtmlBlocks">
+                <ScalarProperty Name="ChildCSSClass" ColumnName="ChildCSSClass" />
+                <ScalarProperty Name="ParentTitle" ColumnName="ParentTitle" />
+                <ScalarProperty Name="ParentCSSClass" ColumnName="ParentCSSClass" />
+                <ScalarProperty Name="SiteBlockId" ColumnName="SiteBlockId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HtmlBlocksChildren">
+            <EntityTypeMapping TypeName="WowCarryModel.HtmlBlocksChildren">
+              <MappingFragment StoreEntitySet="HtmlBlocksChildren">
+                <ScalarProperty Name="CSSClass" ColumnName="CSSClass" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="SiteBlockId" ColumnName="SiteBlockId" />
+                <ScalarProperty Name="SiteBlockChildsId" ColumnName="SiteBlockChildsId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
