@@ -2,7 +2,7 @@
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 400;
-  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v17/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
+  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-UFVZ0e.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
@@ -53,7 +53,7 @@ body {
 }
 header .top {
   border-bottom: 1px solid #1A233B;
-  padding: 15px 0;
+  padding: 0;
   text-align: center;
 }
 #categories {
@@ -165,6 +165,163 @@ header .top {
   right: 0;
   opacity: 1;
 }
+.main-blocks {
+  max-width: 1600px;
+  margin: 0 auto;
+  position: relative;
+  text-align: center;
+  line-height: 250px;
+  margin: 20px 0;
+  background: #161828;
+  text-transform: uppercase;
+  font-size: 30px;
+}
+.logo {
+  float: left;
+  font-size: 35px;
+  line-height: 33px;
+  height: 33px;
+  font-weight: bold;
+  color: #6D94C4;
+  padding: 20px 0;
+  text-decoration: none;
+}
+.logo:hover {
+  text-decoration: none;
+}
+.games-top-menu-block {
+  float: left;
+  margin: 0 20px;
+  padding: 20px;
+  height: 33px;
+  overflow: hidden;
+  font-size: 14px;
+  color: #eee;
+}
+.cart {
+  float: right;
+  padding: 8px 20px;
+  min-height: 33px;
+  text-align: center;
+  background: none;
+  border: 0 none;
+}
+.cart:hover,
+.cart:active {
+  background: #10111B;
+}
+.cart:before {
+  content: "\f07a";
+  font-size: 33px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: #6D94C4;
+}
+.sign_in {
+  float: right;
+  padding: 8px 20px;
+  min-height: 33px;
+  margin: 0 20px;
+  text-align: center;
+  background: none;
+  border: 0 none;
+}
+.sign_in:hover,
+.sign_in:active {
+  background: #10111B;
+}
+.sign_in:before {
+  content: "\f090";
+  font-size: 33px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: #6D94C4;
+}
+.search-bar {
+  float: right;
+  height: 33px;
+  margin: 11px 20px 8px;
+}
+.search-bar .search-btn {
+  text-align: center;
+  background: none;
+}
+.search-bar .search-btn:hover,
+.search-bar .search-btn:active {
+  background: none;
+}
+.search-bar .search-btn:before {
+  content: "\f002";
+  font-size: 20px;
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  color: #6D94C4;
+}
+.container {
+  width: 100%;
+  max-width: 1600px;
+}
+.logo_foot {
+  height: 48px;
+  float: left;
+  font-size: 35px;
+  line-height: 33px;
+  font-weight: bold;
+  color: #6D94C4;
+  text-decoration: none;
+}
+.main_blocks {
+  display: block;
+  float: right;
+  margin-top: -48px;
+}
+footer .title {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 15px;
+}
+footer .footer_category li {
+  display: block;
+  position: relative;
+  padding: 0 0 15px;
+}
+footer .footer_category li a {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  position: relative;
+}
+footer .foot_menu li {
+  display: block;
+  position: relative;
+  padding: 0 0 15px;
+}
+.pow {
+  font-size: 12px;
+  line-height: 16px;
+  color: #eee;
+  padding: 30px 0 0;
+  max-width: 50%;
+  position: absolute;
+  top: 180px;
+}
+.payment_accept {
+  position: absolute;
+  left: 17px;
+  top: 90px;
+  z-index: 999;
+}
 #content {
   margin: 0 auto;
   max-width: 1600px;
@@ -172,8 +329,40 @@ header .top {
 .clear-footer {
   height: 334px;
 }
+.clear {
+  clear: both;
+}
 footer {
+  max-width: 1600px;
+  position: relative;
+  padding: 0 17px 0;
   height: 334px;
+  color: #eee;
+  margin: 0 auto;
+  overflow: hidden;
+  z-index: 0;
+}
+footer .foot_menu {
+  margin: 0;
+  padding: 0;
+  width: auto;
+  float: left;
+  vertical-align: top;
+  max-width: initial;
+}
+footer .footer_category {
+  float: left;
+  vertical-align: top;
+  padding-left: 80px;
+  width: auto;
+  max-width: initial;
+}
+.social_footer {
+  z-index: 999;
+  float: left;
+  vertical-align: top;
+  padding-left: 80px;
+  max-width: initial;
 }
 .product-layout {
   width: 378px;
