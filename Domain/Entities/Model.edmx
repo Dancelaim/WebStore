@@ -30,6 +30,8 @@
           <Property Name="ProductDescriptionId" Type="uniqueidentifier" />
           <Property Name="ProductOptionId" Type="uniqueidentifier" />
           <Property Name="ProductCEOId" Type="uniqueidentifier" />
+          <Property Name="ProductGameId" Type="uniqueidentifier" />
+          <Property Name="ProductSubCategoryId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -39,6 +41,7 @@
           <Property Name="ProductCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductGameId" Type="uniqueidentifier" />
           <Property Name="CategoryDescription" Type="varchar" MaxLength="255" />
+          <Property Name="ProductSubCategoryId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ProductCEO">
           <Key>
@@ -96,6 +99,15 @@
           <Property Name="MinPrice" Type="decimal" Precision="18" Scale="0" />
           <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProductSubCategory">
+          <Key>
+            <PropertyRef Name="ProductSubCategoryId" />
+          </Key>
+          <Property Name="ProductSubCategoryId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductCategoryId" Type="nvarchar" MaxLength="50" />
+          <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
+        </EntityType>
         <Association Name="FK__Product__Product__02FC7413">
           <End Role="ProductOption" Type="Self.ProductOption" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -120,6 +132,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Product__Product__29221CFB">
+          <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGame">
+              <PropertyRef Name="ProductGameId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Product__2A164134">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__Product__Product__6FE99F9F">
           <End Role="ProductDescription" Type="Self.ProductDescription" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -129,6 +165,18 @@
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="ProductDescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductCa__Produ__2B0A656D">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="0..1" />
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="ProductSubCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -195,6 +243,7 @@
           <EntitySet Name="ProductGame" EntityType="Self.ProductGame" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductSubCategory" EntityType="Self.ProductSubCategory" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Product__Product__02FC7413" Association="Self.FK__Product__Product__02FC7413">
             <End Role="ProductOption" EntitySet="ProductOption" />
             <End Role="Product" EntitySet="Product" />
@@ -203,9 +252,21 @@
             <End Role="ProductCEO" EntitySet="ProductCEO" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__29221CFB" Association="Self.FK__Product__Product__29221CFB">
+            <End Role="ProductGame" EntitySet="ProductGame" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__2A164134" Association="Self.FK__Product__Product__2A164134">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
           <AssociationSet Name="FK__Product__Product__6FE99F9F" Association="Self.FK__Product__Product__6FE99F9F">
             <End Role="ProductDescription" EntitySet="ProductDescription" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductCa__Produ__2B0A656D" Association="Self.FK__ProductCa__Produ__2B0A656D">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductOp__Optio__05D8E0BE" Association="Self.FK__ProductOp__Optio__05D8E0BE">
             <End Role="OptionParams" EntitySet="OptionParams" />
@@ -249,6 +310,10 @@
           <NavigationProperty Name="ProductOption" Relationship="WowCarryModel.FK__Product__Product__02FC7413" FromRole="Product" ToRole="ProductOption" />
           <NavigationProperty Name="ProductCEO" Relationship="WowCarryModel.FK__Product__Product__08B54D69" FromRole="Product" ToRole="ProductCEO" />
           <NavigationProperty Name="ProductDescription" Relationship="WowCarryModel.FK__Product__Product__6FE99F9F" FromRole="Product" ToRole="ProductDescription" />
+          <Property Name="ProductGameId" Type="Guid" />
+          <Property Name="ProductSubCategoryId" Type="Guid" />
+          <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK__Product__Product__29221CFB" FromRole="Product" ToRole="ProductGame" />
+          <NavigationProperty Name="ProductSubCategory" Relationship="WowCarryModel.FK__Product__Product__2A164134" FromRole="Product" ToRole="ProductSubCategory" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -260,6 +325,8 @@
           <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Products_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
           <NavigationProperty Name="ProductGame" Relationship="Self.FK_ProductCategory_ProductGame" FromRole="ProductCategory" ToRole="ProductGame" />
+          <Property Name="ProductSubCategoryId" Type="Guid" />
+          <NavigationProperty Name="ProductSubCategory" Relationship="WowCarryModel.FK__ProductCa__Produ__2B0A656D" FromRole="ProductCategory" ToRole="ProductSubCategory" />
         </EntityType>
         <EntityType Name="ProductGame">
           <Key>
@@ -269,6 +336,7 @@
           <Property Name="GameName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GameDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK_ProductCategory_ProductGame" FromRole="ProductGame" ToRole="ProductCategory" />
+          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__29221CFB" FromRole="ProductGame" ToRole="Product" />
         </EntityType>
         <EntityType Name="ProductPrice">
           <Key>
@@ -360,6 +428,19 @@
           <AssociationSet Name="FK__Product__Product__6FE99F9F" Association="WowCarryModel.FK__Product__Product__6FE99F9F">
             <End Role="ProductDescription" EntitySet="ProductDescription" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__29221CFB" Association="WowCarryModel.FK__Product__Product__29221CFB">
+            <End Role="ProductGame" EntitySet="ProductGame" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <EntitySet Name="ProductSubCategory" EntityType="WowCarryModel.ProductSubCategory" />
+          <AssociationSet Name="FK__Product__Product__2A164134" Association="WowCarryModel.FK__Product__Product__2A164134">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductCa__Produ__2B0A656D" Association="WowCarryModel.FK__ProductCa__Produ__2B0A656D">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="OptionParams">
@@ -461,6 +542,53 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__Product__Product__29221CFB">
+          <End Type="WowCarryModel.ProductGame" Role="ProductGame" Multiplicity="0..1" />
+          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGame">
+              <PropertyRef Name="ProductGameId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductSubCategory">
+          <Key>
+            <PropertyRef Name="ProductSubCategoryId" />
+          </Key>
+          <Property Name="ProductSubCategoryId" Type="Guid" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductCategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__2A164134" FromRole="ProductSubCategory" ToRole="Product" />
+          <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK__ProductCa__Produ__2B0A656D" FromRole="ProductSubCategory" ToRole="ProductCategory" />
+        </EntityType>
+        <Association Name="FK__Product__Product__2A164134">
+          <End Type="WowCarryModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="0..1" />
+          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductCa__Produ__2B0A656D">
+          <End Type="WowCarryModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="0..1" />
+          <End Type="WowCarryModel.ProductCategory" Role="ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -470,6 +598,8 @@
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="WowCarryModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductSubCategoryId" ColumnName="ProductSubCategoryId" />
+                <ScalarProperty Name="ProductGameId" ColumnName="ProductGameId" />
                 <ScalarProperty Name="ProductCEOId" ColumnName="ProductCEOId" />
                 <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
                 <ScalarProperty Name="ProductDescriptionId" ColumnName="ProductDescriptionId" />
@@ -488,6 +618,7 @@
           <EntitySetMapping Name="ProductCategory">
             <EntityTypeMapping TypeName="WowCarryModel.ProductCategory">
               <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="ProductSubCategoryId" ColumnName="ProductSubCategoryId" />
                 <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
                 <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
                 <ScalarProperty Name="ProductGameId" ColumnName="ProductGameId" />
@@ -563,6 +694,16 @@
                 <ScalarProperty Name="OptionType" ColumnName="OptionType" />
                 <ScalarProperty Name="OptionName" ColumnName="OptionName" />
                 <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSubCategory">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductSubCategory">
+              <MappingFragment StoreEntitySet="ProductSubCategory">
+                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
+                <ScalarProperty Name="ProductSubCategoryId" ColumnName="ProductSubCategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
