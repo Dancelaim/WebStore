@@ -4,7 +4,7 @@ ALTER TABLE HtmlBlocks
 ALTER COLUMN ChildCSSClass nvarchar(55)
 
 ALTER TABLE HtmlBlocks
-ALTER COLUMN SitePage nvarchar(55)
+ADD SitePage nvarchar(55)
 
 ALTER TABLE HtmlBlocksChildren
 ADD ChildOrder decimal
@@ -12,7 +12,7 @@ ADD ChildOrder decimal
 declare @id uniqueidentifier = newID()
 
 Insert into HtmlBlocks
-Values(@id,'purchase_block','How our service works','purchase_block_in','HomeController')
+Values(@id,'purchase_block','How our service works','purchase_block_in','HomePage')
 
 Insert into HtmlBlocksChildren
 Values(newid(),@id,'Need more details? Visit this page for more info','','','purchase_in','0')
