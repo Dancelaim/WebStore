@@ -156,6 +156,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="ScriptHistory\4.sql" />
     <Content Include="ScriptHistory\3.sql" />
     <Content Include="ScriptHistory\2.sql" />
     <Content Include="ScriptHistory\ScriptGenerator.tt">

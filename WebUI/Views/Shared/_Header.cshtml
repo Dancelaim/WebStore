@@ -24,10 +24,38 @@
 
 
                     <div class="games-top-menu-block">
-                        <ul class="list-unstyled">
+                        <div class="hover-button">
+                            <div class="no-category" style="display: inline-block;">SELECT GAME</div>
+                            <i class="fa"></i>
+                        </div>
+                        <ul class="dropdown-menu">
                             @Html.Action("GameMenu", "GameNav")
                         </ul>
                     </div>
+
+                    <div class="top_curr">
+                        <div class="top_currency">
+                            <div class="pull-left">
+                                <form action="" method="post" enctype="multipart/form-data" id="form-currency">
+                                    <div class="btn-group">
+                                        <div class="hover-button">
+                                            <span> Europe </span>
+                                            <i class="fa"></i>
+                                        </div>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <button class="currency-select btn btn-link btn-block" type="button" name="EUR">Europe</button>
+                                            </li>
+                                            <li>
+                                                <button class="currency-select btn btn-link btn-block" type="button" name="USD">US&amp;Oceania</button>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
                     <button class="btn btn-primary cart"></button>
                     <button class="btn btn-primary sign_in"></button>
                     <form action="" class="search-bar">

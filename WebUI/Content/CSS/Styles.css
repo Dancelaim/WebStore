@@ -140,12 +140,130 @@ header .top {
 }
 .games-top-menu-block {
   float: left;
-  margin: 0 20px;
-  padding: 20px;
-  height: 33px;
-  overflow: hidden;
+  margin: 0;
+  padding: 0;
   font-size: 14px;
   color: #eee;
+  text-transform: uppercase;
+  position: relative;
+}
+.top_curr {
+  margin: 0;
+  vertical-align: top;
+  display: inline-block;
+  padding: 0;
+  background: none;
+  border: 0 none;
+  z-index: 1;
+  float: left;
+}
+.top_curr .links_store,
+.top_curr .top_currency {
+  background: none;
+  border: 0 none;
+  border-radius: 100px;
+  display: inline-block;
+}
+.top_curr .links_store .btn-link.dropdown-toggle,
+.top_curr .top_currency .btn-link.dropdown-toggle {
+  text-transform: uppercase;
+}
+.top_curr .links_store a,
+.top_curr .top_currency a {
+  padding: 10px 10px 10px 20px;
+  display: block;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  color: #eee;
+  text-shadow: none;
+}
+.top_curr .links_store a:hover,
+.top_curr .top_currency a:hover {
+  background: #6D94C4;
+  color: #10111B;
+}
+.top_curr .pull-left {
+  float: none !important;
+  padding: 0;
+}
+.top_curr,
+.games-top-menu-block {
+  margin: 0 0 0 15px;
+  transition: all 0.3s ease;
+}
+.top_curr:hover .hover-button,
+.games-top-menu-block:hover .hover-button {
+  background: #161828;
+}
+.top_curr:hover .dropdown-menu,
+.games-top-menu-block:hover .dropdown-menu {
+  display: block;
+}
+.top_curr:hover .fa:before,
+.games-top-menu-block:hover .fa:before {
+  transform: rotate(180deg);
+}
+.hover-button {
+  cursor: pointer;
+  padding: 22px 32px 22px 12px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  color: #eee;
+  text-shadow: none;
+  text-align: left;
+  line-height: 20px;
+  transition: all 0.3s ease;
+}
+.hover-button .fa {
+  font-size: 14px;
+  right: 12px;
+  position: absolute;
+  top: 22px;
+}
+.games-top-menu-block .dropdown-menu {
+  width: 300px;
+}
+.dropdown-menu {
+  margin: 0;
+  background: #161828;
+  margin: 0 !important;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  text-align: left;
+}
+.dropdown-menu li {
+  display: block;
+}
+.dropdown-menu li a,
+.dropdown-menu li button {
+  border-bottom: 1px solid #1A233B;
+  display: block;
+  padding: 17px 10px 17px 20px;
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  color: #eee;
+  text-shadow: none;
+  outline: none;
+  transition: all 0.3s ease;
+  text-align: left;
+  text-decoration: none;
+}
+.dropdown-menu li a:hover,
+.dropdown-menu li button:hover {
+  text-decoration: none;
+  outline: none;
+  color: #eee;
+  background: #212656;
+}
+.fa:before {
+  background: url(https://wowcarry.com/image/catalog/arrow-down.svg) 0 0 no-repeat;
+  background-size: 18px;
+  width: 18px;
+  height: 18px;
+  content: '';
+  display: block;
+  transition: all 0.2s ease;
 }
 .cart {
   float: right;

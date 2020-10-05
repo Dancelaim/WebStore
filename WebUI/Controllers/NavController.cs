@@ -18,7 +18,7 @@ namespace WebUI.Controllers
         public PartialViewResult Menu(string currentGame)
         {
             string game = currentGame.IsNullOrEmpty() ? ViewBag.CurrentGame : currentGame;
-            IEnumerable<string> categories = repository.Products.Where(p => p.ProductGame.GameShortUrl == game).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x);
+            IEnumerable<string> categories = repository.Products.Where(p => p.ProductGame.GameShortUrl == currentGame).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x);
             return PartialView(categories);
         }
     }

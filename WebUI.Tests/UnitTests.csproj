@@ -119,10 +119,6 @@
       <Project>{1328e906-ce01-4592-bbd5-9569585341e4}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\WebUI\WebUI.csproj">
-      <Project>{331dde60-35a5-439c-a975-3ed212aaf328}</Project>
-      <Name>WebUI</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

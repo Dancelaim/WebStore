@@ -131,7 +131,7 @@
           <Property Name="ProductCategoryId" Type="nvarchar" MaxLength="50" />
           <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__HtmlBlock__SiteB__31B762FC">
+        <Association Name="FK__HtmlBlock__SiteB__3E1D39E1">
           <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
           <End Role="HtmlBlocksChildren" Type="Self.HtmlBlocksChildren" Multiplicity="*" />
           <ReferentialConstraint>
@@ -281,7 +281,7 @@
           <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSubCategory" EntityType="Self.ProductSubCategory" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__HtmlBlock__SiteB__31B762FC" Association="Self.FK__HtmlBlock__SiteB__31B762FC">
+          <AssociationSet Name="FK__HtmlBlock__SiteB__3E1D39E1" Association="Self.FK__HtmlBlock__SiteB__3E1D39E1">
             <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
             <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
           </AssociationSet>
