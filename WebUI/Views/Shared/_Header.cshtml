@@ -20,14 +20,12 @@
         <header>
             <div class="top">
                 <div id="content">
-                    <div class="logo"><a href="#">WowCarry</a></div>
+                    <div class="logo"><a href="/">WowCarry</a></div>
 
 
                     <div class="games-top-menu-block">
                         <ul class="list-unstyled">
-                            <li><a href="https://wowcarry.com/bfa">World of Warcraft BFA</a></li>
-                            <li><a href="https://wowcarry.com/classic">World of Warcraft Classic</a></li>
-                            <li><a href="https://wowcarry.com/poe">Path Of Exile Boosting</a></li>
+                            @Html.Action("GameMenu", "GameNav")
                         </ul>
                     </div>
                     <button class="btn btn-primary cart"></button>
@@ -37,11 +35,18 @@
                         <button class="btn btn-primary search-btn" type="submit">
                         </button>
                     </form>
-
-
-
-
                     <div class="clear"></div>
+
+                    <div class="navbar" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            @Html.Action("Menu", "Nav")
+                        </ul>
+                    </div>
+
+
+
+
+
                 </div>
             </div>
         </header>

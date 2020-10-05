@@ -1,0 +1,15 @@
+﻿@using WebUI.Models
+@model SiteBlockViewModel
+
+@foreach (var pb in Model.HtmlBlocks)
+{
+<div class=@pb.ParentCSSClass>
+    <h2>@pb.ParentTitle</h2>
+    <div class=@pb.ChildCSSClass>
+        @foreach (var b in Model.HtmlBlocksChildren.Where(chb =>chb.SiteBlockId == pb.SiteBlockId))
+        {
+            @Html.Partial("SiteBlockChild", b)
+        }
+    </div>
+</div>
+}

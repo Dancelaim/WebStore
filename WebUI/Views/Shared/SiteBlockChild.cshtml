@@ -1,0 +1,16 @@
+﻿@model WowCarry.Domain.Entities.HtmlBlocksChildren
+
+<div class=@Model.CSSClass>
+    @if (!String.IsNullOrEmpty(Model.Image))
+    {
+        <div class="image">@Model.Image</div>
+    }
+    @if (!String.IsNullOrEmpty(Model.Title))
+    {
+        <div class="title">@Model.Title</div>
+    }
+    @if (!String.IsNullOrEmpty(Model.Text))
+    {
+        <div class="text">@Model.Text</div>
+    }
+</div>

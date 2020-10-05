@@ -245,9 +245,13 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\GamePageController.cs" />
     <Compile Include="Controllers\CartController.cs" />
+    <Compile Include="Controllers\GameNavController.cs" />
+    <Compile Include="Controllers\HomePageController.cs" />
     <Compile Include="Controllers\NavController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\SiteBlockController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,6 +259,7 @@
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\CartIndexViewModel.cs" />
+    <Compile Include="Models\SiteBlockViewModel.cs" />
     <Compile Include="Models\ProductsListViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -282,7 +287,13 @@
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_ProductDetales.cshtml" />
+    <Content Include="Views\Shared\_ProductDetails.cshtml" />
+    <Content Include="Views\HomePage\Home.cshtml" />
+    <Content Include="Views\MasterPage.cshtml" />
+    <Content Include="Views\SiteBlock\SiteBlock.cshtml" />
+    <Content Include="Views\Shared\SiteBlockChild.cshtml" />
+    <Content Include="Views\GameNav\GameMenu.cshtml" />
+    <Content Include="Views\GamePage\GameDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

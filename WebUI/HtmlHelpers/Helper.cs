@@ -29,6 +29,5 @@ namespace WebUI.HtmlHelpers
 
             return category == currentCategory ? cssClass : String.Empty;
         }
-
     }
 }

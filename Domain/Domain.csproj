@@ -74,7 +74,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IProductGameRepository.cs" />
+    <Compile Include="Abstract\IHtmlBlockRepository.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
+    <Compile Include="Concrete\EFHtmlBlockRepository.cs" />
+    <Compile Include="Concrete\EFProductGameRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\HtmlBlocks.cs">
@@ -152,6 +156,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="ScriptHistory\3.sql" />
     <Content Include="ScriptHistory\2.sql" />
     <Content Include="ScriptHistory\ScriptGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

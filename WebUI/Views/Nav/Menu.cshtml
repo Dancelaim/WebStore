@@ -3,10 +3,10 @@
 @foreach (var cat in Model)
 {
     <li>
-    @Html.RouteLink(cat,
+    @Html.RouteLink(cat, "Sorted",
        new
        {
-           categoryName = cat,
+           categoryName = cat
        },
         new { @class = Html.IsSelected(cat)}
        )

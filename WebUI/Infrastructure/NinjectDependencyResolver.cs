@@ -33,6 +33,8 @@ namespace WowCarry.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IProductRepository>().To<EFProductRepository>();
+            kernel.Bind<IHtmlBlockRepository>().To<EFHtmlBlockRepository>();
+            kernel.Bind<IProductGameRepository>().To<EFProductGameRepository>();
         }
     }
 }

@@ -20,6 +20,7 @@ namespace WowCarry.Domain.Entities
         public string Title { get; set; }
         public string Image { get; set; }
         public string CSSClass { get; set; }
+        public Nullable<decimal> ChildOrder { get; set; }
     
         public virtual HtmlBlocks HtmlBlocks { get; set; }
     }

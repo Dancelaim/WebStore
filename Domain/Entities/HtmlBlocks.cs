@@ -24,6 +24,7 @@ namespace WowCarry.Domain.Entities
         public string ParentCSSClass { get; set; }
         public string ParentTitle { get; set; }
         public string ChildCSSClass { get; set; }
+        public string SitePage { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<HtmlBlocksChildren> HtmlBlocksChildren { get; set; }

@@ -1,0 +1,14 @@
+﻿@using WowCarry.Domain.Entities
+@model IEnumerable<ProductGame>
+
+@foreach (ProductGame game in Model)
+{
+    <li>
+        @Html.RouteLink(game.GameName, "GameDetails",
+           new
+           {
+               currentGame = game.GameShortUrl.Replace(" ", "").ToLower()
+           }
+          )
+    </li>
+}

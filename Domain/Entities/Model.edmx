@@ -12,7 +12,8 @@
           <Property Name="SiteBlockId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ParentCSSClass" Type="nvarchar" MaxLength="50" />
           <Property Name="ParentTitle" Type="nvarchar" MaxLength="55" />
-          <Property Name="ChildCSSClass" Type="nchar" MaxLength="10" />
+          <Property Name="ChildCSSClass" Type="nvarchar" MaxLength="55" />
+          <Property Name="SitePage" Type="nvarchar" MaxLength="55" />
         </EntityType>
         <EntityType Name="HtmlBlocksChildren">
           <Key>
@@ -24,6 +25,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
           <Property Name="Image" Type="nvarchar" MaxLength="255" />
           <Property Name="CSSClass" Type="nvarchar" MaxLength="50" />
+          <Property Name="ChildOrder" Type="decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="OptionParams">
           <Key>
@@ -98,6 +100,7 @@
           <Property Name="ProductGameId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="GameName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="GameDescription" Type="varchar" MaxLength="255" />
+          <Property Name="GameShortUrl" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ProductOption">
           <Key>
@@ -375,6 +378,7 @@
           <Property Name="GameDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK_ProductCategory_ProductGame" FromRole="ProductGame" ToRole="ProductCategory" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__29221CFB" FromRole="ProductGame" ToRole="Product" />
+          <Property Name="GameShortUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ProductPrice">
           <Key>
@@ -640,8 +644,9 @@
           <Property Name="SiteBlockId" Type="Guid" Nullable="false" />
           <Property Name="ParentCSSClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ParentTitle" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="ChildCSSClass" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ChildCSSClass" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HtmlBlocksChildren" Relationship="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" FromRole="HtmlBlocks" ToRole="HtmlBlocksChildren" />
+          <Property Name="SitePage" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="HtmlBlocksChildren">
           <Key>
@@ -654,6 +659,7 @@
           <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CSSClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HtmlBlocks" Relationship="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" FromRole="HtmlBlocksChildren" ToRole="HtmlBlocks" />
+          <Property Name="ChildOrder" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <Association Name="FK__HtmlBlock__SiteB__31B762FC">
           <End Type="WowCarryModel.HtmlBlocks" Role="HtmlBlocks" Multiplicity="1" />
@@ -707,6 +713,7 @@
           <EntitySetMapping Name="ProductGame">
             <EntityTypeMapping TypeName="WowCarryModel.ProductGame">
               <MappingFragment StoreEntitySet="ProductGame">
+                <ScalarProperty Name="GameShortUrl" ColumnName="GameShortUrl" />
                 <ScalarProperty Name="ProductGameId" ColumnName="ProductGameId" />
                 <ScalarProperty Name="GameName" ColumnName="GameName" />
                 <ScalarProperty Name="GameDescription" ColumnName="GameDescription" />
@@ -788,6 +795,7 @@
           <EntitySetMapping Name="HtmlBlocks">
             <EntityTypeMapping TypeName="WowCarryModel.HtmlBlocks">
               <MappingFragment StoreEntitySet="HtmlBlocks">
+                <ScalarProperty Name="SitePage" ColumnName="SitePage" />
                 <ScalarProperty Name="ChildCSSClass" ColumnName="ChildCSSClass" />
                 <ScalarProperty Name="ParentTitle" ColumnName="ParentTitle" />
                 <ScalarProperty Name="ParentCSSClass" ColumnName="ParentCSSClass" />
@@ -798,6 +806,7 @@
           <EntitySetMapping Name="HtmlBlocksChildren">
             <EntityTypeMapping TypeName="WowCarryModel.HtmlBlocksChildren">
               <MappingFragment StoreEntitySet="HtmlBlocksChildren">
+                <ScalarProperty Name="ChildOrder" ColumnName="ChildOrder" />
                 <ScalarProperty Name="CSSClass" ColumnName="CSSClass" />
                 <ScalarProperty Name="Image" ColumnName="Image" />
                 <ScalarProperty Name="Title" ColumnName="Title" />

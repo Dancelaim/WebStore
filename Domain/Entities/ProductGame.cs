@@ -24,6 +24,7 @@ namespace WowCarry.Domain.Entities
         public System.Guid ProductGameId { get; set; }
         public string GameName { get; set; }
         public string GameDescription { get; set; }
+        public string GameShortUrl { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCategory> ProductCategory { get; set; }
