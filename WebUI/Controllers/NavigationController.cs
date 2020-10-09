@@ -12,6 +12,7 @@ namespace WebUI.Controllers
     public class NavigationController : Controller
     {
         private IProductRepository repository;
+
         public NavigationController(IProductRepository repo)
         {
             repository = repo;
@@ -23,11 +24,17 @@ namespace WebUI.Controllers
         }
         public PartialViewResult CategoryMenu(string currentGame)
         {
-            if (currentGame.IsNullOrEmpty()) 
+            string SelectedGame = (string)Session["SelectedGame"];
+
+            if (SelectedGame == null)
             {
-               currentGame = repository.Products.Where(p => p.ProductGame.GameName == ViewBag.currentGame).Select(sp => sp.ProductGame.GameShortUrl).FirstOrDefault();
+                SelectedGame = currentGame;
+                Session["SelectedGame"] = SelectedGame;
             }
-            IEnumerable<string> categories = repository.Products.Where(p => p.ProductGame.GameShortUrl == currentGame).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x);
+
+            string game = !currentGame.IsNullOrEmpty() ? currentGame : SelectedGame;
+
+            IEnumerable<string> categories = repository.Products.Where(p =>  p.ProductGame.GameShortUrl == game).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x);
             return PartialView(categories);
         }
     }

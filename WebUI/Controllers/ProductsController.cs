@@ -23,7 +23,7 @@ namespace WowCarry.WebUI.Controllers
         }
         public ViewResult List(string categoryName,int page = 1)
         {
-            ViewBag.currentGame = repository.Products.Where(p => p.ProductCategory.ProductCategoryName == categoryName).Select(sp => sp.ProductGame).FirstOrDefault().GameName.ToString();
+            ViewBag.currentGame = repository.Products.Where(p => p.ProductCategory.ProductCategoryName == categoryName).Select(sp => sp.ProductGame.GameName).FirstOrDefault();
             ProductsListViewModel model = new ProductsListViewModel
             {
                 Products = repository.Products.Where(p=> categoryName == null || p.ProductCategory.ProductCategoryName == categoryName)
