@@ -11,7 +11,7 @@ set Image = '/Images/Team.svg'
 where Title = 'PROFESSIONAL TEAM'
 update HtmlBlocksChildren
 set Image = '/Images/Online.svg'
-where Title = 'WE’RE ONLINE 24/7'
+where Title = 'we are online 24/7'
 
 update HtmlBlocksChildren
 set Image = '/Images/one.svg'
