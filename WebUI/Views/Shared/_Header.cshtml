@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+﻿<DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -10,9 +10,6 @@
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link href="~/Content/CSS/Styles.css" rel="stylesheet" />
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
-    
-
-    <title>@ViewBag.Title</title>
 </head>
 
 <body>
@@ -21,15 +18,13 @@
             <div class="top">
                 <div id="content">
                     <div class="logo"><a href="/">WowCarry</a></div>
-
-
                     <div class="games-top-menu-block">
                         <div class="hover-button">
-                            <div class="no-category" style="display: inline-block;">SELECT GAME</div>
+                            <div class="no-category" style="display: inline-block;">@ViewBag.currentGame</div>
                             <i class="fa"></i>
                         </div>
                         <ul class="dropdown-menu">
-                            @Html.Action("GameMenu", "GameNav")
+                            @Html.Action("GameMenu", "Navigation")
                         </ul>
                     </div>
 
@@ -67,7 +62,7 @@
 
                     <div class="navbar" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            @Html.Action("Menu", "Nav")
+                            @Html.Action("CategoryMenu", "Navigation")
                         </ul>
                     </div>
 

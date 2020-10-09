@@ -159,6 +159,9 @@
     <Content Include="ScriptHistory\4.sql" />
     <Content Include="ScriptHistory\3.sql" />
     <Content Include="ScriptHistory\2.sql" />
+    <Content Include="ScriptHistory\5.sql" />
+    <Content Include="ScriptHistory\7.sql" />
+    <Content Include="ScriptHistory\6.sql" />
     <Content Include="ScriptHistory\ScriptGenerator.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ScriptGenerator.txt</LastGenOutput>
