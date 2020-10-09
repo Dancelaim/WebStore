@@ -160,6 +160,7 @@
     <Content Include="ScriptHistory\3.sql" />
     <Content Include="ScriptHistory\2.sql" />
     <Content Include="ScriptHistory\5.sql" />
+    <Content Include="ScriptHistory\9.sql" />
     <Content Include="ScriptHistory\8.sql" />
     <Content Include="ScriptHistory\7.sql" />
     <Content Include="ScriptHistory\6.sql" />

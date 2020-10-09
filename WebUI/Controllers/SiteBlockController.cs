@@ -23,9 +23,10 @@ namespace WebUI.Controllers
         {
             var routeValues = HttpContext.Request.RequestContext.RouteData.Values;
             string currentController = (string)routeValues["controller"];
+
             SiteBlockViewModel SiteBlocks = new SiteBlockViewModel
             {
-                HtmlBlocks = repository.HtmlBlocks.Where(b => b.SitePage == (!currentGame.IsNullOrEmpty() ? currentGame : currentController)),
+                HtmlBlocks = repository.HtmlBlocks.Where(b => b.SitePage == (!currentGame.IsNullOrEmpty() ? currentGame : currentController)).OrderBy(s=>s.Order),
                 HtmlBlocksChildren = repository.HtmlBlocks.Where(b => b.SitePage == (!currentGame.IsNullOrEmpty() ? currentGame : currentController)).SelectMany(b => b.HtmlBlocksChildren).OrderBy(ch =>ch.ChildOrder)
             };
             return PartialView(SiteBlocks);

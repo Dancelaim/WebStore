@@ -14,6 +14,7 @@
           <Property Name="ParentTitle" Type="nvarchar" MaxLength="55" />
           <Property Name="ChildCSSClass" Type="nvarchar" MaxLength="55" />
           <Property Name="SitePage" Type="nvarchar" MaxLength="55" />
+          <Property Name="Order" Type="numeric" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="HtmlBlocksChildren">
           <Key>
@@ -131,7 +132,7 @@
           <Property Name="ProductCategoryId" Type="nvarchar" MaxLength="50" />
           <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__HtmlBlock__SiteB__3E1D39E1">
+        <Association Name="FK__HtmlBlock__SiteB__31B762FC">
           <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
           <End Role="HtmlBlocksChildren" Type="Self.HtmlBlocksChildren" Multiplicity="*" />
           <ReferentialConstraint>
@@ -281,7 +282,7 @@
           <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSubCategory" EntityType="Self.ProductSubCategory" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__HtmlBlock__SiteB__3E1D39E1" Association="Self.FK__HtmlBlock__SiteB__3E1D39E1">
+          <AssociationSet Name="FK__HtmlBlock__SiteB__31B762FC" Association="Self.FK__HtmlBlock__SiteB__31B762FC">
             <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
             <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
           </AssociationSet>
@@ -647,6 +648,7 @@
           <Property Name="ChildCSSClass" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HtmlBlocksChildren" Relationship="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" FromRole="HtmlBlocks" ToRole="HtmlBlocksChildren" />
           <Property Name="SitePage" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+          <Property Name="Order" Type="Decimal" Precision="18" Scale="0" />
         </EntityType>
         <EntityType Name="HtmlBlocksChildren">
           <Key>
@@ -795,6 +797,7 @@
           <EntitySetMapping Name="HtmlBlocks">
             <EntityTypeMapping TypeName="WowCarryModel.HtmlBlocks">
               <MappingFragment StoreEntitySet="HtmlBlocks">
+                <ScalarProperty Name="Order" ColumnName="Order" />
                 <ScalarProperty Name="SitePage" ColumnName="SitePage" />
                 <ScalarProperty Name="ChildCSSClass" ColumnName="ChildCSSClass" />
                 <ScalarProperty Name="ParentTitle" ColumnName="ParentTitle" />
