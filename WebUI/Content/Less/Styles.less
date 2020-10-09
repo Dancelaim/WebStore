@@ -400,7 +400,7 @@ header {
     }
     /**Blocks**/
     .choose_block {
-        margin-bottom: 76px;
+        padding-bottom: 25px;
         position: relative;
         margin: 0 auto;
         max-width: 1600px;
@@ -464,7 +464,7 @@ header {
     /**purchase_block*/
     .purchase_block {
         padding-top: 0;
-        padding-bottom: 0;
+        padding-bottom: 25px;
 
         h2 {
             text-align: center;
@@ -551,15 +551,114 @@ header {
             }
         }
     }
-    /**blocks end***/
-    footer .title {
-        font-family: 'Open Sans', sans-serif;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 22px;
-        margin-bottom: 15px;
+.who-we-are {
+    padding-top: 0;
+    padding-bottom: 25px;
+
+    h2 {
+        padding-top: 0;
+        text-align: center;
     }
+
+    .purchase_block_in {
+        text-align: justify;
+        margin: 0 auto;
+        max-width: 1600px;
+        position: relative;
+
+        &:after {
+            width: 100%;
+            height: 0px;
+            visibility: hidden;
+            overflow: hidden;
+            content: "";
+            display: inline-block;
+        }
+
+        .purchase_in {
+            position: relative;
+            width: 49%;
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+
+            .title {
+                font-family: @o;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 35px;
+                line-height: 54px;
+                padding-bottom: 15px;
+                position: relative;
+                text-transform: uppercase;
+            }
+
+            .descripiton_block {
+                padding-bottom: 50px;
+                font-family: @o;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 22px;
+                position: relative;
+                text-align: left;
+            }
+
+            .image_block {
+                padding-bottom: 20px;
+                height: 120px;
+            }
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                font-family: @o;
+                font-size: 115px;
+                font-weight: bold;
+                color: @color6;
+                line-height: 75px;
+                opacity: .5;
+            }
+
+            &.weare_box {
+                &:before {
+                    content: 'WE ARE';
+                }
+            }
+
+            &.team_box {
+                &:before {
+                    content: 'OUR TEAM';
+                }
+            }
+
+            &.orders_box {
+                &:before {
+                    content: '80,000';
+                }
+            }
+
+            &.years_box {
+                &:before {
+                    content: '11 YEARS';
+                }
+            }
+        }
+    }
+}
+/**blocks end***/
+footer .title {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 15px;
+}
 
     footer .footer_category li {
         display: block;
@@ -581,16 +680,26 @@ header {
         position: relative;
         padding: 0 0 15px;
     }
-
-    .pow {
-        font-size: 12px;
-        line-height: 16px;
+footer {
+    ul li a {
         color: @color2;
-        padding: 30px 0 0;
-        max-width: 50%;
-        position: absolute;
-        top: 180px;
+
+        &:hover, &:active {
+            color: @color2;
+        }
+
     }
+}
+
+.pow {
+    font-size: 12px;
+    line-height: 16px;
+    color: @color2;
+    padding: 30px 0 0;
+    max-width: 50%;
+    position: absolute;
+    top: 180px;
+}
 
     .payment_accept {
         position: absolute;
