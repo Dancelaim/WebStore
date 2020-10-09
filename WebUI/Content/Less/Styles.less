@@ -156,19 +156,20 @@ header {
     font-size:30px;
 }
 
-.logo {
+#logo {
     float: left;
-    font-size: 35px;
-    line-height: 33px;
-    height: 33px;
-    font-weight: bold;
-    color: @color1;
-    padding: 20px 0;
-    text-decoration: none;
+    margin: 0 0 0 -5px;
+    padding-top: 20px;
+    position: relative;
+    z-index: 2;
 
-    &:hover {
-        text-decoration: none;
+    img {
+        width: 149px;
     }
+}
+
+.logo_foot {
+    float: left;
 }
 .games-top-menu-block {
     float: left;
@@ -557,6 +558,7 @@ header {
 
     h2 {
         padding-top: 0;
+        padding-bottom: 25px;
         text-align: center;
     }
 
@@ -593,7 +595,7 @@ header {
                 text-transform: uppercase;
             }
 
-            .descripiton_block {
+            .text {
                 padding-bottom: 50px;
                 font-family: @o;
                 font-style: normal;
@@ -604,9 +606,13 @@ header {
                 text-align: left;
             }
 
-            .image_block {
+            .image {
                 padding-bottom: 20px;
                 height: 120px;
+                position: absolute;
+                left: 0;
+                right: 0;
+                text-align: center;
             }
 
             &:before {
