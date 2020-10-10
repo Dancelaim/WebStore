@@ -339,6 +339,7 @@
     <Content Include="Views\Shared\SiteBlockChild.cshtml" />
     <Content Include="Views\Navigation\GameMenu.cshtml" />
     <Content Include="Views\GamePage\GameDetails.cshtml" />
+    <Content Include="Views\Navigation\GameCategoryMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

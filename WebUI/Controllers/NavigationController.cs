@@ -37,5 +37,10 @@ namespace WebUI.Controllers
             IEnumerable<string> categories = repository.Products.Where(p =>  p.ProductGame.GameShortUrl == game).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x);
             return PartialView(categories);
         }
+        public PartialViewResult GameCategoryMenu()
+        {
+            IEnumerable<ProductGame> games = repository.Products.Select(p => p.ProductGame).Distinct().OrderBy(x => x);
+            return PartialView(games);
+        }
     }
 }
