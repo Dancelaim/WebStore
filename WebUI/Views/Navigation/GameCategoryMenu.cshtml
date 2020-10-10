@@ -1,6 +1,15 @@
-﻿@model IEnumerable<string>
+﻿@using WebUI.Models
+@model GameCategoryViewModel
 
-@foreach (string game in Model)
+@foreach (string game in Model.Games)
 {
- 
+
+
+
+    @foreach (var b in Model.ProductCategories.Where(pc=>pc.ProductGame.GameName == game))
+    {
+        
+    }
+
+
 }
