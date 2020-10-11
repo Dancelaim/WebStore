@@ -25,17 +25,7 @@ namespace WebUI.Controllers
         }
         public PartialViewResult CategoryMenu(string currentGame)
         {
-            string SelectedGame = (string)Session["SelectedGame"];
-
-            if (SelectedGame == null)
-            {
-                SelectedGame = currentGame;
-                Session["SelectedGame"] = SelectedGame;
-            }
-
-            string game = !currentGame.IsNullOrEmpty() ? currentGame : SelectedGame;
-
-            IEnumerable<string> categories = repository.Products.Where(p =>  p.ProductGame.GameShortUrl == game).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x);
+            IEnumerable<string> categories = repository.Products.Where(p =>  p.ProductGame.GameShortUrl == GetCurrentGame(currentGame)).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x);
             return PartialView(categories);
         }
         public PartialViewResult GameCategoryMenu()
@@ -47,6 +37,16 @@ namespace WebUI.Controllers
             };
 
             return PartialView(model);
+        }
+        private string GetCurrentGame(string currentGame)
+        {
+            string SelectedGame = currentGame.IsNullOrEmpty() ? (string)Session["SelectedGame"] : currentGame;
+
+            if (!SelectedGame.IsNullOrEmpty())
+            {
+                Session["SelectedGame"] = SelectedGame;
+            }
+            return SelectedGame;
         }
     }
 }

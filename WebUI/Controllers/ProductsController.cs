@@ -23,10 +23,11 @@ namespace WowCarry.WebUI.Controllers
         }
         public ViewResult List(string categoryName,int page = 1)
         {
-            ViewBag.currentGame = repository.Products.Where(p => p.ProductCategory.ProductCategoryName == categoryName).Select(sp => sp.ProductGame.GameName).FirstOrDefault();
+            ViewBag.currentGame = repository.Products.Where(p => p.ProductGame.GameShortUrl == (string)Session["SelectedGame"]).Select(go => go.ProductGame.GameName).FirstOrDefault();
+
             ProductsListViewModel model = new ProductsListViewModel
             {
-                Products = repository.Products.Where(p=> categoryName == null || p.ProductCategory.ProductCategoryName == categoryName)
+                Products = repository.Products.Where(p=> categoryName == null || p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == (string)Session["SelectedGame"])
                 .OrderBy(p => p.ProductUpdateDate)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize),
@@ -34,7 +35,7 @@ namespace WowCarry.WebUI.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = categoryName == null ? repository.Products.Count() : repository.Products.Where(p => p.ProductCategory.ProductCategoryName == categoryName).Count()
+                    TotalItems = categoryName == null ? repository.Products.Count() : repository.Products.Where(p => p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == (string)Session["SelectedGame"]).Count()
                 },
                 CurrentCategory = categoryName
             };
