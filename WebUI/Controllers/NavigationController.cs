@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Models;
 using WowCarry.Domain.Abstract;
 using WowCarry.Domain.Entities;
 
@@ -36,6 +37,16 @@ namespace WebUI.Controllers
 
             IEnumerable<string> categories = repository.Products.Where(p =>  p.ProductGame.GameShortUrl == game).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x);
             return PartialView(categories);
+        }
+        public PartialViewResult GameCategoryMenu()
+        {
+            GameCategoryViewModel model = new GameCategoryViewModel
+            {
+                Games = repository.Products.Select(p => p.ProductGame.GameName).OrderBy(x => x),
+                ProductCategories = repository.Products.Select(p => p.ProductCategory).Distinct().OrderBy(x => x)
+            };
+
+            return PartialView(model);
         }
     }
 }

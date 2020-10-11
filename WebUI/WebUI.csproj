@@ -304,6 +304,7 @@
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\CartIndexViewModel.cs" />
+    <Compile Include="Models\GameCategoryViewModel.cs" />
     <Compile Include="Models\SiteBlockViewModel.cs" />
     <Compile Include="Models\ProductsListViewModel.cs" />
     <Compile Include="Models\PagingInfo.cs" />
@@ -339,6 +340,7 @@
     <Content Include="Views\Shared\SiteBlockChild.cshtml" />
     <Content Include="Views\Navigation\GameMenu.cshtml" />
     <Content Include="Views\GamePage\GameDetails.cshtml" />
+    <Content Include="Views\Navigation\GameCategoryMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
