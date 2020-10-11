@@ -19,7 +19,7 @@ namespace WebUI.Controllers
         }
         public PartialViewResult GameMenu()
         {
-            IEnumerable<ProductGame> games = repository.Products.Select(p => p.ProductGame).Distinct().OrderBy(x => x);
+            IEnumerable<ProductGame> games = repository.Products.Select(p => p.ProductGame).Distinct();
             return PartialView(games);
         }
         public PartialViewResult CategoryMenu(string currentGame)
