@@ -1,7 +1,10 @@
 ﻿@model string
 
 
-<div>@Model</div>
+<div id="content">
+    <h1>  @Model </h1>  
+   
+</div>
 
 <div>        
     @Html.Action("SiteBlock", "SiteBlock",new { currentGame = Model})

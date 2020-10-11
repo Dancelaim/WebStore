@@ -1,14 +1,19 @@
 ﻿@using WebUI.Models
 @using WebUI.HtmlHelpers
 @model ProductsListViewModel
+<div id="product-category" class="container">
+    <h1>@Model.CurrentCategory</h1>
+    @foreach (var p in @Model.Products)
+    {
+        @Html.Partial("ProductSummary", p)
+    }
 
-@foreach (var p in @Model.Products)
-{
-    @Html.Partial("ProductSummary", p)
-}
+    <div class="container">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { categoryName = Model.CurrentCategory, page = x }))
+            </ul>
+        </nav>
+</div>
 
-<div class="row">
-    <div class="btn-group pull-right">
-        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List",new { categoryName = Model.CurrentCategory,page = x }))
-    </div>
 </div>

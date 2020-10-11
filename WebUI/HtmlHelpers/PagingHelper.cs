@@ -14,17 +14,18 @@ namespace WebUI.HtmlHelpers
             StringBuilder result = new StringBuilder();
             for (int i = 1; i <= pagingInfo.TotalPages; i++)
             {
-                var test = pageUrl(i);
-                TagBuilder tag = new TagBuilder("a");
-                tag.MergeAttribute("href", pageUrl(i));
-                tag.InnerHtml = i.ToString();
+                TagBuilder litag = new TagBuilder("li");
+                TagBuilder atag = new TagBuilder("a");                
+                atag.MergeAttribute("href", pageUrl(i));
+                atag.InnerHtml = i.ToString();
                 if (i == pagingInfo.CurrentPage)
                 {
-                    tag.AddCssClass("selected");
-                    tag.AddCssClass("btn-primary");
+                    atag.AddCssClass("selected");
+                    atag.AddCssClass("btn-primary");
                 }
-                tag.AddCssClass("btn btn-default");
-                result.Append(tag.ToString());
+                atag.AddCssClass("btn btn-default");
+                litag.InnerHtml = atag.ToString();
+                result.Append(litag.ToString());
             }
             return MvcHtmlString.Create(result.ToString());
         }

@@ -1,15 +1,18 @@
-﻿@import url('https://fonts.googleapis.com/css?family=Open+Sans|Roboto');
+﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap');
+
 @o: 'Open Sans', sans-serif;
 //@r:'Roboto', sans-serif;
 // Заголовки сайта
 @h1color: @color2;
+@h1fam: @o;
 @h1style: normal;
-@h1weight: normal;
-@hsize: 40px;
+@h1weight: 600;
+@hsize: 26px;
 
 //Настройка шрифта на сайте
 @font-size: 16px;
 @pcol: @color2;
+@fontfamcont: @o;
 @linkcol: @color1;
 @maxwidth: 1600px;
 
@@ -43,18 +46,136 @@ h1,h2,h3,h4,h5,h6 {
    color: @h1color;
    font-style: @h1style;
    font-weight: @h1weight;
+   text-transform:uppercase;
 }
 h1 {
     font-size: @hsize;
+    text-transform: uppercase;
+    text-align: center;
+    margin-left: 15px;
+    margin-right: 15px;
+    margin-bottom: 30px;
+    line-height: 54px;
 }
+
 h2 {
-    font-size: 35px;
+    font-size: 24px;
 }
+
 h3 {
-    font-size: 30px;
+    font-size: 22px;
 }
+
 h4 {
-    font-size: 25px;
+    font-size: 20px;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+h6 {
+    font-size: 14px;
+}
+
+h5, h6 {
+    font-weight: @h1weight;
+}
+a {
+    color: @linkcol;
+}
+
+a:focus {
+    outline: none;
+}
+
+a:focus, a:hover {
+    text-decoration: underline;
+    color: @linkcol;
+}
+
+div:focus {
+    outline: none;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+input, select, button {
+    outline: none;
+    padding: 0;
+    margin: 0;
+}
+
+input[type=text], input[type=password] {
+    &::placeholder {
+        color: @color4;
+        opacity: 1;
+    }
+}
+
+table thead {
+    background: @color6;
+}
+
+input, select, textarea {
+    -webkit-appearance: none;
+
+    &::placeholder {
+        color: @color4;
+        opacity: 1;
+    }
+}
+
+.form-control {
+    input, select, textarea {
+        &::placeholder {
+            color: @color4 !important;
+            opacity: 1;
+        }
+    }
+}
+
+img {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+}
+
+button {
+    cursor: pointer
+}
+
+address {
+    font-style: normal;
+}
+
+aside p {
+    margin: 0
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul, nav ol {
+    list-style: none
+}
+
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    overflow-y: scroll;
+    background: @color3;
+}
+
+pre {
+    display: none;
 }
 body, html {
     margin: 0;
@@ -72,10 +193,16 @@ body {
     padding-bottom: 60px;
 }
 header {
-    .top{
-        border-bottom:1px solid @color9;
-        padding:0;
-        text-align:center;
+    .top {
+        border-bottom: 1px solid @color9;
+        padding: 0;
+        text-align: center;
+    }
+
+    .bottom {
+        border-bottom: 1px solid @color9;
+        padding: 0;
+        text-align: center;
     }
 }
 #categories {
@@ -88,56 +215,37 @@ header {
     ul {
         width: 100%;
         margin: 0 auto;
-        display:block;
-        text-align:left;
+        display: block;
+        text-align: left;
 
         li {
-            display:inline-block;
-            a.active {
-                text-shadow: 0px 0px 9px @color6;
-                color: @color1;
+            display: inline-block;
 
-                &:before {
-                    left: 0;
-                    right: 0;
-                    opacity: 1;
-                }
+            a.active {
+                background-color: @color10;
             }
 
             a {
-                text-transform: uppercase;
-                font-family: @o;
-                font-size: 20px;
+                display: block;
+                padding: 21px 16px;
+                text-transform: capitalize;
                 color: @color2;
-                padding: 35px 0 31px 0;
-                margin-right: 30px;
-                display: inline-block;
+                font-family: @o;
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 22px;
+                margin: 0;
                 position: relative;
-                transition: all 0.5s ease;
+                transition: all .5s ease;
 
-                &:before {
-                    content: '';
-                    position: absolute;
-                    bottom: 0;
-                    left: 100%;
-                    right: 100%;
-                    bottom: -2px;
-                    height: 4px;
-                    background: @color1;
-                    opacity: 0;
-                    border-radius: 50px 50px 0 0;
-                    transition: all 0.5s ease;
+                &:focus {
+                    text-decoration: none;
                 }
 
                 &:hover {
                     text-decoration: none;
-                    color: @color1;
-
-                    &:before {
-                        left: 0;
-                        right: 0;
-                        opacity: 1;
-                    }
+                    background-color: @color10;
                 }
             }
         }
@@ -381,6 +489,7 @@ header {
     .container {
         width: 100%;
         max-width: 1600px;
+        padding:15px 0;
     }
 
     .logo_foot {
