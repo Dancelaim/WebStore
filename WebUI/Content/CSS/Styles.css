@@ -212,6 +212,9 @@ header .bottom {
   text-decoration: none;
   background-color: #212656;
 }
+#common-home {
+  padding-top: 0;
+}
 .select-games-block {
   position: relative;
   background: url(/Images/games-bg1.jpg) 50% 0 no-repeat;
@@ -219,6 +222,8 @@ header .bottom {
   text-align: center;
   overflow: hidden;
   height: auto;
+  width: 1920px;
+  margin-left: -160px;
 }
 .select-games-block .games-list {
   margin: 0 auto;
@@ -244,8 +249,17 @@ header .bottom {
   padding-bottom: 24px;
   padding-right: 36px;
   padding-left: 36px;
+  position: relative;
+}
+.select-games-block .games-list .game-item img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .select-games-block .games-list .game-item .title {
+  position: relative;
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -255,6 +269,7 @@ header .bottom {
   text-shadow: 0px 0px 10px #000000;
 }
 .select-games-block .games-list .game-item a {
+  position: relative;
   background: #1A233B;
   border: 1px solid #6D94C4;
   box-sizing: border-box;
@@ -288,30 +303,6 @@ header .bottom {
   background: #91B9EF;
   color: #10111B;
 }
-.select-games-block .games-list .game-item.bfa {
-  background: url(/Images/Game-item.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.exile {
-  background: url(/Images/Game-item-4.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.shadowlands {
-  background: url(/Images/Game-item-2.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.classic {
-  background: url(/Images/Game-item-2.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.legends {
-  background: url(/Images/Game-item-3.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.heartstone {
-  background: url(/Images/Game-item-1.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
 .select-games-block h2 {
   padding-top: 0 !important;
   position: relative;
@@ -320,11 +311,7 @@ header .bottom {
   font-size: 26px;
   line-height: 35px;
 }
-.select-games-block h2:before {
-  display: none;
-}
-.select-games-block h2:after {
-  content: "WowCarry boosting services have 11 years of experience. You can buy powerlevelling, mythic+, gearing, PoE currency, achievements, and many more items in WoW, Valorant, PoE, Hearthstone, and other.";
+.select-games-block span {
   display: block;
   text-transform: none;
   padding: 24px 0 22px;
