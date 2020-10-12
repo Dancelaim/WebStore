@@ -244,6 +244,8 @@ header .bottom {
   padding-bottom: 24px;
   padding-right: 36px;
   padding-left: 36px;
+  background: url(/Images/Game-item.png) 50% 0 no-repeat;
+  background-size: 100%;
 }
 .select-games-block .games-list .game-item .title {
   font-family: 'Open Sans', sans-serif;
@@ -287,30 +289,6 @@ header .bottom {
   text-decoration: none;
   background: #91B9EF;
   color: #10111B;
-}
-.select-games-block .games-list .game-item.bfa {
-  background: url(/Images/Game-item.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.exile {
-  background: url(/Images/Game-item-4.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.shadowlands {
-  background: url(/Images/Game-item-2.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.classic {
-  background: url(/Images/Game-item-2.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.legends {
-  background: url(/Images/Game-item-3.png) 50% 0 no-repeat;
-  background-size: 100%;
-}
-.select-games-block .games-list .game-item.heartstone {
-  background: url(/Images/Game-item-1.png) 50% 0 no-repeat;
-  background-size: 100%;
 }
 .select-games-block h2 {
   padding-top: 0 !important;
