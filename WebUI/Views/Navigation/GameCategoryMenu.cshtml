@@ -9,7 +9,7 @@
                 @foreach (var game in Model.Games)
                 {
                 <div class="game-item">
-                    <img src="@string.Format("/Images/"+game+".png")" alt="@game" />
+                    <img src="@string.Format("/Images/"+game.GameName+".png")" alt="@game" />
                     <div class="title"> @game.GameName </div>
                     @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
                     {
