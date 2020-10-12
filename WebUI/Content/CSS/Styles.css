@@ -835,6 +835,65 @@ header .bottom {
   color: #10111B;
   background: #91B9EF;
 }
+#product-product .desc-content {
+  float: left;
+  border: 0;
+  width: 65%;
+  padding-top: 10px;
+}
+#product-product .desc-content .acc-block {
+  border-bottom: 1px solid #1A233B;
+}
+#product-product .desc-content .acc-block .acc-head {
+  color: #6D94C4;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 23px;
+  padding: 15px 40px 15px 0;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+}
+#product-product .desc-content .acc-block .acc-head:before {
+  background: url(https://wowcarry.com/image/catalog/arrow-down.svg) 0 0 no-repeat;
+  background-size: 20px;
+  width: 20px;
+  height: 20px;
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  margin-top: -10px;
+  transition: all 0.2s ease;
+}
+#product-product .desc-content .acc-block .acc-head li {
+  width: 100%;
+  position: relative;
+}
+#product-product .desc-content .acc-block .acc-head li:after {
+  content: 'READ MORE';
+  position: absolute;
+  right: 48px;
+  top: 0px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 16px;
+  color: #6D94C4;
+}
+#product-product .desc-content .acc-block.active_block .acc-head:before {
+  transform: rotate(180deg);
+}
+#product-product .desc-content .product_title {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  color: #eee;
+  margin-top: 0;
+  padding-top: 0;
+  text-transform: uppercase;
+}
 /***End Product page styles***/
 footer .title {
   font-family: 'Open Sans', sans-serif;
