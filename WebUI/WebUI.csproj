@@ -163,15 +163,13 @@
     <Content Include="Images\five.svg" />
     <Content Include="Images\four.svg" />
     <Content Include="Images\game-item-1.png" />
-    <Content Include="Images\game-item-2.png" />
     <Content Include="Images\game-item-3.png" />
-    <Content Include="Images\game-item-4.png" />
-    <Content Include="Images\game-item.png" />
     <Content Include="Images\games-bg1.jpg" />
     <Content Include="Images\logo.svg" />
     <Content Include="Images\one.svg" />
     <Content Include="Images\Online.svg" />
     <Content Include="Images\our_team.svg" />
+    <Content Include="Images\Path Of Exile.png" />
     <Content Include="Images\PathOfExile\currency\exlated_orb.png" />
     <Content Include="Images\PathOfExile\gear\bow_package.png" />
     <Content Include="Images\PathOfExile\services\bronze-exile-package.png" />
@@ -183,6 +181,8 @@
     <Content Include="Images\three.svg" />
     <Content Include="Images\two.svg" />
     <Content Include="Images\we_are.svg" />
+    <Content Include="Images\World of Warcraft Classic.png" />
+    <Content Include="Images\World of Warcraft.png" />
     <Content Include="Images\WorldOfWarcraftClassic\dungeons\blackfathom-deeps.png" />
     <Content Include="Images\WorldOfWarcraftClassic\mounts\winterspring_frostsaber.png" />
     <Content Include="Images\WorldOfWarcraftClassic\powerleveling\char_leveling.png" />
