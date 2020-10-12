@@ -33,7 +33,7 @@ namespace WebUI.Controllers
             GameCategoryViewModel model = new GameCategoryViewModel
             {
                 Games = repository.Products.Select(p => p.ProductGame.GameName).OrderBy(x => x),
-                ProductCategories = repository.Products.Select(p => p.ProductCategory).Distinct().OrderBy(x => x)
+                ProductCategories = repository.Products.Select(p=>p.ProductCategory).ToDictionary(p => p.ProductGame.GameName,p=>p.ProductCategoryName)
             };
 
             return PartialView(model);

@@ -10,7 +10,7 @@ namespace WebUI.Models
     public class GameCategoryViewModel
     {
         public IEnumerable<string> Games { get; set; }
-        public IEnumerable<ProductCategory> ProductCategories { get; set; }
+        public Dictionary<string,string> ProductCategories { get; set; }
 
     }
 }

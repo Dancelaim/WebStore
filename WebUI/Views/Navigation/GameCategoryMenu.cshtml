@@ -16,3 +16,16 @@
             }
     </div>
 </div>
+
+@foreach (string game in Model.Games)
+{
+
+
+    
+    @foreach (var b in Model.ProductCategories.Where(k=>k.Key==game))
+    {
+        b.Value;
+    }
+
+
+}

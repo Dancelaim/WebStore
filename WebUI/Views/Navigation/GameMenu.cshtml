@@ -4,11 +4,11 @@
 @foreach (ProductGame game in Model)
 {
     <li>
-        @Html.RouteLink(game.GameName, "GameDetails",
-           new
-           {
-               currentGame = game.GameShortUrl.Replace(" ", "").ToLower()
-           }
-          )
+            @Html.RouteLink(game.GameName, "GameDetails",
+               new
+               {
+                   currentGame = game.GameShortUrl.Replace(" ", "").ToLower()
+               }
+              )
     </li>
 }
