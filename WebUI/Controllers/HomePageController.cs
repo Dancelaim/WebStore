@@ -12,6 +12,7 @@ namespace WebUI.Controllers
         public ActionResult Home()
         {
             @ViewBag.currentGame = "Select Game";
+            Session["SelectedGame"] = null;
             return View();
         }
     }

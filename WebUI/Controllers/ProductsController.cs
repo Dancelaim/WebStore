@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Castle.Core.Internal;
+
+using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -6,6 +8,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using WebUI.Controllers;
 using WebUI.Models;
 
 using WowCarry.Domain.Abstract;
@@ -21,13 +24,14 @@ namespace WowCarry.WebUI.Controllers
         {
             repository = repo;
         }
-        public ViewResult List(string categoryName,int page = 1)
+        public ViewResult List(string selectedGame, string categoryName,int page = 1)
         {
-            ViewBag.currentGame = repository.Products.Where(p => p.ProductGame.GameShortUrl == (string)Session["SelectedGame"]).Select(go => go.ProductGame.GameName).FirstOrDefault();
+            Session["SelectedGame"] = selectedGame;
+            ViewBag.currentGame = repository.Products.Select(p=>p.ProductGame).Where(g=>g.GameShortUrl== selectedGame).Select(g=>g.GameName).FirstOrDefault().ToString();
 
             ProductsListViewModel model = new ProductsListViewModel
             {
-                Products = repository.Products.Where(p=> categoryName == null || p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == (string)Session["SelectedGame"])
+                Products = repository.Products.Where(p=> categoryName == null || p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == selectedGame)
                 .OrderBy(p => p.ProductUpdateDate)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize),
