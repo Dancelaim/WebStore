@@ -6,6 +6,7 @@
     @Html.RouteLink(cat, "Sorted",
        new
        {
+           selectedGame= (string)Session["SelectedGame"],
            categoryName = cat
        },
         new { @class = Html.IsSelected(cat)}

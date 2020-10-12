@@ -9,7 +9,7 @@ namespace WebUI.Models
 {
     public class GameCategoryViewModel
     {
-        public IEnumerable<string> Games { get; set; }
+        public IEnumerable<ProductGame> Games { get; set; }
         public List<KeyValuePair<string, string>> ProductCategories { get; set; }
 
     }

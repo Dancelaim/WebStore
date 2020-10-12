@@ -28,13 +28,13 @@ namespace WowCarry.WebUI
 
             routes.MapRoute(
                 name: "Sorted",
-                url: "{categoryName}",
+                url: "{selectedGame}/{categoryName}",
                 defaults: new { controller = "Products", action = "List", page = 1 }
             );
 
             routes.MapRoute(
                  name: null,
-                 url: "{categoryName}/{page}",
+                 url: "{selectedGame}/{categoryName}/{page}",
                  defaults: new { controller = "Products", action = "List" },
                  constraints: new { page = @"\d+" }
             );

@@ -34,13 +34,13 @@ namespace WebUI.Controllers
 
             GameCategoryViewModel model = new GameCategoryViewModel
             {
-                Games = repository.Products.Select(p => p.ProductGame.GameName).OrderBy(x => x).Distinct(),
+                Games = repository.Products.Select(p => p.ProductGame).Distinct(),
                 ProductCategories = cat.AsEnumerable().Select(item => new KeyValuePair<string, string>(item.GameName, item.ProductCategoryName)).ToList()
             };
 
             return PartialView(model);
         }
-        private string GetCurrentGame(string currentGame)
+        public string GetCurrentGame(string currentGame)
         {
             string SelectedGame = currentGame.IsNullOrEmpty() ? (string)Session["SelectedGame"] : currentGame;
 

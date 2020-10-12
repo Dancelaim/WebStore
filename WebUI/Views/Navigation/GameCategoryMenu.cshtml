@@ -3,14 +3,14 @@
 <div class="select-games-block">
     <h2>Professional Gaming Boosting Services</h2>
     <div class="games-list">
-        @foreach (string game in Model.Games)
+        @foreach (var game in Model.Games)
         {
         <div class="game-item">
-            <div class="title"> @game </div>
-            @foreach (var b in Model.ProductCategories.Where(k => k.Key == game))
+            <div class="title"> @game.GameName </div>
+            @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
             {
-                @Html.RouteLink(b.Value,
-               new { categoryName = b.Value })
+                @Html.RouteLink(b.Value, "Sorted",
+               new { selectedGame = game.GameShortUrl, categoryName = b.Value })
             }
         </div>
             }
