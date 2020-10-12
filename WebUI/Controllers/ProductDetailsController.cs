@@ -13,16 +13,17 @@ using WowCarry.Domain.Entities;
 
 namespace WowCarry.WebUI.Controllers
 {
-    public class ProductsDetailsController : Controller
+    public class ProductDetailsController : Controller
     {
         private IProductRepository repository;
-        public ProductsDetailsController(IProductRepository repo)
+        public ProductDetailsController(IProductRepository repo)
         {
             repository = repo;
         }
-        public ViewResult Details()
-        { 
-            return View();
+        public ViewResult Details(string productUrl)
+        {
+            Product product = repository.Products.Where(p => p.ProductCEO.UrlKeyWord == productUrl).FirstOrDefault();
+            return View(product);
         }
     }
 }

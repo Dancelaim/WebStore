@@ -38,8 +38,12 @@ namespace WowCarry.WebUI
                  defaults: new { controller = "Products", action = "List" },
                  constraints: new { page = @"\d+" }
             );
+            routes.MapRoute(
+                 name: null,
+                 url: "{productUrl}",
+                 defaults: new { controller = "ProductDetails", action = "Details" }
+            );
 
-  
 
             //routes.MapRoute(
             //    name: null,

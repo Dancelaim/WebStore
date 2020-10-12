@@ -1,30 +1,19 @@
-﻿@model WowCarry.Domain.Entities.Product
+﻿@using WowCarry.Domain.Entities
+@model Product
 
 <div class="product-layout d-inline-block">
     <div class="product-thumb">
-        <div class="image">
-            <a href="#">
+        <a href="@Url.Action("Details","ProductDetails",new {productUrl= Model.ProductCEO.UrlKeyWord})">
+            <div class="image">
                 <img src="#" alt="Alternate Text" />
                 <div class="clear"></div>
-            </a>
-        </div>
-        <div class="caption">
-           @Html.RouteLink(Model.ProductName, "Sorted")
-            <h4>@Model.ProductName</h4>
-            <p class="price">
-                @Model.ProductPrice.Select(p => p.Price).FirstOrDefault()
-            </p>
-            
-
-
-            @*@using (Html.BeginForm("AddToCart", "Cart"))
-        {
-            <div class="pull-right">
-                @Html.HiddenFor(x => x.ProductId)
-                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                <input type="submit" class="btn btn-success" value="Добавить в корзину" />
             </div>
-        }*@
-        </div>
+            <div class="caption">
+                <h4>@Model.ProductName</h4>
+                <p class="price">
+                    @Model.ProductPrice.Select(p => p.Price).FirstOrDefault()
+                </p>
+            </div>
+        </a>
     </div>
 </div>

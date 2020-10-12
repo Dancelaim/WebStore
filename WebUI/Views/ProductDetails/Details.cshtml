@@ -1,4 +1,6 @@
-﻿<div id="product-product" class="container">
+﻿@model WowCarry.Domain.Entities.Product
+
+<div id="product-product" class="container">
     <div class="row">
         <div class="product-info-block">
             <div class="image-bg">
@@ -33,7 +35,7 @@
             <div class="desc-content">
                 <div class="acc-block">
                     <div class="acc-head">
-                        <h1 class="product_title">Product Name</h1>
+                        <h1 class="product_title">@Model.ProductName</h1>
                     </div>
                     <div class="acc-body" id="description">
                         Product description

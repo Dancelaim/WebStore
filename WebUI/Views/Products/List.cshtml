@@ -5,7 +5,22 @@
     <h1>@Model.CurrentCategory</h1>
     @foreach (var p in @Model.Products)
     {
-        @Html.Partial("ProductSummary", p)
+         <div class="product-layout d-inline-block">
+             <div class="product-thumb">
+                 <a href="@Url.Action("Details","ProductDetails",new {productUrl= p.ProductCEO.UrlKeyWord})">
+                     <div class="image">
+                         <img src="#" alt="Alternate Text" />
+                         <div class="clear"></div>
+                     </div>
+                     <div class="caption">
+                         <h4>@p.ProductName</h4>
+                         <p class="price">
+                             @p.ProductPrice.Select(pr => pr.Price).FirstOrDefault()
+                         </p>
+                     </div>
+                 </a>
+             </div>
+         </div>
     }
 
     <div class="container">
