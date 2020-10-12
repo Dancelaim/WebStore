@@ -30,10 +30,12 @@ namespace WebUI.Controllers
         }
         public PartialViewResult GameCategoryMenu()
         {
+            var cat = repository.Products.Select(p => p.ProductCategory).Select(c => new { c.ProductGame.GameName, c.ProductCategoryName }).Distinct();
+
             GameCategoryViewModel model = new GameCategoryViewModel
             {
-                Games = repository.Products.Select(p => p.ProductGame.GameName).OrderBy(x => x),
-                ProductCategories = repository.Products.Select(p=>p.ProductCategory).ToDictionary(p => p.ProductGame.GameName,p=>p.ProductCategoryName)
+                Games = repository.Products.Select(p => p.ProductGame.GameName).OrderBy(x => x).Distinct(),
+                ProductCategories = cat.AsEnumerable().Select(item => new KeyValuePair<string, string>(item.GameName, item.ProductCategoryName)).ToList()
             };
 
             return PartialView(model);
