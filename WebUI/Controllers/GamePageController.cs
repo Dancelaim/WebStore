@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebUI.Controllers;
 using WowCarry.Domain.Abstract;
 
 namespace GameStore.WebUI.Controllers
@@ -20,7 +21,6 @@ namespace GameStore.WebUI.Controllers
             ViewBag.currentGame = gameName;
 
             object game = currentGame;
-
             return View(game);
         }
     }

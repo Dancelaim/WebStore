@@ -5,10 +5,10 @@
 {
 
 
-
-    @foreach (var b in Model.ProductCategories.Where(pc=>pc.ProductGame.GameName == game))
+    
+    @foreach (var b in Model.ProductCategories.Where(k=>k.Key==game))
     {
-        
+        b.Value;
     }
 
 

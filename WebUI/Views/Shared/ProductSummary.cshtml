@@ -9,20 +9,22 @@
             </a>
         </div>
         <div class="caption">
-            <a href="#">
-                <h4>@Model.ProductName</h4>
-                <p class="price">
-                    @Model.ProductPrice.Select(p => p.Price).FirstOrDefault()
-                </p>
-            </a>
-            @using (Html.BeginForm("AddToCart", "Cart"))
-            {
-                <div class="pull-right">
-                    @Html.HiddenFor(x => x.ProductId)
-                    @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                    <input type="submit" class="btn btn-success" value="Добавить в корзину" />
-                </div>
-            }
+           @Html.RouteLink(Model.ProductName, "Sorted")
+            <h4>@Model.ProductName</h4>
+            <p class="price">
+                @Model.ProductPrice.Select(p => p.Price).FirstOrDefault()
+            </p>
+            
+
+
+            @*@using (Html.BeginForm("AddToCart", "Cart"))
+        {
+            <div class="pull-right">
+                @Html.HiddenFor(x => x.ProductId)
+                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                <input type="submit" class="btn btn-success" value="Добавить в корзину" />
+            </div>
+        }*@
         </div>
     </div>
 </div>
