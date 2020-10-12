@@ -212,6 +212,129 @@ header .bottom {
   text-decoration: none;
   background-color: #212656;
 }
+.select-games-block {
+  position: relative;
+  background: url(/Images/games-bg1.jpg) 50% 0 no-repeat;
+  padding: 55px 50px 30px;
+  text-align: center;
+  overflow: hidden;
+  height: auto;
+}
+.select-games-block .games-list {
+  margin: 0 auto;
+  max-width: 1600px;
+  position: relative;
+  text-align: justify;
+}
+.select-games-block .games-list:after {
+  content: '';
+  display: inline-block;
+  width: 100%;
+  height: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
+.select-games-block .games-list .game-item {
+  display: inline-block;
+  width: 32%;
+  min-height: 240px;
+  vertical-align: top;
+  text-align: left;
+  margin-bottom: 30px;
+  padding-bottom: 24px;
+  padding-right: 36px;
+  padding-left: 36px;
+}
+.select-games-block .games-list .game-item .title {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 35px;
+  padding: 22px 0 29px 0;
+  text-shadow: 0px 0px 10px #000000;
+}
+.select-games-block .games-list .game-item a {
+  background: #1A233B;
+  border: 1px solid #6D94C4;
+  box-sizing: border-box;
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  color: #6D94C4;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  padding: 8px 16px;
+  display: inline-block;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+.select-games-block .games-list .game-item a:hover {
+  text-decoration: none;
+  border-color: #91B9EF;
+  color: #91B9EF;
+}
+.select-games-block .games-list .game-item a.main-link {
+  background: #6D94C4;
+  border: 0 none;
+  color: #10111B;
+}
+.select-games-block .games-list .game-item a.main-link:hover {
+  text-decoration: none;
+  background: #91B9EF;
+  color: #10111B;
+}
+.select-games-block .games-list .game-item.bfa {
+  background: url(/Images/Game-item.png) 50% 0 no-repeat;
+  background-size: 100%;
+}
+.select-games-block .games-list .game-item.exile {
+  background: url(/Images/Game-item-4.png) 50% 0 no-repeat;
+  background-size: 100%;
+}
+.select-games-block .games-list .game-item.shadowlands {
+  background: url(/Images/Game-item-2.png) 50% 0 no-repeat;
+  background-size: 100%;
+}
+.select-games-block .games-list .game-item.classic {
+  background: url(/Images/Game-item-2.png) 50% 0 no-repeat;
+  background-size: 100%;
+}
+.select-games-block .games-list .game-item.legends {
+  background: url(/Images/Game-item-3.png) 50% 0 no-repeat;
+  background-size: 100%;
+}
+.select-games-block .games-list .game-item.heartstone {
+  background: url(/Images/Game-item-1.png) 50% 0 no-repeat;
+  background-size: 100%;
+}
+.select-games-block h2 {
+  padding-top: 0 !important;
+  position: relative;
+  margin: 0 -30px 0 -30px;
+  text-align: center;
+  font-size: 26px;
+  line-height: 35px;
+}
+.select-games-block h2:before {
+  display: none;
+}
+.select-games-block h2:after {
+  content: "WowCarry boosting services have 11 years of experience. You can buy powerlevelling, mythic+, gearing, PoE currency, achievements, and many more items in WoW, Valorant, PoE, Hearthstone, and other.";
+  display: block;
+  text-transform: none;
+  padding: 24px 0 22px;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+}
 .main-blocks {
   max-width: 1600px;
   margin: 0 auto;

@@ -162,6 +162,12 @@
     <Content Include="Images\80000.svg" />
     <Content Include="Images\five.svg" />
     <Content Include="Images\four.svg" />
+    <Content Include="Images\game-item-1.png" />
+    <Content Include="Images\game-item-2.png" />
+    <Content Include="Images\game-item-3.png" />
+    <Content Include="Images\game-item-4.png" />
+    <Content Include="Images\game-item.png" />
+    <Content Include="Images\games-bg1.jpg" />
     <Content Include="Images\logo.svg" />
     <Content Include="Images\one.svg" />
     <Content Include="Images\Online.svg" />

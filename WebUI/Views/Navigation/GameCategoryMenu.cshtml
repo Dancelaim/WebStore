@@ -1,15 +1,18 @@
 ﻿@using WebUI.Models
 @model GameCategoryViewModel
-
-@foreach (string game in Model.Games)
-{
-
-
-
-    @foreach (var b in Model.ProductCategories.Where(pc=>pc.ProductGame.GameName == game))
-    {
-        
-    }
-
-
-}
+<div class="select-games-block">
+    <h2>Professional Gaming Boosting Services</h2>
+    <div class="games-list">
+        @foreach (string game in Model.Games)
+        {
+        <div class="game-item">
+            <div class="title"> @game </div>
+            @foreach (var cat in Model.ProductCategories)
+            {
+                @Html.RouteLink(cat,
+               new { categoryName = cat })
+            }
+        </div>
+            }
+    </div>
+</div>
