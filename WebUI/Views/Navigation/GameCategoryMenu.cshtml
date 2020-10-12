@@ -7,25 +7,12 @@
         {
         <div class="game-item">
             <div class="title"> @game </div>
-            @foreach (var cat in Model.ProductCategories)
+            @foreach (var b in Model.ProductCategories.Where(k => k.Key == game))
             {
-                @Html.RouteLink(cat,
-               new { categoryName = cat })
+                @Html.RouteLink(b.Value,
+               new { categoryName = b.Value })
             }
         </div>
             }
     </div>
 </div>
-
-@foreach (string game in Model.Games)
-{
-
-
-    
-    @foreach (var b in Model.ProductCategories.Where(k=>k.Key==game))
-    {
-        b.Value;
-    }
-
-
-}
