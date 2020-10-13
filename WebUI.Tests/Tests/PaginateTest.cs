@@ -37,7 +37,7 @@ namespace WowCarry.UnitTests.Tests
             };
 
             // Действие (act)
-            ProductsListViewModel result = (ProductsListViewModel)controller.List(null,2).Model;
+            ProductsListViewModel result = (ProductsListViewModel)controller.List(null,null,2).Model;
 
             // Утверждение (assert)
             List<Product> products = result.Products.ToList();

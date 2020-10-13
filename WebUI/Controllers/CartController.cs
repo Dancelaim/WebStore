@@ -4,25 +4,23 @@ using WowCarry.Domain.Entities;
 using WowCarry.Domain.Abstract;
 using WebUI.Models;
 using System;
-using WowCarry.WebUI.Models;
 
 namespace GameStore.WebUI.Controllers
 {
     public class CartController : Controller
-    {
-        public ViewResult Index(string returnUrl)
-        {
-            return View(new CartIndexViewModel
-            {
-                Cart = GetCart(),
-                ReturnUrl = returnUrl
-            });
-        }
+    { 
+
         private IProductRepository repository;
         public CartController(IProductRepository repo)
         {
             repository = repo;
         }
+
+        public ViewResult CartPopUp()
+        {
+            return View(GetCart());
+        }
+        
 
         public RedirectToRouteResult AddToCart(Guid productId, string returnUrl)
         {

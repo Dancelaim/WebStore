@@ -1,0 +1,59 @@
+﻿@model WowCarry.WebUI.Models.CartIndexViewModel
+
+@{
+    ViewBag.Title = "Cart:";
+}
+
+
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">CART</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Кол-во</th>
+                            <th>Игра</th>
+                            <th class="text-right">Цена</th>
+                            <th class="text-right">Общая цена</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var line in Model.Cart.Lines)
+                        {
+                            <tr>
+                                <td class="text-center">@line.Quantity</td>
+                                <td class="text-left">@line.Product.ProductName</td>
+                                <td class="text-right">@line.Product.ProductPrice.Select(p => p.Price).FirstOrDefault().ToString("# руб")</td>
+                                <td class="text-right">
+                                    @((line.Quantity * line.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString("# руб"))
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="3" class="text-right">Итого:</td>
+                            <td class="text-right">
+                                @Model.Cart.ComputeTotalValue().ToString("# руб")
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+
+                
+            </div>
+            <div class="modal-footer">
+                <div class="text-center">
+                    <a class="btn btn-primary" href="@Model.ReturnUrl">Continue shoping</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
