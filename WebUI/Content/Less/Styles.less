@@ -103,6 +103,9 @@ html, body {
     padding: 0;
     height: 100%;
 }
+body.modal-open {
+    padding: 0!important;
+}
 
 input, select, button {
     outline: none;
@@ -208,6 +211,88 @@ header {
 #categories {
     border-bottom: 1px solid @color9;
 }
+
+.modal-dialog {
+    margin-top: 10%;
+}
+.modal {
+    .modal-content {
+        background: @color6;
+
+        .modal-body {
+            border: 0 none;
+        }
+
+        .modal-footer {
+            border: 0 none;
+            text-align: center;
+            display:block;
+
+            button, a {
+                margin: 20px 30px 20px 0;
+                padding: 13px 26px 13px;
+                width: 45%;
+                background: @color1;
+                border: 0 none;
+                color: @color3;
+                border-radius: 100px;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+                text-transform: uppercase;
+                box-shadow: none;
+                transition: all 0.2s ease;
+                display: inline-block;
+
+                &:hover, &:active {
+                    text-decoration: none;
+                    color: @color3;
+                    background: @color5;
+                }
+            }
+        }
+
+        .modal-header {
+            border: 0 none;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 18px;
+            line-height: 25px;
+            color: @color2;
+            padding: 32px 0 10px;
+            position: relative;
+            font-weight: 600;
+
+            .modal-title {
+                width: 100%;
+                font-size: 18px;
+                line-height: 25px;
+                color: @color2;
+                font-weight: 600;
+            }
+
+            .close {
+                color: @color1;
+                opacity: 1;
+                text-shadow: none;
+                border: 0 none;
+                position: absolute;
+                right: 32px;
+                top: 32px;
+                width: 24px;
+                height: 24px;
+                z-index: 9999;
+                background: url(https://wowcarry.com/image/catalog/new_icons/close.svg) 50% 50% no-repeat;
+
+                span {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+
 
 .navbar {
     padding: 0;
@@ -535,28 +620,23 @@ header {
         transition: all .2s ease;
     }
 
-    .cart {
-        float: right;
-        padding: 8px 20px;
-        min-height: 33px;
-        text-align: center;
+.btn-cart {
+    float: right;
+    padding: 8px 20px;
+    min-height: 33px;
+    text-align: center;
+    background: none;
+    border: 0 none;
+
+    &:hover, &:active {
         background: none;
-        border: 0 none;
-
-        &:hover, &:active {
-            background: @color3;
-        }
-
-        &:before {
-            content: "\f07a";
-            font-size: 33px;
-            font-family: FontAwesome;
-            font-style: normal;
-            font-weight: normal;
-            text-decoration: inherit;
-            color: @color1;
-        }
     }
+
+    &:before {
+        content: "";
+        background: url(/Images/cart.svg) 0 50% no-repeat;
+    }
+}
 
     .sign_in {
         float: right;
