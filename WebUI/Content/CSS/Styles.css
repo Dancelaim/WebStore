@@ -72,6 +72,12 @@ a:hover {
   text-decoration: underline;
   color: #6D94C4;
 }
+button,
+button:focus,
+button:hover,
+button:active {
+  outline: none;
+}
 div:focus {
   outline: none;
 }
@@ -191,10 +197,11 @@ header .bottom {
   border: 0 none;
   text-align: center;
   display: block;
+  padding: 0;
 }
 .modal .modal-content .modal-footer button,
 .modal .modal-content .modal-footer a {
-  margin: 20px 30px 20px 0;
+  margin: 0 30px 30px;
   padding: 13px 26px 13px;
   width: 45%;
   background: #6D94C4;
@@ -532,6 +539,7 @@ header .bottom {
   transition: all 0.3s ease;
   text-align: left;
   text-decoration: none;
+  margin: 0;
 }
 .dropdown-menu li a:hover,
 .dropdown-menu li button:hover {
@@ -551,18 +559,29 @@ header .bottom {
 }
 .btn-cart {
   float: right;
-  padding: 8px 20px;
+  padding: 22px 20px 22px 56px;
   min-height: 33px;
   text-align: center;
+  position: relative;
   background: none;
   border: 0 none;
+  color: #eee;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  border-radius: 0;
 }
 .btn-cart:hover,
 .btn-cart:active {
-  background: none;
+  background: #212656;
+  color: #eee;
 }
 .btn-cart:before {
   content: "";
+  width: 24px;
+  height: 24px;
+  position: absolute;
+  left: 22px;
+  display: inline-block;
   background: url(/Images/cart.svg) 0 50% no-repeat;
 }
 .sign_in {
