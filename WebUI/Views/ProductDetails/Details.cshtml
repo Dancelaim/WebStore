@@ -11,7 +11,7 @@
                     <div class="options">OPTIONS</div>
 
                     <div class="price-info">
-                        <div class="price">@Model.ProductPrice.Select(p=>p.Price)</div>
+                        <div class="price">@Model.ProductPrice.Select(p=>p.Price).FirstOrDefault()</div>
 
                         <div class="coins_info"> 2.30 <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> and discounted price for registered users* </div>
                         <div class="reg_info"><a href="#"><b>Sign In</b></a> or <a href="#"><b>Register</b></a> to start saving. </div>
@@ -48,23 +48,23 @@
                         <h1 class="product_title">@Model.ProductName</h1>
                     </div>
                     <div class="acc-body description" id="description">
-                        Product description
+                       @Model.ProductDescription.ProductDescription1
                     </div>
                 </div>
                 <div class="clear"> </div>
 
                 <div class="sub-desc">
                     <div class="subdescription">
-                        <h3>ESTIMATED TIME</h3>
-                        Product subdescription 1
+                        <h3>@Model.ProductDescription.TitleDescription2</h3>
+                        @Model.ProductDescription.Description2
                     </div>
                     <div class="subdescription">
-                        <h3>REQUIREMENTS</h3>
-                        Product subdescription 2
+                        <h3>@Model.ProductDescription.TitleDescription3</h3>
+                        @Model.ProductDescription.Description3
                     </div>
                     <div class="subdescription">
-                        <h3>WHAT YOU’LL GET</h3>
-                        Product subdescription 3
+                        <h3>@Model.ProductDescription.TitleDescription1</h3>
+                        @Model.ProductDescription.Description1
                     </div>
 
                 </div>
