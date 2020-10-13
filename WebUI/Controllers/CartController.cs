@@ -11,15 +11,16 @@ namespace GameStore.WebUI.Controllers
     { 
 
         private IProductRepository repository;
-        public ViewResult CartPopUp(string returnUrl)
-        {
-            return View(GetCart());
-        }
-        
         public CartController(IProductRepository repo)
         {
             repository = repo;
         }
+
+        public ViewResult CartPopUp()
+        {
+            return View(GetCart());
+        }
+        
 
         public RedirectToRouteResult AddToCart(Guid productId, string returnUrl)
         {
