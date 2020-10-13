@@ -93,7 +93,9 @@ a:focus, a:hover {
     text-decoration: underline;
     color: @linkcol;
 }
-
+button, button:focus, button:hover, button:active {
+    outline: none;
+}
 div:focus {
     outline: none;
 }
@@ -226,10 +228,10 @@ header {
         .modal-footer {
             border: 0 none;
             text-align: center;
-            display:block;
-
+            display: block;
+            padding:0;
             button, a {
-                margin: 20px 30px 20px 0;
+                margin: 0 30px 30px;
                 padding: 13px 26px 13px;
                 width: 45%;
                 background: @color1;
@@ -599,6 +601,7 @@ header {
             transition: all .3s ease;
             text-align: left;
             text-decoration: none;
+            margin:0;
 
             &:hover {
                 text-decoration: none;
@@ -622,18 +625,29 @@ header {
 
 .btn-cart {
     float: right;
-    padding: 8px 20px;
+    padding: 22px 20px 22px 56px;
     min-height: 33px;
     text-align: center;
+    position:relative;
     background: none;
     border: 0 none;
+    color: @color2;
+    font-size: 14px;
+    font-family: @o;
+    border-radius:0;
 
     &:hover, &:active {
-        background: none;
+        background: @color10;
+        color: @color2;
     }
 
     &:before {
         content: "";
+        width: 24px;
+        height: 24px;
+        position: absolute;
+        left: 22px;
+        display: inline-block;
         background: url(/Images/cart.svg) 0 50% no-repeat;
     }
 }
