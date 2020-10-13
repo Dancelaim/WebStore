@@ -22,9 +22,10 @@
                             <div class="pull-right">
                                 @Html.HiddenFor(x => x.ProductId)
                                 @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                <input type="submit" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block"  value="Add to Cart"/>
+                                <input type="submit" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block" value="Add to Cart" />
                             </div>
                         }
+                        <button id="btnShowModal" type="button" class="btn btn-sm btn-default pull-left col-lg-11 button button4">Show Modal</button>
                         @*<button type="button" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">Add to Cart</button>*@
                         <button type="button" id="button-tocart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">QUICK PURCHASE</button>
                     </div>

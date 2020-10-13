@@ -8,12 +8,14 @@ using System;
 namespace GameStore.WebUI.Controllers
 {
     public class CartController : Controller
-    {
+    { 
+
+        private IProductRepository repository;
         public ViewResult CartPopUp(string returnUrl)
         {
             return View(GetCart());
         }
-        private IProductRepository repository;
+        
         public CartController(IProductRepository repo)
         {
             repository = repo;
