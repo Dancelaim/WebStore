@@ -167,6 +167,10 @@
     <Content Include="ScriptHistory\10.sql" />
     <Content Include="ScriptHistory\11.sql" />
     <Content Include="ScriptHistory\12.sql" />
+    <Content Include="ScriptHistory\21.sql" />
+    <Content Include="ScriptHistory\20.sql" />
+    <Content Include="ScriptHistory\19.sql" />
+    <Content Include="ScriptHistory\18.sql" />
     <Content Include="ScriptHistory\17.sql" />
     <Content Include="ScriptHistory\16.sql" />
     <Content Include="ScriptHistory\15.sql" />
