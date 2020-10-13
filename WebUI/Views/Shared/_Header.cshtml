@@ -26,7 +26,6 @@
                         <ul class="dropdown-menu">
                             @Html.Action("GameMenu", "Navigation")
                         </ul>
-                        //@Html.Action("CartPopUp", "Cart")
                     </div>
 
                     <div class="top_curr">
@@ -51,8 +50,11 @@
                             </div>
                         </div>
                     </div>
+                    <button type="button" class="btn btn-primary btn-cart" data-toggle="modal" data-target="#cartModal">
+                    Cart()
+                    </button>
 
-                    <button class="btn btn-primary cart"></button>
+                    @Html.Action("CartPopUp", "Cart")
                     <button class="btn btn-primary sign_in"></button>
                     <form action="" class="search-bar">
                         <input type="search" name="search" pattern=".*\S.*" required>

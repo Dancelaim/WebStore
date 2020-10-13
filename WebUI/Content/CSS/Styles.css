@@ -81,6 +81,9 @@ body {
   padding: 0;
   height: 100%;
 }
+body.modal-open {
+  padding: 0!important;
+}
 input,
 select,
 button {
@@ -174,6 +177,79 @@ header .bottom {
 }
 #categories {
   border-bottom: 1px solid #1A233B;
+}
+.modal-dialog {
+  margin-top: 10%;
+}
+.modal .modal-content {
+  background: #161828;
+}
+.modal .modal-content .modal-body {
+  border: 0 none;
+}
+.modal .modal-content .modal-footer {
+  border: 0 none;
+  text-align: center;
+  display: block;
+}
+.modal .modal-content .modal-footer button,
+.modal .modal-content .modal-footer a {
+  margin: 20px 30px 20px 0;
+  padding: 13px 26px 13px;
+  width: 45%;
+  background: #6D94C4;
+  border: 0 none;
+  color: #10111B;
+  border-radius: 100px;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  text-transform: uppercase;
+  box-shadow: none;
+  transition: all 0.2s ease;
+  display: inline-block;
+}
+.modal .modal-content .modal-footer button:hover,
+.modal .modal-content .modal-footer a:hover,
+.modal .modal-content .modal-footer button:active,
+.modal .modal-content .modal-footer a:active {
+  text-decoration: none;
+  color: #10111B;
+  background: #91B9EF;
+}
+.modal .modal-content .modal-header {
+  border: 0 none;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 18px;
+  line-height: 25px;
+  color: #eee;
+  padding: 32px 0 10px;
+  position: relative;
+  font-weight: 600;
+}
+.modal .modal-content .modal-header .modal-title {
+  width: 100%;
+  font-size: 18px;
+  line-height: 25px;
+  color: #eee;
+  font-weight: 600;
+}
+.modal .modal-content .modal-header .close {
+  color: #6D94C4;
+  opacity: 1;
+  text-shadow: none;
+  border: 0 none;
+  position: absolute;
+  right: 32px;
+  top: 32px;
+  width: 24px;
+  height: 24px;
+  z-index: 9999;
+  background: url(https://wowcarry.com/image/catalog/new_icons/close.svg) 50% 50% no-repeat;
+}
+.modal .modal-content .modal-header .close span {
+  display: none;
 }
 .navbar {
   padding: 0;
@@ -473,7 +549,7 @@ header .bottom {
   display: block;
   transition: all 0.2s ease;
 }
-.cart {
+.btn-cart {
   float: right;
   padding: 8px 20px;
   min-height: 33px;
@@ -481,18 +557,13 @@ header .bottom {
   background: none;
   border: 0 none;
 }
-.cart:hover,
-.cart:active {
-  background: #10111B;
+.btn-cart:hover,
+.btn-cart:active {
+  background: none;
 }
-.cart:before {
-  content: "\f07a";
-  font-size: 33px;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  color: #6D94C4;
+.btn-cart:before {
+  content: "";
+  background: url(/Images/cart.svg) 0 50% no-repeat;
 }
 .sign_in {
   float: right;
