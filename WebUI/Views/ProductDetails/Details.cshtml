@@ -4,14 +4,14 @@
     <div class="row">
         <div class="product-info-block">
             <div class="image-bg">
-                <img src="https://wowcarry.com/image/cache/catalog/Products/Raid/83/fcd913bd47c9f0a329828ccd309e37b6-1600x300.png" alt="Product Name">
+                <img src=@Model.ProductImage alt=@Model.ProductName>
             </div>
             <div class="product_left">
                 <div class="product_info">
                     <div class="options">OPTIONS</div>
 
                     <div class="price-info">
-                        <div class="price">PRICE</div>
+                        <div class="price">@Model.ProductPrice.Select(p=>p.Price)</div>
 
                         <div class="coins_info"> 2.30 <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> and discounted price for registered users* </div>
                         <div class="reg_info"><a href="#"><b>Sign In</b></a> or <a href="#"><b>Register</b></a> to start saving. </div>
