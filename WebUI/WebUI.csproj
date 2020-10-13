@@ -191,7 +191,7 @@
     <Content Include="Images\WorldOfWarcraft\dungeons\custom_mythic_key.png" />
     <Content Include="Images\WorldOfWarcraft\dungeons\high_mythic_keys.png" />
     <Content Include="Images\WorldOfWarcraft\dungeons\mythic15x3.png" />
-    <Content Include="Images\WorldOfWarcraft\dungeons\weekly_ best15.png" />
+    <Content Include="Images\WorldOfWarcraft\dungeons\weekly_best15.png" />
     <Content Include="Images\WorldOfWarcraft\essences\vision-of-perfection.png" />
     <Content Include="Images\WorldOfWarcraft\mounts\clutch_of_hali.png" />
     <Content Include="Images\WorldOfWarcraft\powerleveling\MadWorld.png" />
