@@ -21,17 +21,17 @@ namespace WowCarry.Domain.Entities
         }
     
         public System.Guid ProductDescriptionId { get; set; }
-        public string ProductDescription1 { get; set; }
-        public string TitleDescription1 { get; set; }
-        public string TitleDescription2 { get; set; }
-        public string TitleDescription3 { get; set; }
-        public string TitleDescription4 { get; set; }
-        public string TitleDescription5 { get; set; }
-        public string Description1 { get; set; }
-        public string Description2 { get; set; }
-        public string Description3 { get; set; }
-        public string Description4 { get; set; }
-        public string Description5 { get; set; }
+        public string Description { get; set; }
+        public string SubDescriptionTitle1 { get; set; }
+        public string SubDescriptionTitle2 { get; set; }
+        public string SubDescriptionTitle3 { get; set; }
+        public string SubDescriptionTitle4 { get; set; }
+        public string SubDescriptionTitle5 { get; set; }
+        public string SubDescription1 { get; set; }
+        public string SubDescription2 { get; set; }
+        public string SubDescription3 { get; set; }
+        public string SubDescription4 { get; set; }
+        public string SubDescription5 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }

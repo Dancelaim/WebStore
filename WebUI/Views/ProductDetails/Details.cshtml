@@ -17,17 +17,7 @@
                         <div class="reg_info"><a href="#"><b>Sign In</b></a> or <a href="#"><b>Register</b></a> to start saving. </div>
                     </div>
                     <div class="buttons">
-                        @using (Html.BeginForm("AddToCart", "Cart"))
-                        {
-                            <div class="pull-right">
-                                @Html.HiddenFor(x => x.ProductId)
-                                @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
-                                <input type="submit" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block" value="Add to Cart" />
-                            </div>
-                        }
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Show Modal</button>
-                        
-                        @*<button type="button" id="button-cart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">Add to Cart</button>*@
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Add to Cart</button>
                         <button type="button" id="button-tocart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">QUICK PURCHASE</button>
                     </div>
 
@@ -48,23 +38,23 @@
                         <h1 class="product_title">@Model.ProductName</h1>
                     </div>
                     <div class="acc-body description" id="description">
-                       @Model.ProductDescription.ProductDescription1
+                       @Model.ProductDescription.Description
                     </div>
                 </div>
                 <div class="clear"> </div>
 
                 <div class="sub-desc">
                     <div class="subdescription">
-                        <h3>@Model.ProductDescription.TitleDescription2</h3>
-                        @Model.ProductDescription.Description2
+                        <h3>@Model.ProductDescription.SubDescriptionTitle2</h3>
+                        @Model.ProductDescription.SubDescription2
                     </div>
                     <div class="subdescription">
-                        <h3>@Model.ProductDescription.TitleDescription3</h3>
-                        @Model.ProductDescription.Description3
+                        <h3>@Model.ProductDescription.SubDescriptionTitle3</h3>
+                        @Model.ProductDescription.SubDescription3
                     </div>
                     <div class="subdescription">
-                        <h3>@Model.ProductDescription.TitleDescription1</h3>
-                        @Model.ProductDescription.Description1
+                        <h3>@Model.ProductDescription.SubDescriptionTitle1</h3>
+                        @Model.ProductDescription.SubDescription1
                     </div>
 
                 </div>

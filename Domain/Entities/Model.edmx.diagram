@@ -14,7 +14,7 @@
         <AssociationConnector Association="WowCarryModel.FK_ProductCategory_ProductGame" ManuallyRouted="false" />
         <EntityTypeShape EntityType="WowCarryModel.OptionParams" Width="1.5" PointX="9.625" PointY="7.125" />
         <EntityTypeShape EntityType="WowCarryModel.ProductCEO" Width="1.5" PointX="11.875" PointY="9.5" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductDescription" Width="1.5" PointX="15" PointY="8.875" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductDescription" Width="2.625" PointX="15.75" PointY="8.5" />
         <EntityTypeShape EntityType="WowCarryModel.ProductOption" Width="1.5" PointX="11.875" PointY="7" />
         <AssociationConnector Association="WowCarryModel.FK__ProductOp__Optio__05D8E0BE" />
         <AssociationConnector Association="WowCarryModel.FK__Product__Product__02FC7413" />

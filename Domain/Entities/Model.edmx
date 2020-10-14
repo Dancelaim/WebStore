@@ -87,17 +87,17 @@
             <PropertyRef Name="ProductDescriptionId" />
           </Key>
           <Property Name="ProductDescriptionId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ProductDescription" Type="nvarchar(max)" />
-          <Property Name="TitleDescription1" Type="nvarchar(max)" />
-          <Property Name="TitleDescription2" Type="nvarchar(max)" />
-          <Property Name="TitleDescription3" Type="nvarchar(max)" />
-          <Property Name="TitleDescription4" Type="nvarchar(max)" />
-          <Property Name="TitleDescription5" Type="nvarchar(max)" />
-          <Property Name="Description1" Type="nvarchar" MaxLength="255" />
-          <Property Name="Description2" Type="nvarchar" MaxLength="255" />
-          <Property Name="Description3" Type="nvarchar" MaxLength="255" />
-          <Property Name="Description4" Type="nvarchar" MaxLength="255" />
-          <Property Name="Description5" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="SubDescriptionTitle1" Type="nvarchar(max)" />
+          <Property Name="SubDescriptionTitle2" Type="nvarchar(max)" />
+          <Property Name="SubDescriptionTitle3" Type="nvarchar(max)" />
+          <Property Name="SubDescriptionTitle4" Type="nvarchar(max)" />
+          <Property Name="SubDescriptionTitle5" Type="nvarchar(max)" />
+          <Property Name="SubDescription1" Type="nvarchar(max)" />
+          <Property Name="SubDescription2" Type="nvarchar(max)" />
+          <Property Name="SubDescription3" Type="nvarchar(max)" />
+          <Property Name="SubDescription4" Type="nvarchar(max)" />
+          <Property Name="SubDescription5" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ProductGame">
           <Key>
@@ -137,19 +137,7 @@
           <Property Name="ProductCategoryId" Type="nvarchar" MaxLength="50" />
           <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__HtmlBlock__SiteB__3E1D39E1">
-          <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
-          <End Role="HtmlBlocksChildren" Type="Self.HtmlBlocksChildren" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HtmlBlocks">
-              <PropertyRef Name="SiteBlockId" />
-            </Principal>
-            <Dependent Role="HtmlBlocksChildren">
-              <PropertyRef Name="SiteBlockId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__HtmlBlock__SiteB__40F9A68C">
+        <Association Name="FK__HtmlBlock__SiteB__31B762FC">
           <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
           <End Role="HtmlBlocksChildren" Type="Self.HtmlBlocksChildren" Multiplicity="*" />
           <ReferentialConstraint>
@@ -299,11 +287,7 @@
           <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSubCategory" EntityType="Self.ProductSubCategory" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__HtmlBlock__SiteB__3E1D39E1" Association="Self.FK__HtmlBlock__SiteB__3E1D39E1">
-            <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
-            <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
-          </AssociationSet>
-          <AssociationSet Name="FK__HtmlBlock__SiteB__40F9A68C" Association="Self.FK__HtmlBlock__SiteB__40F9A68C">
+          <AssociationSet Name="FK__HtmlBlock__SiteB__31B762FC" Association="Self.FK__HtmlBlock__SiteB__31B762FC">
             <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
             <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
           </AssociationSet>
@@ -545,18 +529,18 @@
             <PropertyRef Name="ProductDescriptionId" />
           </Key>
           <Property Name="ProductDescriptionId" Type="Guid" Nullable="false" />
-          <Property Name="ProductDescription1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TitleDescription1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TitleDescription2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TitleDescription3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TitleDescription4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="TitleDescription5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__6FE99F9F" FromRole="ProductDescription" ToRole="Product" />
-          <Property Name="Description1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Description2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Description3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Description4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Description5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescriptionTitle1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescriptionTitle2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescriptionTitle3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescriptionTitle4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescriptionTitle5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ProductOption">
           <Key>
@@ -790,17 +774,17 @@
           <EntitySetMapping Name="ProductDescription">
             <EntityTypeMapping TypeName="WowCarryModel.ProductDescription">
               <MappingFragment StoreEntitySet="ProductDescription">
-                <ScalarProperty Name="Description5" ColumnName="Description5" />
-                <ScalarProperty Name="Description4" ColumnName="Description4" />
-                <ScalarProperty Name="Description3" ColumnName="Description3" />
-                <ScalarProperty Name="Description2" ColumnName="Description2" />
-                <ScalarProperty Name="Description1" ColumnName="Description1" />
-                <ScalarProperty Name="TitleDescription5" ColumnName="TitleDescription5" />
-                <ScalarProperty Name="TitleDescription4" ColumnName="TitleDescription4" />
-                <ScalarProperty Name="TitleDescription3" ColumnName="TitleDescription3" />
-                <ScalarProperty Name="TitleDescription2" ColumnName="TitleDescription2" />
-                <ScalarProperty Name="TitleDescription1" ColumnName="TitleDescription1" />
-                <ScalarProperty Name="ProductDescription1" ColumnName="ProductDescription" />
+                <ScalarProperty Name="SubDescription5" ColumnName="SubDescription5" />
+                <ScalarProperty Name="SubDescription4" ColumnName="SubDescription4" />
+                <ScalarProperty Name="SubDescription3" ColumnName="SubDescription3" />
+                <ScalarProperty Name="SubDescription2" ColumnName="SubDescription2" />
+                <ScalarProperty Name="SubDescription1" ColumnName="SubDescription1" />
+                <ScalarProperty Name="SubDescriptionTitle5" ColumnName="SubDescriptionTitle5" />
+                <ScalarProperty Name="SubDescriptionTitle4" ColumnName="SubDescriptionTitle4" />
+                <ScalarProperty Name="SubDescriptionTitle3" ColumnName="SubDescriptionTitle3" />
+                <ScalarProperty Name="SubDescriptionTitle2" ColumnName="SubDescriptionTitle2" />
+                <ScalarProperty Name="SubDescriptionTitle1" ColumnName="SubDescriptionTitle1" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ProductDescriptionId" ColumnName="ProductDescriptionId" />
               </MappingFragment>
             </EntityTypeMapping>
