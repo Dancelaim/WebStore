@@ -9,31 +9,31 @@
             </div>
             <div class="product_left">
                 <div class="product_info">
-                        <div class="options">OPTIONS</div>
-                        <div class="price-info">
-                            <div class="price"></div>
+                    <div class="options">OPTIONS</div>
+                    <div class="price-info">
+                        <div class="price"></div>
 
-                            <div class="coins_info"> 2.30 <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> and discounted price for registered users* </div>
-                            <div class="reg_info"><a href="#"><b>Sign In</b></a> or <a href="#"><b>Register</b></a> to start saving. </div>
-                        </div>
-                        <div class="buttons">
-                            @using (Ajax.BeginForm("AddToCart", new AjaxOptions { UpdateTargetId = "cartModal" }))
-                            {
-                                @Html.HiddenFor(x => x.ProductId)
-                                <button type="submit" id="button-cart" class="btn btn-primary">Add to Cart</button>
-                                <button type="button" id="button-tocart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">QUICK PURCHASE</button>
-                            }
-                        </div>
+                        <div class="coins_info"> 2.30 <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> and discounted price for registered users* </div>
+                        <div class="reg_info"><a href="#"><b>Sign In</b></a> or <a href="#"><b>Register</b></a> to start saving. </div>
+                    </div>
+                    <div class="buttons">
+                        @using (Ajax.BeginForm("AddToCart", new AjaxOptions { UpdateTargetId = "cartModal" }))
+                        {
+                            @Html.HiddenFor(x => x.ProductId)
+                            <button type="submit" id="button-cart" class="btn btn-primary">Add to Cart</button>
+                            <button type="button" id="button-tocart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">QUICK PURCHASE</button>
+                        }
+                    </div>
                 </div>
-
+                <div class="info-product-coins">
+                    * With each purchase registered users get 5% of the price added to their account as <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> as well as increasing <a href="/carrycoins" target="_blank"><b>discounts</b></a> for regular buyers.
+                </div>
+                <div class="product-tags">
+                    Tags:
+                    <a href="">Raid</a>,
+                </div>
             </div>
-            <div class="info-product-coins">
-                * With each purchase registered users get 5% of the price added to their account as <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> as well as increasing <a href="/carrycoins" target="_blank"><b>discounts</b></a> for regular buyers.
-            </div>
-            <div class="product-tags">
-                Tags:
-                <a href="">Raid</a>,
-            </div>
+            
 
         </div>
         <!--Product Description-->
