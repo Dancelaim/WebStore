@@ -10,29 +10,44 @@
                 </button>
             </div>
             <div class="modal-body">
-                @foreach (var item in Model.Lines)
+                @if (Model.Lines.Any())
                 {
-                    <tr>
-                        <td class="text-center">@item.Quantity</td>
-                        <td class="text-left">@item.Product.ProductName</td>
-                        <td class="text-right">@item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault().ToString()</td>
-                        <td class="text-right">
-                            @((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString())
-                        </td>
-                    </tr>
-
-                    using (Ajax.BeginForm("RemoveFromCart", new AjaxOptions { UpdateTargetId = "cartModal" }))
+                    foreach (var item in Model.Lines)
                     {
-                        @Html.Hidden("productId", item.Product.ProductId)
-                        <button type="submit" class="btn">DELETE</button>
+                        <div class="cart-block">
+                            <div class="cart-box">
+                                <div class="block-td img_block">
+                                    <img src=@String.Format(@item.Product.ProductImage + ".png") alt="@item.Product.ProductName" title="@item.Product.ProductName">
+                                </div>
+                                <div class="block-td text-left name_block">
+                                    @item.Product.ProductName
+                                    @Html.RouteLink("Product Name", "ProductDetails", new { productUrl = item.Product.ProductCEO.UrlKeyWord }, new { @class = "product-href" })
+                                </div>
+                                <div class="block-td text-left tot_block"><span class="price-box">@((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString())</span></div>
+                                @using (Ajax.BeginForm("RemoveFromCart", new AjaxOptions { UpdateTargetId = "cartModal" }))
+                                {
+                                    @Html.Hidden("productId", item.Product.ProductId)
+                                    <div class="block-td remove_block"><button type="submit" title="Remove" class="btn btn-xs"></button></div>
+                                }
+
+                                <div class="clear"></div>
+                            </div>
+                        </div>
                     }
+                }
+                else
+                {
+                    <div class="empty_block">
+                        <p class="text-center">Your Cart Is Empty!</p>
+                    </div>
                 }
             </div>
             <div class="modal-footer">
-                
-                    <a class="btn btn-primary" href="">Continue shoping</a>
-                
+                <a class="checkout_btn" href="/checkout"> Checkout</a>
+                <a class="btn btn-primary continue_btn" href="">Continue shoping</a>
             </div>
         </div>
     </div>
 </div>
+
+            

@@ -613,16 +613,166 @@ header {
     }
 }
 
-    .fa:before {
-        background: url(https://wowcarry.com/image/catalog/arrow-down.svg) 0 0 no-repeat;
-        background-size: 18px;
-        width: 18px;
-        height: 18px;
-        content: '';
-        display: block;
-        transition: all .2s ease;
+.fa:before {
+    background: url(https://wowcarry.com/image/catalog/arrow-down.svg) 0 0 no-repeat;
+    background-size: 18px;
+    width: 18px;
+    height: 18px;
+    content: '';
+    display: block;
+    transition: all .2s ease;
+}
+
+.cart-block .cart-box {
+    display: block;
+    position: relative;
+    padding: 16px;
+    margin: 0 32px;
+    border-bottom: 1px solid @color9;
+    transition: all 0.3s ease;
+
+    &:hover {
+        background: @color10;
+    }
+}
+#cartModal {
+    .modal-dialog {
+        max-width: 40%;
+
+        .modal-footer {
+            .checkout_btn {
+                background: @color1;
+                border-radius: 100px;
+                color: @color3;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+                text-transform: uppercase;
+                box-shadow: none;
+                padding: 13px 32px 13px;
+                display: inline-block;
+                margin: 20px 15px;
+                width: auto;
+
+                &:hover {
+                    text-decoration: none;
+                    color: @color3;
+                    background: @color5;
+                }
+
+                &:active {
+                    text-decoration: none;
+                    background: @color5;
+                    color: @color3;
+                }
+            }
+
+            .continue_btn {
+                margin: 20px 30px 20px 0;
+                padding: 13px 26px 13px;
+                width: 300px;
+                border: 1px solid @color1;
+                background: none;
+                color: @color1;
+                border-radius: 100px;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+                text-transform: uppercase;
+                box-shadow: none;
+                transition: all 0.2s ease;
+
+                &:hover {
+                    text-decoration: none;
+                    background: none;
+                    border-color: 1px solid @color5;
+                    color: @color5;
+                }
+            }
+        }
     }
 
+    .text-center {
+        padding: 63px 0 36px;
+    }
+}
+.cart-block .cart-box .block-td {
+    display: block;
+}
+
+.cart-block .cart-box .block-td.img_block {
+    padding-right: 16px;
+    float: left;
+    display: block;
+
+    img {
+        width: 72px;
+        height:48px;
+    }
+}
+.cart-block{
+    .tot_block {
+        text-align: left;
+        font-family: @o;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 22px;
+        display: block;
+
+        .cents {
+            font-size: 11px;
+            top: -2px;
+        }
+    }
+
+    .remove_block {
+        position: absolute;
+        right: 16px;
+        top: 50%;
+        margin-top: -12px;
+
+        button {
+            margin: 0;
+            width: 24px;
+            height: 24px;
+            background: url(https://wowcarry.com/image/catalog/new_icons/delete.svg) 0 0 no-repeat;
+
+            &:hover, &:active {
+                background: url(https://wowcarry.com/image/catalog/new_icons/delete.svg) 0 0 no-repeat;
+            }
+
+            span {
+                display: none;
+            }
+        }
+    }
+
+    .name_block {
+        width: 100%;
+        font-family: @o;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 12px;
+        line-height: 16px;
+        border: 0 none;
+        color: @color2;
+        min-height: 29px;
+        text-decoration: none;
+        display: block;
+
+        a.product-href {
+            display: block;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            font-size:0;
+        }
+    }
+
+}
 .btn-cart {
     float: right;
     padding: 22px 20px 22px 56px;
@@ -651,6 +801,7 @@ header {
         background: url(/Images/cart.svg) 0 50% no-repeat;
     }
 }
+
 
     .sign_in {
         float: right;
@@ -1072,6 +1223,11 @@ header {
 
         .acc-block {
             border-bottom: 1px solid @color9;
+            
+            .acc-body {
+                display: none;
+                padding-bottom:15px;
+            }
 
             .acc-head {
                 color: @color1;
@@ -1080,10 +1236,16 @@ header {
                 font-weight: normal;
                 font-size: 20px;
                 line-height: 23px;
-                padding: 15px 40px 15px 0;
+                padding: 0 40px 0 0;
                 cursor: pointer;
                 position: relative;
                 transition: all .2s ease;
+
+                h1 {
+                    display: inline-block;
+                    margin:0;
+                }
+
 
                 &:before {
                     background: url(https://wowcarry.com/image/catalog/arrow-down.svg) 0 0 no-repeat;
@@ -1134,18 +1296,63 @@ header {
             padding-top: 0;
             text-transform: uppercase;
         }
-
     }
 }
-/***End Product page styles***/
-footer .title {
-    font-family: 'Open Sans', sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 22px;
-    margin-bottom: 15px;
-}
+.sub-desc {
+    .right-block {
+        float: right;
+        width: 49%;
+        .subdescription {
+            h3 {
+                display: block;
+                font-family: @o;
+                font-size: 20px;
+                margin: 30px 0 20px 0;
+                color: @color8;
+            }
+
+            &:first-child {
+                h3 {
+                    min-height: 27px;
+                    padding-left: 35px;
+                    margin-bottom: 13px;
+                    background: url(https://wowcarry.com/image/catalog/clock_img.svg) 0 4px no-repeat;
+                    background-size: 21px;
+                    font-family: @o;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 20px;
+                    line-height: 27px;
+                    color: @color1;
+                }
+            }
+        }
+    }
+
+    .left-block {
+        width: 49%;
+        display: inline-block;
+
+        .subdescription {
+            h3 {
+                display: block;
+                font-family: @o;
+                font-size: 20px;
+                color: @color7;
+                margin: 30px 0 20px 0;
+            }
+        }
+    }
+ }
+    /***End Product page styles***/
+    footer .title {
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 22px;
+        margin-bottom: 15px;
+    }
 
     footer .footer_category li {
         display: block;
@@ -1167,26 +1374,26 @@ footer .title {
         position: relative;
         padding: 0 0 15px;
     }
-footer {
-    ul li a {
-        color: @color2;
 
-        &:hover, &:active {
+    footer {
+        ul li a {
             color: @color2;
+
+            &:hover, &:active {
+                color: @color2;
+            }
         }
-
     }
-}
 
-.pow {
-    font-size: 12px;
-    line-height: 16px;
-    color: @color2;
-    padding: 30px 0 0;
-    max-width: 50%;
-    position: absolute;
-    top: 180px;
-}
+    .pow {
+        font-size: 12px;
+        line-height: 16px;
+        color: @color2;
+        padding: 30px 0 0;
+        max-width: 50%;
+        position: absolute;
+        top: 180px;
+    }
 
     .payment_accept {
         position: absolute;
