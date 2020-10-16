@@ -26,8 +26,11 @@ namespace WowCarry.WebUI.Controllers
         }
         public ViewResult List(string selectedGame, string categoryName,int page = 1)
         {
-            Session["SelectedGame"] = selectedGame;
-            ViewBag.currentGame = repository.Products.Select(p=>p.ProductGame).Where(g=>g.GameShortUrl== selectedGame).Select(g=>g.GameName).FirstOrDefault().ToString();
+            if (!selectedGame.IsNullOrEmpty())
+            {
+                Session["SelectedGame"] = selectedGame;
+                ViewBag.currentGame = repository.Products.Select(p => p.ProductGame).Where(g => g.GameShortUrl == selectedGame).Select(g => g.GameName).FirstOrDefault().ToString();
+            }
 
             ProductsListViewModel model = new ProductsListViewModel
             {

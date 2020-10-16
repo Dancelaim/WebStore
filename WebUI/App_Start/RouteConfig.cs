@@ -25,7 +25,6 @@ namespace WowCarry.WebUI
                  defaults: new { controller = "GamePage", action = "GameDetails" },
                  constraints: new { currentGame = "classic|destiny|poe|hs|lol|valorant|bfa" }
             );
-
             routes.MapRoute(
                 name: "Sorted",
                 url: "{selectedGame}/{categoryName}",
@@ -39,10 +38,12 @@ namespace WowCarry.WebUI
                  constraints: new { page = @"\d+" }
             );
             routes.MapRoute(
-                 name: null,
+                 name: "ProductDetails",
                  url: "{productUrl}",
                  defaults: new { controller = "ProductDetails", action = "Details" }
             );
+
+           
 
 
             //routes.MapRoute(

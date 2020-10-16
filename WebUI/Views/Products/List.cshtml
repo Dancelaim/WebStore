@@ -9,7 +9,7 @@
              <div class="product-thumb">
                  <a href="@Url.Action("Details","ProductDetails",new {productUrl= p.ProductCEO.UrlKeyWord})">
                      <div class="image">
-                         <img src=@p.ProductImage alt="Alternate Text" />
+                         <img src=@String.Format(p.ProductImage + ".png") alt="Alternate Text" />
                          <div class="clear"></div>
                      </div>
                      <div class="caption">

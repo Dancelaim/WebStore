@@ -1,4 +1,6 @@
-﻿<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+﻿@model WowCarry.Domain.Entities.Cart
+
+<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,8 +10,17 @@
                 </button>
             </div>
             <div class="modal-body">
-               CART BODY
-                
+                @foreach (var item in Model.Lines)
+                {
+                    <tr>
+                        <td class="text-center">@item.Quantity</td>
+                        <td class="text-left">@item.Product.ProductName</td>
+                        <td class="text-right">@item.Product.ProductPrice.Select(p=>p.Price).FirstOrDefault().ToString("# $")</td>
+                        <td class="text-right">
+                            @((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString("# $"))
+                        </td>
+                    </tr>
+                }
             </div>
             <div class="modal-footer">
                 

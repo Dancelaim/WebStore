@@ -1,68 +1,73 @@
 ﻿@model WowCarry.Domain.Entities.Product
 
+
 <div id="product-product" class="container">
     <div class="row">
         <div class="product-info-block">
             <div class="image-bg">
-                <img src=@Model.ProductImage alt=@Model.ProductName>
+                <img src=@String.Format(@Model.ProductImage + "_large.png") alt=@Model.ProductName>
             </div>
             <div class="product_left">
                 <div class="product_info">
-                    <div class="options">OPTIONS</div>
+                        <div class="options">OPTIONS</div>
+                        <div class="price-info">
+                            <div class="price"></div>
 
-                    <div class="price-info">
-                        <div class="price">@Model.ProductPrice.Select(p=>p.Price).FirstOrDefault()</div>
-
-                        <div class="coins_info"> 2.30 <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> and discounted price for registered users* </div>
-                        <div class="reg_info"><a href="#"><b>Sign In</b></a> or <a href="#"><b>Register</b></a> to start saving. </div>
-                    </div>
-                    <div class="buttons">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#cartModal">Add to Cart</button>
-                        <button type="button" id="button-tocart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">QUICK PURCHASE</button>
-                    </div>
-
-                </div>
-                <div class="info-product-coins">
-                    * With each purchase registered users get 5% of the price added to their account as <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> as well as increasing <a href="/carrycoins" target="_blank"><b>discounts</b></a> for regular buyers.
-                </div>
-                <div class="product-tags">
-                    Tags:
-                    <a href="">Raid</a>,
+                            <div class="coins_info"> 2.30 <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> and discounted price for registered users* </div>
+                            <div class="reg_info"><a href="#"><b>Sign In</b></a> or <a href="#"><b>Register</b></a> to start saving. </div>
+                        </div>
+                        <div class="buttons">
+                            @using (Ajax.BeginForm("AddToCart", new AjaxOptions { UpdateTargetId = "cartModal" }))
+                            {
+                                @Html.HiddenFor(x => x.ProductId)
+                                <button type="submit" id="button-cart" class="btn btn-primary">Add to Cart</button>
+                                <button type="button" id="button-tocart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">QUICK PURCHASE</button>
+                            }
+                        </div>
                 </div>
 
             </div>
-            <!--Product Description-->
-            <div class="desc-content">
-                <div class="acc-block">
-                    <div class="acc-head">
-                        <h1 class="product_title">@Model.ProductName</h1>
-                    </div>
-                    <div class="acc-body description" id="description">
-                       @Model.ProductDescription.Description
-                    </div>
-                </div>
-                <div class="clear"> </div>
+            <div class="info-product-coins">
+                * With each purchase registered users get 5% of the price added to their account as <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> as well as increasing <a href="/carrycoins" target="_blank"><b>discounts</b></a> for regular buyers.
+            </div>
+            <div class="product-tags">
+                Tags:
+                <a href="">Raid</a>,
+            </div>
 
-                <div class="sub-desc">
-                    <div class="subdescription">
-                        <h3>@Model.ProductDescription.SubDescriptionTitle2</h3>
-                        @Model.ProductDescription.SubDescription2
-                    </div>
-                    <div class="subdescription">
-                        <h3>@Model.ProductDescription.SubDescriptionTitle3</h3>
-                        @Model.ProductDescription.SubDescription3
-                    </div>
-                    <div class="subdescription">
-                        <h3>@Model.ProductDescription.SubDescriptionTitle1</h3>
-                        @Model.ProductDescription.SubDescription1
-                    </div>
-
+        </div>
+        <!--Product Description-->
+        <div class="desc-content">
+            <div class="acc-block">
+                <div class="acc-head">
+                    <h1 class="product_title">@Model.ProductName</h1>
                 </div>
-                <div class="clear"> </div>
+                <div class="acc-body description" id="description">
+                    @Model.ProductDescription.Description
+                </div>
             </div>
             <div class="clear"> </div>
-            <!--end Product Description-->
-        </div>
 
+            <div class="sub-desc">
+                <div class="subdescription">
+                    <h3>@Model.ProductDescription.SubDescriptionTitle2</h3>
+                    @Model.ProductDescription.SubDescription2
+                </div>
+                <div class="subdescription">
+                    <h3>@Model.ProductDescription.SubDescriptionTitle3</h3>
+                    @Model.ProductDescription.SubDescription3
+                </div>
+                <div class="subdescription">
+                    <h3>@Model.ProductDescription.SubDescriptionTitle1</h3>
+                    @Model.ProductDescription.SubDescription1
+                </div>
+
+            </div>
+            <div class="clear"> </div>
+        </div>
+        <div class="clear"> </div>
+        <!--end Product Description-->
     </div>
+
+</div>
 </div>

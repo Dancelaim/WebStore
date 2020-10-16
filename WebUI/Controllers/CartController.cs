@@ -7,7 +7,7 @@ using System;
 
 namespace GameStore.WebUI.Controllers
 {
-    public class CartController : Controller
+    public  class CartController : Controller
     { 
 
         private IProductRepository repository;
@@ -15,44 +15,19 @@ namespace GameStore.WebUI.Controllers
         {
             repository = repo;
         }
-
-        public PartialViewResult CartPopUp()
+        public PartialViewResult CartPopUp(Cart cart)
         {
-            return PartialView();
+            return PartialView(cart);
         }
-        
-
-        public RedirectToRouteResult AddToCart(Guid productId, string returnUrl)
+        [HttpPost]
+        public void RemoveFromCart(Cart cart, Guid productId)
         {
             Product product = repository.Products.FirstOrDefault(p => p.ProductId == productId);
 
             if (product != null)
             {
-                GetCart().AddItem(product);
+                cart.RemoveLine(product);
             }
-            return RedirectToAction("Index", new { returnUrl });
-        }
-
-        public RedirectToRouteResult RemoveFromCart(Guid productId, string returnUrl)
-        {
-            Product product = repository.Products.FirstOrDefault(p => p.ProductId == productId);
-
-            if (product != null)
-            {
-                GetCart().RemoveLine(product);
-            }
-            return RedirectToAction("Index", new { returnUrl });
-        }
-
-        public Cart GetCart()
-        {
-            Cart cart = (Cart)Session["Cart"];
-            if (cart == null)
-            {
-                cart = new Cart();
-                Session["Cart"] = cart;
-            }
-            return cart;
         }
     }
 }
