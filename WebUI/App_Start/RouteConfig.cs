@@ -22,8 +22,15 @@ namespace WowCarry.WebUI
             routes.MapRoute(
                 name: "AddToCart",
                 url: "{ProductDetails}/{AddToCart}",
-                defaults: new { controller = "ProductDetails", action = "AddToCart", page = 1 },
+                defaults: new { controller = "ProductDetails", action = "AddToCart"},
                 constraints: new { AddToCart = "AddToCart" }
+            );
+
+            routes.MapRoute(
+                name: "RemoveFromCart",
+                url: "{Cart}/{RemoveFromCart}",
+                defaults: new { controller = "Cart", action = "RemoveFromCart"},
+                constraints: new { RemoveFromCart = "RemoveFromCart" }
             );
 
             routes.MapRoute(

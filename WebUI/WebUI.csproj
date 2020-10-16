@@ -719,6 +719,7 @@
     <Content Include="Views\GamePage\GameDetails.cshtml" />
     <Content Include="Views\Navigation\GameCategoryMenu.cshtml" />
     <Content Include="Views\ProductDetails\Details.cshtml" />
+    <Content Include="Views\Cart\CartCounter.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

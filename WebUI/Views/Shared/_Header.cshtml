@@ -51,7 +51,7 @@
                         </div>
                     </div>
                     <button id="toggleCart" type="button" class="btn-cart" data-toggle="modal" data-target="#cartModal">
-                    Cart()
+                        Cart(@Html.Action("CartCounter", "Cart"))
                     </button>
                     <div id="cartPopUp">
                         @Html.Action("CartPopUp", "Cart")
@@ -77,8 +77,8 @@
         </header>
         <script>
             $('#toggleCart').click(function (e) {
-                    e.preventdefault();
-                    var url = @Url.Action("CartPopUp", "Cart");
+                e.preventdefault();
+                var url = @Url.Action("CartPopUp", "Cart");
                 $('#cartPopUp').load(url);
                 });
             );
