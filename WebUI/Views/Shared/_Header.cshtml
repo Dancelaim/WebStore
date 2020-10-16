@@ -50,11 +50,12 @@
                             </div>
                         </div>
                     </div>
-                    <button type="button" class="btn-cart" data-toggle="modal" data-target="#cartModal">
+                    <button id="toggleCart" type="button" class="btn-cart" data-toggle="modal" data-target="#cartModal">
                     Cart()
                     </button>
-
-                    @Html.Action("CartPopUp", "Cart")
+                    <div id="cartPopUp">
+                        @Html.Action("CartPopUp", "Cart")
+                    </div>
                     <button class="btn btn-primary sign_in"></button>
                     <form action="" class="search-bar">
                         <input type="search" name="search" pattern=".*\S.*" required>
@@ -74,3 +75,11 @@
                 </div>
             </div>
         </header>
+        <script>
+            $('#toggleCart').click(function (e) {
+                    e.preventdefault();
+                    var url = @Url.Action("CartPopUp", "Cart");
+                $('#cartPopUp').load(url);
+                });
+            );
+        </script>

@@ -20,11 +20,19 @@ namespace WowCarry.WebUI
             );
 
             routes.MapRoute(
+                name: "AddToCart",
+                url: "{ProductDetails}/{AddToCart}",
+                defaults: new { controller = "ProductDetails", action = "AddToCart", page = 1 },
+                constraints: new { AddToCart = "AddToCart" }
+            );
+
+            routes.MapRoute(
                  name: "GameDetails",
                  url: "{currentGame}",
                  defaults: new { controller = "GamePage", action = "GameDetails" },
                  constraints: new { currentGame = "classic|destiny|poe|hs|lol|valorant|bfa" }
             );
+
             routes.MapRoute(
                 name: "Sorted",
                 url: "{selectedGame}/{categoryName}",
@@ -37,6 +45,7 @@ namespace WowCarry.WebUI
                  defaults: new { controller = "Products", action = "List" },
                  constraints: new { page = @"\d+" }
             );
+
             routes.MapRoute(
                  name: "ProductDetails",
                  url: "{productUrl}",

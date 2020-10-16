@@ -31,7 +31,7 @@ namespace WowCarry.WebUI.Controllers
             Product product = repository.Products.Where(p => p.ProductId == ProductId).FirstOrDefault();
             cart.AddItem(product);
             //return View();
-            return RedirectToAction("CartPopUp", "Cart");
+            return RedirectToRoute("ProductDetails",new { productUrl =  product.ProductCEO.UrlKeyWord});
 
         }
     }
