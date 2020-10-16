@@ -4,6 +4,7 @@ using WowCarry.Domain.Entities;
 using WowCarry.Domain.Abstract;
 using WebUI.Models;
 using System;
+using Castle.Core.Internal;
 
 namespace GameStore.WebUI.Controllers
 {
@@ -19,8 +20,14 @@ namespace GameStore.WebUI.Controllers
         {
             return PartialView(cart);
         }
+        public PartialViewResult CartCounter(Cart cart)
+        {
+            var qty = !cart.TotalQty().Equals(0) ? cart.TotalQty():0;
+            return PartialView(qty);
+        }
+
         [HttpPost]
-        public void RemoveFromCart(Cart cart, Guid productId)
+        public ActionResult RemoveFromCart(Cart cart, Guid productId)
         {
             Product product = repository.Products.FirstOrDefault(p => p.ProductId == productId);
 
@@ -28,6 +35,7 @@ namespace GameStore.WebUI.Controllers
             {
                 cart.RemoveLine(product);
             }
+            return PartialView("CartPopUp",cart);
         }
     }
 }

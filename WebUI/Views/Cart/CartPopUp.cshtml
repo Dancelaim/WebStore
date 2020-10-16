@@ -15,11 +15,17 @@
                     <tr>
                         <td class="text-center">@item.Quantity</td>
                         <td class="text-left">@item.Product.ProductName</td>
-                        <td class="text-right">@item.Product.ProductPrice.Select(p=>p.Price).FirstOrDefault().ToString("# $")</td>
+                        <td class="text-right">@item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault().ToString()</td>
                         <td class="text-right">
-                            @((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString("# $"))
+                            @((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString())
                         </td>
                     </tr>
+
+                    using (Ajax.BeginForm("RemoveFromCart", new AjaxOptions { UpdateTargetId = "cartModal" }))
+                    {
+                        @Html.Hidden("productId", item.Product.ProductId)
+                        <button type="submit" class="btn">DELETE</button>
+                    }
                 }
             </div>
             <div class="modal-footer">

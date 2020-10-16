@@ -39,6 +39,10 @@ namespace WowCarry.Domain.Entities
         {
             return lineCollection.Sum(e => e.Product.ProductPrice.Select(p=>p.Price).FirstOrDefault() * e.Quantity);
         }
+        public decimal TotalQty()
+        {
+            return lineCollection.Sum(e => e.Quantity);
+        }
         public void Clear()
         {
             lineCollection.Clear();
