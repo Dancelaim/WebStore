@@ -56,7 +56,20 @@
                     <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
                         @Html.Action("CartPopUp", "Cart")
                     </div>
-                    <button class="btn btn-primary sign_in"></button>
+
+                    <div class="account_block">
+                        <ul class="list-inline">
+                            <li>
+                              <span class="txt_acc">My Account</span>
+
+                                <ul class="dropdown-menu">
+                                    <li><a href="#">Register</a></li>
+                                    <li><a href="#">Login</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
                     <form action="" class="search-bar">
                         <input type="search" name="search" pattern=".*\S.*" required>
                         <button class="btn btn-primary search-btn" type="submit">

@@ -97,22 +97,21 @@ button {
   padding: 0;
   margin: 0;
 }
-input[type=text]::placeholder,
-input[type=password]::placeholder {
-  color: #425369;
-  opacity: 1;
-}
 table thead {
   background: #161828;
 }
 input,
 select,
-textarea {
+textarea,
+input[type=text],
+input[type=password] {
   -webkit-appearance: none;
 }
 input::placeholder,
 select::placeholder,
-textarea::placeholder {
+textarea::placeholder,
+input[type=text]::placeholder,
+input[type=password]::placeholder {
   color: #425369;
   opacity: 1;
 }
@@ -712,27 +711,39 @@ header .bottom {
   display: inline-block;
   background: url(/Images/cart.svg) 0 50% no-repeat;
 }
-.sign_in {
+.account_block {
   float: right;
-  padding: 8px 20px;
+  padding: 20px 20px 21px 20px;
   min-height: 33px;
   margin: 0 20px;
   text-align: center;
   background: none;
   border: 0 none;
+  position: relative;
+  cursor: pointer;
 }
-.sign_in:hover,
-.sign_in:active {
+.account_block .dropdown-menu li:last-child a {
+  border: 0 none;
+}
+.account_block:hover,
+.account_block:active {
   background: #10111B;
 }
-.sign_in:before {
-  content: "\f090";
-  font-size: 33px;
-  font-family: FontAwesome;
+.account_block:hover .dropdown-menu,
+.account_block:active .dropdown-menu {
+  display: block;
+}
+.account_block .txt_acc {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  background: url(/Images/account.svg) 0 50% no-repeat;
+  font-family: 'Open Sans', sans-serif;
   font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  color: #6D94C4;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  line-height: 24px;
 }
 .search-bar {
   float: right;

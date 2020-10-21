@@ -485,6 +485,7 @@
     <Content Include="Global.asax" />
     <Content Include="Images\11_years.svg" />
     <Content Include="Images\80000.svg" />
+    <Content Include="Images\account.svg" />
     <Content Include="Images\cart.svg" />
     <Content Include="Images\five.svg" />
     <Content Include="Images\four.svg" />

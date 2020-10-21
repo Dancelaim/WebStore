@@ -115,20 +115,13 @@ input, select, button {
     margin: 0;
 }
 
-input[type=text], input[type=password] {
-    &::placeholder {
-        color: @color4;
-        opacity: 1;
-    }
-}
 
 table thead {
     background: @color6;
 }
 
-input, select, textarea {
+input, select, textarea, input[type=text], input[type=password] {
     -webkit-appearance: none;
-
     &::placeholder {
         color: @color4;
         opacity: 1;
@@ -802,30 +795,48 @@ header {
     }
 }
 
+.account_block {
+    float: right;
+    padding: 20px 20px 21px 20px;
+    min-height: 33px;
+    margin: 0 20px;
+    text-align: center;
+    background: none;
+    border: 0 none;
+    position: relative;
+    cursor: pointer;
 
-    .sign_in {
-        float: right;
-        padding: 8px 20px;
-        min-height: 33px;
-        margin: 0 20px;
-        text-align: center;
-        background: none;
-        border: 0 none;
-
-        &:hover, &:active {
-            background: @color3;
-        }
-
-        &:before {
-            content: "\f090";
-            font-size: 33px;
-            font-family: FontAwesome;
-            font-style: normal;
-            font-weight: normal;
-            text-decoration: inherit;
-            color: @color1;
+    .dropdown-menu {
+        
+        li:last-child{
+            a{
+                border:0 none;
+            }
         }
     }
+
+    &:hover, &:active {
+        background: @color3;
+
+        .dropdown-menu {
+            display: block;
+        }
+    }
+
+    .txt_acc {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        background: url(/Images/account.svg) 0 50% no-repeat;
+        font-family: @o;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 14px;
+        text-transform: uppercase;
+        line-height: 24px;
+    }
+}
+
 
     .search-bar {
         float: right;
@@ -1258,7 +1269,6 @@ header {
                     top: 50%;
                     margin-top: -10px;
                     transition: all .2s ease;
-                    ;
                 }
 
                 li {
