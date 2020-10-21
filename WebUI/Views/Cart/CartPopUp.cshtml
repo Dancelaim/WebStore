@@ -23,6 +23,7 @@
                                     @item.Product.ProductName
                                     @Html.RouteLink("Product Name", "ProductDetails", new { productUrl = item.Product.ProductCEO.UrlKeyWord }, new { @class = "product-href" })
                                 </div>
+                                <div style="width:50px;height:50px;background:#fff;position:relative;z-index:999;" class="remove_box"></div>
                                 <div class="block-td text-left tot_block"><span class="price-box">@((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString())</span></div>
                                 @using (Ajax.BeginForm("RemoveFromCart", new AjaxOptions { UpdateTargetId = "cartModal" }))
                                 {
@@ -49,5 +50,10 @@
         </div>
     </div>
 </div>
+<script>
+    $('.remove_box').click(function () {
+        $(this).closest('.cart-block').remove();
+    });
+</script>
 
             
