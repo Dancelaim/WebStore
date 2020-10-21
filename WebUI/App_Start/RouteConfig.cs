@@ -42,6 +42,13 @@ namespace WowCarry.WebUI
 
 
             routes.MapRoute(
+                 name: "Checkout",
+                 url: "{Checkout}",
+                 defaults: new { controller = "Checkout", action = "Checkout" },
+                 constraints: new { Checkout = "Checkout" }
+            );
+
+            routes.MapRoute(
                  name: "GameDetails",
                  url: "{currentGame}",
                  defaults: new { controller = "GamePage", action = "GameDetails" },
