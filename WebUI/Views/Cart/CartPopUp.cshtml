@@ -1,53 +1,57 @@
 ﻿@model WowCarry.Domain.Entities.Cart
+<div class="modal-dialog" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title" id="cartModalLabel">CART</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
 
-<div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="cartModalLabel">CART</h2>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
+        @if (Model.Lines.Any())
+        {
             <div class="modal-body">
-                @if (Model.Lines.Any())
-                {
-                    foreach (var item in Model.Lines)
-                    {
-                        <div class="cart-block">
-                            <div class="cart-box">
-                                <div class="block-td img_block">
-                                    <img src=@String.Format(@item.Product.ProductImage + ".png") alt="@item.Product.ProductName" title="@item.Product.ProductName">
-                                </div>
-                                <div class="block-td text-left name_block">
-                                    @item.Product.ProductName
-                                    @Html.RouteLink("Product Name", "ProductDetails", new { productUrl = item.Product.ProductCEO.UrlKeyWord }, new { @class = "product-href" })
-                                </div>
-                                <div class="block-td text-left tot_block"><span class="price-box">@((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString())</span></div>
-                                @using (Ajax.BeginForm("RemoveFromCart", new AjaxOptions { UpdateTargetId = "cartModal" }))
-                                {
-                                    @Html.Hidden("productId", item.Product.ProductId)
-                                    <div class="block-td remove_block"><button type="submit" title="Remove" class="btn btn-xs"></button></div>
-                                }
-
-                                <div class="clear"></div>
-                            </div>
+                 @foreach (var item in Model.Lines)
+                 {
+                    <div class="cart-block">
+                        <div class="cart-box">
+                             <div class="block-td img_block">
+                                 <img src=@String.Format(@item.Product.ProductImage + ".png") alt="@item.Product.ProductName" title="@item.Product.ProductName">
+                             </div>
+                             <div class="block-td text-left name_block">
+                                 @item.Product.ProductName
+                                 @Html.RouteLink("Product Name", "ProductDetails", new { productUrl = item.Product.ProductCEO.UrlKeyWord }, new { @class = "product-href" })
+                             </div>
+                             <div class="block-td text-left tot_block"><span class="price-box">@((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString())</span></div>
+                             @Html.Hidden("productId", item.Product.ProductId)
+                             <div id="removeFromCart" class="block-td remove_block"><button type="submit" title="Remove" class="btn btn-xs"></button></div>
+                             <div class="clear"></div>
                         </div>
-                    }
-                }
-                else
-                {
-                    <div class="empty_block">
-                        <p class="text-center">Your Cart Is Empty!</p>
                     </div>
-                }
+                  }
             </div>
             <div class="modal-footer">
                 <a class="checkout_btn" href="/checkout"> Checkout</a>
                 <a class="btn btn-primary continue_btn" href="">Continue shoping</a>
             </div>
-        </div>
+           
+        }
+        else
+        {
+            <div class="modal-body">
+                <div class="empty_block">
+                    <p class="text-center">Your Cart Is Empty!</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a class="btn btn-primary continue_btn" href="">Continue shoping</a>
+            </div>
+        }
     </div>
 </div>
+<script>
+    var qty = @Model.TotalQty();
+    $("#qty").html(qty);
+</script>
 
             

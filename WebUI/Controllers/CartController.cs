@@ -20,14 +20,8 @@ namespace GameStore.WebUI.Controllers
         {
             return PartialView(cart);
         }
-        public PartialViewResult CartCounter(Cart cart)
-        {
-            var qty = !cart.TotalQty().Equals(0) ? cart.TotalQty():0;
-            return PartialView(qty);
-        }
-
         [HttpPost]
-        public ActionResult RemoveFromCart(Cart cart, Guid productId)
+        public ActionResult RemoveFromCart(Cart cart,Guid productId)
         {
             Product product = repository.Products.FirstOrDefault(p => p.ProductId == productId);
 
@@ -35,7 +29,11 @@ namespace GameStore.WebUI.Controllers
             {
                 cart.RemoveLine(product);
             }
-            return PartialView("CartPopUp",cart);
+            return PartialView("CartPopUp", cart);
+        }
+        public PartialViewResult UpdateCart(Cart cart)
+        {
+            return PartialView("CartPopUp", cart);
         }
     }
 }

@@ -17,12 +17,9 @@
                         <div class="reg_info"><a href="#"><b>Sign In</b></a> or <a href="#"><b>Register</b></a> to start saving. </div>
                     </div>
                     <div class="buttons">
-                        @using (Ajax.BeginForm("AddToCart", new AjaxOptions { UpdateTargetId = "cartModal" }))
-                        {
-                            @Html.HiddenFor(x => x.ProductId)
-                            <button type="submit" id="button-cart" class="btn btn-primary">Add to Cart</button>
-                            <button type="button" id="button-tocart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">QUICK PURCHASE</button>
-                        }
+                        @Html.HiddenFor(x => x.ProductId)
+                        <button type="button" id="button-cart" class="btn btn-primary">Add to Cart</button>
+                        <button type="button" id="button-tocart" data-loading-text="Loading..." class="btn btn-primary btn-lg btn-block">QUICK PURCHASE</button>
                     </div>
                 </div>
                 <div class="info-product-coins">
@@ -33,7 +30,7 @@
                     <a href="">Raid</a>,
                 </div>
             </div>
-            
+
 
         </div>
         <!--Product Description-->
@@ -66,12 +63,30 @@
                     </div>
                 </div>
                 <div class="clear"></div>
-                </div>
-                <div class="clear"> </div>
             </div>
+            <div class="clear"> </div>
+        </div>
         <div class="clear"> </div>
         <!--end Product Description-->
     </div>
-
 </div>
 </div>
+<script>
+     $("#button-cart").click(function () {
+         var prodId = $(this).closest('.buttons').find('#ProductId').val();
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: "@Url.Action("AddToCart", "ProductDetails")",
+                    data: {
+                        productId: prodId
+                    },
+                    success: function (data) {
+                        $("#qty").html(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log(thrownError)
+                    }
+                });
+            });
+</script>

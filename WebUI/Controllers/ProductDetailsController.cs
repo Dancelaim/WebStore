@@ -26,13 +26,12 @@ namespace WowCarry.WebUI.Controllers
             return View(product);
         }
         [HttpPost]
-        public ActionResult AddToCart (Cart cart ,Guid? ProductId)
+        public decimal AddToCart (Cart cart ,Guid? ProductId)
         {
             Product product = repository.Products.Where(p => p.ProductId == ProductId).FirstOrDefault();
             cart.AddItem(product);
-            //return View();
-            return RedirectToRoute("ProductDetails",new { productUrl =  product.ProductCEO.UrlKeyWord});
 
+            return cart.TotalQty();
         }
     }
     

@@ -9,6 +9,7 @@ namespace WebUI.Models
 {
     public class CartViewModel
     {
-        public Guid productId { get; set; }
+        public Cart cart { get; set; }
+        public List<Guid> productsId { get; set; }
     }
 }

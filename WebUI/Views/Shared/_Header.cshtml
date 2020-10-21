@@ -51,9 +51,9 @@
                         </div>
                     </div>
                     <button id="toggleCart" type="button" class="btn-cart" data-toggle="modal" data-target="#cartModal">
-                        Cart(@Html.Action("CartCounter", "Cart"))
+                        Cart(<span id="qty"></span>)
                     </button>
-                    <div id="cartPopUp">
+                    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
                         @Html.Action("CartPopUp", "Cart")
                     </div>
                     <button class="btn btn-primary sign_in"></button>
@@ -76,10 +76,33 @@
             </div>
         </header>
         <script>
-            $('#toggleCart').click(function (e) {
-                e.preventdefault();
-                var url = @Url.Action("CartPopUp", "Cart");
-                $('#cartPopUp').load(url);
+            //$(".remove_block button").click(function () {
+            $(document).on("click",".remove_block button",function () {
+                var prodId = $(this).closest('.cart-block').find('#productId').val();
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: "@Url.Action("RemoveFromCart", "Cart")",
+                    data: {
+                        productId: prodId
+                    },
+                    success: function (data) {
+                        $("#cartModal").html(data);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        console.log(thrownError)
+                    }
                 });
-            );
+            });
+
+            $("#toggleCart").click(function () {
+                $.ajax({
+                    cache: false,
+                    type: "POST",
+                    url: "@Url.Action("UpdateCart", "Cart")",
+                    success: function (data) {
+                        $("#cartModal").html(data);
+                    }
+                });
+            });
         </script>
