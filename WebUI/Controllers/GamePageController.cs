@@ -17,8 +17,7 @@ namespace GameStore.WebUI.Controllers
 
         public ActionResult GameDetails(string currentGame)
         {
-            string gameName = repository.ProductGames.Where(g => g.GameShortUrl == currentGame).Select(go => go.GameName).FirstOrDefault();
-            ViewBag.currentGame = gameName;
+            Session["SelectedGame"] = repository.ProductGames.Where(g => g.GameShortUrl == currentGame).Select(go => go.GameName).FirstOrDefault();
 
             object game = currentGame;
             return View(game);

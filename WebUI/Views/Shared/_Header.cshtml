@@ -20,7 +20,7 @@
                     <div id="logo"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
                     <div class="games-top-menu-block">
                         <div class="hover-button">
-                            <div class="no-category" style="display: inline-block;">@ViewBag.currentGame</div>
+                            <div class="no-category" style="display: inline-block;">@Session["SelectedGame"]</div>
                             <i class="fa"></i>
                         </div>
                         <ul class="dropdown-menu">
@@ -89,9 +89,9 @@
             </div>
         </header>
         <script>
-            //$(".remove_block button").click(function () {
-            $(document).on("click",".remove_block button",function () {
-                var prodId = $(this).closest('.cart-block').find('#productId').val();
+            $(document).on("click", ".remove_block button", function () {
+                var prodId = $(this).closest('.cart-block').find('input').val();
+                console.log("Pause");
                 $.ajax({
                     cache: false,
                     type: "POST",

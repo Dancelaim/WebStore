@@ -14,8 +14,7 @@ namespace WebUI.Controllers
         // GET: HomePage
         public ActionResult Home()
         {
-            @ViewBag.currentGame = "Select Game";
-            Session["SelectedGame"] = null;
+            Session["SelectedGame"] = "Select Game";
             return View();
         }
     }
