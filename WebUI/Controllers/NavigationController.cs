@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
+
 using WebUI.Models;
 using WowCarry.Domain.Abstract;
 using WowCarry.Domain.Entities;
@@ -25,8 +27,15 @@ namespace WebUI.Controllers
         }
         public PartialViewResult CategoryMenu(string currentGame)
         {
-            IEnumerable<string> categories = repository.Products.Where(p =>  p.ProductGame.GameShortUrl == GetCurrentGame(currentGame)).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x);
-            return PartialView(categories);
+            GetCurrentGame(currentGame);
+            string selectedUrl = repository.Products.Where(p => p.ProductGame.GameName == (string)Session["SelectedGame"]).Select(p => p.ProductGame.GameShortUrl).FirstOrDefault();
+
+            CategoryViewModel result = new CategoryViewModel
+            {
+                categories = repository.Products.Where(p => p.ProductGame.GameName == (string)Session["SelectedGame"]).Select(p => p.ProductCategory.ProductCategoryName).Distinct().OrderBy(x => x),
+                currentGame = selectedUrl
+            };
+            return PartialView(result);
         }
         public PartialViewResult GameCategoryMenu()
         {
@@ -40,15 +49,9 @@ namespace WebUI.Controllers
 
             return PartialView(model);
         }
-        public string GetCurrentGame(string currentGame)
+        public void GetCurrentGame(string currentGame)
         {
-            string SelectedGame = currentGame.IsNullOrEmpty() ? (string)Session["SelectedGame"] : currentGame;
-
-            if (!SelectedGame.IsNullOrEmpty())
-            {
-                Session["SelectedGame"] = SelectedGame;
-            }
-            return SelectedGame;
+            Session["SelectedGame"] = currentGame.IsNullOrEmpty() ? (string)Session["SelectedGame"] : repository.Products.Where(p => p.ProductGame.GameShortUrl == currentGame).Select(p => p.ProductGame.GameName).FirstOrDefault();
         }
     }
 }

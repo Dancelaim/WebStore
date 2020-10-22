@@ -80,6 +80,7 @@
     <Compile Include="Concrete\EFHtmlBlockRepository.cs" />
     <Compile Include="Concrete\EFProductGameRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
+    <Compile Include="Entities\OrderDetails.cs" />
     <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\HtmlBlocks.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -167,6 +168,7 @@
     <Content Include="ScriptHistory\10.sql" />
     <Content Include="ScriptHistory\11.sql" />
     <Content Include="ScriptHistory\12.sql" />
+    <Content Include="ScriptHistory\23.sql" />
     <Content Include="ScriptHistory\22.sql" />
     <Content Include="ScriptHistory\21.sql" />
     <Content Include="ScriptHistory\20.sql" />
