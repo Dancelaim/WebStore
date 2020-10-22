@@ -18,6 +18,7 @@ namespace WowCarry.Domain.Entities
         public Product()
         {
             this.ProductPrice = new HashSet<ProductPrice>();
+            this.ProductOption1 = new HashSet<ProductOption>();
         }
     
         public System.Guid ProductId { get; set; }
@@ -43,5 +44,7 @@ namespace WowCarry.Domain.Entities
         public virtual ProductDescription ProductDescription { get; set; }
         public virtual ProductGame ProductGame { get; set; }
         public virtual ProductSubCategory ProductSubCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductOption> ProductOption1 { get; set; }
     }
 }

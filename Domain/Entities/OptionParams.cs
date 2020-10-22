@@ -24,8 +24,11 @@ namespace WowCarry.Domain.Entities
         public string ParamName { get; set; }
         public string ParamTooltip { get; set; }
         public Nullable<double> ParamPrice { get; set; }
+        public Nullable<System.Guid> ProductOptionId { get; set; }
+        public string Sale { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductOption> ProductOption { get; set; }
+        public virtual ProductOption ProductOption1 { get; set; }
     }
 }

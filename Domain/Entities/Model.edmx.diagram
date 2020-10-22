@@ -27,6 +27,8 @@
         <EntityTypeShape EntityType="WowCarryModel.HtmlBlocks" Width="1.5" PointX="0.75" PointY="1.125" />
         <EntityTypeShape EntityType="WowCarryModel.HtmlBlocksChildren" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" />
+        <AssociationConnector Association="WowCarryModel.FK__OptionPar__Produ__4D5F7D71" />
+        <AssociationConnector Association="WowCarryModel.FK__ProductOp__Produ__4E53A1AA" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
