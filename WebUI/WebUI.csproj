@@ -486,7 +486,11 @@
     <Content Include="Images\11_years.svg" />
     <Content Include="Images\80000.svg" />
     <Content Include="Images\account.svg" />
+    <Content Include="Images\arrow-down.svg" />
     <Content Include="Images\cart.svg" />
+    <Content Include="Images\clock_img.svg" />
+    <Content Include="Images\close.svg" />
+    <Content Include="Images\delete.svg" />
     <Content Include="Images\five.svg" />
     <Content Include="Images\four.svg" />
     <Content Include="Images\game-item-1.png" />
