@@ -7,7 +7,9 @@
             <div class="image-bg">
                 <img src=@String.Format(@Model.ProductImage + "_large.png") alt=@Model.ProductName>
             </div>
+            
             <div class="product_left">
+                <div class="added-alert">@Model.ProductName added to cart</div>
                 <div class="product_info">
                     <div class="options">OPTIONS</div>
                     <div class="price-info">
@@ -74,19 +76,24 @@
 <script>
      $("#button-cart").click(function () {
          var prodId = $(this).closest('.buttons').find('#ProductId').val();
-                $.ajax({
-                    cache: false,
-                    type: "POST",
-                    url: "@Url.Action("AddToCart", "ProductDetails")",
-                    data: {
-                        productId: prodId
-                    },
-                    success: function (data) {
-                        $("#qty").html(data);
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
-                        console.log(thrownError)
-                    }
-                });
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "@Url.Action("AddToCart", "ProductDetails")",
+                data: {
+                    productId: prodId
+                },
+                success: function (data) {
+                    $("#qty").html(data);
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    console.log(thrownError)
+                }
             });
+         $('.added-alert').css('opacity', '1');
+         setTimeout(function () {
+             $('.added-alert').css('opacity', '0');
+         }, 3000);
+     });
+
 </script>

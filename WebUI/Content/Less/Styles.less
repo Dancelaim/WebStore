@@ -222,7 +222,8 @@ header {
             border: 0 none;
             text-align: center;
             display: block;
-            padding:0;
+            padding: 0;
+
             button, a {
                 margin: 0 30px 30px;
                 padding: 13px 26px 13px;
@@ -277,7 +278,8 @@ header {
                 width: 24px;
                 height: 24px;
                 z-index: 9999;
-                background: url(https://wowcarry.com/image/catalog/new_icons/close.svg) 50% 50% no-repeat;
+                background: url(/Images/close.svg) 50% 50% no-repeat;
+
 
                 span {
                     display: none;
@@ -607,7 +609,7 @@ header {
 }
 
 .fa:before {
-    background: url(https://wowcarry.com/image/catalog/arrow-down.svg) 0 0 no-repeat;
+    background: url(/Images/arrow-down.svg) 0 0 no-repeat;
     background-size: 18px;
     width: 18px;
     height: 18px;
@@ -674,12 +676,44 @@ header {
                 text-transform: uppercase;
                 box-shadow: none;
                 transition: all 0.2s ease;
-
+                text-shadow: none;
+                float: none;
+                font-weight: normal;
+                opacity:1;
                 &:hover {
                     text-decoration: none;
                     background: none;
                     border-color: 1px solid @color5;
                     color: @color5;
+                }
+            }
+
+            &.empty_footer {
+                .continue_btn {
+                    background: @color1;
+                    border-radius: 100px;
+                    color: @color3;
+                    font-size: 16px;
+                    line-height: 22px;
+                    text-align: center;
+                    text-transform: uppercase;
+                    box-shadow: none;
+                    padding: 13px 32px 13px;
+                    display: inline-block;
+                    margin: 20px 15px;
+                    width: auto;
+
+                    &:hover {
+                        text-decoration: none;
+                        color: @color3;
+                        background: @color5;
+                    }
+
+                    &:active {
+                        text-decoration: none;
+                        background: @color5;
+                        color: @color3;
+                    }
                 }
             }
         }
@@ -689,21 +723,23 @@ header {
         padding: 63px 0 36px;
     }
 }
-.cart-block .cart-box .block-td {
-    display: block;
-}
 
-.cart-block .cart-box .block-td.img_block {
-    padding-right: 16px;
-    float: left;
-    display: block;
-
-    img {
-        width: 72px;
-        height:48px;
+    .cart-block .cart-box .block-td {
+        display: block;
     }
-}
-.cart-block{
+
+    .cart-block .cart-box .block-td.img_block {
+        padding-right: 16px;
+        float: left;
+        display: block;
+
+        img {
+            width: 72px;
+            height: 48px;
+        }
+    }
+
+.cart-block {
     .tot_block {
         text-align: left;
         font-family: @o;
@@ -729,10 +765,10 @@ header {
             margin: 0;
             width: 24px;
             height: 24px;
-            background: url(https://wowcarry.com/image/catalog/new_icons/delete.svg) 0 0 no-repeat;
+            background: url(/Images/delete.svg) 0 0 no-repeat;
 
             &:hover, &:active {
-                background: url(https://wowcarry.com/image/catalog/new_icons/delete.svg) 0 0 no-repeat;
+                background: url(/Images/delete.svg) 0 0 no-repeat;
             }
 
             span {
@@ -761,81 +797,81 @@ header {
             bottom: 0;
             left: 0;
             right: 0;
-            font-size:0;
+            font-size: 0;
         }
     }
-
 }
-.btn-cart {
-    float: right;
-    padding: 22px 20px 22px 56px;
-    min-height: 33px;
-    text-align: center;
-    position:relative;
-    background: none;
-    border: 0 none;
-    color: @color2;
-    font-size: 14px;
-    font-family: @o;
-    border-radius:0;
 
-    &:hover, &:active {
-        background: @color10;
+    .btn-cart {
+        float: right;
+        padding: 22px 20px 22px 56px;
+        min-height: 33px;
+        text-align: center;
+        position: relative;
+        background: none;
+        border: 0 none;
         color: @color2;
-    }
+        font-size: 14px;
+        font-family: @o;
+        border-radius: 0;
 
-    &:before {
-        content: "";
-        width: 24px;
-        height: 24px;
-        position: absolute;
-        left: 22px;
-        display: inline-block;
-        background: url(/Images/cart.svg) 0 50% no-repeat;
-    }
-}
+        &:hover, &:active {
+            background: @color10;
+            color: @color2;
+        }
 
-.account_block {
-    float: right;
-    padding: 20px 20px 21px 20px;
-    min-height: 33px;
-    margin: 0 20px;
-    text-align: center;
-    background: none;
-    border: 0 none;
-    position: relative;
-    cursor: pointer;
-
-    .dropdown-menu {
-        
-        li:last-child{
-            a{
-                border:0 none;
-            }
+        &:before {
+            content: "";
+            width: 24px;
+            height: 24px;
+            position: absolute;
+            left: 22px;
+            display: inline-block;
+            background: url(/Images/cart.svg) 0 50% no-repeat;
         }
     }
 
-    &:hover, &:active {
-        background: @color3;
+    .account_block {
+        float: right;
+        padding: 20px 20px 21px 20px;
+        min-height: 33px;
+        margin: 0 20px;
+        text-align: center;
+        background: none;
+        border: 0 none;
+        position: relative;
+        cursor: pointer;
 
         .dropdown-menu {
+
+            li:last-child {
+                a {
+                    border: 0 none;
+                }
+            }
+        }
+
+        &:hover, &:active {
+            background: @color3;
+
+            .dropdown-menu {
+                display: block;
+            }
+        }
+
+        .txt_acc {
             display: block;
+            position: relative;
+            padding-left: 35px;
+            background: url(/Images/account.svg) 0 50% no-repeat;
+            font-family: @o;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            text-transform: uppercase;
+            line-height: 24px;
         }
     }
-
-    .txt_acc {
-        display: block;
-        position: relative;
-        padding-left: 35px;
-        background: url(/Images/account.svg) 0 50% no-repeat;
-        font-family: @o;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 14px;
-        text-transform: uppercase;
-        line-height: 24px;
-    }
-}
 
 
     .search-bar {
@@ -866,7 +902,7 @@ header {
     .container {
         width: 100%;
         max-width: 1600px;
-        padding:15px 0;
+        padding: 15px 0;
     }
 
     .logo_foot {
@@ -1038,112 +1074,113 @@ header {
             }
         }
     }
-.who-we-are {
-    padding-top: 0;
-    padding-bottom: 25px;
 
-    h2 {
+    .who-we-are {
         padding-top: 0;
         padding-bottom: 25px;
-        text-align: center;
-    }
 
-    .purchase_block_in {
-        text-align: justify;
-        margin: 0 auto;
-        max-width: 1600px;
-        position: relative;
-
-        &:after {
-            width: 100%;
-            height: 0px;
-            visibility: hidden;
-            overflow: hidden;
-            content: "";
-            display: inline-block;
-        }
-
-        .purchase_in {
-            position: relative;
-            width: 49%;
-            display: inline-block;
-            vertical-align: top;
+        h2 {
+            padding-top: 0;
+            padding-bottom: 25px;
             text-align: center;
+        }
 
-            .title {
-                font-family: @o;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 35px;
-                line-height: 54px;
-                padding-bottom: 15px;
-                position: relative;
-                text-transform: uppercase;
+        .purchase_block_in {
+            text-align: justify;
+            margin: 0 auto;
+            max-width: 1600px;
+            position: relative;
+
+            &:after {
+                width: 100%;
+                height: 0px;
+                visibility: hidden;
+                overflow: hidden;
+                content: "";
+                display: inline-block;
             }
 
-            .text {
-                padding-bottom: 50px;
-                font-family: @o;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 16px;
-                line-height: 22px;
+            .purchase_in {
                 position: relative;
-                text-align: left;
-            }
-
-            .image {
-                padding-bottom: 20px;
-                height: 120px;
-                position: absolute;
-                left: 0;
-                right: 0;
+                width: 49%;
+                display: inline-block;
+                vertical-align: top;
                 text-align: center;
-            }
 
-            &:before {
-                content: '';
-                position: absolute;
-                left: 0;
-                right: 0;
-                top: 0;
-                bottom: 0;
-                font-family: @o;
-                font-size: 115px;
-                font-weight: bold;
-                color: @color6;
-                line-height: 75px;
-                opacity: .5;
-            }
-
-            &.weare_box {
-                &:before {
-                    content: 'WE ARE';
+                .title {
+                    font-family: @o;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 35px;
+                    line-height: 54px;
+                    padding-bottom: 15px;
+                    position: relative;
+                    text-transform: uppercase;
                 }
-            }
 
-            &.team_box {
-                &:before {
-                    content: 'OUR TEAM';
+                .text {
+                    padding-bottom: 50px;
+                    font-family: @o;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 22px;
+                    position: relative;
+                    text-align: left;
                 }
-            }
 
-            &.orders_box {
-                &:before {
-                    content: '80,000';
+                .image {
+                    padding-bottom: 20px;
+                    height: 120px;
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    text-align: center;
                 }
-            }
 
-            &.years_box {
                 &:before {
-                    content: '11 YEARS';
+                    content: '';
+                    position: absolute;
+                    left: 0;
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                    font-family: @o;
+                    font-size: 115px;
+                    font-weight: bold;
+                    color: @color6;
+                    line-height: 75px;
+                    opacity: .5;
+                }
+
+                &.weare_box {
+                    &:before {
+                        content: 'WE ARE';
+                    }
+                }
+
+                &.team_box {
+                    &:before {
+                        content: 'OUR TEAM';
+                    }
+                }
+
+                &.orders_box {
+                    &:before {
+                        content: '80,000';
+                    }
+                }
+
+                &.years_box {
+                    &:before {
+                        content: '11 YEARS';
+                    }
                 }
             }
         }
     }
-}
-/**blocks end***/
-/***Product page styles***/
+    /**blocks end***/
+    /***Product page styles***/
 #product-product {
     .image-bg {
         max-width: 100%;
@@ -1234,10 +1271,10 @@ header {
 
         .acc-block {
             border-bottom: 1px solid @color9;
-            
+
             .acc-body {
                 display: none;
-                padding-bottom:15px;
+                padding-bottom: 15px;
             }
 
             .acc-head {
@@ -1254,12 +1291,12 @@ header {
 
                 h1 {
                     display: inline-block;
-                    margin:0;
+                    margin: 0;
                 }
 
 
                 &:before {
-                    background: url(https://wowcarry.com/image/catalog/arrow-down.svg) 0 0 no-repeat;
+                    background: url(/Images/arrow-down.svg) 0 0 no-repeat;
                     background-size: 20px;
                     width: 20px;
                     height: 20px;
@@ -1308,10 +1345,28 @@ header {
         }
     }
 }
+
+    .product-info-block {
+        position: relative;
+    }
+
+    .added-alert {
+        position: absolute;
+        opacity: 0;
+        right: 0;
+        left: 0;
+        top: -60px;
+        background: @color6;
+        padding: 5px 10px;
+        transition: all 0.3s ease;
+        border:1px solid @color4;
+    }
+
 .sub-desc {
     .right-block {
         float: right;
         width: 49%;
+
         .subdescription {
             h3 {
                 display: block;
@@ -1326,7 +1381,7 @@ header {
                     min-height: 27px;
                     padding-left: 35px;
                     margin-bottom: 13px;
-                    background: url(https://wowcarry.com/image/catalog/clock_img.svg) 0 4px no-repeat;
+                    background: url(/Images/clock_img.svg) 0 4px no-repeat;
                     background-size: 21px;
                     font-family: @o;
                     font-style: normal;
@@ -1353,16 +1408,119 @@ header {
             }
         }
     }
- }
+}
     /***End Product page styles***/
-    footer .title {
-        font-family: 'Open Sans', sans-serif;
-        font-style: normal;
-        font-weight: 600;
-        font-size: 16px;
-        line-height: 22px;
-        margin-bottom: 15px;
+
+/***Checkout styles***/
+.cart-block {
+    h2 {
+        padding-bottom: 21px;
+        padding-top: 0;
+        border-bottom: 1px solid @color4;
+        font-size: 25px;
+        color: @color2;
+        font-family: @o;
     }
+
+    .cart-item {
+        padding: 20px 0;
+        border-bottom: 1px solid @color4;
+
+        .name-box {
+            display: inline-block;
+            vertical-align: top;
+
+            a {
+                color: @color2;
+                font-size: 20px;
+                font-family: @o;
+                text-decoration: none;
+            }
+
+            .options-list {
+                span {
+                    font-family: @o;
+                    font-style: normal;
+                    font-weight: 300;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: @color4;
+                    display: block;
+                    margin-bottom: 10px;
+                }
+            }
+        }
+
+        .qty-box {
+            float: right;
+            margin-right: 40px;
+            font-family: @o;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 30px;
+            line-height: 35px;
+
+            button {
+                background: @color6;
+                border: 1px solid @color4;
+                box-shadow: none;
+                border-radius: 5px;
+                height: 30px;
+                width: 34px;
+                display: inline-block;
+                flex: inherit;
+                padding: 6px 0;
+
+                &.decrease {
+                    background-image: url(/Images/arrow-down.svg);
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                }
+
+                &.increase {
+                    background-image: url(/Images/arrow-down.svg);
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                    transform: rotate(180deg);
+                }
+            }
+        }
+
+        .price-box {
+            margin-right: 40px;
+            float: right;
+            font-family: @o;
+            font-style: normal;
+            font-weight: 400;
+            font-size: 30px;
+            line-height: 35px;
+        }
+
+        .remove_box {
+            float: right;
+
+            button {
+                color: @color1;
+                opacity: 1;
+                text-shadow: none;
+                border: 0 none;
+                width: 24px;
+                height: 24px;
+                z-index: 9999;
+                background: url(/Images/close.svg) 50% 50% no-repeat;
+            }
+        }
+    }
+}
+/***Checkout styles end***/
+footer .title {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    margin-bottom: 15px;
+}
 
     footer .footer_category li {
         display: block;
