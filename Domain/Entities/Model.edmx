@@ -94,11 +94,11 @@
           <Property Name="SubDescriptionTitle3" Type="nvarchar(max)" />
           <Property Name="SubDescriptionTitle4" Type="nvarchar(max)" />
           <Property Name="SubDescriptionTitle5" Type="nvarchar(max)" />
-          <Property Name="SubDescription1" Type="nvarchar" MaxLength="255" />
-          <Property Name="SubDescription2" Type="nvarchar" MaxLength="255" />
-          <Property Name="SubDescription3" Type="nvarchar" MaxLength="255" />
-          <Property Name="SubDescription4" Type="nvarchar" MaxLength="255" />
-          <Property Name="SubDescription5" Type="nvarchar" MaxLength="255" />
+          <Property Name="SubDescription1" Type="nvarchar(max)" />
+          <Property Name="SubDescription2" Type="nvarchar(max)" />
+          <Property Name="SubDescription3" Type="nvarchar(max)" />
+          <Property Name="SubDescription4" Type="nvarchar(max)" />
+          <Property Name="SubDescription5" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="ProductGame">
           <Key>
@@ -138,7 +138,15 @@
           <Property Name="ProductCategoryId" Type="nvarchar" MaxLength="50" />
           <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <Association Name="FK__HtmlBlock__SiteB__3E1D39E1">
+        <EntityType Name="Realms">
+          <Key>
+            <PropertyRef Name="RealmId" />
+          </Key>
+          <Property Name="RealmId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ProductGameId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RealmName" Type="nvarchar" MaxLength="55" />
+        </EntityType>
+        <Association Name="FK__HtmlBlock__SiteB__31B762FC">
           <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
           <End Role="HtmlBlocksChildren" Type="Self.HtmlBlocksChildren" Multiplicity="*" />
           <ReferentialConstraint>
@@ -150,19 +158,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__HtmlBlock__SiteB__40F9A68C">
-          <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
-          <End Role="HtmlBlocksChildren" Type="Self.HtmlBlocksChildren" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HtmlBlocks">
-              <PropertyRef Name="SiteBlockId" />
-            </Principal>
-            <Dependent Role="HtmlBlocksChildren">
-              <PropertyRef Name="SiteBlockId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OptionPar__Produ__4D5F7D71">
+        <Association Name="FK__OptionPar__Produ__3A4CA8FD">
           <End Role="ProductOption" Type="Self.ProductOption" Multiplicity="0..1" />
           <End Role="OptionParams" Type="Self.OptionParams" Multiplicity="*" />
           <ReferentialConstraint>
@@ -234,7 +230,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductOp__Produ__4E53A1AA">
+        <Association Name="FK__ProductOp__Produ__3B40CD36">
           <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
           <End Role="ProductOption" Type="Self.ProductOption" Multiplicity="*" />
           <ReferentialConstraint>
@@ -243,6 +239,18 @@
             </Principal>
             <Dependent Role="ProductOption">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Realms__ProductG__3E1D39E1">
+          <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="1" />
+          <End Role="Realms" Type="Self.Realms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGame">
+              <PropertyRef Name="ProductGameId" />
+            </Principal>
+            <Dependent Role="Realms">
+              <PropertyRef Name="ProductGameId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -300,15 +308,12 @@
           <EntitySet Name="ProductOption" EntityType="Self.ProductOption" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSubCategory" EntityType="Self.ProductSubCategory" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__HtmlBlock__SiteB__3E1D39E1" Association="Self.FK__HtmlBlock__SiteB__3E1D39E1">
+          <EntitySet Name="Realms" EntityType="Self.Realms" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__HtmlBlock__SiteB__31B762FC" Association="Self.FK__HtmlBlock__SiteB__31B762FC">
             <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
             <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
           </AssociationSet>
-          <AssociationSet Name="FK__HtmlBlock__SiteB__40F9A68C" Association="Self.FK__HtmlBlock__SiteB__40F9A68C">
-            <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
-            <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OptionPar__Produ__4D5F7D71" Association="Self.FK__OptionPar__Produ__4D5F7D71">
+          <AssociationSet Name="FK__OptionPar__Produ__3A4CA8FD" Association="Self.FK__OptionPar__Produ__3A4CA8FD">
             <End Role="ProductOption" EntitySet="ProductOption" />
             <End Role="OptionParams" EntitySet="OptionParams" />
           </AssociationSet>
@@ -332,9 +337,13 @@
             <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductOp__Produ__4E53A1AA" Association="Self.FK__ProductOp__Produ__4E53A1AA">
+          <AssociationSet Name="FK__ProductOp__Produ__3B40CD36" Association="Self.FK__ProductOp__Produ__3B40CD36">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductOption" EntitySet="ProductOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Realms__ProductG__3E1D39E1" Association="Self.FK__Realms__ProductG__3E1D39E1">
+            <End Role="ProductGame" EntitySet="ProductGame" />
+            <End Role="Realms" EntitySet="Realms" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductCategory_ProductGame" Association="Self.FK_ProductCategory_ProductGame">
             <End Role="ProductGame" EntitySet="ProductGame" />
@@ -369,16 +378,14 @@
           <NavigationProperty Name="ProductPrice" Relationship="Self.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK_Products_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
           <Property Name="ProductDescriptionId" Type="Guid" />
-          <Property Name="ProductOptionId" Type="Guid" />
           <Property Name="ProductCEOId" Type="Guid" />
-          <NavigationProperty Name="ProductOption" Relationship="WowCarryModel.FK__Product__Product__02FC7413" FromRole="Product" ToRole="ProductOption" />
           <NavigationProperty Name="ProductCEO" Relationship="WowCarryModel.FK__Product__Product__08B54D69" FromRole="Product" ToRole="ProductCEO" />
           <NavigationProperty Name="ProductDescription" Relationship="WowCarryModel.FK__Product__Product__6FE99F9F" FromRole="Product" ToRole="ProductDescription" />
           <Property Name="ProductGameId" Type="Guid" />
           <Property Name="ProductSubCategoryId" Type="Guid" />
           <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK__Product__Product__29221CFB" FromRole="Product" ToRole="ProductGame" />
           <NavigationProperty Name="ProductSubCategory" Relationship="WowCarryModel.FK__Product__Product__2A164134" FromRole="Product" ToRole="ProductSubCategory" />
-          <NavigationProperty Name="ProductOption1" Relationship="WowCarryModel.FK__ProductOp__Produ__4E53A1AA" FromRole="Product" ToRole="ProductOption" />
+          <NavigationProperty Name="ProductOption" Relationship="WowCarryModel.FK__ProductOp__Produ__3B40CD36" FromRole="Product" ToRole="ProductOption" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -403,6 +410,7 @@
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK_ProductCategory_ProductGame" FromRole="ProductGame" ToRole="ProductCategory" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__29221CFB" FromRole="ProductGame" ToRole="Product" />
           <Property Name="GameShortUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Realms" Relationship="WowCarryModel.FK__Realms__ProductG__3E1D39E1" FromRole="ProductGame" ToRole="Realms" />
         </EntityType>
         <EntityType Name="ProductPrice">
           <Key>
@@ -475,18 +483,8 @@
             <End Role="ProductGame" EntitySet="ProductGame" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
-          <EntitySet Name="OptionParams" EntityType="WowCarryModel.OptionParams" />
           <EntitySet Name="ProductCEO" EntityType="WowCarryModel.ProductCEO" />
           <EntitySet Name="ProductDescription" EntityType="WowCarryModel.ProductDescription" />
-          <EntitySet Name="ProductOption" EntityType="WowCarryModel.ProductOption" />
-          <AssociationSet Name="FK__ProductOp__Optio__05D8E0BE" Association="WowCarryModel.FK__ProductOp__Optio__05D8E0BE">
-            <End Role="OptionParams" EntitySet="OptionParams" />
-            <End Role="ProductOption" EntitySet="ProductOption" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__Product__02FC7413" Association="WowCarryModel.FK__Product__Product__02FC7413">
-            <End Role="ProductOption" EntitySet="ProductOption" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
           <AssociationSet Name="FK__Product__Product__08B54D69" Association="WowCarryModel.FK__Product__Product__08B54D69">
             <End Role="ProductCEO" EntitySet="ProductCEO" />
             <End Role="Product" EntitySet="Product" />
@@ -514,28 +512,22 @@
             <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
             <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
           </AssociationSet>
-          <AssociationSet Name="FK__OptionPar__Produ__4D5F7D71" Association="WowCarryModel.FK__OptionPar__Produ__4D5F7D71">
+          <EntitySet Name="Realms" EntityType="WowCarryModel.Realms" />
+          <AssociationSet Name="FK__Realms__ProductG__3E1D39E1" Association="WowCarryModel.FK__Realms__ProductG__3E1D39E1">
+            <End Role="ProductGame" EntitySet="ProductGame" />
+            <End Role="Realms" EntitySet="Realms" />
+          </AssociationSet>
+          <EntitySet Name="OptionParams" EntityType="WowCarryModel.OptionParams" />
+          <EntitySet Name="ProductOption" EntityType="WowCarryModel.ProductOption" />
+          <AssociationSet Name="FK__OptionPar__Produ__3A4CA8FD" Association="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD">
             <End Role="ProductOption" EntitySet="ProductOption" />
             <End Role="OptionParams" EntitySet="OptionParams" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductOp__Produ__4E53A1AA" Association="WowCarryModel.FK__ProductOp__Produ__4E53A1AA">
+          <AssociationSet Name="FK__ProductOp__Produ__3B40CD36" Association="WowCarryModel.FK__ProductOp__Produ__3B40CD36">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductOption" EntitySet="ProductOption" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="OptionParams">
-          <Key>
-            <PropertyRef Name="OptionParamsId" />
-          </Key>
-          <Property Name="OptionParamsId" Type="Guid" Nullable="false" />
-          <Property Name="ParamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ParamTooltip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ParamPrice" Type="Double" />
-          <NavigationProperty Name="ProductOption" Relationship="WowCarryModel.FK__ProductOp__Optio__05D8E0BE" FromRole="OptionParams" ToRole="ProductOption" />
-          <Property Name="ProductOptionId" Type="Guid" />
-          <Property Name="Sale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="ProductOption1" Relationship="WowCarryModel.FK__OptionPar__Produ__4D5F7D71" FromRole="OptionParams" ToRole="ProductOption" />
-        </EntityType>
         <EntityType Name="ProductCEO">
           <Key>
             <PropertyRef Name="ProductCEOId" />
@@ -565,50 +557,12 @@
           <Property Name="SubDescriptionTitle3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SubDescriptionTitle4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="SubDescriptionTitle5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="SubDescription1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SubDescription2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SubDescription3" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SubDescription4" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SubDescription5" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SubDescription5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="ProductOption">
-          <Key>
-            <PropertyRef Name="ProductOptionId" />
-          </Key>
-          <Property Name="ProductOptionId" Type="Guid" Nullable="false" />
-          <Property Name="OptionName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
-          <Property Name="OptionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="OptionParamsId" Type="Guid" />
-          <NavigationProperty Name="OptionParams" Relationship="WowCarryModel.FK__ProductOp__Optio__05D8E0BE" FromRole="ProductOption" ToRole="OptionParams" />
-          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__02FC7413" FromRole="ProductOption" ToRole="Product" />
-          <Property Name="ProductId" Type="Guid" />
-          <NavigationProperty Name="OptionParams1" Relationship="WowCarryModel.FK__OptionPar__Produ__4D5F7D71" FromRole="ProductOption" ToRole="OptionParams" />
-          <NavigationProperty Name="Product1" Relationship="WowCarryModel.FK__ProductOp__Produ__4E53A1AA" FromRole="ProductOption" ToRole="Product" />
-        </EntityType>
-        <Association Name="FK__ProductOp__Optio__05D8E0BE">
-          <End Type="WowCarryModel.OptionParams" Role="OptionParams" Multiplicity="0..1" />
-          <End Type="WowCarryModel.ProductOption" Role="ProductOption" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OptionParams">
-              <PropertyRef Name="OptionParamsId" />
-            </Principal>
-            <Dependent Role="ProductOption">
-              <PropertyRef Name="OptionParamsId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Product__Product__02FC7413">
-          <End Type="WowCarryModel.ProductOption" Role="ProductOption" Multiplicity="0..1" />
-          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductOption">
-              <PropertyRef Name="ProductOptionId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ProductOptionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Product__Product__08B54D69">
           <End Type="WowCarryModel.ProductCEO" Role="ProductCEO" Multiplicity="0..1" />
           <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
@@ -717,7 +671,51 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OptionPar__Produ__4D5F7D71">
+        <EntityType Name="Realms">
+          <Key>
+            <PropertyRef Name="RealmId" />
+          </Key>
+          <Property Name="RealmId" Type="Guid" Nullable="false" />
+          <Property Name="ProductGameId" Type="Guid" Nullable="false" />
+          <Property Name="RealmName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK__Realms__ProductG__3E1D39E1" FromRole="Realms" ToRole="ProductGame" />
+        </EntityType>
+        <Association Name="FK__Realms__ProductG__3E1D39E1">
+          <End Type="WowCarryModel.ProductGame" Role="ProductGame" Multiplicity="1" />
+          <End Type="WowCarryModel.Realms" Role="Realms" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGame">
+              <PropertyRef Name="ProductGameId" />
+            </Principal>
+            <Dependent Role="Realms">
+              <PropertyRef Name="ProductGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="OptionParams">
+          <Key>
+            <PropertyRef Name="OptionParamsId" />
+          </Key>
+          <Property Name="OptionParamsId" Type="Guid" Nullable="false" />
+          <Property Name="ParamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ParamTooltip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ParamPrice" Type="Double" />
+          <Property Name="ProductOptionId" Type="Guid" />
+          <Property Name="Sale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductOption" Relationship="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" FromRole="OptionParams" ToRole="ProductOption" />
+        </EntityType>
+        <EntityType Name="ProductOption">
+          <Key>
+            <PropertyRef Name="ProductOptionId" />
+          </Key>
+          <Property Name="ProductOptionId" Type="Guid" Nullable="false" />
+          <Property Name="OptionName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="OptionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ProductId" Type="Guid" />
+          <NavigationProperty Name="OptionParams" Relationship="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" FromRole="ProductOption" ToRole="OptionParams" />
+          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__ProductOp__Produ__3B40CD36" FromRole="ProductOption" ToRole="Product" />
+        </EntityType>
+        <Association Name="FK__OptionPar__Produ__3A4CA8FD">
           <End Type="WowCarryModel.ProductOption" Role="ProductOption" Multiplicity="0..1" />
           <End Type="WowCarryModel.OptionParams" Role="OptionParams" Multiplicity="*" />
           <ReferentialConstraint>
@@ -729,7 +727,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductOp__Produ__4E53A1AA">
+        <Association Name="FK__ProductOp__Produ__3B40CD36">
           <End Type="WowCarryModel.Product" Role="Product" Multiplicity="0..1" />
           <End Type="WowCarryModel.ProductOption" Role="ProductOption" Multiplicity="*" />
           <ReferentialConstraint>
@@ -799,18 +797,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OptionParams">
-            <EntityTypeMapping TypeName="WowCarryModel.OptionParams">
-              <MappingFragment StoreEntitySet="OptionParams">
-                <ScalarProperty Name="Sale" ColumnName="Sale" />
-                <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
-                <ScalarProperty Name="ParamPrice" ColumnName="ParamPrice" />
-                <ScalarProperty Name="ParamTooltip" ColumnName="ParamTooltip" />
-                <ScalarProperty Name="ParamName" ColumnName="ParamName" />
-                <ScalarProperty Name="OptionParamsId" ColumnName="OptionParamsId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProductCEO">
             <EntityTypeMapping TypeName="WowCarryModel.ProductCEO">
               <MappingFragment StoreEntitySet="ProductCEO">
@@ -846,16 +832,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductOption">
-            <EntityTypeMapping TypeName="WowCarryModel.ProductOption">
-              <MappingFragment StoreEntitySet="ProductOption">
-                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
-                <ScalarProperty Name="OptionType" ColumnName="OptionType" />
-                <ScalarProperty Name="OptionName" ColumnName="OptionName" />
-                <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProductSubCategory">
             <EntityTypeMapping TypeName="WowCarryModel.ProductSubCategory">
               <MappingFragment StoreEntitySet="ProductSubCategory">
@@ -888,6 +864,37 @@
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="SiteBlockId" ColumnName="SiteBlockId" />
                 <ScalarProperty Name="SiteBlockChildsId" ColumnName="SiteBlockChildsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Realms">
+            <EntityTypeMapping TypeName="WowCarryModel.Realms">
+              <MappingFragment StoreEntitySet="Realms">
+                <ScalarProperty Name="RealmName" ColumnName="RealmName" />
+                <ScalarProperty Name="ProductGameId" ColumnName="ProductGameId" />
+                <ScalarProperty Name="RealmId" ColumnName="RealmId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OptionParams">
+            <EntityTypeMapping TypeName="WowCarryModel.OptionParams">
+              <MappingFragment StoreEntitySet="OptionParams">
+                <ScalarProperty Name="Sale" ColumnName="Sale" />
+                <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
+                <ScalarProperty Name="ParamPrice" ColumnName="ParamPrice" />
+                <ScalarProperty Name="ParamTooltip" ColumnName="ParamTooltip" />
+                <ScalarProperty Name="ParamName" ColumnName="ParamName" />
+                <ScalarProperty Name="OptionParamsId" ColumnName="OptionParamsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductOption">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductOption">
+              <MappingFragment StoreEntitySet="ProductOption">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="OptionType" ColumnName="OptionType" />
+                <ScalarProperty Name="OptionName" ColumnName="OptionName" />
+                <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

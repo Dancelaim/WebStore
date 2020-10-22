@@ -12,15 +12,12 @@ namespace WowCarry.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class OptionParams
+    public partial class Realms
     {
-        public System.Guid OptionParamsId { get; set; }
-        public string ParamName { get; set; }
-        public string ParamTooltip { get; set; }
-        public Nullable<double> ParamPrice { get; set; }
-        public Nullable<System.Guid> ProductOptionId { get; set; }
-        public string Sale { get; set; }
+        public System.Guid RealmId { get; set; }
+        public System.Guid ProductGameId { get; set; }
+        public string RealmName { get; set; }
     
-        public virtual ProductOption ProductOption { get; set; }
+        public virtual ProductGame ProductGame { get; set; }
     }
 }

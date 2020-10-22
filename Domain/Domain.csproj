@@ -80,14 +80,17 @@
     <Compile Include="Concrete\EFHtmlBlockRepository.cs" />
     <Compile Include="Concrete\EFProductGameRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
-    <Compile Include="Entities\OrderDetails.cs" />
-    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\HtmlBlocks.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\HtmlBlocksChildren.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\OptionParams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrderDetails.cs" />
+    <Compile Include="Entities\Cart.cs" />
     <Compile Include="Entities\Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -102,9 +105,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\OptionParams.cs">
-      <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Product.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -128,6 +128,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ProductSubCategory.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Realms.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
