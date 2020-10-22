@@ -28,7 +28,7 @@ namespace WowCarry.WebUI.Controllers
         {
             if (!selectedGame.IsNullOrEmpty())
             {
-                Session["SelectedGame"] = repository.Products.Select(p => p.ProductGame).Where(g => g.GameShortUrl == selectedGame).Select(g => g.GameName).FirstOrDefault().ToString();
+                Session["SelectedGame"] = repository.Products.Where(p => p.ProductGame.GameShortUrl == selectedGame).Select(p => p.ProductGame.GameName).FirstOrDefault();
             }
 
             ProductsListViewModel model = new ProductsListViewModel

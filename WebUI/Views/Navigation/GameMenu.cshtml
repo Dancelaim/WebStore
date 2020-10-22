@@ -5,10 +5,10 @@
 {
     <li>
             @Html.RouteLink(game.GameName, "GameDetails",
-               new
-               {
-                   currentGame = game.GameShortUrl.Replace(" ", "").ToLower()
-               }
-              )
+        new
+        {
+            currentGame = game.GameShortUrl
+        }
+       );
     </li>
 }

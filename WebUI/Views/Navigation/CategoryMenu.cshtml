@@ -1,12 +1,12 @@
-﻿@model IEnumerable<string>
+﻿@model  WebUI.Models.CategoryViewModel
 
-@foreach (var cat in Model)
+@foreach (var cat in Model.categories)
 {
     <li>
     @Html.RouteLink(cat, "Sorted",
        new
        {
-           selectedGame= (string)Session["SelectedGame"],
+           selectedGame= Model.currentGame,
            categoryName = cat
        },
         new { @class = Html.IsSelected(cat)}

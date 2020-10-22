@@ -683,6 +683,7 @@
     <Compile Include="Infrastructure\Binders\ProductModelBinder.cs" />
     <Compile Include="Infrastructure\Binders\CartModelBinder .cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\GameCategoryViewModel.cs" />
     <Compile Include="Models\CartViewModel.cs" />
     <Compile Include="Models\SiteBlockViewModel.cs" />
@@ -694,7 +695,6 @@
     <Content Include="Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Shared\ProductsView.cshtml" />
     <Content Include="Views\Products\List.cshtml" />
     <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.4.1.min.map" />
@@ -712,7 +712,6 @@
     <Content Include="Views\Cart\CartPopUp.cshtml" />
     <Content Include="Views\Shared\_Header.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\Shared\_ProductDetails.cshtml" />
     <Content Include="Views\HomePage\Home.cshtml" />
     <Content Include="Views\MasterPage.cshtml" />
     <Content Include="Views\SiteBlock\SiteBlock.cshtml" />
