@@ -725,6 +725,7 @@
     <Content Include="Views\Navigation\GameCategoryMenu.cshtml" />
     <Content Include="Views\ProductDetails\Details.cshtml" />
     <Content Include="Views\Checkout\Checkout.cshtml" />
+    <Content Include="Views\Checkout\Complete.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

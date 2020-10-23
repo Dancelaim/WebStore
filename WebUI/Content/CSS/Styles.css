@@ -673,19 +673,21 @@ header .bottom {
 }
 .cart-block .remove_block {
   position: absolute;
-  right: 16px;
-  top: 50%;
-  margin-top: -12px;
+  right: 0;
+  top: 0;
+  width: 65px;
+  bottom: 0;
+  margin-top: 0;
 }
 .cart-block .remove_block button {
   margin: 0;
-  width: 24px;
-  height: 24px;
-  background: url(/Images/delete.svg) 0 0 no-repeat;
+  width: 100%;
+  height: 100%;
+  background: url(/Images/delete.svg) 50% 50% no-repeat;
 }
 .cart-block .remove_block button:hover,
 .cart-block .remove_block button:active {
-  background: url(/Images/delete.svg) 0 0 no-repeat;
+  background: url(/Images/delete.svg) 50% 50% no-repeat;
 }
 .cart-block .remove_block button span {
   display: none;
@@ -711,6 +713,11 @@ header .bottom {
   left: 0;
   right: 0;
   font-size: 0;
+}
+.message_block {
+  text-align: center;
+  position: relative;
+  margin-top: 5%;
 }
 .btn-cart {
   float: right;
