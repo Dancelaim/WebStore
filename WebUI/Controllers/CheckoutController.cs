@@ -6,18 +6,42 @@ using WebUI.Models;
 using System;
 using Castle.Core.Internal;
 
-namespace GameStore.WebUI.Controllers
+namespace WowCarry.WebUI.Controllers
 {
     public  class CheckoutController : Controller
     { 
         private IProductRepository repository;
-        public CheckoutController(IProductRepository repo)
+        private IOrderProcessor orderProcessor;
+        public CheckoutController(IProductRepository repo, IOrderProcessor processor)
         {
             repository = repo;
+            orderProcessor = processor;
         }
-        public ViewResult Checkout(Cart cart)
+        public ViewResult Checkout()
         {
-            return View(cart);
+            return View(new OrderDetails());
+        }
+        [HttpPost]
+        public ActionResult Checkout(Cart cart,OrderDetails orderDetails)
+        {
+            if (cart.Lines.Any())
+            {
+                if (ModelState.IsValid)
+                {
+                    orderProcessor.ProcessOrder(cart, orderDetails);
+                    cart.Clear();
+                    return View("Completed");
+                }
+                return View(orderDetails);
+            }
+            else
+            {
+                return RedirectToRoute("Home");
+            }
+        }
+        public PartialViewResult CartView(Cart cart)
+        {
+            return PartialView(cart);
         }
     }
 }

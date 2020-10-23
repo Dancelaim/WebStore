@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Mvc;
 using Ninject;
-
 using WowCarry.Domain.Abstract;
-using WowCarry.Domain.Entities;
 using WowCarry.Domain.Concrete;
 
 namespace WowCarry.WebUI.Infrastructure
@@ -35,6 +33,12 @@ namespace WowCarry.WebUI.Infrastructure
             kernel.Bind<IProductRepository>().To<EFProductRepository>();
             kernel.Bind<IHtmlBlockRepository>().To<EFHtmlBlockRepository>();
             kernel.Bind<IProductGameRepository>().To<EFProductGameRepository>();
+
+            EmailSettings emailSettings = new EmailSettings
+            {
+                WriteAsFile = bool.Parse(ConfigurationManager.AppSettings["Email.WriteAsFile"] ?? "false")
+            };
+            kernel.Bind<IOrderProcessor>().To<EmailOrderProcessor>().WithConstructorArgument("settings", emailSettings);
         }
     }
 }

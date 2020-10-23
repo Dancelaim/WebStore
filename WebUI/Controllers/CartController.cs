@@ -6,7 +6,7 @@ using WebUI.Models;
 using System;
 using Castle.Core.Internal;
 
-namespace GameStore.WebUI.Controllers
+namespace WowCarry.WebUI.Controllers
 {
     public  class CartController : Controller
     { 

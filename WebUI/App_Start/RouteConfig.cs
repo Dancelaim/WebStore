@@ -14,7 +14,7 @@ namespace WowCarry.WebUI
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-                name: null,
+                name: "Home",
                 url: "",
                 defaults: new { controller = "HomePage", action = "Home" }
             );

@@ -74,9 +74,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IOrderProcessor .cs" />
     <Compile Include="Abstract\IProductGameRepository.cs" />
     <Compile Include="Abstract\IHtmlBlockRepository.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
+    <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Concrete\EFHtmlBlockRepository.cs" />
     <Compile Include="Concrete\EFProductGameRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
