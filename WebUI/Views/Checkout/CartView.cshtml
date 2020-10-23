@@ -1,6 +1,30 @@
 ﻿@model WowCarry.Domain.Entities.Cart
+<div class="cart-list-block">
+    <h2>Products list</h2>
+    @foreach (var item in Model.Lines)
+    {
+        <div class="cart-item">
+            <div class="name-box">
+                @Html.RouteLink(@item.Product.ProductName, "ProductDetails", new { productUrl = item.Product.ProductCEO.UrlKeyWord })
+                <div class="options-list">
+                    <span>-option value</span>
+                    <span>-option value 2</span>
+                </div>
+            </div>
+            <div class="remove_box"><button type="submit" title="Remove" class="btn btn-xs"></button></div>
+            <div class="price-box">
+                @((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString())
 
-@foreach(var item in Model.Lines)
-{
-    <div>item</div>
-}
+            </div>
+            <div class="qty-box">
+                <button class="ve-btn decrease"></button>
+                <input type="text" readonly name="qty-value" value=" @item.Quantity">
+
+                <button class="ve-btn increase"></button>
+
+            </div>
+
+            <div class="clear"></div>
+        </div>
+    }
+</div>

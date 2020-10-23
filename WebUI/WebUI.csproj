@@ -726,7 +726,7 @@
     <Content Include="Views\ProductDetails\Details.cshtml" />
     <Content Include="Views\Checkout\Checkout.cshtml" />
     <Content Include="Views\Checkout\CartView.cshtml" />
-    <Content Include="Views\Checkout\Complete.cshtml" />
+    <Content Include="Views\Checkout\Completed.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

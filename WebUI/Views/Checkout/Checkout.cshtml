@@ -1,20 +1,85 @@
 ﻿@model WowCarry.Domain.Entities.OrderDetails
+<div id="product-checkout" class="container">
+    <div class="row">
+        <h1>Checkout</h1>
+
+        @Html.Action("CartView")
 
 
-@Html.Action("CartView")
+        @using (Html.BeginForm())
+        {
+            <div class="cart-left-column">
+                <h2>Fill in required info</h2>
+                @*<div class="warning-box">
+                    @Html.ValidationSummary()
+                </div>*@
+                <div class="payment-info-box">
+                    @foreach (var property in ViewData.ModelMetadata.Properties)
+                    {
+                    <div class="form-group">
+                        @Html.Label(property.PropertyName)
+                        @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                        @Html.ValidationMessage(property.PropertyName)
+                    </div>
+                    }
+                </div>
+            </div>
 
-
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary();
-    foreach (var property in ViewData.ModelMetadata.Properties)
-    {
-        <div class="form-group">
-            <label>@(property.DisplayName ?? property.PropertyName)</label>
-            @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-        </div>
-    }
-    <div class="text-center">
-        <input class="btn btn-primary" type="submit" value="Обработать заказ" />
+            <div class="cart-right-column">
+                <h2>Payment info</h2>
+                <div class="payment-box">
+                    <label for="payment_method">Payment method:</label>
+                    <select name="payment_method"> <option value="pp_standard" selected="selected" for="pp_standard"> PayPal  </option> </select>
+                </div>
+                <div class="cupon-box">
+                    <label for="coupon">Use Coupon Code:</label>
+                    <input type="text" name="coupon" placeholder="Use Coupon Code"> <button class="ve-btn" type="button">Apply</button>
+                </div>
+                <div class="carrycoins-box">
+                    <label for="reward">Use Carrycoins (Available: max carryCoins val)</label>
+                    <input type="text" name="reward" placeholder="Carrycoins to use (carryCoins val)"> <button class="ve-btn" type="button">Apply</button>
+                </div>
+                <div class="terms-agree">
+                    <input type="checkbox" ref="input" value="1" id="terms-agree" name="terms-agree">
+                    <label for="terms-agree">I have read and agree to the <a href="/terms" target="_blank"><b>Terms &amp; Conditions</b></a></label>
+                </div>
+                <div class="total-box">
+                    <div class="total-price-value">
+                        <div class="title">Total</div>
+                        <div class="price">Price value</div>
+                    </div>
+                    <div class="final-price-value">
+                        <div class="title">Final Price</div>
+                        <div class="price">Final Price value</div>
+                    </div>
+                </div>
+                <div class="confirm-box">
+                    <div class="text-center">
+                        <input class="btn ve-btn" type="submit" value="Confirm Order" />
+                    </div>
+                </div>
+            </div>
+ 
+        }
     </div>
-}
+</div>
+<script>
+    $(document).on("click", ".remove_box button", function () {
+        var prodId = $(this).closest('.cart-block').find('input').val();
+        console.log("Pause");
+        $.ajax({
+            cache: false,
+            type: "POST",
+            url: "@Url.Action("RemoveFromCart", "Cart")",
+            data: {
+                productId: prodId
+            },
+            success: function (data) {
+                $("#cartModal").html(data);
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                console.log(thrownError)
+            }
+        });
+    });
+</script>

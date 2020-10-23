@@ -17,6 +17,8 @@ namespace WowCarry.Domain.Entities
         public string Email { get; set; }
         [Display(Name = "Discord(Optional)")]
         public string Discord { get; set; }
+        [Display(Name = "Add your comments (optional)")]
+        public string Comments { get; set; }
         [Required(ErrorMessage = "Character name is required")]
         [Display(Name = "Character name")]
         public string CharacterName { get; set; }
@@ -36,8 +38,10 @@ namespace WowCarry.Domain.Entities
         [Display(Name = "Realm(server) name")]
         public string ClassicRealmName { get; set; }
         [Required(ErrorMessage = "Faction is required")]
+        [Display(Name = "Faction")]
         public string ClassicFaction { get; set; }
         [Required(ErrorMessage = "Region is required")]
+        [Display(Name = "Region")]
         public string ClassicRegion { get; set; }
         [Display(Name = "Battle tag (optional)")]
         public string ClassicBattleTag { get; set; }
