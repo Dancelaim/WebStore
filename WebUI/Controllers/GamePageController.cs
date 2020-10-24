@@ -9,18 +9,9 @@ namespace GameStore.WebUI.Controllers
 {
     public class GamePageController : Controller
     {
-        private IProductGameRepository repository;
-        public GamePageController(IProductGameRepository repo)
+        public ActionResult GameDetails()
         {
-            repository = repo;
-        }
-
-        public ActionResult GameDetails(string currentGame)
-        {
-            Session["SelectedGame"] = repository.ProductGames.Where(g => g.GameShortUrl == currentGame).Select(go => go.GameName).FirstOrDefault();
-
-            object game = currentGame;
-            return View(game);
+            return View();
         }
     }
 }

@@ -66,7 +66,6 @@ namespace WowCarry.Domain.Concrete
                     .AppendLine("Details:")
                     .AppendLine(orderDetails.Email)
                     .AppendLine(orderDetails.Discord)
-                    .AppendLine(orderDetails.BattleTag ?? "")
                     .AppendLine("---");
 
                 MailMessage mailMessage = new MailMessage(

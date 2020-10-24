@@ -13,16 +13,43 @@
                 @*<div class="warning-box">
                     @Html.ValidationSummary()
                 </div>*@
-                <div class="payment-info-box">
-                    @foreach (var property in ViewData.ModelMetadata.Properties)
+            <div class="payment-info-box">
+                @foreach (var property in ViewData.ModelMetadata.Properties)
+                {
+                    switch (property.ModelType.Name)
                     {
-                    <div class="form-group">
-                        @Html.Label(property.PropertyName)
-                        @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                        @Html.ValidationMessage(property.PropertyName)
-                    </div>
+                        case "Faction":
+                            <div class="form-group">
+                                @Html.Label(property.PropertyName)
+                                @Html.EnumDropDownListFor(x => x.Wow_Faction, new { @class = "form-control" })
+                                @Html.ValidationMessage(property.PropertyName)
+                            </div>
+                            break;
+                        @*case "Realms":
+                               <div class="form-group">
+                                   @Html.Label(property.PropertyName)
+                                   @Html.DropDownListFor(model => Model.Wow_RealmName, property.Wow_RealmName, new { @class = "form-control" })
+                                   @Html.ValidationMessage(property.PropertyName)
+                               </div>
+                            break;*@
+                        case "Region":
+                            <div class="form-group">
+                                @Html.Label(property.PropertyName)
+                                @Html.EnumDropDownListFor(x => x.Wow_Region, new { @class = "form-control" })
+                                @Html.ValidationMessage(property.PropertyName)
+                            </div>
+                            break;
+                        default:
+                            <div class="form-group">
+                                @Html.Label(property.PropertyName)
+                                @Html.Editor(property.PropertyName, null, new { @class = "form-control" })
+                                @*@Html.TextBox(property.PropertyName, null, new { @class = "form-control" })*@
+                                @Html.ValidationMessage(property.PropertyName)
+                            </div>
+                            break;
                     }
-                </div>
+                }
+            </div>
             </div>
 
             <div class="cart-right-column">
@@ -64,7 +91,7 @@
     </div>
 </div>
 <script>
-    $(document).on("click", ".remove_box button", function () {
+    @*$(document).on("click", ".remove_box button", function () {
         var prodId = $(this).closest('.cart-block').find('input').val();
         console.log("Pause");
         $.ajax({
@@ -81,5 +108,5 @@
                 console.log(thrownError)
             }
         });
-    });
+    });*@
 </script>

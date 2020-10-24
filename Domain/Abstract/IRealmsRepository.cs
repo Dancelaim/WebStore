@@ -8,8 +8,8 @@ using WowCarry.Domain.Entities;
 
 namespace WowCarry.Domain.Abstract
 {
-    public interface IProductGameRepository
+    public interface IRealmsRepository
     {
-        IEnumerable<ProductGame> ProductGames { get; }
+        IEnumerable<Realms> Realms { get; }
     }
 }

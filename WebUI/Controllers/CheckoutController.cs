@@ -12,10 +12,13 @@ namespace WowCarry.WebUI.Controllers
     { 
         private IProductRepository repository;
         private IOrderProcessor orderProcessor;
-        public CheckoutController(IProductRepository repo, IOrderProcessor processor)
+        private IRealmsRepository realmRepository;
+
+        public CheckoutController(IProductRepository repo, IOrderProcessor processor, IRealmsRepository realmRepo)
         {
             repository = repo;
             orderProcessor = processor;
+            realmRepository = realmRepo;
         }
         public ViewResult Checkout()
         {

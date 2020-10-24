@@ -9,9 +9,9 @@ using WowCarry.Domain.Entities;
 
 namespace WowCarry.Domain.Concrete
 {
-    public class EFProductGameRepository : IProductGameRepository
+    public class EFRealmsRepository : IRealmsRepository
     {
         WowCarryEntities context = new WowCarryEntities();
-        public IEnumerable<ProductGame> ProductGames => context.ProductGame;
+        public IEnumerable<Realms> Realms => context.Realms;
     }
 }

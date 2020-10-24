@@ -15,45 +15,57 @@ namespace WowCarry.Domain.Entities
         [DataType(DataType.EmailAddress)]
         [EmailAddress(ErrorMessage = "The email address is not valid")]
         public string Email { get; set; }
+
         [Display(Name = "Discord(Optional)")]
         public string Discord { get; set; }
+
         [Display(Name = "Add your comments (optional)")]
         public string Comments { get; set; }
+
         [Required(ErrorMessage = "Character name is required")]
         [Display(Name = "Character name")]
-        public string CharacterName { get; set; }
+        public string Wow_CharacterName { get; set; }
+
         [Required(ErrorMessage = "Realm(server) name is required")]
         [Display(Name = "Realm(server) name")]
-        public string RealmName { get; set; }
+        public string Wow_RealmName { get; set; }
+
         [Required(ErrorMessage = "Faction is required")]
-        public Faction Faction { get; set; }
+        public Faction Wow_Faction { get; set; }
+
         [Required(ErrorMessage = "Region is required")]
-        public Region Region { get; set; }
+        public Region Wow_Region { get; set; }
+
         [Display(Name = "Battle tag (optional)")]
-        public string BattleTag { get; set; }
+        public string Wow_BattleTag { get; set; }
+
         [Required(ErrorMessage = "Character name is required")]
         [Display(Name = "Character name")]
-        public string ClassicCharacterName { get; set; }
+        public string Classic_CharacterName { get; set; }
+
         [Required(ErrorMessage = "Realm(server) name is required")]
         [Display(Name = "Realm(server) name")]
-        public string ClassicRealmName { get; set; }
+        public string Classic_RealmName { get; set; }
+
         [Required(ErrorMessage = "Faction is required")]
         [Display(Name = "Faction")]
-        public string ClassicFaction { get; set; }
+        public Faction Classic_Faction { get; set; }
+
         [Required(ErrorMessage = "Region is required")]
         [Display(Name = "Region")]
-        public string ClassicRegion { get; set; }
+        public Region Classic_Region { get; set; }
+
         [Display(Name = "Battle tag (optional)")]
-        public string ClassicBattleTag { get; set; }
+        public string Classic_BattleTag { get; set; }
+
         [Required(ErrorMessage = "Character name is required")]
         [Display(Name = "Character name")]
-        public string PoeCharacterName { get; set; }
+        public string Poe_CharacterName { get; set; }
+
         [Required(ErrorMessage = "Account name is required")]
         [Display(Name = "Account name")]
-        public string PoeAccountName { get; set; }
+        public string Poe_AccountName { get; set; }
     }
-
-
     public enum Faction
     {
         Horde = 0,
