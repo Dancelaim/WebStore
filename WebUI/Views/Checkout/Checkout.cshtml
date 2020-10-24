@@ -55,20 +55,28 @@
             <div class="cart-right-column">
                 <h2>Payment info</h2>
                 <div class="payment-box">
-                    <label for="payment_method">Payment method:</label>
-                    <select name="payment_method"> <option value="pp_standard" selected="selected" for="pp_standard"> PayPal  </option> </select>
+                    <div class="form-group">
+                        <label for="payment_method">Payment method:</label>
+                        <select name="payment_method"> <option value="pp_standard" selected="selected" for="pp_standard"> PayPal  </option> </select>
+                    </div>
                 </div>
                 <div class="cupon-box">
-                    <label for="coupon">Use Coupon Code:</label>
-                    <input type="text" name="coupon" placeholder="Use Coupon Code"> <button class="ve-btn" type="button">Apply</button>
+                    <div class="form-group">
+                        <label for="coupon">Use Coupon Code:</label>
+                        <input type="text" name="coupon" placeholder="Use Coupon Code"> <button class="ve-btn" type="button">Apply</button>
+                    </div>
                 </div>
                 <div class="carrycoins-box">
-                    <label for="reward">Use Carrycoins (Available: max carryCoins val)</label>
-                    <input type="text" name="reward" placeholder="Carrycoins to use (carryCoins val)"> <button class="ve-btn" type="button">Apply</button>
+                    <div class="form-group">
+                        <label for="reward">Use Carrycoins (Available: max carryCoins val)</label>
+                        <input type="text" name="reward" placeholder="Carrycoins to use (carryCoins val)"> <button class="ve-btn" type="button">Apply</button>
+                    </div>
                 </div>
                 <div class="terms-agree">
-                    <input type="checkbox" ref="input" value="1" id="terms-agree" name="terms-agree">
-                    <label for="terms-agree">I have read and agree to the <a href="/terms" target="_blank"><b>Terms &amp; Conditions</b></a></label>
+                    <div class="form-group">
+                        <input type="checkbox" ref="input" value="1" id="terms-agree" name="terms-agree">
+                        <label for="terms-agree">I have read and agree to the <a href="/terms" target="_blank"><b>Terms &amp; Conditions</b></a></label>
+                    </div>
                 </div>
                 <div class="total-box">
                     <div class="total-price-value">
@@ -91,6 +99,9 @@
     </div>
 </div>
 <script>
+    $(document).ready(function () {
+        $('select').selectpicker();
+    });
     @*$(document).on("click", ".remove_box button", function () {
         var prodId = $(this).closest('.cart-block').find('input').val();
         console.log("Pause");

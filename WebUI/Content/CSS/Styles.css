@@ -164,15 +164,126 @@ label {
   padding: 0 0 0px 21px;
   margin: 0;
 }
+.form-control,
+.form-control.bootstrap-select,
+.form-group .bootstrap-select {
+  background: none !important;
+}
 .form-control input::placeholder,
+.form-control.bootstrap-select input::placeholder,
+.form-group .bootstrap-select input::placeholder,
 .form-control select::placeholder,
-.form-control textarea::placeholder {
+.form-control.bootstrap-select select::placeholder,
+.form-group .bootstrap-select select::placeholder,
+.form-control textarea::placeholder,
+.form-control.bootstrap-select textarea::placeholder,
+.form-group .bootstrap-select textarea::placeholder {
   color: #425369 !important;
   opacity: 1;
 }
+.form-control:hover,
+.form-control.bootstrap-select:hover,
+.form-group .bootstrap-select:hover,
+.form-control:active,
+.form-control.bootstrap-select:active,
+.form-group .bootstrap-select:active,
+.form-control:focus,
+.form-control.bootstrap-select:focus,
+.form-group .bootstrap-select:focus {
+  box-shadow: none;
+  outline: none !important;
+  border: 0 none;
+}
+.form-control .btn-light:not(:disabled):not(.disabled).active:focus,
+.form-control.bootstrap-select .btn-light:not(:disabled):not(.disabled).active:focus,
+.form-group .bootstrap-select .btn-light:not(:disabled):not(.disabled).active:focus,
+.form-control .btn-light:not(:disabled):not(.disabled):active:focus,
+.form-control.bootstrap-select .btn-light:not(:disabled):not(.disabled):active:focus,
+.form-group .bootstrap-select .btn-light:not(:disabled):not(.disabled):active:focus,
+.form-control .show > .btn-light.dropdown-toggle:focus,
+.form-control.bootstrap-select .show > .btn-light.dropdown-toggle:focus,
+.form-group .bootstrap-select .show > .btn-light.dropdown-toggle:focus {
+  box-shadow: none;
+  outline: none !important;
+  background: #161828;
+  border: 1px solid #425369;
+}
+.form-control button,
+.form-control.bootstrap-select button,
+.form-group .bootstrap-select button {
+  background: #161828;
+  border: 1px solid #425369;
+  color: #eee;
+  transition: inherit;
+}
+.form-control button:hover,
+.form-control.bootstrap-select button:hover,
+.form-group .bootstrap-select button:hover,
+.form-control button:active,
+.form-control.bootstrap-select button:active,
+.form-group .bootstrap-select button:active,
+.form-control button:focus,
+.form-control.bootstrap-select button:focus,
+.form-group .bootstrap-select button:focus {
+  background: #161828;
+  border: 1px solid #425369;
+  color: #eee;
+  box-shadow: none;
+  outline: none !important;
+}
+.form-control button:after,
+.form-control.bootstrap-select button:after,
+.form-group .bootstrap-select button:after {
+  background: url(/Images/arrow-down.svg) 0 0 no-repeat;
+  border: 0 none;
+  width: 18px;
+  height: 18px;
+  transition: all 0.5s ease;
+}
+.form-control .dropdown-item.active,
+.form-control.bootstrap-select .dropdown-item.active,
+.form-group .bootstrap-select .dropdown-item.active,
+.form-control .dropdown-item:active,
+.form-control.bootstrap-select .dropdown-item:active,
+.form-group .bootstrap-select .dropdown-item:active {
+  color: #eee;
+  background: #212656;
+}
+.form-control.show > .btn-light.dropdown-toggle,
+.form-control.bootstrap-select.show > .btn-light.dropdown-toggle,
+.form-group .bootstrap-select.show > .btn-light.dropdown-toggle {
+  background: #161828;
+  border: 1px solid #425369;
+  color: #eee;
+  box-shadow: none;
+}
+.form-control.show button,
+.form-control.bootstrap-select.show button,
+.form-group .bootstrap-select.show button {
+  border-radius: 30px 30px 0 0;
+}
+.form-control.show button:after,
+.form-control.bootstrap-select.show button:after,
+.form-group .bootstrap-select.show button:after {
+  transform: rotate(180deg);
+}
+.form-control .btn-light:not(:disabled):not(.disabled).active,
+.form-control.bootstrap-select .btn-light:not(:disabled):not(.disabled).active,
+.form-group .bootstrap-select .btn-light:not(:disabled):not(.disabled).active,
+.form-control .btn-light:not(:disabled):not(.disabled):active,
+.form-control.bootstrap-select .btn-light:not(:disabled):not(.disabled):active,
+.form-group .bootstrap-select .btn-light:not(:disabled):not(.disabled):active {
+  background: #161828;
+  border: 1px solid #425369;
+  color: #eee;
+  box-shadow: none;
+}
 input[type=text],
+input[type=email],
 input[type=password],
-select {
+select,
+input[type=number],
+input[type=search] {
   box-shadow: none;
   background: #161828;
   border: 1px solid #425369;
@@ -185,11 +296,17 @@ select {
   width: 100%;
 }
 input[type=text]:focus,
+input[type=email]:focus,
 input[type=password]:focus,
 select:focus,
+input[type=number]:focus,
+input[type=search]:focus,
 input[type=text]:active,
+input[type=email]:active,
 input[type=password]:active,
-select:active {
+select:active,
+input[type=number]:active,
+input[type=search]:active {
   background: #161828;
   border: 1px solid #425369;
   color: #eee;
@@ -310,6 +427,16 @@ html {
 body {
   color: #eee;
   background: #10111B;
+}
+body .bootstrap-select .dropdown-menu.inner {
+  border-left: 1px solid #425369 !important;
+  border-right: 1px solid #425369 !important;
+  border-bottom: 1px solid #425369 !important;
+  border-radius: 0 0 25px 25px;
+  overflow: hidden;
+}
+body .bootstrap-select .dropdown-menu.inner li a {
+  padding: 12px 20px;
 }
 .cover {
   margin: 0 auto -334px;
@@ -1367,7 +1494,7 @@ header .bottom {
 #product-checkout h2 {
   padding-bottom: 21px;
   padding-top: 0;
-  border-bottom: 1px solid #425369;
+  border-bottom: 1px solid #1A233B;
   font-size: 25px;
   color: #eee;
   font-family: 'Open Sans', sans-serif;
@@ -1377,7 +1504,7 @@ header .bottom {
 }
 .cart-list-block .cart-item {
   padding: 20px 0;
-  border-bottom: 1px solid #425369;
+  border-bottom: 1px solid #1A233B;
 }
 .cart-list-block .cart-item .name-box {
   display: inline-block;
@@ -1466,12 +1593,15 @@ header .bottom {
   vertical-align: top;
   padding-right: 40px;
   margin-right: 40px;
-  border-right: 1px solid #425369;
+  border-right: 1px solid #1A233B;
 }
 .cart-right-column {
   width: 35%;
   display: inline-block;
   vertical-align: top;
+}
+.cart-right-column .bootstrap-select {
+  width: 100% !important;
 }
 .cart-right-column .confirm-box input[type=submit] {
   width: 100%;
@@ -1511,7 +1641,7 @@ header .bottom {
   font-size: 16px;
 }
 .cart-right-column .total-box .total-price-value {
-  border-bottom: 1px solid #425369;
+  border-bottom: 1px solid #1A233B;
   padding-bottom: 5px;
   margin-bottom: 5px;
 }

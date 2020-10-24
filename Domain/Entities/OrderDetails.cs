@@ -31,9 +31,11 @@ namespace WowCarry.Domain.Entities
         public string Wow_RealmName { get; set; }
 
         [Required(ErrorMessage = "Faction is required")]
+        [Display(Name = "Faction")]
         public Faction Wow_Faction { get; set; }
 
         [Required(ErrorMessage = "Region is required")]
+        [Display(Name = "Region")]
         public Region Wow_Region { get; set; }
 
         [Display(Name = "Battle tag (optional)")]
