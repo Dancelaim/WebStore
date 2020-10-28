@@ -17,8 +17,8 @@ namespace WowCarry.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
+            this.ProductToOption = new HashSet<ProductToOption>();
             this.ProductPrice = new HashSet<ProductPrice>();
-            this.ProductOption = new HashSet<ProductOption>();
         }
     
         public System.Guid ProductId { get; set; }
@@ -31,18 +31,18 @@ namespace WowCarry.Domain.Entities
         public System.DateTime ProductCreateDate { get; set; }
         public System.DateTime ProductUpdateDate { get; set; }
         public Nullable<System.Guid> ProductDescriptionId { get; set; }
-        public Nullable<System.Guid> ProductCEOId { get; set; }
+        public Nullable<System.Guid> ProductSEOId { get; set; }
         public Nullable<System.Guid> ProductGameId { get; set; }
         public Nullable<System.Guid> ProductSubCategoryId { get; set; }
     
+        public virtual ProductGame ProductGame { get; set; }
+        public virtual ProductSubCategory ProductSubCategory { get; set; }
+        public virtual SEO SEO { get; set; }
+        public virtual ProductDescription ProductDescription { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductToOption> ProductToOption { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrice { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
-        public virtual ProductCEO ProductCEO { get; set; }
-        public virtual ProductDescription ProductDescription { get; set; }
-        public virtual ProductGame ProductGame { get; set; }
-        public virtual ProductSubCategory ProductSubCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductOption> ProductOption { get; set; }
     }
 }

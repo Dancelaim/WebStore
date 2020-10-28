@@ -20,7 +20,7 @@
                             </div>
                             <div class="block-td text-left name_block">
                                 @item.Product.ProductName
-                                @Html.RouteLink("Product Name", "ProductDetails", new { productUrl = item.Product.ProductCEO.UrlKeyWord }, new { @class = "product-href" })
+                                @Html.RouteLink("Product Name", "ProductDetails", new { productUrl = item.Product.SEO.UrlKeyWord }, new { @class = "product-href" })
                             </div>
                             <div class="block-td text-left tot_block"><span class="price-box">@((item.Quantity * item.Product.ProductPrice.Select(p => p.Price).FirstOrDefault()).ToString())</span></div>
                             <input name="@item.Product.ProductName" type="hidden" value="@item.Product.ProductId"/>

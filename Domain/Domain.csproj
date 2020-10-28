@@ -74,13 +74,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\ISEORepository.cs" />
     <Compile Include="Abstract\IOrderProcessor .cs" />
+    <Compile Include="Abstract\IOptionsRepository.cs" />
+    <Compile Include="Abstract\IGameRepository.cs" />
     <Compile Include="Abstract\IRealmsRepository.cs" />
     <Compile Include="Abstract\IHtmlBlockRepository.cs" />
     <Compile Include="Abstract\IProductRepository.cs" />
+    <Compile Include="Concrete\EFSEORepository.cs" />
+    <Compile Include="Concrete\EFGameRepository.cs" />
+    <Compile Include="Concrete\EFOptionsRepository.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
     <Compile Include="Concrete\EFHtmlBlockRepository.cs" />
-    <Compile Include="Concrete\EFProductGameRepository.cs" />
+    <Compile Include="Concrete\EFRealmRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="Entities\HtmlBlocks.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -114,9 +120,6 @@
     <Compile Include="Entities\ProductCategory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\ProductCEO.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\ProductDescription.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -132,7 +135,13 @@
     <Compile Include="Entities\ProductSubCategory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ProductToOption.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Realms.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\SEO.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -162,6 +171,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="ScriptHistory\25.sql" />
     <Content Include="ScriptHistory\24.sql" />
     <Content Include="ScriptHistory\04.sql" />
     <Content Include="ScriptHistory\03.sql" />

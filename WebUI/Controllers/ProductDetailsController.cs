@@ -22,7 +22,7 @@ namespace WowCarry.WebUI.Controllers
         }
         public ViewResult Details(string productUrl)
         {
-            Product product = repository.Products.Where(p => p.ProductCEO.UrlKeyWord == productUrl).FirstOrDefault();
+            Product product = repository.Products.Where(p => p.SEO.UrlKeyWord == productUrl).FirstOrDefault();
             return View(product);
         }
         [HttpPost]

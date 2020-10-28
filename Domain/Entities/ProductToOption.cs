@@ -12,14 +12,12 @@ namespace WowCarry.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductPrice
+    public partial class ProductToOption
     {
-        public System.Guid ProductPriceId { get; set; }
-        public string Region { get; set; }
-        public decimal Price { get; set; }
         public System.Guid ProductId { get; set; }
-        public Nullable<decimal> ProductSale { get; set; }
+        public System.Guid OptionId { get; set; }
     
+        public virtual ProductOption ProductOption { get; set; }
         public virtual Product Product { get; set; }
     }
 }

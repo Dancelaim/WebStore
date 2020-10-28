@@ -5,7 +5,7 @@
     {
         <div class="cart-item">
             <div class="name-box">
-                @Html.RouteLink(@item.Product.ProductName, "ProductDetails", new { productUrl = item.Product.ProductCEO.UrlKeyWord })
+                @Html.RouteLink(@item.Product.ProductName, "ProductDetails", new { productUrl = item.Product.SEO.UrlKeyWord })
                 <div class="options-list">
                     <span>-option value</span>
                     <span>-option value 2</span>

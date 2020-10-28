@@ -17,18 +17,20 @@ namespace WowCarry.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductSubCategory()
         {
-            this.Product = new HashSet<Product>();
             this.ProductCategory = new HashSet<ProductCategory>();
+            this.Product = new HashSet<Product>();
         }
     
         public System.Guid ProductSubCategoryId { get; set; }
         public string ProductCategoryName { get; set; }
         public string ProductCategoryId { get; set; }
         public string CategoryDescription { get; set; }
+        public Nullable<System.Guid> SubCategorySeoId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Product { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductCategory> ProductCategory { get; set; }
+        public virtual SEO SEO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

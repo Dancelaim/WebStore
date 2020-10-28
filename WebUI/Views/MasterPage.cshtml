@@ -1,8 +1,24 @@
-﻿<!DOCTYPE html>
-<html>
-    @RenderPage("~/Views/Shared/_Header.cshtml")
-<body>
-    @RenderBody()
-</body>
-    @RenderPage("~/Views/Shared/_Footer.cshtml")
-</html>
+﻿@{
+    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+}
+
+    <!DOCTYPE html>
+    @if (controllerName != "Admin")
+    {
+            <html>
+            @RenderPage("~/Views/Shared/_Header.cshtml")
+             <body>
+                 @RenderBody()
+             </body>
+            @RenderPage("~/Views/Shared/_Footer.cshtml")
+            </html>
+    }
+    else
+    {
+           <html>
+            <body>
+                  @RenderBody()
+            </body>
+           </html>
+    }
+
