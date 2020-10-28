@@ -20,7 +20,7 @@
   src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
 }
 a {
-  color: #3f4d67;
+  color: #131313;
 }
 h1,
 h2,
@@ -121,15 +121,15 @@ body {
   position: relative;
   transition: all 0.3s ease;
 }
-.left-column ul li:last-child a {
-  border: 0 none;
+.left-column ul li:first-child a {
+  border-top: 1px solid #283142;
 }
 .left-column ul li:before {
   transition: all 0.3s ease;
   content: '';
   position: absolute;
-  top: -1px;
-  bottom: -1px;
+  top: 1px;
+  bottom: 0;
   left: 0;
   right: 100%;
   background: #4fc3f7;
@@ -138,25 +138,52 @@ body {
   right: 0;
 }
 .left-column ul li a {
+  margin-top: -1px;
   position: relative;
   display: block;
   padding: 8px 10px;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.5s ease;
   font-size: 20px;
-  border-bottom: 1px solid #4fc3f7;
+  border-bottom: 1px solid #283142;
 }
 .left-column ul li a:hover,
 .left-column ul li a:active {
   text-decoration: none;
+  color: #131313;
+}
+.left-column ul li a.active {
+  background: #283142;
+  color: #eeeeee;
+  border: 0 none;
 }
 .left-column a {
   color: #eeeeee;
+}
+.btn,
+button,
+input[type="button"],
+input[type="submit"] {
+  background: #e5f6fe;
+  color: #131313;
+  display: inline-block;
+  padding: 12px 30px;
+  text-align: center;
+  border-radius: 25px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s ease;
+}
+.btn:hover,
+button:hover,
+input[type="button"]:hover,
+input[type="submit"]:hover {
+  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
 }
 .content {
   position: relative;
   left: 0px;
   margin-left: 265px;
+  margin-right: 25px;
   transition: all 0.3s;
   outline: none !important;
 }
@@ -172,8 +199,35 @@ body {
 .stat-info h2 {
   padding: 15px 20px;
   border-bottom: 1px solid #3f4d67;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
 }
 .stat-info .info {
   padding: 15px 20px;
   text-align: center;
+}
+.table {
+  border: 0 none;
+}
+.table th,
+.table td,
+.table tr,
+.table tbody,
+.table thead {
+  border: 0 none;
+}
+.table tbody tr {
+  position: relative;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+}
+.table .title {
+  background: #e5f6fe;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+}
+.table .title th {
+  padding: 17px 15px 19px;
+}
+.table td {
+  position: relative;
+  padding: 15px;
+  vertical-align: middle;
 }

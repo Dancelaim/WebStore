@@ -2,32 +2,38 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>AdminProducts</title>
+    <title>Admin Products</title>
 </head>
 <body>
+    <h1>Admin Products</h1>
     <p>
-        @Html.ActionLink("Create New", "Create")
+        @Html.ActionLink("Create New", "Create", new {entity="Product"}, new {@class="btn"})
     </p>
-    <table class="table table-striped table-condensed table-bordered">
-        <tr>
-            <th>Название</th>
-            <th class="text-center">Действия</th>
-        </tr>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@Html.ActionLink(item.ProductName, "Edit", new { item.ProductId })</td>
-                <td class="text-center">
-                    @using (Html.BeginForm("Delete", "Admin"))
-                    {
-                        @Html.Hidden("GameId", item.ProductId)
-                        <input type="submit"
-                               class="btn btn-default btn-xs"
-                               value="Удалить" />
-                    }
-                </td>
+    <table class="table">
+        <thead>
+            <tr class="title">
+                <th>Название</th>
+                <th class="text-center">Действия</th>
             </tr>
-        }
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    
+                    <td> @Html.ActionLink(item.ProductName, "Edit", new { item.ProductId })</td>
+                    <td class="text-center">
+                        @using (Html.BeginForm("Delete", "Admin"))
+                        {
+                            @Html.Hidden("GameId", item.ProductId)
+                            <input type="submit"
+                                   class="btn btn-default btn-xs"
+                                   value="Удалить" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
     </table>
     <div class="panel-footer">
         @Html.ActionLink("Добавить игру", "Create", null,

@@ -29,5 +29,12 @@ namespace WebUI.HtmlHelpers
 
             return category == currentCategory ? cssClass : String.Empty;
         }
+        public static string AdminIsSelected(this HtmlHelper html, string item = null)
+        {
+            const string cssClass = "active";
+            var currentAction = (string)html.ViewContext.RouteData.Values["action"];
+
+            return item == currentAction ? cssClass : String.Empty;
+        }
     }
 }
