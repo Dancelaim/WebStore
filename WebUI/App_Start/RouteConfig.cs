@@ -22,7 +22,7 @@ namespace WowCarry.WebUI
                 name: "Admin",
                 url: "{Admin}",
                 defaults: new { controller = "Admin", action = "Admin" },
-                constraints: new { Admin = "AdminProducts" }
+                constraints: new { Admin = "Admin" }
             );
 
             routes.MapRoute(

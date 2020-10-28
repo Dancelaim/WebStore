@@ -479,6 +479,10 @@
     <Content Include="Content\CSS\Styles.min.css">
       <DependentUpon>Styles.css</DependentUpon>
     </Content>
+    <Content Include="Content\CSS\StylesAdmin.css" />
+    <Content Include="Content\CSS\StylesAdmin.min.css">
+      <DependentUpon>StylesAdmin.css</DependentUpon>
+    </Content>
     <Content Include="Content\Site.css" />
     <Content Include="Content\Slick\ajax-loader.gif" />
     <Content Include="Content\Slick\fonts\slick.svg" />
@@ -712,6 +716,7 @@
     <Content Include="Scripts\bootstrap-select.min.js.map" />
     <Content Include="Scripts\bootstrap-select.js.map" />
     <Content Include="Content\bootstrap-select.css.map" />
+    <Content Include="Content\Less\StylesAdmin.less" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

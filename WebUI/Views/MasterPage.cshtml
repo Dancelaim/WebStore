@@ -2,23 +2,56 @@
     var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
 }
 
-    <!DOCTYPE html>
-    @if (controllerName != "Admin")
-    {
-            <html>
-            @RenderPage("~/Views/Shared/_Header.cshtml")
-             <body>
-                 @RenderBody()
-             </body>
-            @RenderPage("~/Views/Shared/_Footer.cshtml")
-            </html>
-    }
-    else
-    {
-           <html>
-            <body>
-                  @RenderBody()
-            </body>
-           </html>
-    }
+<!DOCTYPE html>
+@if (controllerName != "Admin")
+{
+    <html>
+    @RenderPage("~/Views/Shared/_Header.cshtml")
+    <body>
+        @RenderBody()
+    </body>
+    @RenderPage("~/Views/Shared/_Footer.cshtml")
+</html>
+}
+else
+{
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Content/bootstrap-select.min.css">
+    <script src="~/Scripts/bootstrap-select.min.js"></script>
+    <link href="~/Content/CSS/StylesAdmin.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+
+</head>
+<body>
+
+    <div class="cover">
+        <div class="left-column">
+            <ul class="list-unstyled">
+                <li>@Html.ActionLink("Products", "AdminProducts", "Admin")</li>
+                <li>@Html.ActionLink("Options", "AdminOptions", "Admin") </li>
+                <li>@Html.ActionLink("Product Games", "AdminProductGames", "Admin") </li>
+                <li>@Html.ActionLink("Html Blocks", "AdminHtmlBlocks", "Admin")</li>
+                <li>@Html.ActionLink("SEO", "AdminSEO", "Admin") </li>
+            </ul>
+        </div>
+        <div class="content">
+            @RenderBody()
+        </div>
+        <div class="clear"></div>
+    </div>
+    <footer>
+    </footer>
+</body>
+</html>
+
+}
 

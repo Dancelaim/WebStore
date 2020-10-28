@@ -1,0 +1,206 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto&display=swap');
+
+@o: 'Open Sans', sans-serif;
+//@r:'Roboto', sans-serif;
+// Заголовки сайта
+@h1color: @color2;
+@h1fam: @o;
+@h1style: normal;
+@h1weight: 600;
+@hsize: 30px;
+
+//Настройка шрифта на сайте
+@font-size: 16px;
+@pcol: @color2;
+@fontfamcont: @o;
+@linkcol: @color3;
+@maxwidth: 1600px;
+
+//Цвета
+//main color
+@color1: #e5f6fe;
+//text color
+@color2: #131313;
+//dark color
+@color3: #3f4d67;
+//dark text color
+@color4: #eeeeee;
+//bg hover
+@color5: #4fc3f7;
+a {
+    color: @linkcol;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: @h1color;
+    font-style: @h1style;
+    font-weight: @h1weight;
+}
+
+h1 {
+    font-size: @hsize;
+    margin-bottom: 30px;
+    line-height: 54px;
+}
+h2 {
+    font-size: 28px;
+}
+h3 {
+    font-size: 26px;
+}
+h4 {
+    font-size: 24px;
+}
+h5 {
+    font-size: 22px;
+}
+h6 {
+    font-size: 20px;
+}
+
+img {
+    padding: 0;
+    border: 0;
+    outline: 0;
+    background: transparent;
+}
+
+button {
+    cursor: pointer
+}
+
+address {
+    font-style: normal;
+}
+
+aside p {
+    margin: 0
+}
+
+ul, ol {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul, nav ol {
+    list-style: none
+}
+
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    overflow-y: scroll;
+}
+
+pre {
+    display: none;
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    background:none;
+}
+
+.cover {
+    margin: 0 auto;
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 60px;
+}
+.left-column {
+    width: 235px;
+    height: 100%;
+    overflow: auto;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    bottom: 0;
+    padding-top: 60px;
+    z-index: 10;
+    background: @color3;
+    color: @color4;
+
+    ul {
+        width: 100%;
+        display: block;
+
+        li {
+            display: block;
+            position: relative;
+            transition: all 0.3s ease;
+
+            &:last-child {
+                a {
+                    border: 0 none;
+                }
+            }
+
+            &:before {
+                transition: all 0.3s ease;
+                content: '';
+                position: absolute;
+                top: -1px;
+                bottom: -1px;
+                left: 0;
+                right: 100%;
+                background: @color5;
+            }
+
+            &:hover {
+                &:before {
+                    right: 0;
+                }
+            }
+
+            a {
+                position: relative;
+                display: block;
+                padding: 8px 10px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                font-size: 20px;
+                border-bottom: 1px solid @color5;
+
+                &:hover, &:active {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+
+    a {
+        color: @color4;
+    }
+}
+
+    .content {
+        position: relative;
+        left: 0px;
+        margin-left: 265px;
+        transition: all 0.3s;
+        outline: none !important;
+    }
+
+    .stat-info {
+        display: inline-block;
+        width: 30%;
+        margin-right:20px;
+        vertical-align: top;
+        background: @color4;
+        color: @color3;
+        height: 300px;
+
+        h2 {
+            padding: 15px 20px;
+            border-bottom: 1px solid @color3;
+        }
+
+        .info {
+            padding: 15px 20px;
+            text-align: center;
+        }
+    }
