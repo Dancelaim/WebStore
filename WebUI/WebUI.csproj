@@ -866,6 +866,11 @@
     <Content Include="Views\Checkout\CartView.cshtml" />
     <Content Include="Views\Checkout\Completed.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
+    <Content Include="Views\Admin\AdminProducts.cshtml" />
+    <Content Include="Views\Admin\AdminOptions.cshtml" />
+    <Content Include="Views\Admin\AdminProductGames.cshtml" />
+    <Content Include="Views\Admin\AdminHtmlBlocks.cshtml" />
+    <Content Include="Views\Admin\AdminSEO.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

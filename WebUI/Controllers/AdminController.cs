@@ -14,12 +14,14 @@ namespace WowCarry.WebUI.Controllers
         IOptionsRepository OptRepository;
         IHtmlBlockRepository BlockRepository;
         ISEORepository SEORepository;
-        public AdminController(IProductRepository prodRep, IOptionsRepository optRep, IHtmlBlockRepository blockRep, ISEORepository sEORep)
+        IGameRepository GameRepository;
+        public AdminController(IProductRepository prodRep, IOptionsRepository optRep, IHtmlBlockRepository blockRep, ISEORepository sEORep, IGameRepository gameRep )
         {
             ProdRepository = prodRep;
             OptRepository = optRep;
             BlockRepository = blockRep;
             SEORepository = sEORep;
+            GameRepository = gameRep;
         }
         public ViewResult Admin()
         {
@@ -35,7 +37,7 @@ namespace WowCarry.WebUI.Controllers
         }
         public ViewResult AdminProductGames()
         {
-            return View(ProdRepository.Products.Select(p=>p.ProductGame));
+            return View(GameRepository.Games);
         }
         public ViewResult AdminHtmlBlocks()
         {

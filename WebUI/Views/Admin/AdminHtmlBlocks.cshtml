@@ -1,0 +1,58 @@
+﻿@model IEnumerable<WowCarry.Domain.Entities.HtmlBlocks>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AdminHtmlBlocks</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentCSSClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ParentTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ChildCSSClass)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SitePage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentCSSClass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ParentTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChildCSSClass)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SitePage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.SiteBlockId }) |
+                @Html.ActionLink("Details", "Details", new { id=item.SiteBlockId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.SiteBlockId })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

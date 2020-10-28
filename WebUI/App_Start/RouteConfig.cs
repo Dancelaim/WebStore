@@ -18,11 +18,19 @@ namespace WowCarry.WebUI
                 url: "",
                 defaults: new { controller = "HomePage", action = "Home" }
             );
+
                 routes.MapRoute(
                 name: "Admin",
                 url: "{Admin}",
                 defaults: new { controller = "Admin", action = "Admin" },
                 constraints: new { Admin = "Admin" }
+            );
+
+            routes.MapRoute(
+            name: null,
+            url: "{Admin}/{Action}",
+            defaults: new { controller = "Admin", action = "Admin" },
+            constraints: new { controller = "Admin" }
             );
 
             routes.MapRoute(
