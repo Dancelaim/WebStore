@@ -1,6 +1,4 @@
-﻿using Castle.Core.Internal;
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Data.SqlClient;
@@ -26,7 +24,7 @@ namespace WowCarry.WebUI.Controllers
         }
         public ViewResult List(string selectedGame, string categoryName,int page = 1)
         {
-            if (!selectedGame.IsNullOrEmpty())
+            if (!string.IsNullOrEmpty(selectedGame))
             {
                 Session["SelectedGame"] = repository.Products.Where(p => p.ProductGame.GameShortUrl == selectedGame).Select(p => p.ProductGame.GameName).FirstOrDefault();
             }

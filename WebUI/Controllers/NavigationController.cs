@@ -1,6 +1,4 @@
-﻿using Castle.Core.Internal;
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -51,7 +49,7 @@ namespace WebUI.Controllers
         }
         public void GetCurrentGame(string currentGame)
         {
-            Session["SelectedGame"] = currentGame.IsNullOrEmpty() ? (string)Session["SelectedGame"] : repository.Products.Where(p => p.ProductGame.GameShortUrl == currentGame).Select(p => p.ProductGame.GameName).FirstOrDefault();
+            Session["SelectedGame"] = string.IsNullOrEmpty(currentGame)? (string)Session["SelectedGame"] : repository.Products.Where(p => p.ProductGame.GameShortUrl == currentGame).Select(p => p.ProductGame.GameName).FirstOrDefault();
         }
     }
 }

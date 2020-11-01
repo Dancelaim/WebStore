@@ -4,7 +4,6 @@ using WowCarry.Domain.Entities;
 using WowCarry.Domain.Abstract;
 using WebUI.Models;
 using System;
-using Castle.Core.Internal;
 
 namespace WowCarry.WebUI.Controllers
 {
