@@ -38,11 +38,11 @@ else
         <div class="left-column">
             <ul class="list-unstyled">
                 <li>@Html.RouteLink("Home", "AdminItem", new {Action="Admin"}, new {@class = Html.AdminIsSelected("Admin")})</li>
-                <li>@Html.RouteLink("Products", "AdminItem", new { Action = "AdminProducts" }, new { @class = Html.AdminIsSelected("AdminProducts") }) </li>
-                <li>@Html.RouteLink("Options", "AdminItem", new { Action = "AdminOptions" }, new { @class = Html.AdminIsSelected("AdminOptions") }) </li>
-                <li>@Html.RouteLink("Product Games", "AdminItem", new { Action = "AdminProductGames" }, new { @class = Html.AdminIsSelected("AdminProductGames") }) </li>
-                <li>@Html.RouteLink("Html Blocks", "AdminItem", new { Action = "AdminHtmlBlocks" }, new { @class = Html.AdminIsSelected("AdminHtmlBlocks") }) </li>
-                <li>@Html.RouteLink("SEO", "AdminItem", new { Action = "AdminSEO" }, new { @class = Html.AdminIsSelected("AdminSEO") }) </li>
+                <li>@Html.RouteLink("Products", "AdminItem", new { Action = "List", type = "Product" }, new { @class = Html.AdminIsSelected("AdminProducts") }) </li>
+                <li>@Html.RouteLink("Options", "AdminItem", new { Action = "List", type = "ProductOption" }, new { @class = Html.AdminIsSelected("AdminOptions") }) </li>
+                <li>@Html.RouteLink("Product Games", "AdminItem", new { Action = "List", type = "ProductGame" }, new { @class = Html.AdminIsSelected("AdminProductGames") }) </li>
+                <li>@Html.RouteLink("Html Blocks", "AdminItem", new { Action = "List", type = "HtmlBlocks" }, new { @class = Html.AdminIsSelected("AdminHtmlBlocks") }) </li>
+                <li>@Html.RouteLink("SEO", "AdminItem", new { Action = "List", type = "SEO" }, new { @class = Html.AdminIsSelected("AdminSEO") }) </li>
             </ul>
         </div>
         <div class="content">

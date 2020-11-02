@@ -26,25 +26,56 @@ namespace WowCarry.WebUI.Controllers
         {
             return View();
         }
-        public ViewResult AdminProducts()
+        public ViewResult List(string type)
         {
-            return View(ProdRepository.Products);
+            switch (type)
+            {
+                case "Product":
+                    return View("List" + type,ProdRepository.Products);
+                case "ProductOption":
+                    return View("List" + type,OptRepository.Options);
+                case "ProductGame":
+                    return View("List" + type,GameRepository.Games);
+                case "HtmlBlocks":
+                    return View("List" + type,BlockRepository.HtmlBlocks);
+                case "SEO":
+                    return View("List" + type,SEORepository.SEOs);
+                default: return View("Admin");
+            }
         }
-        public ViewResult AdminOptions()
+        public ViewResult Edit(Guid Id, string type)
         {
-            return View(OptRepository.Options);
+            switch (type)
+            {
+                case "Product" :
+                    return View("Edit" + type,ProdRepository.Products.Where(p=>p.ProductId==Id).FirstOrDefault());
+                case "ProductOption":
+                    return View("Edit" + type, OptRepository.Options.Where(p => p.ProductOptionId == Id).FirstOrDefault());
+                case "ProductGame":
+                    return View("Edit" + type, GameRepository.Games.Where(p => p.ProductGameId == Id).FirstOrDefault());
+                case "HtmlBlocks":
+                    return View("Edit" + type, BlockRepository.HtmlBlocks.Where(p => p.SiteBlockId == Id).FirstOrDefault());
+                case "SEO":
+                    return View("Edit" + type, SEORepository.SEOs.Where(p => p.SEOId == Id).FirstOrDefault());
+                default: return View("Admin");
+            }
         }
-        public ViewResult AdminProductGames()
+        public ViewResult Create(string type)
         {
-            return View(GameRepository.Games);
-        }
-        public ViewResult AdminHtmlBlocks()
-        {
-            return View(BlockRepository.HtmlBlocks);
-        }
-        public ViewResult AdminSEO()
-        {
-            return View(SEORepository.SEOs);
+            switch (type)
+            {
+                case "Product":
+                    return View("Create" + type, ProdRepository);
+                case "ProductOption":
+                    return View("Create" + type, OptRepository);
+                case "ProductGame":
+                    return View("Create" + type, GameRepository);
+                case "HtmlBlocks":
+                    return View("Create" + type, BlockRepository);
+                case "SEO":
+                    return View("Create" + type, SEORepository);
+                default: return View("Admin");
+            }
         }
     }
 }

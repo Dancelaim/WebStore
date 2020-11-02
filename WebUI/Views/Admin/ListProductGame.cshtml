@@ -1,13 +1,12 @@
-﻿@model IEnumerable<WowCarry.Domain.Entities.Product>
+﻿@model IEnumerable<WowCarry.Domain.Entities.ProductGame>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Admin Products</title>
+    <title>AdminProductGames</title>
 </head>
 <body>
-    <h1>Admin Products</h1>
     <p>
-        @Html.ActionLink("Create New", "Create", new {entity="Product"}, new {@class="btn"})
+        @Html.ActionLink("Create New", "Create",new { type = "ProductGame" }, new { @class = "btn" })
     </p>
     <table class="table">
         <thead>
@@ -20,12 +19,12 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    
-                    <td> @Html.ActionLink(item.ProductName, "Edit", new { item.ProductId })</td>
+
+                    <td> @Html.ActionLink(item.GameName, "Edit", new { Id = item.ProductGameId, type = item.GetType().BaseType.Name })</td>
                     <td class="text-center">
                         @using (Html.BeginForm("Delete", "Admin"))
                         {
-                            @Html.Hidden("GameId", item.ProductId)
+                            @Html.Hidden("GameId", item.ProductGameId)
                             <input type="submit"
                                    class="btn btn-default btn-xs"
                                    value="Удалить" />
@@ -35,9 +34,5 @@
             }
         </tbody>
     </table>
-    <div class="panel-footer">
-        @Html.ActionLink("Добавить игру", "Create", null,
-            new { @class = "btn btn-default" })
-    </div>
 </body>
 </html>

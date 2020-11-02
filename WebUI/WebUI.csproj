@@ -864,13 +864,23 @@
     <Content Include="Views\Checkout\CartView.cshtml" />
     <Content Include="Views\Checkout\Completed.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
-    <Content Include="Views\Admin\AdminProducts.cshtml" />
-    <Content Include="Views\Admin\AdminOptions.cshtml" />
-    <Content Include="Views\Admin\AdminProductGames.cshtml" />
-    <Content Include="Views\Admin\AdminHtmlBlocks.cshtml" />
-    <Content Include="Views\Admin\AdminSEO.cshtml" />
+    <Content Include="Views\Admin\ListProduct.cshtml" />
+    <Content Include="Views\Admin\ListProductOption.cshtml" />
+    <Content Include="Views\Admin\ListProductGame.cshtml" />
+    <Content Include="Views\Admin\ListHtmlBlocks.cshtml" />
+    <Content Include="Views\Admin\ListSEO.cshtml" />
     <Content Include="Scripts\jquery-3.5.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.5.1.min.map" />
+    <Content Include="Views\Admin\EditProduct.cshtml" />
+    <Content Include="Views\Admin\EditProductOption.cshtml" />
+    <Content Include="Views\Admin\EditHtmlBlocks.cshtml" />
+    <Content Include="Views\Admin\EditProductGame.cshtml" />
+    <Content Include="Views\Admin\EditSEO.cshtml" />
+    <Content Include="Views\Admin\CreateHtmlBlocks.cshtml" />
+    <Content Include="Views\Admin\CreateProductOption.cshtml" />
+    <Content Include="Views\Admin\CreateSEO.cshtml" />
+    <Content Include="Views\Admin\CreateProductGame.cshtml" />
+    <Content Include="Views\Admin\CreateProduct.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

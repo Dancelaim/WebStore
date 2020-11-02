@@ -1,0 +1,45 @@
+﻿@model WowCarry.Domain.Entities.Product
+
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Edit for «@Model.ProductName»</h3>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        <div class="panel-body">
+            @Html.HiddenFor(m => m.ProductId)
+            @foreach (var property in ViewData.ModelMetadata.Properties)
+            {
+                if (property.PropertyName != "ProductId" || property.PropertyName != "ProductDescriptionId")
+                {
+                    <div class="form-group">
+                             @if (property.PropertyName == "ProductDescription")
+                             {
+                                 foreach (var descProp in property.Properties)
+                                 {
+                                     if (descProp.PropertyName != "ProductDescriptionId" || descProp.PropertyName != "ProductId")
+                                     {
+                                       <label>@(descProp.DisplayName ?? descProp.PropertyName)</label>
+                                       @Html.TextArea(descProp.PropertyName, null, new { @class = "form-control", rows = 3 })
+                                     }
+                                 }
+                              }
+                              else
+                              {
+                              <label>@(property.DisplayName ?? property.PropertyName)</label>
+                              @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
+                                 }
+                    </div>
+                }
+            }
+        </div>
+        <div class="panel-footer">
+            <input type="submit" value="Сохранить" class="btn btn-primary" />
+            @Html.ActionLink("Undo and Exit", "Admin", null, new
+            {
+                @class = "btn btn-default"
+            })
+        </div>
+    }
+</div>
