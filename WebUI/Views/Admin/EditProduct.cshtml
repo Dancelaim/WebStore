@@ -5,57 +5,61 @@
         <h3>Edit for «@Model.ProductName»</h3>
     </div>
 
-    @using (Html.BeginForm())
-    {
+ @using (Html.BeginForm())
+ {
 <div class="panel-body">
     @Html.HiddenFor(m => m.ProductId)
-    @foreach (var property in ViewData.ModelMetadata.Properties)
-    {
-        if (property.PropertyName != "ProductId" && property.PropertyName != "productGames")
+    <div class="tab1">
+        @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => !p.PropertyName.ToLower().Contains("description") & !p.PropertyName.ToLower().Contains("option")))
         {
-            if (!property.PropertyName.Contains("Description") && !property.PropertyName.Contains("Option"))
+            if (property.PropertyName != "ProductId" && property.PropertyName != "productGames")
             {
-                <div class="form-group">
-                    <label>@(property.DisplayName ?? property.PropertyName)</label>
-                    @if (property.PropertyName.Contains("ProductGameName"))
-                    {
-                        @Html.DropDownList("Game Name", Model.productGames)
-                    }
-                    else if (property.PropertyName.Contains("ProductCategoryName"))
-                    {
-                        @Html.DropDownList("Category Name", Model.productCategories)
-                    }
-                    else
-                    {
-                        @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
-                    }
-                </div>
-            }
-            else if (property.PropertyName.Contains("Description")) 
-            {
-                if(!property.PropertyName.Contains("Title"))
+                <label>@(property.DisplayName ?? property.PropertyName)</label>
+                if (property.PropertyName.Contains("ProductGameName"))
                 {
-                    @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+                    @Html.DropDownList("Game Name", Model.productGames)
+                }
+                else if (property.PropertyName.Contains("ProductCategoryName"))
+                {
+                    @Html.DropDownList("Category Name", Model.productCategories)
                 }
                 else
                 {
                     @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
                 }
             }
-            else if (property.PropertyName.Contains("Option"))
+        }
+    </div>
+    <div class="tab2">
+        @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("description")))
+        {
+            <label>@(property.DisplayName ?? property.PropertyName)</label>
+            if (!property.PropertyName.Contains("Title"))
             {
-
+                @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 3 })
+            }
+            else
+            {
+                @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
             }
         }
-    }
-    }
     </div>
-        <div class="panel-footer">
-            <input type="submit" value="Сохранить" class="btn btn-primary" />
-            @Html.ActionLink("Undo and Exit", "Admin", null, new
+    <div class="tab3">
+        @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("option")))
+        {
             {
-                @class = "btn btn-default"
-            })
-        </div>
+                <label>@(property.DisplayName ?? property.PropertyName)</label>
+            }
+        }
+    </div>
+    
+    </div>
+    <div class="panel-footer">
+        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        @Html.ActionLink("Undo and Exit", "Admin", null, new
+        {
+            @class = "btn btn-default"
+        })
+    </div>
     }
 </div>
