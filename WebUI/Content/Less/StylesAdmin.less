@@ -17,6 +17,7 @@
 @maxwidth: 1600px;
 
 //Цвета
+
 //main color
 @color1: #e5f6fe;
 //text color
@@ -29,6 +30,8 @@
 @color5: #4fc3f7;
 //bg hover dark
 @color6: #283142;
+//bg site white
+@color7: #ffffff;
 a {
     color: @linkcol;
 }
@@ -65,7 +68,29 @@ img {
     outline: 0;
     background: transparent;
 }
+label {
+    width: 25%;
+    text-align: right;
+    font-weight: bold;
+    padding-right: 40px;
+    display: inline-block;
+    vertical-align:top;
+}
+input[type=text], input[type=number], input[type=password], select, textarea {
+    border-radius: 25px;
+    padding: 9px 20px;
+    width: 70%;
+    border: 1px solid @color2;
+    outline: none;
+    vertical-align: top;
 
+    &:hover, &:active, &:focus {
+        outline: none;
+    }
+}
+textarea {
+    border-radius: 0;
+}
 button {
     cursor: pointer
 }
@@ -91,6 +116,7 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     overflow-y: scroll;
+    background: @color7;
 }
 
 pre {
@@ -257,5 +283,97 @@ body {
         position: relative;
         padding: 15px;
         vertical-align: middle;
+    }
+}
+
+.panel-body{
+    margin:30px 0;
+}
+.tabs {
+    position: relative;
+
+    .tab-title {
+        display: inline-block;
+        padding: 10px 40px;
+        border: 1px solid @color3;
+        border-radius: 25px 25px 0 0;
+        position: relative;
+        margin-bottom: -1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        background: rgba(@color5, 0.3);
+
+        &.active-title {
+            border-bottom: 0 none;
+            padding-right: 55px;
+            background: @color7;
+
+            &:after {
+                content: '';
+                bottom: -2px;
+                left: 0;
+                right: 0;
+                height: 3px;
+                background: @color7;
+                position: absolute;
+            }
+        }
+    }
+}
+.tabs-desc {
+    border: 1px solid @color3;
+    padding: 20px;
+
+    > div {
+        transition: all 0.3s ease;
+        display: none;
+
+        &.active-tab {
+            display: block;
+        }
+    }
+
+    .description-block {
+        margin-bottom: 20px;
+        padding-bottom: 30px;
+        position: relative;
+
+        &:last-child {
+            &:after {
+                opacity: 0;
+            }
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            right: -20px;
+            bottom: 0;
+            opacity: 0.3;
+            height: 1px;
+            background: @color2;
+        }
+    }
+}
+.input-block {
+    padding: 15px 0;
+    position: relative;
+
+    &:last-child {
+        &:after {
+            opacity:0;
+        }
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        left: -20px;
+        right: -20px;
+        bottom: 0;
+        height: 1px;
+        opacity: 0.3;
+        background: @color2;
     }
 }

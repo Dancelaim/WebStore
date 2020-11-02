@@ -8,54 +8,64 @@
  @using (Html.BeginForm())
  {
 <div class="panel-body">
+     <div class="tabs">
+        <div id="tab1" class="tab-title active-title">Product Info</div>
+        <div id="tab2" class="tab-title">Descriptions</div>
+        <div id="tab3" class="tab-title">Options</div>
+     </div>
     @Html.HiddenFor(m => m.ProductId)
-    <div class="tab1">
+<div class="tabs-desc">
+    <div class="tab1 active-tab">
         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => !p.PropertyName.ToLower().Contains("description") & !p.PropertyName.ToLower().Contains("option")))
         {
             if (property.PropertyName != "ProductId" && property.PropertyName != "productGames")
             {
-                <label>@(property.DisplayName ?? property.PropertyName)</label>
-                if (property.PropertyName.Contains("ProductGameName"))
-                {
-                    @Html.DropDownList("Game Name", Model.productGames)
-                }
-                else if (property.PropertyName.Contains("ProductCategoryName"))
-                {
-                    @Html.DropDownList("Category Name", Model.productCategories)
-                }
-                else
-                {
-                    @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
-                }
+                <div class="input-block">
+                    <label>@(property.DisplayName ?? property.PropertyName):</label>
+                    @if (property.PropertyName.Contains("ProductGameName"))
+                    {
+                        @Html.DropDownList("Game Name", Model.productGames)
+                    }
+                    else if (property.PropertyName.Contains("ProductCategoryName"))
+                    {
+                        @Html.DropDownList("Category Name", Model.productCategories)
+                    }
+                    else
+                    {
+                        @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
+                    }
+                </div>
             }
         }
     </div>
     <div class="tab2">
         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("description")))
         {
-            <label>@(property.DisplayName ?? property.PropertyName)</label>
-            if (!property.PropertyName.Contains("Title"))
-            {
-                @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 3 })
-            }
-            else
-            {
-                @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
-            }
+        <div class="description-block">
+            <label>@(property.DisplayName ?? property.PropertyName):</label>
+                @if (!property.PropertyName.Contains("Title"))
+                {
+                    @Html.TextArea(property.PropertyName, null, new { @class = "textarea-desc", rows = 3 })
+                }
+                else
+                {
+                    @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
+                }
+        </div>
         }
     </div>
     <div class="tab3">
         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("option")))
         {
             {
-                <label>@(property.DisplayName ?? property.PropertyName)</label>
+                <label>@(property.DisplayName ?? property.PropertyName):</label>
             }
         }
     </div>
-    
-    </div>
+</div>
+</div>
     <div class="panel-footer">
-        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        <input type="submit" value="Сохранить" class="btn" />
         @Html.ActionLink("Undo and Exit", "Admin", null, new
         {
             @class = "btn btn-default"
@@ -63,3 +73,33 @@
     </div>
     }
 </div>
+
+<script>
+    $(document).ready(function () {
+        $(".tab-title").on("click", function () {
+            var TabName = $(this).attr("id");
+
+
+            switch (TabName) {
+                case "tab1":
+                    $(".tab2, .tab3").removeClass("active-tab");
+                    $("#tab2, #tab3").removeClass("active-title");
+                    $(".tab1").addClass("active-tab");
+                    $("#tab1").addClass("active-title");
+                    break;
+                case "tab2":
+                    $(".tab1, .tab3").removeClass("active-tab");
+                    $("#tab1, #tab3").removeClass("active-title");
+                    $(".tab2").addClass("active-tab");
+                    $("#tab2").addClass("active-title");
+                    break;
+                case "tab3":
+                    $(".tab2, .tab1").removeClass("active-tab");
+                    $("#tab2, #tab1").removeClass("active-title");
+                    $(".tab3").addClass("active-tab");
+                    $("#tab3").addClass("active-title");
+                    break;
+            }
+        })
+    });
+</script>
