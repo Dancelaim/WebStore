@@ -1,4 +1,4 @@
-﻿@model WowCarry.Domain.Entities.Product
+﻿@model WowCarry.Domain.Entities.ProductDetails
 
 <div class="panel">
     <div class="panel-heading">
@@ -7,33 +7,41 @@
 
     @using (Html.BeginForm())
     {
-        <div class="panel-body">
-            @Html.HiddenFor(m => m.ProductId)
-            @foreach (var property in ViewData.ModelMetadata.Properties)
+<div class="panel-body">
+    @Html.HiddenFor(m => m.ProductId)
+    @foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        if (property.PropertyName != "ProductId" && property.PropertyName != "productGames")
+        {
+            if (!property.PropertyName.Contains("Description"))
             {
-                if (property.PropertyName != "ProductId" || property.PropertyName != "ProductDescriptionId")
-                {
-                    <div class="form-group">
-                             @if (property.PropertyName == "ProductDescription")
-                             {
-                                 foreach (var descProp in property.Properties)
-                                 {
-                                     if (descProp.PropertyName != "ProductDescriptionId" || descProp.PropertyName != "ProductId")
-                                     {
-                                       <label>@(descProp.DisplayName ?? descProp.PropertyName)</label>
-                                       @Html.TextArea(descProp.PropertyName, null, new { @class = "form-control", rows = 3 })
-                                     }
-                                 }
-                              }
-                              else
-                              {
-                              <label>@(property.DisplayName ?? property.PropertyName)</label>
-                              @Html.TextBox(property.PropertyName, null, new { @class = "form-control" })
-                                 }
-                    </div>
-                }
+                <div class="form-group">
+                    <label>@(property.DisplayName ?? property.PropertyName)</label>
+                    @if (property.PropertyName.Contains("ProductGameName"))
+                    {
+                        @Html.DropDownList("Game Name", Model.productGames)
+                    }
+                    else if (property.PropertyName.Contains("ProductCategoryName"))
+                    {
+                        @Html.DropDownList("Category Name", Model.productCategories)
+                    }
+                    else
+                    {
+                        @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
+                    }
+                </div>
             }
-        </div>
+            else if (property.PropertyName.Contains("Description") && !property.PropertyName.Contains("Title"))
+            {
+                @Html.TextArea(property.PropertyName, null, new { @class = "form-control", rows = 5 })
+            }
+            else
+            {
+                @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
+            }
+        }
+    }
+    </div>
         <div class="panel-footer">
             <input type="submit" value="Сохранить" class="btn btn-primary" />
             @Html.ActionLink("Undo and Exit", "Admin", null, new

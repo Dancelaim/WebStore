@@ -56,6 +56,9 @@
           <Property Name="ProductSEOId" Type="uniqueidentifier" />
           <Property Name="ProductGameId" Type="uniqueidentifier" />
           <Property Name="ProductSubCategoryId" Type="uniqueidentifier" />
+          <Property Name="ProductPriority" Type="int" />
+          <Property Name="ProductEnabled" Type="bit" Nullable="false" />
+          <Property Name="ProductImageThumb" Type="nvarchar" MaxLength="55" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -109,7 +112,7 @@
           </Key>
           <Property Name="ProductPriceId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Region" Type="nchar" MaxLength="10" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ProductSale" Type="decimal" Precision="18" Scale="1" />
         </EntityType>
@@ -123,8 +126,8 @@
           <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
           <Property Name="SubCategorySeoId" Type="uniqueidentifier" />
         </EntityType>
-        <!--Ошибки, обнаруженные при создании:
-предупреждение 6002: В таблице или представлении "WowCarry.dbo.ProductToOption" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="ProductToOption">
           <Key>
             <PropertyRef Name="ProductId" />
@@ -495,7 +498,7 @@
           </Key>
           <Property Name="ProductPriceId" Type="Guid" Nullable="false" />
           <Property Name="Region" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Price" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ProductId" Type="Guid" Nullable="false" />
           <Property Name="ProductSale" Type="Decimal" Precision="18" Scale="1" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK_ProductPrice_Product" FromRole="ProductPrice" ToRole="Product" />
@@ -831,6 +834,9 @@
           <NavigationProperty Name="ProductToOption" Relationship="WowCarryModel.FK__ProductTo__Produ__5224328E" FromRole="Product" ToRole="ProductToOption" />
           <NavigationProperty Name="ProductPrice" Relationship="WowCarryModel.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
           <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK_Products_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
+          <Property Name="ProductPriority" Type="Int32" />
+          <Property Name="ProductEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="ProductImageThumb" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK__Product__Product__29221CFB">
           <End Type="WowCarryModel.ProductGame" Role="ProductGame" Multiplicity="0..1" />
@@ -1073,6 +1079,9 @@
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="WowCarryModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="ProductImageThumb" ColumnName="ProductImageThumb" />
+                <ScalarProperty Name="ProductEnabled" ColumnName="ProductEnabled" />
+                <ScalarProperty Name="ProductPriority" ColumnName="ProductPriority" />
                 <ScalarProperty Name="ProductSubCategoryId" ColumnName="ProductSubCategoryId" />
                 <ScalarProperty Name="ProductGameId" ColumnName="ProductGameId" />
                 <ScalarProperty Name="ProductSEOId" ColumnName="ProductSEOId" />

@@ -88,6 +88,7 @@
     <Compile Include="Concrete\EFHtmlBlockRepository.cs" />
     <Compile Include="Concrete\EFRealmRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
+    <Compile Include="Entities\ProductDetails.cs" />
     <Compile Include="Entities\HtmlBlocks.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -171,6 +172,7 @@
       <DependentUpon>Model.edmx</DependentUpon>
       <LastGenOutput>Model.cs</LastGenOutput>
     </Content>
+    <Content Include="ScriptHistory\26.sql" />
     <Content Include="ScriptHistory\25.sql" />
     <Content Include="ScriptHistory\24.sql" />
     <Content Include="ScriptHistory\04.sql" />

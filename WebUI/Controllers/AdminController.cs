@@ -43,12 +43,12 @@ namespace WowCarry.WebUI.Controllers
                 default: return View("Admin");
             }
         }
-        public ViewResult Edit(Guid Id, string type)
+        public ViewResult Edit(Guid Id, string type,string game)
         {
             switch (type)
             {
                 case "Product" :
-                    return View("Edit" + type,ProdRepository.Products.Where(p=>p.ProductId==Id).FirstOrDefault());
+                    return View("Edit" + type,new ProductDetails(ProdRepository.Products.Where(p=>p.ProductId == Id).FirstOrDefault(), GameRepository.Games, GameRepository.Games.Where(g=> game==null || g.GameName==game).SelectMany(g=>g.ProductCategory)));
                 case "ProductOption":
                     return View("Edit" + type, OptRepository.Options.Where(p => p.ProductOptionId == Id).FirstOrDefault());
                 case "ProductGame":
