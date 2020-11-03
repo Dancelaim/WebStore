@@ -36,6 +36,7 @@ else
 
     <div class="cover">
         <div class="left-column">
+            <div class="logo"><a href="/"><img src="/Images/logo.svg" alt="logo"></a></div>
             <ul class="list-unstyled">
                 <li>@Html.RouteLink("Home", "AdminItem", new {Action="Admin"}, new {@class = Html.AdminIsSelected("Admin")})</li>
                 <li>@Html.RouteLink("Products", "AdminItem", new { Action = "List", type = "Product" }, new { @class = Html.AdminIsSelected("AdminProducts") }) </li>

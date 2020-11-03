@@ -74,18 +74,25 @@ label {
     font-weight: bold;
     padding-right: 40px;
     display: inline-block;
-    vertical-align:top;
+    vertical-align: middle;
 }
 input[type=text], input[type=number], input[type=password], select, textarea {
     border-radius: 25px;
     padding: 9px 20px;
     width: 70%;
-    border: 1px solid @color2;
+    border: 0 none;
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
     outline: none;
-    vertical-align: top;
+    vertical-align: middle;
 
-    &:hover, &:active, &:focus {
+    &:hover {
         outline: none;
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    &:active, &:focus {
+        outline: none;
+        box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
     }
 }
 textarea {
@@ -147,7 +154,7 @@ body {
     top: 0px;
     left: 0;
     bottom: 0;
-    padding-top: 60px;
+    padding-top: 20px;
     z-index: 10;
     background: @color3;
     color: @color4;
@@ -322,6 +329,7 @@ body {
 .tabs-desc {
     border: 1px solid @color3;
     padding: 20px;
+    border-radius: 0 25px 25px 25px;
 
     > div {
         transition: all 0.3s ease;
@@ -361,7 +369,7 @@ body {
 
     &:last-child {
         &:after {
-            opacity:0;
+            opacity: 0;
         }
     }
 
@@ -375,4 +383,68 @@ body {
         opacity: 0.3;
         background: @color2;
     }
+}
+.panel-body {
+    .dropdown.bootstrap-select {
+        width: 70% !important;
+
+        button {
+            background: none;
+            outline: none;
+
+            &:hover:focus {
+                outline: none !important;
+                background: none;
+            }
+
+            &:hover, &:active, &:focus {
+                outline: none !important;
+                background: none;
+            }
+        }
+
+        .dropdown-menu {
+            margin-top: -1px;
+            margin-bottom: -1px;
+            border-radius: 0 0 25px 25px;
+            border-top: 0 none;
+        }
+
+        &.show {
+            .dropdown-toggle:after {
+                transform: rotate(270deg);
+            }
+
+            button {
+                border-radius: 25px 25px 0 0;
+            }
+
+            &.dropup {
+                button {
+                    border-radius: 0 0 25px 25px;
+                }
+
+                .dropdown-menu {
+                    border-radius: 25px 25px 0 0;
+                }
+            }
+        }
+
+        .dropdown-toggle:after {
+            transition: all 0.3s ease;
+            border: 0 none;
+            content: '\f054';
+            transform: rotate(90deg);
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            font-size: 16px;
+            color: @color2;
+        }
+    }
+}
+.logo {
+    text-align: center;
+    margin: 0 0 15px 0;
 }

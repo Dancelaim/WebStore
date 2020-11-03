@@ -164,6 +164,9 @@ label {
   padding: 0 0 0px 21px;
   margin: 0;
 }
+.row {
+  display: block;
+}
 .form-control,
 .form-control.bootstrap-select,
 .form-group .bootstrap-select {
