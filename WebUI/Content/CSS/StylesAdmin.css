@@ -291,7 +291,6 @@ input[type="submit"]:hover {
 }
 .tabs .tab-title.active-title {
   border-bottom: 0 none;
-  padding-right: 55px;
   background: #ffffff;
 }
 .tabs .tab-title.active-title:after {

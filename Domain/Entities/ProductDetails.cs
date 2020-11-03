@@ -19,12 +19,26 @@ namespace WowCarry.Domain.Entities
         public SelectList productCategories { get { return new SelectList(productCategoryNames, product.ProductCategory.ProductCategoryName); } }
 
         public Guid ProductId { get {return product.ProductId;}}
+
+        [Required(ErrorMessage = "Product Name is required")]
+        [Display(Name = "Product Name")]
         public string ProductName { get {return product.ProductName;}}
+
+        [Display(Name = "In Stock")]
         public bool InStock { get { return product.InStock; } }
+
         public bool PreOrder { get { return product.PreOrder; } }
+
+        [Display(Name = "Product Quantity")]
         public int ProductQuantity { get { return (int)product.ProductQuantity; } }
+
+        [Display(Name = "Image")]
         public string ProductImageThumb { get { return product.ProductImageThumb; } }
+
+        [Display(Name = "Large Image")]
         public string ProductImage { get { return product.ProductImage; } }
+
+        [Display(Name = "Status")]
         public bool ProductEnabled { get { return product.ProductEnabled; } }
         public int? ProductPriority { get { return product.ProductPriority; } }
         public string ProductCategoryName { get { return product.ProductCategory.ProductCategoryName; } }
