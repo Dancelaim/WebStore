@@ -14,7 +14,7 @@ namespace WowCarry.WebUI.Controllers
         IHtmlBlockRepository BlockRepository;
         ISEORepository SEORepository;
         IGameRepository GameRepository;
-        public AdminController(IProductRepository prodRep, IOptionsRepository optRep, IHtmlBlockRepository blockRep, ISEORepository sEORep, IGameRepository gameRep )
+        public AdminController(IProductRepository prodRep, IOptionsRepository optRep, IHtmlBlockRepository blockRep, ISEORepository sEORep, IGameRepository gameRep)
         {
             ProdRepository = prodRep;
             OptRepository = optRep;
@@ -31,24 +31,24 @@ namespace WowCarry.WebUI.Controllers
             switch (type)
             {
                 case "Product":
-                    return View("List" + type,ProdRepository.Products);
+                    return View("List" + type, ProdRepository.Products);
                 case "ProductOption":
-                    return View("List" + type,OptRepository.Options);
+                    return View("List" + type, OptRepository.Options);
                 case "ProductGame":
-                    return View("List" + type,GameRepository.Games);
+                    return View("List" + type, GameRepository.Games);
                 case "HtmlBlocks":
-                    return View("List" + type,BlockRepository.HtmlBlocks);
+                    return View("List" + type, BlockRepository.HtmlBlocks);
                 case "SEO":
-                    return View("List" + type,SEORepository.SEOs);
+                    return View("List" + type, SEORepository.SEOs);
                 default: return View("Admin");
             }
         }
-        public ViewResult Edit(Guid Id, string type,string game)
+        public ViewResult Edit(Guid Id, string type, string game)
         {
             switch (type)
             {
-                case "Product" :
-                    return View("Edit" + type,new ProductDetails(ProdRepository.Products.Where(p=>p.ProductId == Id).FirstOrDefault(), GameRepository.Games, GameRepository.Games.Where(g=> game==null || g.GameName==game).SelectMany(g=>g.ProductCategory)));
+                case "Product":
+                    return View("Edit" + type, new ProductDetails(ProdRepository.Products.Where(p => p.ProductId == Id).FirstOrDefault(), GameRepository.Games, GameRepository.Games.Where(g => game == null || g.GameName == game).SelectMany(g => g.ProductCategory)));
                 case "ProductOption":
                     return View("Edit" + type, OptRepository.Options.Where(p => p.ProductOptionId == Id).FirstOrDefault());
                 case "ProductGame":
@@ -76,6 +76,14 @@ namespace WowCarry.WebUI.Controllers
                     return View("Create" + type, SEORepository);
                 default: return View("Admin");
             }
+        }
+        [HttpPost]
+        public PartialViewResult OptionsList(string optionName,Guid prodId)
+        {
+            var selectedOption = ProdRepository.Products.Where(p => p.ProductId == prodId).Select(p => p.ProductToOption.Where(pto => pto.ProductOptions.OptionName == optionName).Select(o => o.ProductOptions).FirstOrDefault());
+            var result = new ProductOptionDetails(selectedOption.First());
+
+            return PartialView(result);
         }
     }
 }

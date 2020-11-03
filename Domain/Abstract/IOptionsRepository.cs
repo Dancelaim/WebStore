@@ -10,6 +10,6 @@ namespace WowCarry.Domain.Abstract
 {
     public interface IOptionsRepository
     {
-        IEnumerable<ProductOption> Options { get; }
+        IEnumerable<ProductOptions> Options { get; }
     }
 }

@@ -88,14 +88,12 @@
     <Compile Include="Concrete\EFHtmlBlockRepository.cs" />
     <Compile Include="Concrete\EFRealmRepository.cs" />
     <Compile Include="Concrete\EFProductRepository.cs" />
+    <Compile Include="Entities\ProductOptionDetails.cs" />
     <Compile Include="Entities\ProductDetails.cs" />
     <Compile Include="Entities\HtmlBlocks.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\HtmlBlocksChildren.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\OptionParams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\OrderDetails.cs" />
@@ -127,7 +125,10 @@
     <Compile Include="Entities\ProductGame.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\ProductOption.cs">
+    <Compile Include="Entities\ProductOptionParams.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\ProductOptions.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ProductPrice.cs">
@@ -143,6 +144,12 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\SEO.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TemplateOptions.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\TempOptionParams.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

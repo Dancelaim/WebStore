@@ -9,7 +9,7 @@
         <EntityTypeShape EntityType="WowCarryModel.ProductGame" Width="1.5" PointX="10" PointY="2.125" IsExpanded="true" />
         <EntityTypeShape EntityType="WowCarryModel.ProductPrice" Width="1.5" PointX="16.125" PointY="5.5" IsExpanded="true" />
         <AssociationConnector Association="WowCarryModel.FK_ProductCategory_ProductGame" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductDescription" Width="2.625" PointX="13.5" PointY="8.5" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductDescription" Width="2.625" PointX="13.625" PointY="8.875" />
         <EntityTypeShape EntityType="WowCarryModel.ProductSubCategory" Width="1.5" PointX="13.625" PointY="0.5" />
         <AssociationConnector Association="WowCarryModel.FK__ProductCa__Produ__2B0A656D" />
         <EntityTypeShape EntityType="WowCarryModel.HtmlBlocks" Width="1.5" PointX="0.75" PointY="1.125" />
@@ -17,14 +17,10 @@
         <AssociationConnector Association="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" />
         <EntityTypeShape EntityType="WowCarryModel.Realms" Width="1.5" PointX="8" PointY="2.5" />
         <AssociationConnector Association="WowCarryModel.FK__Realms__ProductG__3E1D39E1" />
-        <EntityTypeShape EntityType="WowCarryModel.OptionParams" Width="1.5" PointX="19.875" PointY="3.25" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductOption" Width="1.5" PointX="18" PointY="3.25" />
-        <AssociationConnector Association="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" />
         <EntityTypeShape EntityType="WowCarryModel.SEO" Width="1.5" PointX="10" PointY="5.25" />
         <EntityTypeShape EntityType="WowCarryModel.ProductToOption" Width="1.5" PointX="16.125" PointY="3.25" />
         <AssociationConnector Association="WowCarryModel.FK__ProductCa__Categ__4F47C5E3" />
         <AssociationConnector Association="WowCarryModel.FK__ProductGa__GameS__4E53A1AA" />
-        <AssociationConnector Association="WowCarryModel.FK__ProductTo__Optio__540C7B00" />
         <AssociationConnector Association="WowCarryModel.FK__ProductSu__SubCa__503BEA1C" />
         <EntityTypeShape EntityType="WowCarryModel.Product" Width="1.5" PointX="13.625" PointY="3.25" />
         <AssociationConnector Association="WowCarryModel.FK__Product__Product__29221CFB" />
@@ -34,6 +30,13 @@
         <AssociationConnector Association="WowCarryModel.FK__ProductTo__Produ__5224328E" />
         <AssociationConnector Association="WowCarryModel.FK_ProductPrice_Product" />
         <AssociationConnector Association="WowCarryModel.FK_Products_ProductCategory" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductOptionParams" Width="2.125" PointX="20" PointY="3.125" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductOptions" Width="1.5" PointX="18.125" PointY="3.125" />
+        <AssociationConnector Association="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" />
+        <AssociationConnector Association="WowCarryModel.FK__ProductTo__Optio__540C7B00" />
+        <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="1.75" PointY="5.375" />
+        <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="3.625" PointY="5.375" />
+        <AssociationConnector Association="WowCarryModel.FK__TempOptio__TempO__12FDD1B2" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
