@@ -33,10 +33,12 @@ namespace WowCarry.Domain.Entities
         public virtual DbSet<HtmlBlocks> HtmlBlocks { get; set; }
         public virtual DbSet<HtmlBlocksChildren> HtmlBlocksChildren { get; set; }
         public virtual DbSet<Realms> Realms { get; set; }
-        public virtual DbSet<OptionParams> OptionParams { get; set; }
-        public virtual DbSet<ProductOption> ProductOption { get; set; }
         public virtual DbSet<SEO> SEO { get; set; }
         public virtual DbSet<ProductToOption> ProductToOption { get; set; }
         public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<ProductOptionParams> ProductOptionParams { get; set; }
+        public virtual DbSet<ProductOptions> ProductOptions { get; set; }
+        public virtual DbSet<TemplateOptions> TemplateOptions { get; set; }
+        public virtual DbSet<TempOptionParams> TempOptionParams { get; set; }
     }
 }

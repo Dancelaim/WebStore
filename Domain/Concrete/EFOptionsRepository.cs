@@ -12,6 +12,6 @@ namespace WowCarry.Domain.Concrete
     public class EFOptionsRepository : IOptionsRepository
     {
         WowCarryEntities context = new WowCarryEntities();
-        public IEnumerable<ProductOption> Options => context.ProductOption;
+        public IEnumerable<ProductOptions> Options => context.ProductOptions;
     }
 }

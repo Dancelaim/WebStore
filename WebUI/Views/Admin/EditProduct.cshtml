@@ -18,17 +18,17 @@
     <div class="tab1 active-tab">
         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => !p.PropertyName.ToLower().Contains("description") & !p.PropertyName.ToLower().Contains("option")))
         {
-            if (property.PropertyName != "ProductId" && property.PropertyName != "productGames")
+            if (property.PropertyName != "ProductId" && property.PropertyName != "GamesList" && property.PropertyName != "CategoriesList")
             {
                 <div class="input-block">
                     <label>@(property.DisplayName ?? property.PropertyName):</label>
                     @if (property.PropertyName.Contains("ProductGameName"))
                     {
-                        @Html.DropDownList("Game Name", Model.productGames)
+                        @Html.DropDownList("Game Name", Model.GamesList)
                     }
                     else if (property.PropertyName.Contains("ProductCategoryName"))
                     {
-                        @Html.DropDownList("Category Name", Model.productCategories)
+                        @Html.DropDownList("Category Name", Model.CategoriesList)
                     }
                     else
                     {
@@ -57,9 +57,11 @@
     <div class="tab3">
         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("option")))
         {
-            {
-                <label>@(property.DisplayName ?? property.PropertyName):</label>
-            }
+            <label>@(property.DisplayName ?? property.PropertyName):</label>
+            @Html.DropDownList("Category Name", Model.OptionsList)
+            <div id="OptionBlock">
+
+            </div>
         }
     </div>
 </div>
@@ -100,6 +102,26 @@
                     $("#tab3").addClass("active-title");
                     break;
             }
+        })
+    });
+    $(document).ready(function () {
+        $("#Category_Name").change(function () {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("OptionsList")',
+                dataType: 'json',
+                data: {
+                    optionName: $("#Category_Name").val(),
+                    prodId: $("#ProductId").val()
+                        },
+                success: function (data) {
+                    $("#OptionBlock").html(data);
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve options.' + ex);
+                }
+            });
+            return false;
         })
     });
 </script>

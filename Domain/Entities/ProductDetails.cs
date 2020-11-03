@@ -14,9 +14,11 @@ namespace WowCarry.Domain.Entities
     {
         Product product { get; set; }
         IEnumerable<string> productGameNames { get; set; }
-        public SelectList productGames { get { return new SelectList(productGameNames, product.ProductGame.GameName);} }
+        public SelectList GamesList { get { return new SelectList(productGameNames, product.ProductGame.GameName);} }
         IEnumerable<string> productCategoryNames { get; set; }
-        public SelectList productCategories { get { return new SelectList(productCategoryNames, product.ProductCategory.ProductCategoryName); } }
+        public SelectList CategoriesList { get { return new SelectList(productCategoryNames, product.ProductCategory.ProductCategoryName); } }
+        IEnumerable<ProductOptions> ProductOptions { get { return product.ProductToOption.Where(p => p.ProductId == product.ProductId).Select(o => o.ProductOptions); } }
+        public SelectList OptionsList { get { return new SelectList(ProductOptions, "Select Option"); } }
 
         public Guid ProductId { get {return product.ProductId;}}
 
@@ -28,6 +30,7 @@ namespace WowCarry.Domain.Entities
         public bool InStock { get { return product.InStock; } }
 
         public bool PreOrder { get { return product.PreOrder; } }
+        public bool ProductEnabled { get { return product.ProductEnabled; } }
 
         [Display(Name = "Product Quantity")]
         public int ProductQuantity { get { return (int)product.ProductQuantity; } }
@@ -53,15 +56,13 @@ namespace WowCarry.Domain.Entities
         public string SubDescriptionTitle1 { get { return product.ProductDescription.SubDescriptionTitle1; } }
         public string SubDescription1 { get { return product.ProductDescription.SubDescription1; } }
         public string SubDescriptionTitle2 { get { return product.ProductDescription.SubDescriptionTitle2; } }
-        public string SubDescription2 { get { return product.ProductDescription.SubDescription1; } }
+        public string SubDescription2 { get { return product.ProductDescription.SubDescription2; } }
         public string SubDescriptionTitle3 { get { return product.ProductDescription.SubDescriptionTitle3; } }
-        public string SubDescription3 { get { return product.ProductDescription.SubDescription1; } }
+        public string SubDescription3 { get { return product.ProductDescription.SubDescription3; } }
         public string SubDescriptionTitle4 { get { return product.ProductDescription.SubDescriptionTitle4; } }
-        public string SubDescription4 { get { return product.ProductDescription.SubDescription1; } }
+        public string SubDescription4 { get { return product.ProductDescription.SubDescription4; } }
         public string SubDescriptionTitle5 { get { return product.ProductDescription.SubDescriptionTitle5; } }
-        public string SubDescription5 { get { return product.ProductDescription.SubDescription1; } }
-
-        public IEnumerable<ProductOption> ProductOption { get { return product.ProductToOption.Where(p=>p.ProductId == product.ProductId).Select(o=>o.ProductOption); } }
+        public string SubDescription5 { get { return product.ProductDescription.SubDescription5; } }
 
         public ProductDetails (Product prod, IEnumerable<ProductGame> games, IEnumerable<ProductCategory> categories)
         {

@@ -12,7 +12,7 @@ namespace WowCarry.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class OptionParams
+    public partial class ProductOptionParams
     {
         public System.Guid OptionParamsId { get; set; }
         public string ParamName { get; set; }
@@ -21,6 +21,6 @@ namespace WowCarry.Domain.Entities
         public Nullable<System.Guid> ProductOptionId { get; set; }
         public string Sale { get; set; }
     
-        public virtual ProductOption ProductOption { get; set; }
+        public virtual ProductOptions ProductOptions { get; set; }
     }
 }

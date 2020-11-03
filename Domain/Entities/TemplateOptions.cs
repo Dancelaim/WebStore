@@ -12,22 +12,19 @@ namespace WowCarry.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ProductOption
+    public partial class TemplateOptions
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public ProductOption()
+        public TemplateOptions()
         {
-            this.OptionParams = new HashSet<OptionParams>();
-            this.ProductToOption = new HashSet<ProductToOption>();
+            this.TempOptionParams = new HashSet<TempOptionParams>();
         }
     
-        public System.Guid ProductOptionId { get; set; }
-        public string OptionName { get; set; }
-        public string OptionType { get; set; }
+        public System.Guid TempOptionId { get; set; }
+        public string TempOptionName { get; set; }
+        public string TempOptionType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OptionParams> OptionParams { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductToOption> ProductToOption { get; set; }
+        public virtual ICollection<TempOptionParams> TempOptionParams { get; set; }
     }
 }
