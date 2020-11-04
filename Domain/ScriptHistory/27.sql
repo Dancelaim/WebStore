@@ -1,53 +1,19 @@
 ﻿exec Check_db_Version 27
 
-EXEC sp_rename 'WowCarry.dbo.Options', 'ProductOptions'
-EXEC sp_rename 'WowCarry.dbo.OptionParams', 'ProductOptionParams'
-
-
-USE [WowCarry]
-GO
-
-/****** Object:  Table [dbo].[ProductOptions]    Script Date: 03.11.2020 17:34:36 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[TemplateOptions](
-	[TempOptionId] [uniqueidentifier] NOT NULL,
-	[TempOptionName] [nchar](50) NULL,
-	[TempOptionType] [nchar](10) NULL,
- CONSTRAINT [PK_TempOption] PRIMARY KEY CLUSTERED 
-(
-	[TempOptionId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-
-/****** Object:  Table [dbo].[ProductOptionParams]    Script Date: 03.11.2020 17:34:42 ******/
-SET ANSI_NULLS ON
-GO
-
-SET QUOTED_IDENTIFIER ON
-GO
-
-CREATE TABLE [dbo].[TempOptionParams](
-	[ParamsId] [uniqueidentifier] NOT NULL,
-	[ParamName] [nvarchar](50) NULL,
-	[ParamTooltip] [nvarchar](255) NULL,
-	[ParamPrice] [float] NULL,
-	[TempOptionId] [uniqueidentifier] NULL FOREIGN KEY REFERENCES [TemplateOptions](TempOptionId),
-	[OptionSale] [nvarchar](50) NULL,
- CONSTRAINT [PK_Params] PRIMARY KEY CLUSTERED 
-(
-	[ParamsId] ASC
-)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
-) ON [PRIMARY]
-GO
-GO
-
-
-
+EXEC sp_rename 'FK__HtmlBlock__SiteB__3E1D39E1', 'FK__HtmlBlocksChildren_HtmlBlocks', 'OBJECT'
+EXEC sp_rename 'FK__OptionPar__Produ__4D5F7D71', 'FK__OptionParams__ProductOption', 'OBJECT'
+EXEC sp_rename 'FK__Product__Product__29221CFB', 'FK__Product__ProductGame', 'OBJECT'
+EXEC sp_rename 'FK__Product__Product__2A164134', 'FK__Product__ProductSubCategory', 'OBJECT'
+EXEC sp_rename 'FK__Product__Product__65370702', 'FK__Product__SEO', 'OBJECT'
+EXEC sp_rename 'FK__Product__Product__6FE99F9F', 'FK__Product__ProductDescription', 'OBJECT'
+EXEC sp_rename 'FK__ProductCa__Categ__69FBBC1F','FK__ProductCategory__SEO','OBJECT'
+EXEC sp_rename 'FK__ProductCa__Produ__2B0A656D','FK__ProductCategory__ProductSubCategory','OBJECT'
+EXEC sp_rename 'FK__ProductGa__GameS__690797E6','FK__ProductGame__SEO','OBJECT'
+EXEC sp_rename 'FK__ProductOp__Optio__540C7B00','FK__ProductOption__OptionParams','OBJECT'
+EXEC sp_rename 'FK__ProductSu__SubCa__6AEFE058','FK__ProductSubCategory','OBJECT'
+EXEC sp_rename 'FK__ProductTo__Optio__6166761E','FK__ProductToOption__ProductOption','OBJECT'
+EXEC sp_rename 'FK__ProductTo__Produ__681373AD','FK__ProductToOption__Product','OBJECT'
+EXEC sp_rename 'FK__Realms__ProductG__51300E55','FK__Realms__ProductGame','OBJECT'
+EXEC sp_rename 'FK__TempOptio__TempO__7755B73D','FK__TempOptionParams__TemplateOptions','OBJECT'
 
 exec Update_db_Version 27
