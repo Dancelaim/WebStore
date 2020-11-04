@@ -58,7 +58,7 @@
         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("option")))
         {
             <label>@(property.DisplayName ?? property.PropertyName):</label>
-            @Html.DropDownList("Category Name", Model.OptionsList)
+            @Html.DropDownList("Option Name", Model.OptionsList)
             <div id="OptionBlock">
 
             </div>
@@ -105,13 +105,13 @@
         })
     });
     $(document).ready(function () {
-        $("#Category_Name").change(function () {
+        $("#Option_Name").change(function () {
             $.ajax({
+                cache: false,
                 type: 'POST',
                 url: '@Url.Action("OptionsList")',
-                dataType: 'json',
                 data: {
-                    optionName: $("#Category_Name").val(),
+                    optionName: $("#Option_Name").val(),
                     prodId: $("#ProductId").val()
                         },
                 success: function (data) {

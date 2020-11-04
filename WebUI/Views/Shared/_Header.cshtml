@@ -94,7 +94,6 @@
         <script>
             $(document).on("click", ".remove_block button", function () {
                 var prodId = $(this).closest('.cart-block').find('input').val();
-                console.log("Pause");
                 $.ajax({
                     cache: false,
                     type: "POST",

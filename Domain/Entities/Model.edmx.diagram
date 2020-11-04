@@ -18,7 +18,6 @@
         <EntityTypeShape EntityType="WowCarryModel.Realms" Width="1.5" PointX="8" PointY="2.5" />
         <AssociationConnector Association="WowCarryModel.FK__Realms__ProductG__3E1D39E1" />
         <EntityTypeShape EntityType="WowCarryModel.SEO" Width="1.5" PointX="10" PointY="5.25" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductToOption" Width="1.5" PointX="16.125" PointY="3.25" />
         <AssociationConnector Association="WowCarryModel.FK__ProductCa__Categ__4F47C5E3" />
         <AssociationConnector Association="WowCarryModel.FK__ProductGa__GameS__4E53A1AA" />
         <AssociationConnector Association="WowCarryModel.FK__ProductSu__SubCa__503BEA1C" />
@@ -27,16 +26,15 @@
         <AssociationConnector Association="WowCarryModel.FK__Product__Product__2A164134" />
         <AssociationConnector Association="WowCarryModel.FK__Product__Product__55009F39" />
         <AssociationConnector Association="WowCarryModel.FK__Product__Product__6FE99F9F" />
-        <AssociationConnector Association="WowCarryModel.FK__ProductTo__Produ__5224328E" />
         <AssociationConnector Association="WowCarryModel.FK_ProductPrice_Product" />
         <AssociationConnector Association="WowCarryModel.FK_Products_ProductCategory" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductOptionParams" Width="2.125" PointX="20" PointY="3.125" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductOptions" Width="1.5" PointX="18.125" PointY="3.125" />
-        <AssociationConnector Association="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" />
-        <AssociationConnector Association="WowCarryModel.FK__ProductTo__Optio__540C7B00" />
         <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="1.75" PointY="5.375" />
         <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="3.625" PointY="5.375" />
         <AssociationConnector Association="WowCarryModel.FK__TempOptio__TempO__12FDD1B2" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductOptionParams" Width="1.5" PointX="18.125" PointY="1.75" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductOptions" Width="1.5" PointX="15.875" PointY="2" />
+        <AssociationConnector Association="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" />
+        <AssociationConnector Association="WowCarryModel.ProductToOption" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

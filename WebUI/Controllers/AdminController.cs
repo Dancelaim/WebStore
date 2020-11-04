@@ -80,10 +80,9 @@ namespace WowCarry.WebUI.Controllers
         [HttpPost]
         public PartialViewResult OptionsList(string optionName,Guid prodId)
         {
-            var selectedOption = ProdRepository.Products.Where(p => p.ProductId == prodId).Select(p => p.ProductToOption.Where(pto => pto.ProductOptions.OptionName == optionName).Select(o => o.ProductOptions).FirstOrDefault());
-            var result = new ProductOptionDetails(selectedOption.First());
+            var selectedOption = ProdRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault().ProductOptions.Where(o => o.OptionName == optionName).FirstOrDefault();
 
-            return PartialView(result);
+            return PartialView(new ProductOptionDetails(selectedOption));
         }
     }
 }

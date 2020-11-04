@@ -18,7 +18,7 @@ namespace WowCarry.Domain.Entities
         public ProductOptions()
         {
             this.ProductOptionParams = new HashSet<ProductOptionParams>();
-            this.ProductToOption = new HashSet<ProductToOption>();
+            this.Product = new HashSet<Product>();
         }
     
         public System.Guid ProductOptionId { get; set; }
@@ -28,6 +28,6 @@ namespace WowCarry.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductOptionParams> ProductOptionParams { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductToOption> ProductToOption { get; set; }
+        public virtual ICollection<Product> Product { get; set; }
     }
 }

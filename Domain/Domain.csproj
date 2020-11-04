@@ -137,9 +137,6 @@
     <Compile Include="Entities\ProductSubCategory.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\ProductToOption.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Realms.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

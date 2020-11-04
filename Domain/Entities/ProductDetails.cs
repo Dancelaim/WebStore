@@ -17,8 +17,8 @@ namespace WowCarry.Domain.Entities
         public SelectList GamesList { get { return new SelectList(productGameNames, product.ProductGame.GameName);} }
         IEnumerable<string> productCategoryNames { get; set; }
         public SelectList CategoriesList { get { return new SelectList(productCategoryNames, product.ProductCategory.ProductCategoryName); } }
-        IEnumerable<ProductOptions> ProductOptions { get { return product.ProductToOption.Where(p => p.ProductId == product.ProductId).Select(o => o.ProductOptions); } }
-        public SelectList OptionsList { get { return new SelectList(ProductOptions, "Select Option"); } }
+        IEnumerable<string> ProductOptionNames { get { return product.ProductOptions.Select(o=>o.OptionName); } }
+        public SelectList OptionsList { get { return new SelectList(ProductOptionNames, "Select Option"); } }
 
         public Guid ProductId { get {return product.ProductId;}}
 
@@ -30,6 +30,8 @@ namespace WowCarry.Domain.Entities
         public bool InStock { get { return product.InStock; } }
 
         public bool PreOrder { get { return product.PreOrder; } }
+
+        [Display(Name = "Status")]
         public bool ProductEnabled { get { return product.ProductEnabled; } }
 
         [Display(Name = "Product Quantity")]
@@ -40,9 +42,6 @@ namespace WowCarry.Domain.Entities
 
         [Display(Name = "Large Image")]
         public string ProductImage { get { return product.ProductImage; } }
-
-        [Display(Name = "Status")]
-        public bool ProductEnabled { get { return product.ProductEnabled; } }
         public int? ProductPriority { get { return product.ProductPriority; } }
         public string ProductCategoryName { get { return product.ProductCategory.ProductCategoryName; } }
         public string ProductSubCategoryName { get; set; }
