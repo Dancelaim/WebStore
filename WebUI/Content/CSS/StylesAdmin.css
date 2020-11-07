@@ -405,3 +405,30 @@ input[type="submit"]:hover {
   text-align: center;
   margin: 0 0 15px 0;
 }
+#OptionBlock input {
+  margin: 15px 0;
+}
+#OptionBlock .param {
+  padding: 20px 0;
+  position: relative;
+}
+#OptionBlock .param:before {
+  height: 1px;
+  opacity: 0.3;
+  background: #131313;
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  top: -1px;
+}
+#OptionBlock .param:after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  bottom: 0;
+  height: 1px;
+  opacity: 0.3;
+  background: #131313;
+}

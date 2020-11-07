@@ -6,7 +6,9 @@
     {
         foreach (var item in Model.ParamCollection)
         {
-            @Html.EditorFor(x=>item, new { @class = "form-control" })
+            <div class="param">
+            @Html.EditorFor(x=>item)
+            </div>
         }
     }
     else

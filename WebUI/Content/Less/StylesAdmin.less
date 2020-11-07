@@ -448,3 +448,36 @@ body {
     text-align: center;
     margin: 0 0 15px 0;
 }
+
+#OptionBlock {
+    input {
+        margin: 15px 0;
+    }
+
+    .param {
+        padding: 20px 0;
+        position: relative;
+
+            &:before {
+                height: 1px;
+                opacity: 0.3;
+                background: @color2;
+                content: '';
+                position: absolute;
+                left: -20px;
+                right: -20px;
+                top:-1px;
+            }
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            right: -20px;
+            bottom: 0;
+            height: 1px;
+            opacity: 0.3;
+            background: @color2;
+        }
+    }
+}
