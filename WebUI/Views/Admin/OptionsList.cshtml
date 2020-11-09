@@ -2,21 +2,36 @@
 
 @foreach (var property in ViewData.ModelMetadata.Properties)
 {
-    if (property.PropertyName == "ParamCollection")
-    {
-        foreach (var item in Model.ParamCollection)
+    
+        if (property.PropertyName == "ParamCollection")
         {
-            <div class="param">
-            @Html.EditorFor(x=>item)
+            <div class="4ParamsDiv">
+                @foreach (var item in Model.ParamCollection)
+                {
+                    
+                     <div class="paramField">
+                         <div>
+
+                             @Html.TextBox(item.Paramname, item.Paramname)
+                         </div>
+                         <div>
+                             @Html.TextBox(item.ParamTooltip, item.ParamTooltip)
+                         </div>
+                         <div>
+                             @Html.TextBox("Price", item.ParamPrice)
+                         </div>
+                         <div>
+                             @Html.TextBox(item.Sale, item.Sale)
+                         </div>
+                     </div>
+                 }
             </div>
         }
-    }
-    else
-    {
+        else
+        {
         <label>@(property.DisplayName ?? property.PropertyName):</label>
         @Html.Editor(property.PropertyName, new { @class = "form-control" })
-    }
-
-}
+        }
+ }
 
 
