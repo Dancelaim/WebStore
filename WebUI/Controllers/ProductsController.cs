@@ -16,22 +16,22 @@ namespace WowCarry.WebUI.Controllers
 {
     public class ProductsController : Controller
     {
-        private IProductRepository repository;
+        IEntityRepository EntityRepository;
         public int pageSize = 3;
-        public ProductsController(IProductRepository repo)
+        public ProductsController(IEntityRepository entityRepo)
         {
-            repository = repo;
+            EntityRepository = entityRepo;
         }
         public ViewResult List(string selectedGame, string categoryName,int page = 1)
         {
             if (!string.IsNullOrEmpty(selectedGame))
             {
-                Session["SelectedGame"] = repository.Products.Where(p => p.ProductGame.GameShortUrl == selectedGame).Select(p => p.ProductGame.GameName).FirstOrDefault();
+                Session["SelectedGame"] = EntityRepository.Products.Where(p => p.ProductGame.GameShortUrl == selectedGame).Select(p => p.ProductGame.GameName).FirstOrDefault();
             }
 
             ProductsListViewModel model = new ProductsListViewModel
             {
-                Products = repository.Products.Where(p=> categoryName == null || p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == selectedGame)
+                Products = EntityRepository.Products.Where(p=> categoryName == null || p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == selectedGame)
                 .OrderBy(p => p.ProductUpdateDate)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize),
@@ -39,7 +39,7 @@ namespace WowCarry.WebUI.Controllers
                 {
                     CurrentPage = page,
                     ItemsPerPage = pageSize,
-                    TotalItems = categoryName == null ? repository.Products.Count() : repository.Products.Where(p => p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == (string)Session["SelectedGame"]).Count()
+                    TotalItems = categoryName == null ? EntityRepository.Products.Count() : EntityRepository.Products.Where(p => p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == (string)Session["SelectedGame"]).Count()
                 },
                 CurrentCategory = categoryName
             };

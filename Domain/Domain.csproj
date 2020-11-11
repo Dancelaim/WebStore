@@ -74,20 +74,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\ISEORepository.cs" />
-    <Compile Include="Abstract\IOrderProcessor .cs" />
-    <Compile Include="Abstract\IOptionsRepository.cs" />
-    <Compile Include="Abstract\IGameRepository.cs" />
-    <Compile Include="Abstract\IRealmsRepository.cs" />
-    <Compile Include="Abstract\IHtmlBlockRepository.cs" />
-    <Compile Include="Abstract\IProductRepository.cs" />
-    <Compile Include="Concrete\EFSEORepository.cs" />
-    <Compile Include="Concrete\EFGameRepository.cs" />
-    <Compile Include="Concrete\EFOptionsRepository.cs" />
+    <Compile Include="Abstract\IEntityRepository.cs" />
+    <Compile Include="Abstract\IOrderProcessor.cs" />
+    <Compile Include="Concrete\EFEntityRepository.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
-    <Compile Include="Concrete\EFHtmlBlockRepository.cs" />
-    <Compile Include="Concrete\EFRealmRepository.cs" />
-    <Compile Include="Concrete\EFProductRepository.cs" />
     <Compile Include="Entities\ProductOptionDetails.cs" />
     <Compile Include="Entities\ProductDetails.cs" />
     <Compile Include="Entities\HtmlBlocks.cs">

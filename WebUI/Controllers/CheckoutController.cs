@@ -8,16 +8,12 @@ using System;
 namespace WowCarry.WebUI.Controllers
 {
     public  class CheckoutController : Controller
-    { 
-        private IProductRepository repository;
+    {
         private IOrderProcessor orderProcessor;
-        private IRealmsRepository realmRepository;
 
-        public CheckoutController(IProductRepository repo, IOrderProcessor processor, IRealmsRepository realmRepo)
+        public CheckoutController( IOrderProcessor processor)
         {
-            repository = repo;
             orderProcessor = processor;
-            realmRepository = realmRepo;
         }
         public ViewResult Checkout()
         {

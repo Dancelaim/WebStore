@@ -8,12 +8,12 @@ using System;
 namespace WowCarry.WebUI.Controllers
 {
     public  class CartController : Controller
-    { 
+    {
 
-        private IProductRepository repository;
-        public CartController(IProductRepository repo)
+        IEntityRepository EntityRepository;
+        public CartController(IEntityRepository EntityRep)
         {
-            repository = repo;
+            EntityRepository = EntityRep;
         }
         public PartialViewResult CartPopUp(Cart cart)
         {
@@ -22,7 +22,7 @@ namespace WowCarry.WebUI.Controllers
         [HttpPost]
         public ActionResult RemoveFromCart(Cart cart,Guid productId)
         {
-            Product product = repository.Products.FirstOrDefault(p => p.ProductId == productId);
+            Product product = EntityRepository.Products.FirstOrDefault(p => p.ProductId == productId);
 
             if (product != null)
             {

@@ -17,7 +17,7 @@ namespace WowCarry.UnitTests.Tests
         public void Can_Paginate()
         {
             // Организация (arrange)
-            Mock<IProductRepository> mock = new Mock<IProductRepository>();
+            Mock<IEntityRepository> mock = new Mock<IEntityRepository>();
 
             Guid testCat1 = new Guid();
             Guid testCat2 = new Guid();

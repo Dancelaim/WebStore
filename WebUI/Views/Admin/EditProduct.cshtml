@@ -18,7 +18,7 @@
     <div class="tab1 active-tab">
         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => !p.PropertyName.ToLower().Contains("description") & !p.PropertyName.ToLower().Contains("option")))
         {
-            if (property.PropertyName != "ProductId" && property.PropertyName != "GamesList" && property.PropertyName != "CategoriesList")
+            if (property.PropertyName != "ProductId" && property.PropertyName != "GamesList" && property.PropertyName != "CategoriesList" && property.PropertyName != "MetaTagTitleList")
             {
                 <div class="input-block">
                     <label>@(property.DisplayName ?? property.PropertyName):</label>
@@ -29,6 +29,10 @@
                     else if (property.PropertyName.Contains("ProductCategoryName"))
                     {
                         @Html.DropDownList("Category Name", Model.CategoriesList)
+                    }
+                    else if (property.PropertyName.Contains("MetaTagTitle"))
+                    {
+                        @Html.DropDownList("Meta tag title", Model.MetaTagTitleList)
                     }
                     else
                     {

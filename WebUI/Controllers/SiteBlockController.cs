@@ -11,11 +11,11 @@ namespace WebUI.Controllers
 {
     public class SiteBlockController : Controller
     {
-        private IHtmlBlockRepository repository;
+        IEntityRepository EntityRepository;
 
-        public SiteBlockController(IHtmlBlockRepository repo)
+        public SiteBlockController(IEntityRepository entityRepo)
         {
-            repository = repo;
+            EntityRepository = entityRepo;
         }
         // GET: SiteBlock
         public PartialViewResult SiteBlock(String currentGame = null)
@@ -25,8 +25,8 @@ namespace WebUI.Controllers
 
             SiteBlockViewModel SiteBlocks = new SiteBlockViewModel
             {
-                HtmlBlocks = repository.HtmlBlocks.Where(b => b.SitePage == (!string.IsNullOrEmpty(currentGame) ? currentGame : currentController)).OrderBy(s=>s.Order),
-                HtmlBlocksChildren = repository.HtmlBlocks.Where(b => b.SitePage == (!string.IsNullOrEmpty(currentGame) ? currentGame : currentController)).SelectMany(b => b.HtmlBlocksChildren).OrderBy(ch =>ch.ChildOrder)
+                HtmlBlocks = EntityRepository.HtmlBlocks.Where(b => b.SitePage == (!string.IsNullOrEmpty(currentGame) ? currentGame : currentController)).OrderBy(s=>s.Order),
+                HtmlBlocksChildren = EntityRepository.HtmlBlocks.Where(b => b.SitePage == (!string.IsNullOrEmpty(currentGame) ? currentGame : currentController)).SelectMany(b => b.HtmlBlocksChildren).OrderBy(ch =>ch.ChildOrder)
             };
             return PartialView(SiteBlocks);
         }

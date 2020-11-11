@@ -30,12 +30,7 @@ namespace WowCarry.WebUI.Infrastructure
 
         private void AddBindings()
         {
-            kernel.Bind<IProductRepository>().To<EFProductRepository>();
-            kernel.Bind<IHtmlBlockRepository>().To<EFHtmlBlockRepository>();
-            kernel.Bind<IRealmsRepository>().To<EFRealmsRepository>();
-            kernel.Bind<IOptionsRepository>().To<EFOptionsRepository>();
-            kernel.Bind<IGameRepository>().To<EFGameRepository>();
-            kernel.Bind<ISEORepository>().To<EFSEORepository>();
+            kernel.Bind<IEntityRepository>().To<EFEntityRepository>();
 
             EmailSettings emailSettings = new EmailSettings
             {

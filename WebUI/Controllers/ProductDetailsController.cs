@@ -15,20 +15,20 @@ namespace WowCarry.WebUI.Controllers
 {
     public class ProductDetailsController : Controller
     {
-        private IProductRepository repository;
-        public ProductDetailsController(IProductRepository repo)
+        IEntityRepository EntityRepository;
+        public ProductDetailsController(IEntityRepository entityRepo)
         {
-            repository = repo;
+            EntityRepository = entityRepo;
         }
         public ViewResult Details(string productUrl)
         {
-            Product product = repository.Products.Where(p => p.SEO.UrlKeyWord == productUrl).FirstOrDefault();
+            Product product = EntityRepository.Products.Where(p => p.SEO.UrlKeyWord == productUrl).FirstOrDefault();
             return View(product);
         }
         [HttpPost]
         public decimal AddToCart (Cart cart ,Guid? ProductId)
         {
-            Product product = repository.Products.Where(p => p.ProductId == ProductId).FirstOrDefault();
+            Product product = EntityRepository.Products.Where(p => p.ProductId == ProductId).FirstOrDefault();
             cart.AddItem(product);
 
             return cart.TotalQty();

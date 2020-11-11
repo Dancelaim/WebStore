@@ -15,10 +15,15 @@ namespace WowCarry.Domain.Entities
         Product product { get; set; }
         IEnumerable<string> productGameNames { get; set; }
         public SelectList GamesList { get { return new SelectList(productGameNames, product.ProductGame.GameName);} }
+
         IEnumerable<string> productCategoryNames { get; set; }
         public SelectList CategoriesList { get { return new SelectList(productCategoryNames, product.ProductCategory.ProductCategoryName); } }
+
         IEnumerable<string> ProductOptionNames { get { return product.ProductOptions.Select(o=>o.OptionName); } }
         public SelectList OptionsList { get { return new SelectList(ProductOptionNames, "Select Option"); } }
+
+        IEnumerable<string> MetaTagTitleNames { get; set; }
+        public SelectList MetaTagTitleList { get { return new SelectList(MetaTagTitleNames, product.SEO.MetaTagTitle ?? "Select Meta tag title from List"); } }
 
         public Guid ProductId { get {return product.ProductId;}}
 
@@ -46,15 +51,18 @@ namespace WowCarry.Domain.Entities
         [Display(Name = "Sort Order")]
         public int? ProductPriority { get { return product.ProductPriority; } }
 
+        [Required(ErrorMessage = "Game name is required")]
+        [Display(Name = "Game name")]
+        public string ProductGameName { get { return product.ProductGame.GameName; } }
+
         [Display(Name = "Category name")]
         public string ProductCategoryName { get { return product.ProductCategory.ProductCategoryName; } }
 
         [Display(Name = "SubCategory name")]
         public string ProductSubCategoryName { get; set; }
 
-        [Required(ErrorMessage = "Game name is required")]
-        [Display(Name = "Game name")]
-        public string ProductGameName { get { return product.ProductGame.GameName; } }
+        [Display(Name = "Meta tag title")]
+        public string MetaTagTitle { get { return product.SEO.MetaTagTitle; } }
 
         [Display(Name = "Price EU")]
         public decimal? ProductPriceEU { get { return product.ProductPrice.Where(p=>p.Region=="EU").Select(p=>p.Price).FirstOrDefault(); } }
@@ -101,11 +109,12 @@ namespace WowCarry.Domain.Entities
         [Display(Name = "Product SubDescription 5")]
         public string SubDescription5 { get { return product.ProductDescription.SubDescription5; } }
 
-        public ProductDetails (Product prod, IEnumerable<ProductGame> games, IEnumerable<ProductCategory> categories)
+        public ProductDetails (Product prod, IEnumerable<ProductGame> games, IEnumerable<ProductCategory> categories, IEnumerable<SEO> seos)
         {
             product = prod;
             productGameNames = games.Select(g=>g.GameName);
             productCategoryNames = categories.Select(p=>p.ProductCategoryName);
+            MetaTagTitleNames = seos.Select(s => s.MetaTagTitle);
         }
 
     }
