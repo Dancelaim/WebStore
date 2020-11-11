@@ -57,10 +57,10 @@
     <div class="tab3">
         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("option")))
         {
-        <div class="input-block">
-            <label>@(property.DisplayName ?? property.PropertyName):</label>
-            @Html.DropDownList("Option Name", Model.OptionsList)
-        </div>
+            <div class="input-block">
+                <label>@(property.DisplayName ?? property.PropertyName):</label>
+                @Html.DropDownList("Option Name", Model.OptionsList)
+            </div>
             <div id="OptionBlock">
 
             </div>
@@ -106,7 +106,7 @@
             }
         })
     });
-    $(document).ready(function () {
+    @*$(document).ready(function () {
         $("#Option_Name").change(function () {
             $.ajax({
                 cache: false,
@@ -125,7 +125,7 @@
             });
             return false;
         })
-    });
+    });*@
 
     $(document).ready(function () {
         $('select').selectpicker({

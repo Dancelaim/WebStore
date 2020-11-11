@@ -5,13 +5,20 @@
     
         if (property.PropertyName == "ParamCollection")
         {
-            <div class="4ParamsDiv">
+            <div class="param-list">
+
+                <div class="param-titles">
+                    <div>Name</div>
+                    <div>Tooltip</div>
+                    <div>Price</div>
+                    <div>Sale</div>
+                </div>
+
                 @foreach (var item in Model.ParamCollection)
                 {
                     
-                     <div class="paramField">
+                     <div class="param-fields">
                          <div>
-
                              @Html.TextBox(item.Paramname, item.Paramname)
                          </div>
                          <div>

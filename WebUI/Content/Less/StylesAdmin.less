@@ -481,3 +481,61 @@ body {
         }
     }
 }
+
+.param-list {
+    position: relative;
+    width: 100%;
+
+    .param-titles {
+        position: relative;
+        width: 100%;
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            right: -20px;
+            bottom: 0;
+            height: 1px;
+            opacity: 0.3;
+            background: #131313;
+        }
+
+        div {
+            font-weight: bold;
+            text-align: center;
+            display: inline-block;
+            width: 24%;
+            vertical-align: top;
+            padding: 20px 10px;
+            box-sizing: border-box;
+        }
+    }
+
+    .param-fields {
+        position: relative;
+        width: 100%;
+
+        &:after {
+            content: '';
+            position: absolute;
+            left: -20px;
+            right: -20px;
+            bottom: 0;
+            height: 1px;
+            opacity: 0.3;
+            background: #131313;
+        }
+
+        div {
+            font-weight: bold;
+            text-align: center;
+            display: inline-block;
+            width: 24%;
+            vertical-align: top;
+            padding: 20px 10px;
+            box-sizing: border-box;
+            position: relative;
+        }
+    }
+}

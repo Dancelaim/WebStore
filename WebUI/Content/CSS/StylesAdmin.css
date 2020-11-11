@@ -432,3 +432,54 @@ input[type="submit"]:hover {
   opacity: 0.3;
   background: #131313;
 }
+.param-list {
+  position: relative;
+  width: 100%;
+}
+.param-list .param-titles {
+  position: relative;
+  width: 100%;
+}
+.param-list .param-titles:after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  bottom: 0;
+  height: 1px;
+  opacity: 0.3;
+  background: #131313;
+}
+.param-list .param-titles div {
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  width: 24%;
+  vertical-align: top;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+.param-list .param-fields {
+  position: relative;
+  width: 100%;
+}
+.param-list .param-fields:after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  bottom: 0;
+  height: 1px;
+  opacity: 0.3;
+  background: #131313;
+}
+.param-list .param-fields div {
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  width: 24%;
+  vertical-align: top;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  position: relative;
+}
