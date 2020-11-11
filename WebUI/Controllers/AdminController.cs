@@ -69,7 +69,6 @@ namespace WowCarry.WebUI.Controllers
                 default: return View("Admin");
             }
         }
-        [HttpPost]
         public PartialViewResult OptionsList(string optionName,Guid prodId)
         {
             var selectedOption = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault().ProductOptions.Where(o => o.OptionName == optionName).FirstOrDefault();

@@ -14,18 +14,20 @@ namespace WowCarry.Domain.Entities
     {
         Product product { get; set; }
         IEnumerable<string> productGameNames { get; set; }
-        public SelectList GamesList { get { return new SelectList(productGameNames, product.ProductGame.GameName);} }
+        public SelectList GamesList { get { return new SelectList(productGameNames, product.ProductGame.GameName); } }
 
         IEnumerable<string> productCategoryNames { get; set; }
         public SelectList CategoriesList { get { return new SelectList(productCategoryNames, product.ProductCategory.ProductCategoryName); } }
 
-        IEnumerable<string> ProductOptionNames { get { return product.ProductOptions.Select(o=>o.OptionName); } }
-        public SelectList OptionsList { get { return new SelectList(ProductOptionNames, "Select Option"); } }
+        //IEnumerable<string> ProductOptionNames { get { return product.ProductOptions.Select(o=>o.OptionName); } }
+        //public SelectList OptionsList { get { return new SelectList(ProductOptionNames, "Select Option"); } }
 
         IEnumerable<string> MetaTagTitleNames { get; set; }
         public SelectList MetaTagTitleList { get { return new SelectList(MetaTagTitleNames, product.SEO.MetaTagTitle ?? "Select Meta tag title from List"); } }
 
-        public Guid ProductId { get {return product.ProductId;}}
+        public Guid ProductId { get { return product.ProductId; } }
+
+        public ICollection<ProductOptions> Options => product.ProductOptions;
 
         [Required(ErrorMessage = "Product Name is required")]
         [Display(Name = "Product Name")]

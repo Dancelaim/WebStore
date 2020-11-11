@@ -59,14 +59,13 @@
         }
     </div>
     <div class="tab3">
-        @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("option")))
+        @foreach(var item in Model.Options)
         {
-            <div class="input-block">
-                <label>@(property.DisplayName ?? property.PropertyName):</label>
-                @Html.DropDownList("Option Name", Model.OptionsList)
+            <div id="@item.OptionName">
+                @item.OptionName
             </div>
-            <div id="OptionBlock">
-
+            <div class="@item.OptionName">
+                @Html.Action("OptionsList", new { optionName = item.OptionName, prodId = Model.ProductId })
             </div>
         }
     </div>
