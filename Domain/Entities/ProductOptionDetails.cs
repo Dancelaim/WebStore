@@ -20,8 +20,14 @@ namespace WowCarry.Domain.Entities
         ProductOptions ProdOpt { get; set; }
         Product Product { get; set; }
 
+
+        [Display(Name = "Name")]
         public string OptionName { get => ProdOpt.OptionName; }
+
+        [Display(Name = "Type")]
         public string OptionType { get => ProdOpt.OptionType; }
+
+        [Display(Name = "Parent")]
         public string OptionParent { get; set; }
         IEnumerable<string> OptionParamNames { get { return Product.ProductOptions.Where(o=>o.ProductOptionId!= ProdOpt.ProductOptionId).SelectMany(p=>p.ProductOptionParams).Select(pr=>pr.ParamName); } }
         public SelectList ParamList { get { return new SelectList(OptionParamNames);} } //TO DO : ProdOpt.Parent.parentName ?? string.Empty

@@ -483,3 +483,44 @@ input[type="submit"]:hover {
   box-sizing: border-box;
   position: relative;
 }
+.options-block {
+  position: relative;
+  width: 100%;
+}
+.options-block:after {
+  content: '';
+  position: absolute;
+  left: -20px;
+  right: -20px;
+  bottom: 0;
+  height: 1px;
+  opacity: 0.3;
+  background: #131313;
+}
+.options-block .options-body {
+  display: none;
+}
+.options-block .options-head {
+  position: relative;
+  font-weight: bold;
+  padding: 10px 110px 10px 10px;
+  text-transform: capitalize;
+}
+.options-block .options-head:after {
+  transition: all 0.3s ease;
+  border: 0 none;
+  content: '\f054';
+  transform: rotate(90deg);
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  text-decoration: inherit;
+  font-size: 16px;
+  color: #131313;
+  display: inline-block;
+  position: absolute;
+  right: 50px;
+}
+.options-block.active_block .options-head:after {
+  transform: rotate(-90deg);
+}
