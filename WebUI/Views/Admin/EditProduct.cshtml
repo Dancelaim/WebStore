@@ -45,8 +45,8 @@
     <div class="tab2">
         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("description")))
         {
-        <div class="description-block">
-            <label>@(property.DisplayName ?? property.PropertyName):</label>
+            <div class="description-block">
+                <label>@(property.DisplayName ?? property.PropertyName):</label>
                 @if (!property.PropertyName.Contains("Title"))
                 {
                     @Html.TextArea(property.PropertyName, null, new { @class = "textarea-desc", rows = 3 })
@@ -55,20 +55,24 @@
                 {
                     @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
                 }
-        </div>
+            </div>
         }
     </div>
     <div class="tab3">
-        @foreach(var item in Model.Options)
-        {
-            <div id="@item.OptionName">
-                @item.OptionName
-            </div>
-            <div class="@item.OptionName">
-                @Html.Action("OptionsList", new { optionName = item.OptionName, prodId = Model.ProductId })
-            </div>
-        }
-    </div>
+
+        @foreach (var item in Model.Options)
+            {
+                <div class="options-block">
+                    <div class="options-head">
+                        @item.OptionName
+                    </div>
+                    <div class="options-body">
+                        @Html.Action("OptionsList", new { optionName = item.OptionName, prodId = Model.ProductId })
+                    </div>
+                </div>
+             }
+
+     </div>
 </div>
 </div>
     <div class="panel-footer">
@@ -135,4 +139,16 @@
             liveSearch: true
         });
     });
+
+    ! function (i) {
+        var o, n;
+        i(".options-head").on("click", function () {
+            o = i(this).parents(".options-block"), n = o.find(".options-body"),
+                o.hasClass("active_block") ? (o.removeClass("active_block"),
+                    n.slideUp()) : (o.addClass("active_block"), n.stop(!0, !0).slideDown(),
+                        o.siblings(".active_block").removeClass("active_block").children(
+                            ".options-body").stop(!0, !0).slideUp())
+        })
+    }(jQuery);
+
 </script>

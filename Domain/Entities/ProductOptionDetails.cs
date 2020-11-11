@@ -17,8 +17,14 @@ namespace WowCarry.Domain.Entities
             ProdOpt = option;
         }
         ProductOptions ProdOpt { get; set; }
+
+        [Display(Name = "Name")]
         public string OptionName { get => ProdOpt.OptionName; }
+
+        [Display(Name = "Type")]
         public string OptionType { get => ProdOpt.OptionType; }
+
+        [Display(Name = "Parent")]
         public string OptionParent { get; set; }
 
         public List<ProductOptionParamsDetails> ParamCollection
