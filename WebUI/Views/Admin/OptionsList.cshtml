@@ -2,43 +2,51 @@
 
 @foreach (var property in ViewData.ModelMetadata.Properties)
 {
-    
-        if (property.PropertyName == "ParamCollection")
-        {
-            <div class="param-list">
 
-                <div class="param-titles">
-                    <div>Name</div>
-                    <div>Tooltip</div>
-                    <div>Price</div>
-                    <div>Sale</div>
-                </div>
+    if (property.PropertyName == "ParamCollection")
+    {
+        <div class="param-list">
 
-                @foreach (var item in Model.ParamCollection)
-                {
-                    
-                     <div class="param-fields">
-                         <div>
-                             @Html.TextBox(item.Paramname, item.Paramname)
-                         </div>
-                         <div>
-                             @Html.TextBox(item.ParamTooltip, item.ParamTooltip)
-                         </div>
-                         <div>
-                             @Html.TextBox("Price", item.ParamPrice)
-                         </div>
-                         <div>
-                             @Html.TextBox(item.Sale, item.Sale)
-                         </div>
-                     </div>
-                 }
+            <div class="param-titles">
+                <div>Name</div>
+                <div>Tooltip</div>
+                <div>Price</div>
+                <div>Sale</div>
             </div>
-        }
-        else
+
+            @foreach (var item in Model.ParamCollection)
+            {
+
+                <div class="param-fields">
+                    <div>
+                        @Html.TextBox(item.Paramname, item.Paramname)
+                    </div>
+                    <div>
+                        @Html.TextBox(item.ParamTooltip, item.ParamTooltip)
+                    </div>
+                    <div>
+                        @Html.TextBox("Price", item.ParamPrice)
+                    </div>
+                    <div>
+                        @Html.TextBox(item.Sale, item.Sale)
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        if (property.PropertyName == "OptionParent")
         {
-        <label>@(property.DisplayName ?? property.PropertyName):</label>
-        @Html.Editor(property.PropertyName, new { @class = "form-control" })
+            <label>@(property.DisplayName ?? property.PropertyName):</label>
+            @Html.DropDownList("Option Parameter Parent", Model.ParamList, Model.ParamList.SelectedValue != null ? Model.ParamList.SelectedValue.ToString() : "Empty");
         }
- }
+        else if(property.PropertyName != "ParamList")
+        {
+            <label>@(property.DisplayName ?? property.PropertyName):</label>
+            @Html.Editor(property.PropertyName, new { @class = "form-control" })
+        }
+    }
+}
 
 

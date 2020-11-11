@@ -72,8 +72,8 @@ namespace WowCarry.WebUI.Controllers
         public PartialViewResult OptionsList(string optionName,Guid prodId)
         {
             var selectedOption = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault().ProductOptions.Where(o => o.OptionName == optionName).FirstOrDefault();
-
-            return PartialView(new ProductOptionDetails(selectedOption));
+            var selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
+            return PartialView(new ProductOptionDetails(selectedOption, selectedProduct));
         }
     }
 }
