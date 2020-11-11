@@ -71,7 +71,11 @@
                     </div>
                 </div>
              }
-
+        <div class="newOptions">
+            <div class="title">Add New Option</div>
+            <div class="option-list">Vipadashka</div>
+            <div class="option-add"><span>Add</span></div>
+        </div>
      </div>
 </div>
 </div>
@@ -89,8 +93,6 @@
     $(document).ready(function () {
         $(".tab-title").on("click", function () {
             var TabName = $(this).attr("id");
-
-
             switch (TabName) {
                 case "tab1":
                     $(".tab2, .tab3").removeClass("active-tab");
@@ -113,6 +115,20 @@
             }
         })
     });
+    $(".options-head").on("click", function () {
+        var parentTab = $(this).parents(".options-block");
+        bodyTab = parentTab.find(".options-body");
+
+        if (parentTab.hasClass("active_block")) {
+            parentTab.removeClass("active_block");
+            bodyTab.slideUp();
+        } else {
+            parentTab.addClass("active_block");
+            bodyTab.slideDown();
+        }
+
+    })
+
     @*$(document).ready(function () {
         $("#Option_Name").change(function () {
             $.ajax({
@@ -139,16 +155,5 @@
             liveSearch: true
         });
     });
-
-    ! function (i) {
-        var o, n;
-        i(".options-head").on("click", function () {
-            o = i(this).parents(".options-block"), n = o.find(".options-body"),
-                o.hasClass("active_block") ? (o.removeClass("active_block"),
-                    n.slideUp()) : (o.addClass("active_block"), n.stop(!0, !0).slideDown(),
-                        o.siblings(".active_block").removeClass("active_block").children(
-                            ".options-body").stop(!0, !0).slideUp())
-        })
-    }(jQuery);
 
 </script>

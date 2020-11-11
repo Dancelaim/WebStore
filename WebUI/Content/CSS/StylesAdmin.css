@@ -443,8 +443,8 @@ input[type="submit"]:hover {
 .param-list .param-titles:after {
   content: '';
   position: absolute;
-  left: -20px;
-  right: -20px;
+  left: 0;
+  right: 0;
   bottom: 0;
   height: 1px;
   opacity: 0.3;
@@ -466,8 +466,8 @@ input[type="submit"]:hover {
 .param-list .param-fields:after {
   content: '';
   position: absolute;
-  left: -20px;
-  right: -20px;
+  left: 0;
+  right: 0;
   bottom: 0;
   height: 1px;
   opacity: 0.3;
@@ -485,13 +485,16 @@ input[type="submit"]:hover {
 }
 .options-block {
   position: relative;
-  width: 100%;
+  width: 48%;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 20px;
 }
 .options-block:after {
   content: '';
   position: absolute;
-  left: -20px;
-  right: -20px;
+  left: 0;
+  right: 0;
   bottom: 0;
   height: 1px;
   opacity: 0.3;
@@ -499,6 +502,13 @@ input[type="submit"]:hover {
 }
 .options-block .options-body {
   display: none;
+}
+.options-block .options-body input {
+  margin-bottom: 20px;
+}
+.options-block .options-body .param-fields input {
+  margin-bottom: 0;
+  width: 100%;
 }
 .options-block .options-head {
   position: relative;
@@ -523,4 +533,38 @@ input[type="submit"]:hover {
 }
 .options-block.active_block .options-head:after {
   transform: rotate(-90deg);
+}
+.newOptions {
+  margin: 20px 0;
+}
+.newOptions .title {
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.newOptions .option-list {
+  width: 300px;
+  padding: 10px;
+  border-radius: 25px 0 0 25px;
+  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
+  display: inline-block;
+}
+.newOptions .option-add {
+  display: inline-block;
+  text-align: center;
+  margin-left: -4px;
+}
+.newOptions .option-add span {
+  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
+  padding: 10px 20px;
+  font-weight: bold;
+  display: inline-block;
+  background: #e5f6fe;
+  color: #131313;
+  cursor: pointer;
+  border-radius: 0 25px 25px 0;
+  transition: all 0.4s ease;
+}
+.newOptions .option-add span:hover {
+  box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.5);
 }
