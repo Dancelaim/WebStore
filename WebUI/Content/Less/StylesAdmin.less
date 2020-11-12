@@ -501,11 +501,11 @@ body {
             background: #131313;
         }
 
-        div {
+        > div {
             font-weight: bold;
             text-align: center;
             display: inline-block;
-            width: 24%;
+            width: 19%;
             vertical-align: top;
             padding: 20px 10px;
             box-sizing: border-box;
@@ -527,11 +527,11 @@ body {
             background: #131313;
         }
 
-        div {
+        > div {
             font-weight: bold;
             text-align: center;
             display: inline-block;
-            width: 24%;
+            width: 19%;
             vertical-align: top;
             padding: 20px 10px;
             box-sizing: border-box;
@@ -566,9 +566,15 @@ body {
         }
 
         .param-fields {
-            input {
+            input, select, button, .dropdown.bootstrap-select {
                 margin-bottom: 0;
-                width:100%;
+                width: 100% !important;
+            }
+            .btn{
+                padding:5px 8px;
+            }
+            .dropdown.bootstrap-select button {
+                padding: 10px 15px;
             }
         }
     }

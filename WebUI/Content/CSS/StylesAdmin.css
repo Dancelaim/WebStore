@@ -450,11 +450,11 @@ input[type="submit"]:hover {
   opacity: 0.3;
   background: #131313;
 }
-.param-list .param-titles div {
+.param-list .param-titles > div {
   font-weight: bold;
   text-align: center;
   display: inline-block;
-  width: 24%;
+  width: 19%;
   vertical-align: top;
   padding: 20px 10px;
   box-sizing: border-box;
@@ -473,11 +473,11 @@ input[type="submit"]:hover {
   opacity: 0.3;
   background: #131313;
 }
-.param-list .param-fields div {
+.param-list .param-fields > div {
   font-weight: bold;
   text-align: center;
   display: inline-block;
-  width: 24%;
+  width: 19%;
   vertical-align: top;
   padding: 20px 10px;
   box-sizing: border-box;
@@ -506,9 +506,18 @@ input[type="submit"]:hover {
 .options-block .options-body input {
   margin-bottom: 20px;
 }
-.options-block .options-body .param-fields input {
+.options-block .options-body .param-fields input,
+.options-block .options-body .param-fields select,
+.options-block .options-body .param-fields button,
+.options-block .options-body .param-fields .dropdown.bootstrap-select {
   margin-bottom: 0;
-  width: 100%;
+  width: 100% !important;
+}
+.options-block .options-body .param-fields .btn {
+  padding: 5px 8px;
+}
+.options-block .options-body .param-fields .dropdown.bootstrap-select button {
+  padding: 10px 15px;
 }
 .options-block .options-head {
   position: relative;
