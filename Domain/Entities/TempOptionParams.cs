@@ -14,13 +14,26 @@ namespace WowCarry.Domain.Entities
     
     public partial class TempOptionParams
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TempOptionParams()
+        {
+            this.TemplateOptions1 = new HashSet<TemplateOptions>();
+            this.TempOptionParams1 = new HashSet<TempOptionParams>();
+        }
+    
         public System.Guid ParamsId { get; set; }
         public string ParamName { get; set; }
         public string ParamTooltip { get; set; }
         public Nullable<double> ParamPrice { get; set; }
         public Nullable<System.Guid> TempOptionId { get; set; }
         public string OptionSale { get; set; }
+        public Nullable<System.Guid> ParamParentId { get; set; }
     
         public virtual TemplateOptions TemplateOptions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TemplateOptions> TemplateOptions1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TempOptionParams> TempOptionParams1 { get; set; }
+        public virtual TempOptionParams TempOptionParams2 { get; set; }
     }
 }

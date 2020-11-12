@@ -97,14 +97,16 @@
           <Property Name="ParamPrice" Type="float" />
           <Property Name="ProductOptionId" Type="uniqueidentifier" />
           <Property Name="Sale" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParamParentId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ProductOptions">
           <Key>
             <PropertyRef Name="ProductOptionId" />
           </Key>
           <Property Name="ProductOptionId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="OptionName" Type="nchar" MaxLength="50" />
+          <Property Name="OptionName" Type="nvarchar" MaxLength="55" />
           <Property Name="OptionType" Type="nchar" MaxLength="10" />
+          <Property Name="OptionParamsParentId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ProductPrice">
           <Key>
@@ -168,6 +170,7 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <Property Name="TempOptionId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="TempOptionName" Type="nchar" MaxLength="50" />
           <Property Name="TempOptionType" Type="nchar" MaxLength="10" />
+          <Property Name="TempOptionParamParentId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="TempOptionParams">
           <Key>
@@ -179,6 +182,7 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <Property Name="ParamPrice" Type="float" />
           <Property Name="TempOptionId" Type="uniqueidentifier" />
           <Property Name="OptionSale" Type="nvarchar" MaxLength="50" />
+          <Property Name="ParamParentId" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK__HtmlBlock__SiteB__31B762FC">
           <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
@@ -204,30 +208,6 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__Product__29221CFB">
-          <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductGame">
-              <PropertyRef Name="ProductGameId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ProductGameId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Product__Product__2A164134">
-          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductSubCategory">
-              <PropertyRef Name="ProductSubCategoryId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ProductSubCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Product__Product__55009F39">
           <End Role="SEO" Type="Self.SEO" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
@@ -240,7 +220,7 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__Product__6FE99F9F">
+        <Association Name="FK__Product__ProductDescription">
           <End Role="ProductDescription" Type="Self.ProductDescription" Multiplicity="0..1" />
           <End Role="Product" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
@@ -249,6 +229,30 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
             </Principal>
             <Dependent Role="Product">
               <PropertyRef Name="ProductDescriptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__ProductGame">
+          <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGame">
+              <PropertyRef Name="ProductGameId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__ProductSubCategory">
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductSubCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -264,7 +268,7 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductCa__Produ__2B0A656D">
+        <Association Name="FK__ProductCategory__ProductSubCategory">
           <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="0..1" />
           <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -362,6 +366,30 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ProductOption_ProductOptionParams">
+          <End Role="ProductOptionParams" Type="Self.ProductOptionParams" Multiplicity="0..1" />
+          <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOptionParams">
+              <PropertyRef Name="OptionParamsId" />
+            </Principal>
+            <Dependent Role="ProductOptions">
+              <PropertyRef Name="OptionParamsParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductOptionParams_ProductOptionParams">
+          <End Role="ProductOptionParams" Type="Self.ProductOptionParams" Multiplicity="0..1" />
+          <End Role="ProductOptionParams1" Type="Self.ProductOptionParams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOptionParams">
+              <PropertyRef Name="OptionParamsId" />
+            </Principal>
+            <Dependent Role="ProductOptionParams1">
+              <PropertyRef Name="ParamParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductPrice_Product">
           <End Role="Product" Type="Self.Product" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -390,6 +418,36 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TemplateOptions_TempOptionParams">
+          <End Role="TempOptionParams" Type="Self.TempOptionParams" Multiplicity="0..1" />
+          <End Role="TemplateOptions" Type="Self.TemplateOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TempOptionParams">
+              <PropertyRef Name="ParamsId" />
+            </Principal>
+            <Dependent Role="TemplateOptions">
+              <PropertyRef Name="TempOptionParamParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TempOptionParams_TempOptionParams">
+          <End Role="TempOptionParams" Type="Self.TempOptionParams" Multiplicity="0..1" />
+          <End Role="TempOptionParams1" Type="Self.TempOptionParams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TempOptionParams">
+              <PropertyRef Name="ParamsId" />
+            </Principal>
+            <Dependent Role="TempOptionParams1">
+              <PropertyRef Name="ParamParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="Check_db_Version" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Script" Type="smallint" Mode="In" />
+        </Function>
+        <Function Name="Update_db_Version" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Script" Type="smallint" Mode="In" />
+        </Function>
         <EntityContainer Name="Хранилище WowCarryModelContainer">
           <EntitySet Name="HtmlBlocks" EntityType="Self.HtmlBlocks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HtmlBlocksChildren" EntityType="Self.HtmlBlocksChildren" Schema="dbo" store:Type="Tables" />
@@ -419,27 +477,27 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
             <End Role="ProductOptions" EntitySet="ProductOptions" />
             <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__Product__29221CFB" Association="Self.FK__Product__Product__29221CFB">
-            <End Role="ProductGame" EntitySet="ProductGame" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Product__Product__2A164134" Association="Self.FK__Product__Product__2A164134">
-            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
           <AssociationSet Name="FK__Product__Product__55009F39" Association="Self.FK__Product__Product__55009F39">
             <End Role="SEO" EntitySet="SEO" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__Product__6FE99F9F" Association="Self.FK__Product__Product__6FE99F9F">
+          <AssociationSet Name="FK__Product__ProductDescription" Association="Self.FK__Product__ProductDescription">
             <End Role="ProductDescription" EntitySet="ProductDescription" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__ProductGame" Association="Self.FK__Product__ProductGame">
+            <End Role="ProductGame" EntitySet="ProductGame" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__ProductSubCategory" Association="Self.FK__Product__ProductSubCategory">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductCa__Categ__4F47C5E3" Association="Self.FK__ProductCa__Categ__4F47C5E3">
             <End Role="SEO" EntitySet="SEO" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductCa__Produ__2B0A656D" Association="Self.FK__ProductCa__Produ__2B0A656D">
+          <AssociationSet Name="FK__ProductCategory__ProductSubCategory" Association="Self.FK__ProductCategory__ProductSubCategory">
             <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
@@ -471,6 +529,14 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
             <End Role="ProductGame" EntitySet="ProductGame" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
+          <AssociationSet Name="FK_ProductOption_ProductOptionParams" Association="Self.FK_ProductOption_ProductOptionParams">
+            <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
+            <End Role="ProductOptions" EntitySet="ProductOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductOptionParams_ProductOptionParams" Association="Self.FK_ProductOptionParams_ProductOptionParams">
+            <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
+            <End Role="ProductOptionParams1" EntitySet="ProductOptionParams" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductPrice_Product" Association="Self.FK_ProductPrice_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductPrice" EntitySet="ProductPrice" />
@@ -478,6 +544,14 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <AssociationSet Name="FK_Products_ProductCategory" Association="Self.FK_Products_ProductCategory">
             <End Role="ProductCategory" EntitySet="ProductCategory" />
             <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateOptions_TempOptionParams" Association="Self.FK_TemplateOptions_TempOptionParams">
+            <End Role="TempOptionParams" EntitySet="TempOptionParams" />
+            <End Role="TemplateOptions" EntitySet="TemplateOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TempOptionParams_TempOptionParams" Association="Self.FK_TempOptionParams_TempOptionParams">
+            <End Role="TempOptionParams" EntitySet="TempOptionParams" />
+            <End Role="TempOptionParams1" EntitySet="TempOptionParams" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -616,6 +690,28 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <AssociationSet Name="ProductToOption" Association="WowCarryModel.ProductToOption">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductOptions" EntitySet="ProductOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductOption_ProductOptionParams" Association="WowCarryModel.FK_ProductOption_ProductOptionParams">
+            <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
+            <End Role="ProductOptions" EntitySet="ProductOptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TemplateOptions_TempOptionParams" Association="WowCarryModel.FK_TemplateOptions_TempOptionParams">
+            <End Role="TempOptionParams" EntitySet="TempOptionParams" />
+            <End Role="TemplateOptions" EntitySet="TemplateOptions" />
+          </AssociationSet>
+          <FunctionImport Name="Check_db_Version">
+          <Parameter Name="Script" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <FunctionImport Name="Update_db_Version">
+          <Parameter Name="Script" Mode="In" Type="Int16" />
+          </FunctionImport>
+          <AssociationSet Name="FK_ProductOptionParams_ProductOptionParams" Association="WowCarryModel.FK_ProductOptionParams_ProductOptionParams">
+            <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
+            <End Role="ProductOptionParams1" EntitySet="ProductOptionParams" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TempOptionParams_TempOptionParams" Association="WowCarryModel.FK_TempOptionParams_TempOptionParams">
+            <End Role="TempOptionParams" EntitySet="TempOptionParams" />
+            <End Role="TempOptionParams1" EntitySet="TempOptionParams" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ProductDescription">
@@ -888,6 +984,8 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <Property Name="TempOptionName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
           <Property Name="TempOptionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="TempOptionParams" Relationship="WowCarryModel.FK__TempOptio__TempO__12FDD1B2" FromRole="TemplateOptions" ToRole="TempOptionParams" />
+          <Property Name="TempOptionParamParentId" Type="Guid" />
+          <NavigationProperty Name="TempOptionParams1" Relationship="WowCarryModel.FK_TemplateOptions_TempOptionParams" FromRole="TemplateOptions" ToRole="TempOptionParams" />
         </EntityType>
         <EntityType Name="TempOptionParams">
           <Key>
@@ -900,6 +998,10 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <Property Name="TempOptionId" Type="Guid" />
           <Property Name="OptionSale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TemplateOptions" Relationship="WowCarryModel.FK__TempOptio__TempO__12FDD1B2" FromRole="TempOptionParams" ToRole="TemplateOptions" />
+          <NavigationProperty Name="TemplateOptions1" Relationship="WowCarryModel.FK_TemplateOptions_TempOptionParams" FromRole="TempOptionParams" ToRole="TemplateOptions" />
+          <Property Name="ParamParentId" Type="Guid" />
+          <NavigationProperty Name="TempOptionParams1" Relationship="WowCarryModel.FK_TempOptionParams_TempOptionParams" FromRole="TempOptionParams" ToRole="TempOptionParams1" />
+          <NavigationProperty Name="TempOptionParams2" Relationship="WowCarryModel.FK_TempOptionParams_TempOptionParams" FromRole="TempOptionParams1" ToRole="TempOptionParams" />
         </EntityType>
         <Association Name="FK__TempOptio__TempO__12FDD1B2">
           <End Type="WowCarryModel.TemplateOptions" Role="TemplateOptions" Multiplicity="0..1" />
@@ -924,16 +1026,22 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <Property Name="ProductOptionId" Type="Guid" />
           <Property Name="Sale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductOptions" Relationship="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" FromRole="ProductOptionParams" ToRole="ProductOptions" />
+          <NavigationProperty Name="ParentProductOptions" Relationship="WowCarryModel.FK_ProductOption_ProductOptionParams" FromRole="ProductOptionParams" ToRole="ProductOptions" />
+          <Property Name="ParamParentId" Type="Guid" />
+          <NavigationProperty Name="ProductOptionParams1" Relationship="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" FromRole="ProductOptionParams" ToRole="ProductOptionParams1" />
+          <NavigationProperty Name="ProductOptionParams2" Relationship="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" FromRole="ProductOptionParams1" ToRole="ProductOptionParams" />
         </EntityType>
         <EntityType Name="ProductOptions">
           <Key>
             <PropertyRef Name="ProductOptionId" />
           </Key>
           <Property Name="ProductOptionId" Type="Guid" Nullable="false" />
-          <Property Name="OptionName" Type="String" MaxLength="50" FixedLength="true" Unicode="true" />
+          <Property Name="OptionName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <Property Name="OptionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="ProductOptionParams" Relationship="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" FromRole="ProductOptions" ToRole="ProductOptionParams" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.ProductToOption" FromRole="ProductOptions" ToRole="Product" />
+          <Property Name="OptionParamsParentId" Type="Guid" />
+          <NavigationProperty Name="ProductOptionParentParam" Relationship="WowCarryModel.FK_ProductOption_ProductOptionParams" FromRole="ProductOptions" ToRole="ProductOptionParams" />
         </EntityType>
         <Association Name="FK__OptionPar__Produ__3A4CA8FD">
           <End Type="WowCarryModel.ProductOptions" Role="ProductOptions" Multiplicity="0..1" />
@@ -950,6 +1058,54 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
         <Association Name="ProductToOption">
           <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
           <End Type="WowCarryModel.ProductOptions" Role="ProductOptions" Multiplicity="*" />
+        </Association>
+        <Association Name="FK_ProductOption_ProductOptionParams">
+          <End Type="WowCarryModel.ProductOptionParams" Role="ProductOptionParams" Multiplicity="0..1" />
+          <End Type="WowCarryModel.ProductOptions" Role="ProductOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOptionParams">
+              <PropertyRef Name="OptionParamsId" />
+            </Principal>
+            <Dependent Role="ProductOptions">
+              <PropertyRef Name="OptionParamsParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TemplateOptions_TempOptionParams">
+          <End Type="WowCarryModel.TempOptionParams" Role="TempOptionParams" Multiplicity="0..1" />
+          <End Type="WowCarryModel.TemplateOptions" Role="TemplateOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TempOptionParams">
+              <PropertyRef Name="ParamsId" />
+            </Principal>
+            <Dependent Role="TemplateOptions">
+              <PropertyRef Name="TempOptionParamParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductOptionParams_ProductOptionParams">
+          <End Type="WowCarryModel.ProductOptionParams" Role="ProductOptionParams" Multiplicity="0..1" />
+          <End Type="WowCarryModel.ProductOptionParams" Role="ProductOptionParams1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOptionParams">
+              <PropertyRef Name="OptionParamsId" />
+            </Principal>
+            <Dependent Role="ProductOptionParams1">
+              <PropertyRef Name="ParamParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TempOptionParams_TempOptionParams">
+          <End Type="WowCarryModel.TempOptionParams" Role="TempOptionParams" Multiplicity="0..1" />
+          <End Type="WowCarryModel.TempOptionParams" Role="TempOptionParams1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TempOptionParams">
+              <PropertyRef Name="ParamsId" />
+            </Principal>
+            <Dependent Role="TempOptionParams1">
+              <PropertyRef Name="ParamParentId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1097,6 +1253,7 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <EntitySetMapping Name="TemplateOptions">
             <EntityTypeMapping TypeName="WowCarryModel.TemplateOptions">
               <MappingFragment StoreEntitySet="TemplateOptions">
+                <ScalarProperty Name="TempOptionParamParentId" ColumnName="TempOptionParamParentId" />
                 <ScalarProperty Name="TempOptionType" ColumnName="TempOptionType" />
                 <ScalarProperty Name="TempOptionName" ColumnName="TempOptionName" />
                 <ScalarProperty Name="TempOptionId" ColumnName="TempOptionId" />
@@ -1106,6 +1263,7 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <EntitySetMapping Name="TempOptionParams">
             <EntityTypeMapping TypeName="WowCarryModel.TempOptionParams">
               <MappingFragment StoreEntitySet="TempOptionParams">
+                <ScalarProperty Name="ParamParentId" ColumnName="ParamParentId" />
                 <ScalarProperty Name="OptionSale" ColumnName="OptionSale" />
                 <ScalarProperty Name="TempOptionId" ColumnName="TempOptionId" />
                 <ScalarProperty Name="ParamPrice" ColumnName="ParamPrice" />
@@ -1118,6 +1276,7 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <EntitySetMapping Name="ProductOptionParams">
             <EntityTypeMapping TypeName="WowCarryModel.ProductOptionParams">
               <MappingFragment StoreEntitySet="ProductOptionParams">
+                <ScalarProperty Name="ParamParentId" ColumnName="ParamParentId" />
                 <ScalarProperty Name="Sale" ColumnName="Sale" />
                 <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
                 <ScalarProperty Name="ParamPrice" ColumnName="ParamPrice" />
@@ -1130,6 +1289,7 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
           <EntitySetMapping Name="ProductOptions">
             <EntityTypeMapping TypeName="WowCarryModel.ProductOptions">
               <MappingFragment StoreEntitySet="ProductOptions">
+                <ScalarProperty Name="OptionParamsParentId" ColumnName="OptionParamsParentId" />
                 <ScalarProperty Name="OptionType" ColumnName="OptionType" />
                 <ScalarProperty Name="OptionName" ColumnName="OptionName" />
                 <ScalarProperty Name="ProductOptionId" ColumnName="ProductOptionId" />
@@ -1144,6 +1304,8 @@ warning 6002: The table/view 'WowCarry.dbo.ProductToOption' does not have a prim
               <ScalarProperty Name="ProductId" ColumnName="ProductId" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="Check_db_Version" FunctionName="Хранилище WowCarryModel.Check_db_Version" />
+          <FunctionImportMapping FunctionImportName="Update_db_Version" FunctionName="Хранилище WowCarryModel.Update_db_Version" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -12,6 +12,8 @@ namespace WowCarry.Domain.Entities
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class WowCarryEntities : DbContext
     {
@@ -39,5 +41,23 @@ namespace WowCarry.Domain.Entities
         public virtual DbSet<TempOptionParams> TempOptionParams { get; set; }
         public virtual DbSet<ProductOptionParams> ProductOptionParams { get; set; }
         public virtual DbSet<ProductOptions> ProductOptions { get; set; }
+    
+        public virtual int Check_db_Version(Nullable<short> script)
+        {
+            var scriptParameter = script.HasValue ?
+                new ObjectParameter("Script", script) :
+                new ObjectParameter("Script", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Check_db_Version", scriptParameter);
+        }
+    
+        public virtual int Update_db_Version(Nullable<short> script)
+        {
+            var scriptParameter = script.HasValue ?
+                new ObjectParameter("Script", script) :
+                new ObjectParameter("Script", typeof(short));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("Update_db_Version", scriptParameter);
+        }
     }
 }

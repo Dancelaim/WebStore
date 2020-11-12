@@ -23,8 +23,10 @@ namespace WowCarry.Domain.Entities
         public System.Guid TempOptionId { get; set; }
         public string TempOptionName { get; set; }
         public string TempOptionType { get; set; }
+        public Nullable<System.Guid> TempOptionParamParentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TempOptionParams> TempOptionParams { get; set; }
+        public virtual TempOptionParams TempOptionParams1 { get; set; }
     }
 }

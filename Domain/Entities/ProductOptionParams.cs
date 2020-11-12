@@ -14,13 +14,26 @@ namespace WowCarry.Domain.Entities
     
     public partial class ProductOptionParams
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public ProductOptionParams()
+        {
+            this.ParentProductOptions = new HashSet<ProductOptions>();
+            this.ProductOptionParams1 = new HashSet<ProductOptionParams>();
+        }
+    
         public System.Guid OptionParamsId { get; set; }
         public string ParamName { get; set; }
         public string ParamTooltip { get; set; }
         public Nullable<double> ParamPrice { get; set; }
         public Nullable<System.Guid> ProductOptionId { get; set; }
         public string Sale { get; set; }
+        public Nullable<System.Guid> ParamParentId { get; set; }
     
         public virtual ProductOptions ProductOptions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductOptions> ParentProductOptions { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductOptionParams> ProductOptionParams1 { get; set; }
+        public virtual ProductOptionParams ProductOptionParams2 { get; set; }
     }
 }

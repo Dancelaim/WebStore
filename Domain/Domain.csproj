@@ -191,6 +191,7 @@
     <Content Include="ScriptHistory\15.sql" />
     <Content Include="ScriptHistory\14.sql" />
     <Content Include="ScriptHistory\13.sql" />
+    <Content Include="ScriptHistory\29.sql" />
     <Content Include="ScriptHistory\28.sql" />
     <Content Include="ScriptHistory\27.sql" />
     <Content Include="ScriptHistory\ScriptGenerator.tt">

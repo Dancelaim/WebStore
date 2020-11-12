@@ -30,7 +30,7 @@ namespace WowCarry.Domain.Entities
         [Display(Name = "Parent")]
         public string OptionParent { get; set; }
         IEnumerable<string> OptionParamNames { get { return Product.ProductOptions.Where(o=>o.ProductOptionId!= ProdOpt.ProductOptionId).SelectMany(p=>p.ProductOptionParams).Select(pr=>pr.ParamName); } }
-        public SelectList ParamList { get { return new SelectList(OptionParamNames);} } //TO DO : ProdOpt.Parent.parentName ?? string.Empty
+        public SelectList ParamList { get { return new SelectList(OptionParamNames, ProdOpt.OptionParamsParentId != null ? ProdOpt.ProductOptionParentParam.ParamName : "Empty");} } 
 
         public List<ProductOptionParamsDetails> ParamCollection
         {
@@ -44,8 +44,8 @@ namespace WowCarry.Domain.Entities
                 return result;
             }
         }
-        public class ProductOptionParamsDetails 
-        { 
+        public class ProductOptionParamsDetails
+        {
             public ProductOptionParamsDetails(ProductOptionParams optParams)
             {
                 OptionParams = optParams;
@@ -55,6 +55,9 @@ namespace WowCarry.Domain.Entities
             public string ParamTooltip { get => OptionParams.ParamTooltip; }
             public Double? ParamPrice { get => OptionParams.ParamPrice; }
             public string Sale { get => OptionParams.Sale; }
+            public string ParentParam => OptionParams.ProductOptionParams2?.ParamName;
+            IEnumerable<string> ParentParamNames => (IEnumerable<string>)OptionParams.ProductOptions.ProductOptionParentParam.ProductOptions.ProductOptionParams.Select(p => p.ParamName);
+            public SelectList ParamList => new SelectList(ParentParamNames, OptionParams.ParamParentId != null ? OptionParams.ProductOptionParams2.ParamName : "Empty");
         }
     }
 }

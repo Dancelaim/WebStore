@@ -17,20 +17,26 @@
             @foreach (var item in Model.ParamCollection)
             {
 
-                <div class="param-fields">
-                    <div>
-                        @Html.TextBox(item.Paramname, item.Paramname)
-                    </div>
-                    <div>
-                        @Html.TextBox(item.ParamTooltip, item.ParamTooltip)
-                    </div>
-                    <div>
-                        @Html.TextBox("Price", item.ParamPrice)
-                    </div>
-                    <div>
-                        @Html.TextBox(item.Sale, item.Sale)
-                    </div>
-                </div>
+                 <div class="param-fields">
+                     <div>
+                         @Html.TextBox(item.Paramname, item.Paramname)
+                     </div>
+                     <div>
+                         @Html.TextBox(item.ParamTooltip, item.ParamTooltip)
+                     </div>
+                     <div>
+                         @Html.TextBox("Price", item.ParamPrice)
+                     </div>
+                     <div>
+                         @Html.TextBox(item.Sale, item.Sale)
+                     </div>
+                     <div>
+                         @if (item.ParentParam != null)
+                         {
+                            @Html.DropDownList("Parameter Parent", item.ParamList, item.ParamList.SelectedValue != null ? item.ParamList.SelectedValue.ToString() : "Empty");
+                         }
+                     </div>
+                 </div>
             }
         </div>
     }
