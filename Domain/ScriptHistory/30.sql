@@ -1,6 +1,8 @@
-﻿exec Check_db_Version 30
-
-begin
+﻿Begin Try
+    SET NOCOUNT ON
+    Set XACT_ABORT ON
+Begin Tran
+exec Check_db_Version 30
 -------------------------Product fix 1---------------------------------------------
 declare @OptionId uniqueidentifier = newID()
 declare @OptionName nvarchar(50) =	'Faction progress'
@@ -44,22 +46,18 @@ set @Sale  = '0'
 
 insert into TempOptionParams (ParamsId,ParamName,ParamTooltip,ParamPrice,TempOptionId,OptionSale)
 values (@ParamsId,@ParamName,@ParamTooltip,@ParamPrice,@OptionId,@Sale)
-end
----------------------------------------------------------------------------------------------------------------------------------------------
-begin
-
 -------------------------Product fix 1---------------------------------------------
-declare @OptionId uniqueidentifier = newID()
-declare @OptionName nvarchar(50) = 'Leveling options'
-declare @OptionType nvarchar(10) = 'Dropdown'
+set @OptionId  = newID()
+set @OptionName  = 'Leveling options'
+set @OptionType  = 'Dropdown'
 
 insert into TemplateOptions (TempOptionId,TempOptionName,TempOptionType)
 values (@OptionId,@OptionName,@OptionType)
 ---------------------------------Params 1-----------------------------------------------
-declare @ParamsId uniqueidentifier = newID()
-declare @ParamName nvarchar(max) = '1-60 - 14 days(express)'
-declare @ParamPrice decimal(18,2) = '459' 
-declare @Sale nvarchar = '0'	
+set @ParamsId  = newID()
+set @ParamName  = '1-60 - 14 days(express)'
+set @ParamPrice  = '459' 
+set @Sale  = '0'	
 
 insert into TempOptionParams (ParamsId,ParamName,ParamPrice,TempOptionId,OptionSale)
 values (@ParamsId,@ParamName,@ParamPrice,@OptionId,@Sale)
@@ -95,9 +93,6 @@ set @Sale  = '0'
 
 insert into TempOptionParams (ParamsId,ParamName,ParamPrice,TempOptionId,OptionSale)
 values (@ParamsId,@ParamName,@ParamPrice,@OptionId,@Sale)
-
-
-
 -------------------------Product Option 2---------------------------------------------
 set @OptionId  = newID()
 set @OptionName = 'Additional leveling options'
@@ -109,7 +104,7 @@ values (@OptionId,@OptionName,@OptionType)
 ---------------------------------Params 1-----------------------------------------------
 set @ParamsId  = newID()
 set @ParamName  = '60% speed mount for your race'
-declare @ParamTooltip nvarchar(max) = 'You will get 60% speed mount for your race'
+set @ParamTooltip  = 'You will get 60% speed mount for your race'
 set @ParamPrice  = '99.00' 
 set @Sale  = '0'	
 
@@ -178,29 +173,27 @@ set @Sale  = '0'
 
 insert into TempOptionParams (ParamsId,ParamName,ParamTooltip,ParamPrice,TempOptionId,OptionSale)
 values (@ParamsId,@ParamName,@ParamTooltip,@ParamPrice,@OptionId,@Sale)
-end
--------------------------------------------------------------------------------------------------------------------------------------------
-begin
 -------------------------Product fix 1---------------------------------------------
-declare @OptionId uniqueidentifier = newID()
-declare @OptionName nvarchar(50) = 'Personal dungeon options'
-declare @OptionType nvarchar(10) = 'Checkbox'
+set @OptionId  = newID()
+set @OptionName  = 'Personal dungeon options'
+set @OptionType  = 'Checkbox'
 
 insert into TemplateOptions (TempOptionId,TempOptionName,TempOptionType)
 values (@OptionId,@OptionName,@OptionType)
 ---------------------------------Params 1-----------------------------------------------
-declare @ParamsId uniqueidentifier = newID()
-declare @ParamName nvarchar(max) = 'Piloted'
-declare @ParamTooltip nvarchar(max) = 'We will provide our player who will be playing on your account. We will also provide video-stream so that you can always keep track on all the activities'
-declare @ParamPrice decimal(18,2) = '0' 
-declare @Sale nvarchar = '0'	
+set @ParamsId  = newID()
+set @ParamName  = 'Piloted'
+set @ParamTooltip  = 'We will provide our player who will be playing on your account. We will also provide video-stream so that you can always keep track on all the activities'
+set @ParamPrice  = '0' 
+set @Sale  = '0'	
 
 insert into TempOptionParams (ParamsId,ParamName,ParamTooltip,ParamPrice,TempOptionId,OptionSale)
 values (@ParamsId,@ParamName,@ParamTooltip,@ParamPrice,@OptionId,@Sale)
 
-end
--------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
 exec Update_db_Version 30
+Commit Tran
+End Try
+Begin Catch
+   RollBack Tran
+   Select ERROR_MESSAGE() as Msg, ERROR_NUMBER() as Num
+End Catch
