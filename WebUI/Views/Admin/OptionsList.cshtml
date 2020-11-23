@@ -1,7 +1,7 @@
 ﻿@model WowCarry.Domain.Entities.ProductOptionDetails
 <div class="options-block">
     <div class="options-head">
-        @Model.OptionName
+        @Model.OptionName <span class="remove-option"></span>
     </div>
     <div class="options-body">
         @foreach (var property in ViewData.ModelMetadata.Properties)
@@ -40,6 +40,7 @@
                                 @Html.DropDownList("Parameter Parent", item.ParamList, item.ParamList.SelectedValue != null ? item.ParamList.SelectedValue.ToString() : "Empty")
 
                             </div>
+                            <div><span class="remove-option"></span></div>
                         </div>
                     }
                 </div>

@@ -531,11 +531,36 @@ body {
             font-weight: bold;
             text-align: center;
             display: inline-block;
-            width: 19%;
+            width: 18.5%;
             vertical-align: top;
             padding: 20px 10px;
             box-sizing: border-box;
             position: relative;
+
+            &:last-child {
+                width: 34px;
+                height: 85px;
+
+                .remove-option {
+                    position: absolute;
+                    right: 0;
+                    left: 0;
+                    top: 27px;
+                    height: 34px;
+                    cursor: pointer;
+                    color: @color3;
+                    text-align: center;
+
+                    &:before {
+                        content: '\f00d';
+                        font-family: FontAwesome;
+                        font-style: normal;
+                        font-weight: normal;
+                        font-size: 20px;
+                        text-decoration: inherit;
+                    }
+                }
+            }
         }
     }
 }
@@ -570,9 +595,11 @@ body {
                 margin-bottom: 0;
                 width: 100% !important;
             }
-            .btn{
-                padding:5px 8px;
+
+            .btn {
+                padding: 5px 8px;
             }
+
             .dropdown.bootstrap-select button {
                 padding: 10px 15px;
             }
@@ -582,8 +609,27 @@ body {
     .options-head {
         position: relative;
         font-weight: bold;
-        padding: 10px 110px 10px 10px;
+        padding: 10px 110px 10px 50px;
         text-transform: capitalize;
+
+        .remove-option {
+            position: absolute;
+            right: 10px;
+            width: 34px;
+            height: 34px;
+            cursor: pointer;
+            color: @color3;
+            text-align:center;
+
+            &:before {
+                content: '\f00d';
+                font-family: FontAwesome;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 20px;
+                text-decoration: inherit;
+            }
+        }
 
         &:after {
             transition: all 0.3s ease;
@@ -598,7 +644,7 @@ body {
             color: @color2;
             display: inline-block;
             position: absolute;
-            right: 50px;
+            left: 10px;
         }
     }
 

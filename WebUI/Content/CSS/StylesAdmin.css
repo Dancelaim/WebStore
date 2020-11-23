@@ -3,21 +3,21 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-U1Ug.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-U1Ug.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'), url(https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UNirk-VQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UNirk-VQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
 }
 a {
   color: #131313;
@@ -477,11 +477,33 @@ input[type="submit"]:hover {
   font-weight: bold;
   text-align: center;
   display: inline-block;
-  width: 19%;
+  width: 18.5%;
   vertical-align: top;
   padding: 20px 10px;
   box-sizing: border-box;
   position: relative;
+}
+.param-list .param-fields > div:last-child {
+  width: 34px;
+  height: 85px;
+}
+.param-list .param-fields > div:last-child .remove-option {
+  position: absolute;
+  right: 0;
+  left: 0;
+  top: 27px;
+  height: 34px;
+  cursor: pointer;
+  color: #3f4d67;
+  text-align: center;
+}
+.param-list .param-fields > div:last-child .remove-option:before {
+  content: '\f00d';
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  text-decoration: inherit;
 }
 .options-block {
   position: relative;
@@ -522,8 +544,25 @@ input[type="submit"]:hover {
 .options-block .options-head {
   position: relative;
   font-weight: bold;
-  padding: 10px 110px 10px 10px;
+  padding: 10px 110px 10px 50px;
   text-transform: capitalize;
+}
+.options-block .options-head .remove-option {
+  position: absolute;
+  right: 10px;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  color: #3f4d67;
+  text-align: center;
+}
+.options-block .options-head .remove-option:before {
+  content: '\f00d';
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  text-decoration: inherit;
 }
 .options-block .options-head:after {
   transition: all 0.3s ease;
@@ -538,7 +577,7 @@ input[type="submit"]:hover {
   color: #131313;
   display: inline-block;
   position: absolute;
-  right: 50px;
+  left: 10px;
 }
 .options-block.active_block .options-head:after {
   transform: rotate(-90deg);
