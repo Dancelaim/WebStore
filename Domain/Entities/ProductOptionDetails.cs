@@ -12,52 +12,70 @@ namespace WowCarry.Domain.Entities
 {
     public class ProductOptionDetails
     {
-        public ProductOptionDetails(ProductOptions option,Product product)
-        {
-            ProdOpt = option;
-            Product = product;
-        }
-        ProductOptions ProdOpt { get; set; }
-        Product Product { get; set; }
-
-
         [Display(Name = "Name")]
-        public string OptionName { get => ProdOpt.OptionName; }
+        public string OptionName { get; set; }
 
         [Display(Name = "Type")]
-        public string OptionType { get => ProdOpt.OptionType; }
+        public string OptionType { get; set; }
 
         [Display(Name = "Parent")]
         public string OptionParent { get; set; }
-        IEnumerable<string> OptionParamNames { get { return Product.ProductOptions.Where(o=>o.ProductOptionId!= ProdOpt.ProductOptionId).SelectMany(p=>p.ProductOptionParams).Select(pr=>pr.ParamName); } }
-        public SelectList ParamList { get { return new SelectList(OptionParamNames, ProdOpt.OptionParamsParentId != null ? ProdOpt.ProductOptionParentParam.ParamName : "Empty");} } 
+        public SelectList ParamList { get; set; }
+        public List<ProductOptionParamsDetails> ParamCollection { get; set; }
 
-        public List<ProductOptionParamsDetails> ParamCollection
-        {
-            get
-            {
-                List<ProductOptionParamsDetails> result = new List<ProductOptionParamsDetails>();
-                foreach (var item in ProdOpt.ProductOptionParams)
-                {
-                    result.Add(new ProductOptionParamsDetails(item));
-                }
-                return result;
-            }
-        }
         public class ProductOptionParamsDetails
         {
-            public ProductOptionParamsDetails(ProductOptionParams optParams)
+            [Display(Name = "Parameter name")]
+            public string Paramname { get; set; }
+
+            [Display(Name = "Parameter Tooltip")]
+            public String ParamTooltip { get; set; }
+
+            [Display(Name = "Parameter Price")]
+            public Double? ParamPrice { get; set; }
+
+            [Display(Name = "Parameter Sale")]
+            public string Sale { get; set; }
+
+            [Display(Name = "Parameter Parent")]
+            public string ParentParam { get; set; }
+            public SelectList ParamList { get; set; }
+        }
+        public static List<ProductOptionParamsDetails> PopulateParamCollection(ProductOptions ProdOpt)
+        {
+            List<ProductOptionParamsDetails> result = new List<ProductOptionParamsDetails>();
+            foreach (var item in ProdOpt.ProductOptionParams)
             {
-                OptionParams = optParams;
+                result.Add(new ProductOptionParamsDetails
+                {
+                    Paramname = item.ParamName,
+                    ParamTooltip = item.ParamTooltip,
+                    ParamPrice = item.ParamPrice,
+                    Sale = item.Sale,
+                    ParentParam = item.ProductOptionParams2?.ParamName,
+                    ParamList = new SelectList(item.ProductOptionParams2 != null ? ProdOpt.ProductOptionParentParam?.ProductOptions.ProductOptionParams.Select(p => p.ParamName) : Enumerable.Empty<string>(), item.ParamParentId != null ? item.ProductOptionParams2?.ParamName : "Empty")
+                        
+
+                });
             }
-            ProductOptionParams OptionParams { get; set; }
-            public string Paramname { get => OptionParams.ParamName; }
-            public string ParamTooltip { get => OptionParams.ParamTooltip; }
-            public Double? ParamPrice { get => OptionParams.ParamPrice; }
-            public string Sale { get => OptionParams.Sale; }
-            public string ParentParam => OptionParams.ProductOptionParams2?.ParamName;
-            IEnumerable<string> ParentParamNames => (IEnumerable<string>)OptionParams.ProductOptions.ProductOptionParentParam.ProductOptions.ProductOptionParams.Select(p => p.ParamName);
-            public SelectList ParamList => new SelectList(ParentParamNames, OptionParams.ParamParentId != null ? OptionParams.ProductOptionParams2.ParamName : "Empty");
+            return result;
+        }
+        public static List<ProductOptionParamsDetails> PopulateParamCollection(TemplateOptions TempOpt,IEnumerable<string> paramCollection)
+        {
+            List<ProductOptionParamsDetails> result = new List<ProductOptionParamsDetails>();
+            foreach (var item in TempOpt.TempOptionParams)
+            {
+                result.Add(new ProductOptionParamsDetails
+                {
+                    Paramname = item.ParamName,
+                    ParamTooltip = item.ParamTooltip,
+                    ParamPrice = item.ParamPrice,
+                    Sale = item.OptionSale,
+                    ParentParam = item.TempOptionParams2?.ParamName,
+                    ParamList = new SelectList(paramCollection, "Empty")
+                });
+            }
+            return result;
         }
     }
 }

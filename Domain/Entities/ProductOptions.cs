@@ -18,18 +18,17 @@ namespace WowCarry.Domain.Entities
         public ProductOptions()
         {
             this.ProductOptionParams = new HashSet<ProductOptionParams>();
-            this.Product = new HashSet<Product>();
         }
     
         public System.Guid ProductOptionId { get; set; }
         public string OptionName { get; set; }
         public string OptionType { get; set; }
         public Nullable<System.Guid> OptionParamsParentId { get; set; }
+        public Nullable<System.Guid> OptionProductId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductOptionParams> ProductOptionParams { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Product> Product { get; set; }
         public virtual ProductOptionParams ProductOptionParentParam { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

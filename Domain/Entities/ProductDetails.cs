@@ -12,112 +12,103 @@ namespace WowCarry.Domain.Entities
 {
     public class ProductDetails
     {
-        Product product { get; set; }
-        IEnumerable<string> productGameNames { get; set; }
-        public SelectList GamesList { get { return new SelectList(productGameNames, product.ProductGame.GameName); } }
-
-        IEnumerable<string> productCategoryNames { get; set; }
-        public SelectList CategoriesList { get { return new SelectList(productCategoryNames, product.ProductCategory.ProductCategoryName); } }
-
-        //IEnumerable<string> ProductOptionNames { get { return product.ProductOptions.Select(o=>o.OptionName); } }
-        //public SelectList OptionsList { get { return new SelectList(ProductOptionNames, "Select Option"); } }
-
-        IEnumerable<string> MetaTagTitleNames { get; set; }
-        public SelectList MetaTagTitleList { get { return new SelectList(MetaTagTitleNames, product.SEO.MetaTagTitle ?? "Select Meta tag title from List"); } }
-
-        public Guid ProductId { get { return product.ProductId; } }
-
-        public ICollection<ProductOptions> Options => product.ProductOptions;
+        public ProductDetails() { }
+        #region Properties
+        public Product Product { get; set; }
+        public Guid ProductId { get; set; }
+        public ICollection<ProductOptions> ProductOptions { get; set; }
 
         [Required(ErrorMessage = "Product Name is required")]
         [Display(Name = "Product Name")]
-        public string ProductName { get {return product.ProductName;}}
+        public string ProductName { get; set; }
 
         [Display(Name = "In Stock")]
-        public bool InStock { get { return product.InStock; } }
+        public bool InStock { get; set; }
 
-        public bool PreOrder { get { return product.PreOrder; } }
+        public bool PreOrder { get; set; }
 
         [Display(Name = "Status")]
-        public bool ProductEnabled { get { return product.ProductEnabled; } }
+        public bool ProductEnabled { get; set; }
 
         [Display(Name = "Product Quantity")]
-        public int ProductQuantity { get { return (int)product.ProductQuantity; } }
+        public int? ProductQuantity { get; set; }
 
         [Display(Name = "Image")]
-        public string ProductImageThumb { get { return product.ProductImageThumb; } }
+        public string ProductImageThumb { get; set; }
 
         [Display(Name = "Large Image")]
-        public string ProductImage { get { return product.ProductImage; } }
+        public string ProductImage { get; set; }
 
         [Display(Name = "Sort Order")]
-        public int? ProductPriority { get { return product.ProductPriority; } }
+        public int? ProductPriority { get; set; }
 
-        [Required(ErrorMessage = "Game name is required")]
+        #region DropDownLists
+        [Display(Name = "Template Options")]
+        public SelectList TemplateOptionsList { get; set; }
+        public string SelectedTemplateOption { get; set; }
+
         [Display(Name = "Game name")]
-        public string ProductGameName { get { return product.ProductGame.GameName; } }
+        public SelectList GamesList { get; set; }
+        [Required(ErrorMessage = "Product Game is required")]
+        public string SelectedGame { get; set; }
 
         [Display(Name = "Category name")]
-        public string ProductCategoryName { get { return product.ProductCategory.ProductCategoryName; } }
-
-        [Display(Name = "SubCategory name")]
-        public string ProductSubCategoryName { get; set; }
+        public SelectList CategoriesList { get; set; }
+        [Required(ErrorMessage = "Product  Category is required")]
+        public string SelectedCategory { get; set; }
 
         [Display(Name = "Meta tag title")]
-        public string MetaTagTitle { get { return product.SEO.MetaTagTitle; } }
+        public SelectList MetaTagTitleList { get; set; }
+        public string SelectedMetaTagTitle { get; set; }
+        #endregion
+
+        //[Display(Name = "SubCategory name")]
+        //public string ProductSubCategoryName { get; set; }
 
         [Display(Name = "Price EU")]
-        public decimal? ProductPriceEU { get { return product.ProductPrice.Where(p=>p.Region=="EU").Select(p=>p.Price).FirstOrDefault(); } }
+        public decimal? ProductPriceEU { get; set; }
 
         [Display(Name = "Price US")]
-        public decimal? ProductPriceUS { get { return product.ProductPrice.Where(p => p.Region == "US").Select(p => p.Price).FirstOrDefault(); } }
+        public decimal? ProductPriceUS { get; set; }
 
         [Display(Name = "Sale EU")]
-        public decimal? ProductSaleEU { get { return product.ProductPrice.Where(p => p.Region == "EU").Select(p => p.ProductSale).FirstOrDefault();} }
+        public decimal? ProductSaleEU { get; set; }
 
         [Display(Name = "Sale US")]
-        public decimal? ProductSaleUS { get { return product.ProductPrice.Where(p => p.Region == "US").Select(p => p.ProductSale).FirstOrDefault(); } }
+        public decimal? ProductSaleUS { get; set; }
 
         [Display(Name = "Product Description")]
-        public string Description { get { return product.ProductDescription.Description; } }
+        public string Description { get; set; }
 
         [Display(Name = "Product SubDescription Title 1")]
-        public string SubDescriptionTitle1 { get { return product.ProductDescription.SubDescriptionTitle1; } }
+        public string SubDescriptionTitle1 { get; set; }
 
         [Display(Name = "Product SubDescription 1")]
-        public string SubDescription1 { get { return product.ProductDescription.SubDescription1; } }
+        public string SubDescription1 { get; set; }
 
         [Display(Name = "Product SubDescription Title 2")]
-        public string SubDescriptionTitle2 { get { return product.ProductDescription.SubDescriptionTitle2; } }
+        public string SubDescriptionTitle2 { get; set; }
 
         [Display(Name = "Product SubDescription 2")]
-        public string SubDescription2 { get { return product.ProductDescription.SubDescription2; } }
+        public string SubDescription2 { get; set; }
 
         [Display(Name = "Product SubDescription Title 3")]
-        public string SubDescriptionTitle3 { get { return product.ProductDescription.SubDescriptionTitle3; } }
+        public string SubDescriptionTitle3 { get; set; }
 
         [Display(Name = "Product SubDescription 3")]
-        public string SubDescription3 { get { return product.ProductDescription.SubDescription3; } }
+        public string SubDescription3 { get; set; }
 
         [Display(Name = "Product SubDescription Title 4")]
-        public string SubDescriptionTitle4 { get { return product.ProductDescription.SubDescriptionTitle4; } }
+        public string SubDescriptionTitle4 { get; set; }
 
         [Display(Name = "Product SubDescription 4")]
-        public string SubDescription4 { get { return product.ProductDescription.SubDescription4; } }
+        public string SubDescription4 { get; set; }
 
         [Display(Name = "Product SubDescription Title 5")]
-        public string SubDescriptionTitle5 { get { return product.ProductDescription.SubDescriptionTitle5; } }
+        public string SubDescriptionTitle5 { get; set; }
 
         [Display(Name = "Product SubDescription 5")]
-        public string SubDescription5 { get { return product.ProductDescription.SubDescription5; } }
-
-        public ProductDetails (Product prod, IEnumerable<ProductGame> games, IEnumerable<ProductCategory> categories, IEnumerable<SEO> seos)
-        {
-            product = prod;
-            productGameNames = games.Select(g=>g.GameName);
-            productCategoryNames = categories.Select(p=>p.ProductCategoryName);
-            MetaTagTitleNames = seos.Select(s => s.MetaTagTitle);
-        }
-
+        public string SubDescription5 { get; set; }
+        #endregion
     }
 }

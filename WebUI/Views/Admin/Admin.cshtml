@@ -1,4 +1,8 @@
-﻿<h1>Statistics</h1>
+﻿@if (TempData["message"] != null)
+{
+    <div class="alert alert-success">@TempData["message"]</div>
+}
+<h1>Statistics</h1>
 
 <div class="stat-info customers"><h2>total customers</h2><div class="info">123</div></div>
 

@@ -16,8 +16,10 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<SEO> SEOs => context.SEO;
         public IEnumerable<Realms> Realms => context.Realms;
         public IEnumerable<Product> Products => context.Product;
-        public IEnumerable<ProductOptions> Options => context.ProductOptions;
+        public IEnumerable<ProductOptions> ProductOptions => context.ProductOptions;
         public IEnumerable<HtmlBlocks> HtmlBlocks => context.HtmlBlocks;
+        public IEnumerable<TemplateOptions> TemplateOptions => context.TemplateOptions;
+
 
         public void SaveGame(ProductGame game)
         {
@@ -34,57 +36,9 @@ namespace WowCarry.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public void SaveOptions(ProductOptionDetails productOptionDetails)
+        public void SaveContext()
         {
-            if (String.IsNullOrEmpty(productOptionDetails.OptionParent))
-            {
-                ProductOptions prodOpt = new ProductOptions
-                {
-                    ProductOptionId = Guid.NewGuid(),
-                    OptionName = productOptionDetails.OptionName,
-                    OptionType = productOptionDetails.OptionType
-                };
-                context.ProductOptions.Add(prodOpt);
-
-                foreach (var item in productOptionDetails.ParamCollection)
-                {
-                    ProductOptionParams prodOptParams = new ProductOptionParams
-                    {
-                        OptionParamsId = Guid.NewGuid(),
-                        ParamName = item.Paramname,
-                        ParamTooltip = item.ParamTooltip,
-                        ParamPrice = item.ParamPrice,
-                        ProductOptionId = prodOpt.ProductOptionId,
-                        Sale = item.Sale
-                    };
-                    context.ProductOptionParams.Add(prodOptParams);
-                }
-            }
-            else
-            {
-                ProductOptions prodOpt = new ProductOptions
-                {
-                    ProductOptionId = Guid.NewGuid(),
-                    OptionName = productOptionDetails.OptionName,
-                    OptionType = productOptionDetails.OptionType
-                    //OptionParentid  = productOptionDetails.ParentId
-                };
-                context.ProductOptions.Add(prodOpt);
-
-                foreach (var item in productOptionDetails.ParamCollection)
-                {
-                    ProductOptionParams prodOptParams = new ProductOptionParams
-                    {
-                        OptionParamsId = Guid.NewGuid(),
-                        ParamName = item.Paramname,
-                        ParamTooltip = item.ParamTooltip,
-                        ParamPrice = item.ParamPrice,
-                        ProductOptionId = prodOpt.ProductOptionId,
-                        Sale = item.Sale
-                    };
-                    context.ProductOptionParams.Add(prodOptParams);
-                }
-            }
+            context.SaveChanges();
         }
 
         public void SaveProduct(ProductDetails productDetails)
@@ -112,15 +66,15 @@ namespace WowCarry.Domain.Concrete
                 {
                     ProductId = Guid.NewGuid()
                     , ProductName = productDetails.ProductName
-                    , ProductCategoryId = context.ProductCategory.Where(c => c.ProductCategoryName == productDetails.ProductCategoryName).Select(c => c.ProductCategoryId).FirstOrDefault()
                     , InStock = productDetails.InStock
                     , PreOrder = productDetails.PreOrder
                     , ProductQuantity = productDetails.ProductQuantity
                     , ProductImage = SaveImage()
                     , ProductDescriptionId = context.ProductDescription.Find(prodDescr.ProductDescriptionId).ProductDescriptionId
-                    , ProductSEOId = context.SEO.Where(c => c.MetaTagTitle == productDetails.MetaTagTitle).Select(c => c.SEOId).FirstOrDefault()
-                    , ProductGameId = context.ProductGame.Where(c => c.GameName == productDetails.ProductGameName).Select(c => c.ProductGameId).FirstOrDefault()
-                    , ProductSubCategoryId = context.ProductSubCategory.Where(c => c.ProductCategoryName == productDetails.ProductSubCategoryName).Select(c => c.ProductSubCategoryId).FirstOrDefault()
+                    ,ProductCategoryId = context.ProductCategory.Where(c => c.ProductCategoryName == productDetails.SelectedCategory).Select(c => c.ProductCategoryId).FirstOrDefault()
+                    ,ProductSEOId = context.SEO.Where(c => c.MetaTagTitle == productDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault()
+                    , ProductGameId = context.ProductGame.Where(c => c.GameName == productDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault()
+                    //, ProductSubCategoryId = context.ProductSubCategory.Where(c => c.ProductCategoryName == productDetails.ProductSubCategoryName).Select(c => c.ProductSubCategoryId).FirstOrDefault()
                     , ProductPriority = productDetails.ProductPriority
                     , ProductEnabled = productDetails.ProductEnabled
                     , ProductImageThumb = SaveImage()
@@ -129,10 +83,36 @@ namespace WowCarry.Domain.Concrete
             }
             else
             {
-                Product dbEntry = context.Product.Find(productDetails.ProductId);
-                if (dbEntry != null)
+                Product dbProduct = context.Product.Find(productDetails.ProductId);
+                ProductDescription dbDescr = dbProduct.ProductDescription;
+                if(dbDescr != null)
                 {
-                    dbEntry.ProductName = productDetails.ProductName;
+                    dbDescr.Description = productDetails.Description;
+                    dbDescr.SubDescription1 = productDetails.SubDescription1;
+                    dbDescr.SubDescription2 = productDetails.SubDescription2;
+                    dbDescr.SubDescription3 = productDetails.SubDescription3;
+                    dbDescr.SubDescription4 = productDetails.SubDescription4;
+                    dbDescr.SubDescription5 = productDetails.SubDescription5;
+                    dbDescr.SubDescriptionTitle1 = productDetails.SubDescriptionTitle1;
+                    dbDescr.SubDescriptionTitle2 = productDetails.SubDescriptionTitle2;
+                    dbDescr.SubDescriptionTitle3 = productDetails.SubDescriptionTitle3;
+                    dbDescr.SubDescriptionTitle4 = productDetails.SubDescriptionTitle4;
+                    dbDescr.SubDescriptionTitle5 = productDetails.SubDescriptionTitle5;
+                }
+                if (dbProduct != null)
+                {
+                    dbProduct.ProductName = productDetails.ProductName;
+                    dbProduct.InStock = productDetails.InStock;
+                    dbProduct.PreOrder = productDetails.PreOrder;
+                    dbProduct.ProductQuantity = productDetails.ProductQuantity;
+                    dbProduct.ProductImage = SaveImage();
+                    dbProduct.ProductCategoryId = context.ProductCategory.Where(c => c.ProductCategoryName == productDetails.SelectedCategory).Select(c => c.ProductCategoryId).FirstOrDefault();
+                    dbProduct.ProductSEOId = context.SEO.Where(c => c.MetaTagTitle == productDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault();
+                    dbProduct.ProductGameId = context.ProductGame.Where(c => c.GameName == productDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault();
+                    //dbProduct.ProductSubCategoryId = context.ProductSubCategory.Where(c => c.ProductCategoryName == productDetails.ProductSubCategoryName).Select(c => c.ProductSubCategoryId).FirstOrDefault()
+                    dbProduct.ProductPriority = productDetails.ProductPriority;
+                    dbProduct.ProductEnabled = productDetails.ProductEnabled;
+                    dbProduct.ProductImageThumb = SaveImage();
                 }
             }
             context.SaveChanges();
@@ -146,6 +126,11 @@ namespace WowCarry.Domain.Concrete
         {
             string result = "";
             return result;
+        }
+
+        public void SaveTemplateOption(TemplateOptions tempOptions)
+        {
+            throw new NotImplementedException();
         }
     }
 }
