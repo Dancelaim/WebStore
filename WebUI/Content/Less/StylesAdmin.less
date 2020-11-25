@@ -540,6 +540,8 @@ body {
             &:last-child {
                 width: 34px;
                 height: 85px;
+                position: absolute;
+                right: 0;
 
                 .remove-option, .remove-param {
                     position: absolute;
@@ -564,7 +566,41 @@ body {
         }
     }
 }
+.add-param-block {
+    padding: 30px 0;
 
+    select, .btn {
+        border-radius: 25px;
+    }
+
+    .dropdown.bootstrap-select {
+        width: 60% !important;
+    }
+
+    .param-add {
+        display: inline-block;
+        text-align: center;
+        margin-left: 5px;
+
+        span {
+            box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
+            padding: 13px 20px;
+            font-weight: bold;
+            display: inline-block;
+            background: @color1;
+            color: @color2;
+            cursor: pointer;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            top: 2px;
+
+            &:hover {
+                box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.5);
+            }
+        }
+    }
+}
 .options-block {
     position: relative;
     width: 48%;
@@ -666,30 +702,36 @@ body {
         margin-bottom: 15px;
     }
 
+    .btn {
+        border-radius: 25px;
+    }
+
     .option-list {
         width: 300px;
         padding: 10px;
-        border-radius: 25px 0 0 25px;
         box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
         display: inline-block;
+
     }
 
     .option-add {
         display: inline-block;
         text-align: center;
-        margin-left: -4px;
+        margin-left: 5px;
 
 
         span {
             box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
-            padding: 10px 20px;
+            padding: 13px 20px;
             font-weight: bold;
             display: inline-block;
             background: @color1;
             color: @color2;
             cursor: pointer;
-            border-radius: 0 25px 25px 0;
-            transition:all 0.4s ease;
+            border-radius: 25px;
+            transition: all 0.4s ease;
+            position: relative;
+            top: 2px;
 
             &:hover {
                 box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.5);
