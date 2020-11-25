@@ -1,7 +1,8 @@
 ﻿@model WowCarry.Domain.Entities.ProductOptionDetails
+
 <div class="options-block">
     <div class="options-head">
-        @Model.OptionName <span class="remove-option"></span>
+        @Model.OptionName <span class="remove-option">@Html.HiddenFor(x => x.OptionId)</span>
     </div>
     <div class="options-body">
         @foreach (var property in ViewData.ModelMetadata.Properties)
@@ -21,27 +22,29 @@
 
                     @foreach (var item in Model.ParamCollection)
                     {
+                        if (item.Paramname != "ParameterId")
+                        {
+                            <div class="param-fields">
+                                <div>
+                                    @Html.TextBox(item.Paramname, item.Paramname)
+                                </div>
+                                <div>
+                                    @Html.TextBox(item.ParamTooltip, item.ParamTooltip)
+                                </div>
+                                <div>
+                                    @Html.TextBox("Price", item.ParamPrice)
+                                </div>
+                                <div>
+                                    @Html.TextBox(item.Sale, item.Sale)
+                                </div>
+                                <div>
 
-                        <div class="param-fields">
-                            <div>
-                                @Html.TextBox(item.Paramname, item.Paramname)
-                            </div>
-                            <div>
-                                @Html.TextBox(item.ParamTooltip, item.ParamTooltip)
-                            </div>
-                            <div>
-                                @Html.TextBox("Price", item.ParamPrice)
-                            </div>
-                            <div>
-                                @Html.TextBox(item.Sale, item.Sale)
-                            </div>
-                            <div>
+                                    @Html.DropDownList("Parameter Parent", item.ParamList, item.ParamList.SelectedValue != null ? item.ParamList.SelectedValue.ToString() : "Empty")
 
-                                @Html.DropDownList("Parameter Parent", item.ParamList, item.ParamList.SelectedValue != null ? item.ParamList.SelectedValue.ToString() : "Empty")
-
+                                </div>
+                                <div><span class="remove-param">@Html.Hidden("paramId", item.ParameterId)</span></div>
                             </div>
-                            <div><span class="remove-option"></span></div>
-                        </div>
+                        }
                     }
                 </div>
             }
@@ -52,7 +55,7 @@
                     <label>@(property.DisplayName ?? property.PropertyName):</label>
                     @Html.DropDownList("Option Parameter Parent", Model.ParamList, Model.ParamList.SelectedValue != null ? Model.ParamList.SelectedValue.ToString() : "Empty");
                 }
-                else if (property.PropertyName != "ParamList")
+                else if (property.PropertyName != "ParamList" && property.PropertyName != "OptionId")
                 {
                     <label>@(property.DisplayName ?? property.PropertyName):</label>
                     @Html.Editor(property.PropertyName, new { @class = "form-control" })
@@ -61,4 +64,3 @@
         }
     </div>
 </div>
-

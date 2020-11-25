@@ -65,16 +65,16 @@
                 <div class="tab3">
                     @if (Model.ProductOptions != null)
                     {
-                         foreach (var item in Model.ProductOptions)
-                         {
+                        foreach (var item in Model.ProductOptions)
+                        {
                             @Html.Action("OptionsList", new { optionName = item.OptionName, prodId = Model.ProductId })
-                         }
+                        }
                     }
-                <div class="newOptions">
-                    <div class="title">Add New Option</div>
-                    @Html.DropDownList("Template Options", Model.TemplateOptionsList)
-                    <div class="option-add"><span>Add</span></div>
-                </div>
+                     <div class="newOptions">
+                         <div class="title">Add New Option</div>
+                         @Html.DropDownList("Template Options", Model.TemplateOptionsList)
+                         <div class="option-add"><span>Add</span></div>
+                     </div>
                 </div>
             </div>
         </div>
@@ -132,7 +132,6 @@
         $('#SelectedCategory').val($('#Category_Name').val())
         $('#SelectedMetaTagTitle').val($('#Meta_tag_title').val())
     })
-
     $('.option-add').on('click', function () {
          $.ajax({
                 cache: false,
@@ -150,24 +149,38 @@
                 }
             });
     })
-        $('.option-remove').on('click', function () {
+    $(document).on("click", ".options-head .remove-option", function () {
          $.ajax({
                 cache: false,
                 type: 'POST',
                 url: '@Url.Action("RemoveOption")',
-                data: {
-                    optionName: $("#Template_Options").val(),
+             data: {
+                 optionId: $(this).find("#OptionId").val(),
                     prodId: $("#ProductId").val()
                         },
-             success: function (data) {
-                 $(".tab3 .newOptions").before(data);
-                },
                 error: function (ex) {
-                    alert('Failed to add option.' + ex);
+                    alert('Failed to remove option.' + ex);
                 }
-            });
-    })
+         });
+        $(this).closest('.options-block').remove();
 
+    })
+    $(document).on("click", ".remove-param", function () {
+     $.ajax({
+            cache: false,
+            type: 'POST',
+            url: '@Url.Action("RemoveParam")',
+         data: {
+             optionId: $(this).closest('.options-block').find("#OptionId").val(),
+             paramId: $(this).find("#paramId").val()
+                    },
+            error: function (ex) {
+                alert('Failed to remove param.' + ex);
+            }
+     });
+        $(this).closest('.param-fields').remove();
+
+    })
     $(document).ready(function () {
         $('select').selectpicker({
             liveSearch: true

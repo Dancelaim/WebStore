@@ -12,6 +12,9 @@ namespace WowCarry.Domain.Entities
 {
     public class ProductOptionDetails
     {
+        [HiddenInput]
+        public Guid OptionId { get; set; }
+
         [Display(Name = "Name")]
         public string OptionName { get; set; }
 
@@ -25,6 +28,8 @@ namespace WowCarry.Domain.Entities
 
         public class ProductOptionParamsDetails
         {
+            [HiddenInput]
+            public Guid ParameterId { get; set; }
             [Display(Name = "Parameter name")]
             public string Paramname { get; set; }
 
@@ -41,19 +46,20 @@ namespace WowCarry.Domain.Entities
             public string ParentParam { get; set; }
             public SelectList ParamList { get; set; }
         }
-        public static List<ProductOptionParamsDetails> PopulateParamCollection(ProductOptions ProdOpt)
+        public static List<ProductOptionParamsDetails> PopulateParamCollection(ProductOptions ProdOpt,IEnumerable<string> paramCollection)
         {
             List<ProductOptionParamsDetails> result = new List<ProductOptionParamsDetails>();
             foreach (var item in ProdOpt.ProductOptionParams)
             {
                 result.Add(new ProductOptionParamsDetails
                 {
+                    ParameterId = item.OptionParamsId,
                     Paramname = item.ParamName,
                     ParamTooltip = item.ParamTooltip,
                     ParamPrice = item.ParamPrice,
                     Sale = item.Sale,
                     ParentParam = item.ProductOptionParams2?.ParamName,
-                    ParamList = new SelectList(item.ProductOptionParams2 != null ? ProdOpt.ProductOptionParentParam?.ProductOptions.ProductOptionParams.Select(p => p.ParamName) : Enumerable.Empty<string>(), item.ParamParentId != null ? item.ProductOptionParams2?.ParamName : "Empty")
+                    ParamList = new SelectList(paramCollection, "Empty")
                         
 
                 });
@@ -67,6 +73,7 @@ namespace WowCarry.Domain.Entities
             {
                 result.Add(new ProductOptionParamsDetails
                 {
+                    ParameterId = Guid.NewGuid(),
                     Paramname = item.ParamName,
                     ParamTooltip = item.ParamTooltip,
                     ParamPrice = item.ParamPrice,

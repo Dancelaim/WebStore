@@ -113,10 +113,11 @@ namespace WowCarry.WebUI.Controllers
             var selectedOption = selectedProduct.ProductOptions.Where(o=>o.OptionName == optionName).FirstOrDefault();
             var result = new ProductOptionDetails
             {
+                OptionId = selectedOption.ProductOptionId,
                 OptionName = selectedOption.OptionName,
                 OptionType = selectedOption.OptionType,
                 ParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), selectedOption.OptionParamsParentId != null ? selectedOption.ProductOptionParentParam.ParamName : "Empty"),
-                ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption)
+                ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
             };
 
             return PartialView(result);
@@ -130,8 +131,7 @@ namespace WowCarry.WebUI.Controllers
             {
                 ProductOptionId = Guid.NewGuid(),
                 OptionName = selectedOption.TempOptionName,
-                OptionType = selectedOption.TempOptionType,
-                OptionParamsParentId = selectedOption.TempOptionParamParentId
+                OptionType = selectedOption.TempOptionType
 
             };
 
@@ -144,8 +144,7 @@ namespace WowCarry.WebUI.Controllers
                     ParamTooltip = param.ParamTooltip,
                     ParamPrice = param.ParamPrice,
                     ProductOptionId = option.ProductOptionId,
-                    Sale = param.OptionSale,
-                    ParamParentId = param.ParamParentId
+                    Sale = param.OptionSale
 
                 };
                 option.ProductOptionParams.Add(optionParams);
@@ -156,18 +155,29 @@ namespace WowCarry.WebUI.Controllers
 
             return PartialView("OptionsList", new ProductOptionDetails 
             {
+                OptionId = option.ProductOptionId,
                 OptionName = selectedOption.TempOptionName,
                 OptionType = selectedOption.TempOptionType,
-                ParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.TempOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), "Empty"),
-                ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.TempOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
+                //Options parent selector
+                ParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != option.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), "Empty"),
+                //Parameters parent selector
+                ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId != option.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
             });
         }
         [HttpPost]
-        public void RemoveOption(string optionName, Guid prodId)
+        public void RemoveOption(Guid optionId, Guid prodId)
         {
-            ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.OptionName == optionName && po.OptionProductId == prodId).FirstOrDefault();
+            ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.ProductOptionId == optionId).FirstOrDefault();
             Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
             selectedProduct.ProductOptions.Remove(selectedOption);
+            EntityRepository.SaveContext();
+        }
+        [HttpPost]//TODO
+        public void RemoveParam(Guid optionId, Guid paramId)
+        {
+            ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.ProductOptionId == optionId).FirstOrDefault();
+            ProductOptionParams prodParam = selectedOption.ProductOptionParams.Where(p => p.OptionParamsId == paramId).FirstOrDefault();
+            selectedOption.ProductOptionParams.Remove(prodParam);
             EntityRepository.SaveContext();
         }
 
