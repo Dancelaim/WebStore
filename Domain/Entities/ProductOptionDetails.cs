@@ -23,6 +23,7 @@ namespace WowCarry.Domain.Entities
 
         [Display(Name = "Parent")]
         public string OptionParent { get; set; }
+        public SelectList ParentParamList { get; set; }
         public SelectList ParamList { get; set; }
         public List<ProductOptionParamsDetails> ParamCollection { get; set; }
 
@@ -44,7 +45,7 @@ namespace WowCarry.Domain.Entities
 
             [Display(Name = "Parameter Parent")]
             public string ParentParam { get; set; }
-            public SelectList ParamList { get; set; }
+            public SelectList ParamParentList { get; set; }
         }
         public static List<ProductOptionParamsDetails> PopulateParamCollection(ProductOptions ProdOpt,IEnumerable<string> paramCollection)
         {
@@ -59,7 +60,7 @@ namespace WowCarry.Domain.Entities
                     ParamPrice = item.ParamPrice,
                     Sale = item.Sale,
                     ParentParam = item.ProductOptionParams2?.ParamName,
-                    ParamList = new SelectList(paramCollection, "Empty")
+                    ParamParentList = new SelectList(paramCollection, "Empty")
                         
 
                 });
@@ -79,7 +80,7 @@ namespace WowCarry.Domain.Entities
                     ParamPrice = item.ParamPrice,
                     Sale = item.OptionSale,
                     ParentParam = item.TempOptionParams2?.ParamName,
-                    ParamList = new SelectList(paramCollection, "Empty")
+                    ParamParentList = new SelectList(paramCollection, "Empty")
                 });
             }
             return result;

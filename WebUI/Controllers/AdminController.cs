@@ -116,7 +116,8 @@ namespace WowCarry.WebUI.Controllers
                 OptionId = selectedOption.ProductOptionId,
                 OptionName = selectedOption.OptionName,
                 OptionType = selectedOption.OptionType,
-                ParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), selectedOption.OptionParamsParentId != null ? selectedOption.ProductOptionParentParam.ParamName : "Empty"),
+                ParentParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), selectedOption.OptionParamsParentId != null ? selectedOption.ProductOptionParentParam.ParamName : "Empty"),
+                ParamList = new SelectList(selectedOption.ProductOptionParams.Select(p => p.ParamName) , "Empty"),
                 ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
             };
 
@@ -158,8 +159,10 @@ namespace WowCarry.WebUI.Controllers
                 OptionId = option.ProductOptionId,
                 OptionName = selectedOption.TempOptionName,
                 OptionType = selectedOption.TempOptionType,
+                ParamList = new SelectList(option.ProductOptionParams.Select(p => p.ParamName), "Empty"),
+
                 //Options parent selector
-                ParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != option.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), "Empty"),
+                ParentParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != option.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), "Empty"),
                 //Parameters parent selector
                 ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId != option.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
             });
@@ -179,6 +182,33 @@ namespace WowCarry.WebUI.Controllers
             ProductOptionParams prodParam = selectedOption.ProductOptionParams.Where(p => p.OptionParamsId == paramId).FirstOrDefault();
             selectedOption.ProductOptionParams.Remove(prodParam);
             EntityRepository.SaveContext();
+        }
+        [HttpPost]
+        public PartialViewResult AddParam(string optionName, string paramName,Guid ProdOptId)
+        {
+            TempOptionParams TempOptionParams = EntityRepository.TemplateOptions.Where(po => po.TempOptionName == optionName).FirstOrDefault().TempOptionParams.Where(p => p.ParamName == paramName).FirstOrDefault();
+            ProductOptions selectedOption = EntityRepository.ProductOptions.Where(o => o.ProductOptionId == ProdOptId).FirstOrDefault();
+
+            ProductOptionParams parameter = new ProductOptionParams
+            {
+                OptionParamsId = Guid.NewGuid(),
+                ParamName = TempOptionParams.ParamName,
+                ParamTooltip = TempOptionParams.ParamTooltip,
+                ParamPrice = TempOptionParams.ParamPrice,
+                Sale = TempOptionParams.OptionSale
+            };
+            selectedOption.ProductOptionParams.Add(parameter);
+            EntityRepository.SaveContext();
+            return PartialView("Param", new ProductOptionDetails.ProductOptionParamsDetails 
+            {
+                ParameterId = parameter.OptionParamsId,
+                Paramname = parameter.ParamName,
+                ParamTooltip = parameter.ParamTooltip,
+                ParamPrice = parameter.ParamPrice,
+                Sale = parameter.Sale,
+                ParamParentList = new SelectList(selectedOption.ProductOptionParams.Where(o => o.ProductOptionId != parameter.ProductOptionId).Select(pr => pr.ParamName),"Empty")
+
+            });
         }
 
         [HttpPost]
