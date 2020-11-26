@@ -37,6 +37,27 @@ ALTER COLUMN ParamPrice decimal(18,2) NOT NULL
 ALTER TABLE ProductOptionParams
 ALTER COLUMN Sale nvarchar(50) NOT NULL
 
+ALTER TABLE Product
+ALTER COLUMN ProductName  Nvarchar(50) NOT NULL
+
+
+ALTER TABLE ProductCategory
+ALTER COLUMN ProductCategoryName  Nvarchar(50) NOT NULL
+
+ALTER TABLE ProductCategory
+ALTER COLUMN CategoryDescription  Nvarchar(255)  NULL
+
+
+ALTER TABLE ProductGame
+ALTER COLUMN GameName  Nvarchar(50)  NULL
+
+ALTER TABLE ProductGame
+ALTER COLUMN GameDescription  Nvarchar(255)  NULL
+
+ALTER TABLE ProductGame
+ALTER COLUMN GameShortUrl  Nvarchar(50)  NULL
+
+
 exec Update_db_Version 33
 Commit Tran
 End Try
