@@ -5,14 +5,18 @@
     <title>Admin Products</title>
 </head>
 <body>
-    <h1>Admin Products</h1>
-    @if (TempData["message"] != null)
-    {
-        <div class="alert alert-success">@TempData["message"]</div>
-    }
-    <p>
-        <td> @Html.ActionLink("Create New", "Create", new { type = "Product" }, new { @class = "btn" })</td>
-    </p>
+    <div class="panel-heading">
+        <h1>Admin Products</h1>
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+        <div class="save-btns">
+            @Html.ActionLink("Create New", "Create", new { type = "Product" }, new { @class = "btn" })
+        </div>
+    </div>
+    
+
     <table class="table products-list-table">
         <thead>
             <tr class="title">
