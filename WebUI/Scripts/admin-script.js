@@ -41,6 +41,12 @@ $(document).on("click", "#Submit", function () {
     $('#SelectedCategory').val($('#Category_Name').val())
     $('#SelectedMetaTagTitle').val($('#Meta_tag_title').val())
 })
+$(document).on("click", "#goToProdOptions", function () {
+    $(this).closest("form").attr("action", "/admin/SaveProduct?navigateToProdOpt=true");
+    $('#SelectedGame').val($('#Game_Name').val())
+    $('#SelectedCategory').val($('#Category_Name').val())
+    $('#SelectedMetaTagTitle').val($('#Meta_tag_title').val())
+})
 $(document).on("click", ".option-add", function () {
     $.ajax({
         cache: false,
@@ -120,4 +126,5 @@ $(document).ready(function () {
         liveSearch: true
     });
 });
+
 

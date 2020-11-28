@@ -90,7 +90,7 @@ namespace WowCarry.WebUI.Controllers
             switch (type)
             {
                 case "Product":
-                    return View("Create" + type, new ProductDetails
+                    return View("Save" + type, new ProductDetails
                     {
                         GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), "Select Game"),
                         CategoriesList = new SelectList(EntityRepository.Games.Where(g => game == null || g.GameName == game).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), "Select Category"),
@@ -120,7 +120,11 @@ namespace WowCarry.WebUI.Controllers
                 ParamList = new SelectList(selectedOption.ProductOptionParams.Select(p => p.ParamName) , "Empty"),
                 ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
             };
-
+            return PartialView(result);
+        }
+        public PartialViewResult ProductOptionsEdit(Guid productId)
+        {
+            var result = EntityRepository.ProductOptions.Where(o => o.OptionProductId == productId);
             return PartialView(result);
         }
         public PartialViewResult AddOption(string optionName, Guid prodId)
@@ -175,7 +179,7 @@ namespace WowCarry.WebUI.Controllers
             selectedProduct.ProductOptions.Remove(selectedOption);
             EntityRepository.SaveContext();
         }
-        [HttpPost]//TODO
+        [HttpPost]
         public void RemoveParam(Guid optionId, Guid paramId)
         {
             ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.ProductOptionId == optionId).FirstOrDefault();
@@ -210,19 +214,68 @@ namespace WowCarry.WebUI.Controllers
 
             });
         }
-
         [HttpPost]
-        public ActionResult Save(ProductDetails productDetails)
+        public ActionResult SaveProduct(ProductDetails productDetails,bool  navigateToProdOpt = false)
         {
             if (ModelState.IsValid)
             {
                 EntityRepository.SaveProduct(productDetails);
                 TempData["message"] = string.Format(productDetails.ProductName + " was saved");
-                return RedirectToAction("List",new {type = "Product"});
+                if (navigateToProdOpt)
+                {
+                    return RedirectToAction("ProductOptionsEdit", new { productId = productDetails.ProductId});
+                }
+                else 
+                {
+                    return RedirectToAction("List", new { type = "Product" }); 
+                }
             }
             else
             {
-                return RedirectToAction("Admin");
+                return View("SaveProduct", new ProductDetails
+                {
+                    Product = productDetails.Product,
+                    ProductId = productDetails.ProductId,
+                    GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), productDetails.SelectedGame ?? "Select Game"),
+                    CategoriesList = new SelectList(EntityRepository.Games.Where(g => productDetails.SelectedGame == null || g.GameName == productDetails.SelectedGame).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), productDetails.SelectedCategory ?? "Select Category"),
+                    MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), productDetails.SelectedMetaTagTitle ?? "Select Meta tag title from List"),
+                    ProductOptions = productDetails.ProductOptions,
+                    TemplateOptionsList = new SelectList(EntityRepository.TemplateOptions.Select(o => o.TempOptionName), "Select Option from templates"),
+                    ProductName = productDetails.ProductName,
+                    InStock = productDetails.InStock,
+                    PreOrder = productDetails.PreOrder,
+                    ProductEnabled = productDetails.ProductEnabled,
+                    ProductQuantity = productDetails.ProductQuantity,
+                    ProductImageThumb = productDetails.ProductImageThumb,
+                    ProductImage = productDetails.ProductImage,
+                    ProductPriority = productDetails.ProductPriority,
+                    ProductPriceEU = productDetails.ProductPriceEU,
+                    ProductPriceUS = productDetails.ProductPriceUS,
+                    ProductSaleEU = productDetails.ProductSaleEU,
+                    ProductSaleUS = productDetails.ProductSaleUS,
+                    Description = productDetails.Description,
+                    SubDescriptionTitle1 = productDetails.SubDescriptionTitle1,
+                    SubDescription1 = productDetails.SubDescription1,
+                    SubDescriptionTitle2 = productDetails.SubDescriptionTitle2,
+                    SubDescription2 = productDetails.SubDescription2,
+                    SubDescriptionTitle3 = productDetails.SubDescriptionTitle3,
+                    SubDescription3 = productDetails.SubDescription3,
+                    SubDescriptionTitle4 = productDetails.SubDescriptionTitle4,
+                    SubDescription4 = productDetails.SubDescription4,
+                    SubDescriptionTitle5 = productDetails.SubDescriptionTitle5,
+                    SubDescription5 = productDetails.SubDescription5,
+                });
+            }
+        }
+        public ActionResult SaveProductOption(ProductOptionDetails productOptionDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("List", new { type = "Product" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "Product" });
             }
         }
     }

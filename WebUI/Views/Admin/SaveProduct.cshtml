@@ -1,21 +1,22 @@
 ﻿@model WowCarry.Domain.Entities.ProductDetails
 
 <div class="panel">
-    <div class="panel-heading">
-        <h3>Create product</h3>
-        <div class="save-btns">
 
-            <input type="submit" value="Save" class="btn" id="Submit" />
-            <input type="submit" value="Save and go to Product Options" class="btn btn-save" id="goToProdOptions" />
-            @Html.ActionLink("Undo and Exit", "Admin", null, new
-            {
-                @class = "btn btn-default"
-            })
-        </div>
-    </div>
-
-    @using (Html.BeginForm("Save", "Admin", FormMethod.Post))
+    @using (Html.BeginForm("SaveProduct", "Admin", new { navigateToProdOpt = false },FormMethod.Post))
     {
+        <div class="panel-heading">
+            <h3> @(@Model.ProductName ?? "Create product")</h3>
+            <div class="save-btns">
+
+                <input type="submit" value="Save" class="btn" id="Submit" />
+                <input type="submit" value="Save and go to Product Options" class="btn btn-save" id="goToProdOptions" />
+                @Html.ActionLink("Undo and Exit", "Admin", null, new
+                {
+                    @class = "btn btn-default"
+                })
+            </div>
+            @Html.ValidationSummary()
+        </div>
         <div class="panel-body">
             <div class="tabs">
                 <div id="tab1" class="tab-title active-title">Product Info</div>
@@ -71,24 +72,18 @@
                         </div>
                     }
                 </div>
-                @*<div class="tab3">
-                    @if (Model.ProductOptions != null)
-                    {
-                        foreach (var item in Model.ProductOptions)
-                        {
-                            @Html.Action("OptionsList", new { optionName = item.OptionName, prodId = Model.ProductId })
-                        }
-                    }
-                     <div class="newOptions">
-                         <div class="title">Add New Option</div>
-                         @Html.DropDownList("Template Options", Model.TemplateOptionsList)
-                         <div class="option-add"><span>Add</span></div>
-                     </div>
-                </div>*@
             </div>
         </div>
         <div class="panel-footer">
-           
+            <div class="save-btns">
+
+                <input type="submit" value="Save" class="btn" id="Submit" />
+                <input type="submit" value="Save and go to Product Options" class="btn btn-save" id="goToProdOptions" />
+                @Html.ActionLink("Undo and Exit", "Admin", null, new
+                {
+                    @class = "btn btn-default"
+                })
+            </div>
         </div>
     }
 </div>

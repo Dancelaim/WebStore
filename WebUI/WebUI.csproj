@@ -866,7 +866,7 @@
     <Content Include="Views\Checkout\Completed.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Admin\ListProduct.cshtml" />
-    <Content Include="Views\Admin\ListProductOption.cshtml" />
+    <Content Include="Views\Admin\ListTemplateOption.cshtml" />
     <Content Include="Views\Admin\ListProductGame.cshtml" />
     <Content Include="Views\Admin\ListHtmlBlocks.cshtml" />
     <Content Include="Views\Admin\ListSEO.cshtml" />
@@ -879,6 +879,7 @@
     <Content Include="Views\Admin\SaveProduct.cshtml" />
     <Content Include="Views\Admin\OptionsList.cshtml" />
     <Content Include="Views\Admin\Param.cshtml" />
+    <Content Include="Views\Admin\ProductOptionsEdit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,7 +1,8 @@
 ﻿@model WowCarry.Domain.Entities.ProductOptionDetails
 
 <div class="options-block">
-    <div class="options-head">@Model.OptionName<span class="remove-option">@Html.HiddenFor(x => x.OptionId)</span>
+    <div class="options-head">
+        @Model.OptionName<span class="remove-option">@Html.HiddenFor(x => x.OptionId)</span>
     </div>
     <div class="options-body">
         @foreach (var property in ViewData.ModelMetadata.Properties)
@@ -39,11 +40,17 @@
                 }
             }
         }
-    <div class="add-param-block">
-        <label>Add Parameter</label>
+        <div class="add-param-block">
+            <label>Add Parameter</label>
             @Html.HiddenFor(x => x.OptionName)
             @Html.DropDownList("Parameter Parent", Model.ParamList, Model.ParamList.SelectedValue != null ? Model.ParamList.SelectedValue.ToString() : "Empty")
-        <div class="param-add"><span>Add</span></div>
-    </div>
+            <div class="param-add"><span>Add</span></div>
+        </div>
     </div>
 </div>
+@*Template options*@
+@*<div class="newOptions">
+    <div class="title">Add New Option</div>
+    @Html.DropDownList("Template Options", Model.TemplateOptionsList)
+    <div class="option-add"><span>Add</span></div>
+</div>*@

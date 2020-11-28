@@ -1,0 +1,14 @@
+﻿@model IEnumerable<WowCarry.Domain.Entities.ProductOptions>
+
+@using (Html.BeginForm("SaveProductOption", "Admin", FormMethod.Post))
+{
+    foreach (var option in Model)
+    {
+        @Html.Action("OptionsList", new { optionName = option.OptionName, prodId = option.OptionProductId })
+    }
+}
+@*<div class="newOptions">
+            <div class="title">Add New Option</div>
+            @Html.DropDownList("Template Options", Model.TemplateOptionsList)
+            <div class="option-add"><span>Add</span></div>
+        </div>*@
