@@ -3,7 +3,7 @@
 @o: 'Open Sans', sans-serif;
 //@r:'Roboto', sans-serif;
 // Заголовки сайта
-@h1color: @color2;
+@h1color: @color4;
 @h1fam: @o;
 @h1style: normal;
 @h1weight: 600;
@@ -11,29 +11,40 @@
 
 //Настройка шрифта на сайте
 @font-size: 16px;
-@pcol: @color2;
+@pcol: @color4;
 @fontfamcont: @o;
-@linkcol: @color2;
+@linkcol: @color1;
 @maxwidth: 1600px;
 
-//Цвета
+//COLORS//
+//main blue
+@color1: #6D94C4;
+//main text color
+@color2: #eeeeee;
+//dark blue
+@color3: #10111B;
+//inactive text
+@color4: #6A7687;
+//main-hovered
+@color5: #91B9EF;
+//inactive bg
+@color6: #161828;
+//success color
+@color7: #00B654;
+//danger/error color
+@color8: #C03F3F;
+//separator
+@color9: #1A233B;
+//gradient-light
+@color10: #212656;
+//COLORS//
 
-//main color
-@color1: #e5f6fe;
-//text color
-@color2: #131313;
-//dark color
-@color3: #3f4d67;
-//dark text color
-@color4: #eeeeee;
-//bg hover
-@color5: #4fc3f7;
-//bg hover dark
-@color6: #283142;
-//bg site white
-@color7: #ffffff;
 a {
     color: @linkcol;
+
+    &:hover {
+        color: @color5;
+    }
 }
 h1, h2, h3, h4, h5, h6 {
     color: @h1color;
@@ -84,6 +95,9 @@ input[type=text], input[type=number], input[type=password], select, textarea {
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
     outline: none;
     vertical-align: middle;
+    background: @color6;
+    border: 1px solid @color4;
+    color: @color4;
 
     &:hover {
         outline: none;
@@ -123,7 +137,6 @@ html {
     -ms-text-size-adjust: 100%;
     -webkit-text-size-adjust: 100%;
     overflow-y: scroll;
-    background: @color7;
 }
 
 pre {
@@ -135,11 +148,78 @@ body, html {
     padding: 0;
     height: 100%;
 }
-
-body {
-    background:none;
+.clear{
+    clear:both;
 }
+body {
+    color: @color4;
+    background: @color3;
+}
+.content-block {
+    padding: 28px 25px 20px;
+}
+.panel-heading {
+    .save-btns {
+        float: right;
+        .btn{
+            margin:0 5px;
+        }
+    }
 
+    h1, h2, h3 {
+        display: inline-block;
+    }
+
+    &:before {
+        content: '';
+        clear: both;
+        display: block;
+    }
+}
+.head-block {
+    padding: 12px 25px;
+    text-align: right;
+    border-bottom: 1px solid @color9;
+
+    .site-link {
+        display: inline-block;
+    }
+
+    .login-user {
+        display: inline-block;
+        padding-right: 15px;
+
+        span {
+            padding-left: 15px;
+
+            &:before {
+                content: "\f08b";
+                font-family: FontAwesome;
+                font-style: normal;
+                font-weight: normal;
+                text-decoration: inherit;
+                padding-right: 5px;
+                color: @color4;
+                font-size: 25px;
+                position: relative;
+                top: 3px;
+            }
+        }
+
+        &:before {
+            content: "\f007";
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            padding-right: 5px;
+            color: @color4;
+            font-size: 25px;
+            position: relative;
+            top: 3px;
+        }
+    }
+}
 .cover {
     margin: 0 auto;
     position: relative;
@@ -154,10 +234,29 @@ body {
     top: 0px;
     left: 0;
     bottom: 0;
-    padding-top: 20px;
     z-index: 10;
-    background: @color3;
+    background: @color6;
     color: @color4;
+    border-right: 1px solid @color9;
+
+    .title {
+        padding: 15px 0 15px 10px;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 26px;
+        line-height: 35px;
+        position: relative;
+        color: @color4;
+
+        &:before {
+            content: "\f00b";
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            padding-right: 15px;
+        }
+    }
 
     ul {
         width: 100%;
@@ -170,7 +269,7 @@ body {
 
             &:first-child {
                 a {
-                    border-top: 1px solid @color6;
+                    border-top: 1px solid @color9;
                 }
             }
 
@@ -182,7 +281,8 @@ body {
                 bottom: 0;
                 left: 0;
                 right: 100%;
-                background: @color5;
+                background: @color3;
+                filter: blur(1px);
             }
 
             &:hover {
@@ -195,19 +295,20 @@ body {
                 margin-top: -1px;
                 position: relative;
                 display: block;
-                padding: 8px 10px;
+                padding: 8px 10px 8px 10px;
                 text-decoration: none;
                 transition: all 0.5s ease;
                 font-size: 20px;
-                border-bottom: 1px solid @color6;
+                color: @color4;
+                border-bottom: 1px solid @color9;
 
                 &:hover, &:active {
                     text-decoration: none;
-                    color: @color2;
+                    color: @color4;
                 }
 
                 &.active {
-                    background: @color6;
+                    background: @color3;
                     color: @color4;
                     border: 0 none;
                 }
@@ -221,25 +322,31 @@ body {
 }
 
 .btn, button, input[type="button"], input[type="submit"] {
-    background: @color1;
-    color: @color2;
+    color: @color1;
     display: inline-block;
     padding: 12px 30px;
     text-align: center;
     border-radius: 25px;
-    box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
+    box-shadow: none;
     transition: all 0.4s ease;
+    background: @color9;
+    border: 1px solid @color1;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
 
     &:hover {
-        box-shadow: 0px 3px 7px rgba(0,0,0,0.3);
+        border-color: @color5;
+        color: @color5;
     }
 }
 
 .content {
     position: relative;
     left: 0px;
-    margin-left: 265px;
-    margin-right: 25px;
+    margin-left: 235px;
+    margin-right: 0;
     transition: all 0.3s;
     outline: none !important;
 }
@@ -272,17 +379,23 @@ body {
         border: 0 none;
     }
 
+    thead {
+        background: @color6;
+        color: @color4;
+    }
+
     tbody tr {
         position: relative;
-        box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
+        box-shadow: none;
     }
 
     .title {
-        background: @color1;
-        box-shadow: 0px 1px 4px rgba(0,0,0,0.2);
+        background: @color6;
+        box-shadow: none;
 
         th {
             padding: 17px 15px 19px;
+            border: 1px solid @color4;
         }
     }
 
@@ -290,6 +403,7 @@ body {
         position: relative;
         padding: 15px;
         vertical-align: middle;
+        border: 1px solid @color4;
     }
 }
 
@@ -302,17 +416,17 @@ body {
     .tab-title {
         display: inline-block;
         padding: 10px 40px;
-        border: 1px solid @color3;
+        border: 1px solid @color4;
         border-radius: 25px 25px 0 0;
         position: relative;
         margin-bottom: -1px;
         cursor: pointer;
         transition: all 0.3s ease;
-        background: rgba(@color5, 0.3);
+        background: @color6;
 
         &.active-title {
             border-bottom: 0 none;
-            background: @color7;
+            background: @color3;
 
             &:after {
                 content: '';
@@ -320,14 +434,14 @@ body {
                 left: 0;
                 right: 0;
                 height: 3px;
-                background: @color7;
+                background: @color3;
                 position: absolute;
             }
         }
     }
 }
 .tabs-desc {
-    border: 1px solid @color3;
+    border: 1px solid @color4;
     padding: 20px;
     border-radius: 0 25px 25px 25px;
 
@@ -359,7 +473,7 @@ body {
             bottom: 0;
             opacity: 0.3;
             height: 1px;
-            background: @color2;
+            background: @color4;
         }
     }
 }
@@ -381,25 +495,36 @@ body {
         bottom: 0;
         height: 1px;
         opacity: 0.3;
-        background: @color2;
+        background: @color4;
     }
 }
 .panel-body {
     .dropdown.bootstrap-select {
         width: 70% !important;
 
-        button {
-            background: none;
+        .no-results {
+            color: @color4;
+            background: @color6;
+        }
+
+        button, .btn {
+            background: @color6;
             outline: none;
+            border-color: @color4;
+            color: @color4;
+            box-shadow: none;
+
 
             &:hover:focus {
                 outline: none !important;
-                background: none;
+                background: @color6;
+                box-shadow: none;
             }
 
             &:hover, &:active, &:focus {
                 outline: none !important;
-                background: none;
+                background: @color6;
+                box-shadow: none;
             }
         }
 
@@ -408,6 +533,25 @@ body {
             margin-bottom: -1px;
             border-radius: 0 0 25px 25px;
             border-top: 0 none;
+            border-color: @color4;
+            background: @color6;
+            position: relative;
+            right: -1px;
+
+            .bs-searchbox .form-control {
+                border-color: @color4;
+                background: @color6;
+            }
+
+            .dropdown-item {
+                color: @color4;
+                padding: 6px;
+
+                &:hover, &.active, &:active {
+                    background: @color9;
+                    color: @color4;
+                }
+            }
         }
 
         &.show {
@@ -440,13 +584,13 @@ body {
             font-weight: normal;
             text-decoration: inherit;
             font-size: 16px;
-            color: @color2;
+            color: @color4;
         }
     }
 }
-.logo {
-    text-align: center;
-    margin: 0 0 15px 0;
+.logo-head {
+    float:left;
+    text-align: left;
 }
 
 #OptionBlock {
@@ -458,16 +602,16 @@ body {
         padding: 20px 0;
         position: relative;
 
-            &:before {
-                height: 1px;
-                opacity: 0.3;
-                background: @color2;
-                content: '';
-                position: absolute;
-                left: -20px;
-                right: -20px;
-                top:-1px;
-            }
+        &:before {
+            height: 1px;
+            opacity: 0.3;
+            background: @color4;
+            content: '';
+            position: absolute;
+            left: -20px;
+            right: -20px;
+            top: -1px;
+        }
 
         &:after {
             content: '';
@@ -477,7 +621,7 @@ body {
             bottom: 0;
             height: 1px;
             opacity: 0.3;
-            background: @color2;
+            background: @color4;
         }
     }
 }
@@ -587,8 +731,8 @@ body {
             padding: 13px 20px;
             font-weight: bold;
             display: inline-block;
-            background: @color1;
-            color: @color2;
+            background: @color9;
+            color: @color4;
             cursor: pointer;
             border-radius: 25px;
             transition: all 0.4s ease;
@@ -677,7 +821,7 @@ body {
             font-weight: normal;
             text-decoration: inherit;
             font-size: 16px;
-            color: @color2;
+            color: @color4;
             display: inline-block;
             position: absolute;
             left: 10px;
@@ -711,7 +855,6 @@ body {
         padding: 10px;
         box-shadow: 0px 3px 7px rgba(0, 0, 0, 0.3);
         display: inline-block;
-
     }
 
     .option-add {
@@ -725,8 +868,8 @@ body {
             padding: 13px 20px;
             font-weight: bold;
             display: inline-block;
-            background: @color1;
-            color: @color2;
+            background: @color9;
+            color: @color4;
             cursor: pointer;
             border-radius: 25px;
             transition: all 0.4s ease;
@@ -739,3 +882,43 @@ body {
         }
     }
 }
+.products-list-table {
+    form{
+        display:inline-block;
+        padding-right:15px;
+    }
+}
+
+//scrollbar
+::-webkit-scrollbar-button {
+    background-image: url('');
+    background-repeat: no-repeat;
+    width: 5px;
+    height: 0px
+}
+
+::-webkit-scrollbar-track {
+    background-color: @color9;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 0px;
+    border-radius: 5px;
+    background-color:@color4;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: @color1;
+}
+
+::-webkit-resizer {
+    background-image: url('');
+    background-repeat: no-repeat;
+    width: 8px;
+    height: 0px
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+//scrollbar end

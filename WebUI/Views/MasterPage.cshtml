@@ -36,23 +36,34 @@ else
 
     <div class="cover">
         <div class="left-column">
-            <div class="logo"><a href="/"><img src="/Images/logo.svg" alt="logo"></a></div>
-            <ul class="list-unstyled">
-                <li>@Html.RouteLink("Home", "AdminItem", new {Action="Admin"}, new {@class = Html.AdminIsSelected("Admin")})</li>
-                <li>@Html.RouteLink("Products", "AdminItem", new { Action = "List", type = "Product" }, new { @class = Html.AdminIsSelected("AdminProducts") }) </li>
-                <li>@Html.RouteLink("Options", "AdminItem", new { Action = "List", type = "ProductOption" }, new { @class = Html.AdminIsSelected("AdminOptions") }) </li>
-                <li>@Html.RouteLink("Product Games", "AdminItem", new { Action = "List", type = "ProductGame" }, new { @class = Html.AdminIsSelected("AdminProductGames") }) </li>
-                <li>@Html.RouteLink("Html Blocks", "AdminItem", new { Action = "List", type = "HtmlBlocks" }, new { @class = Html.AdminIsSelected("AdminHtmlBlocks") }) </li>
-                <li>@Html.RouteLink("SEO", "AdminItem", new { Action = "List", type = "SEO" }, new { @class = Html.AdminIsSelected("AdminSEO") }) </li>
-            </ul>
+            <div class="column-in">
+                <div class="title">Navigation</div>
+                <ul class="list-unstyled">
+                    <li>@Html.RouteLink("Home", "AdminItem", new { Action = "Admin" }, new { @class = Html.AdminIsSelected("Admin") })</li>
+                    <li>@Html.RouteLink("Products", "AdminItem", new { Action = "List", type = "Product" }, new { @class = Html.AdminIsSelected("AdminProducts") }) </li>
+                    <li>@Html.RouteLink("Options", "AdminItem", new { Action = "List", type = "ProductOption" }, new { @class = Html.AdminIsSelected("AdminOptions") }) </li>
+                    <li>@Html.RouteLink("Product Games", "AdminItem", new { Action = "List", type = "ProductGame" }, new { @class = Html.AdminIsSelected("AdminProductGames") }) </li>
+                    <li>@Html.RouteLink("Html Blocks", "AdminItem", new { Action = "List", type = "HtmlBlocks" }, new { @class = Html.AdminIsSelected("AdminHtmlBlocks") }) </li>
+                    <li>@Html.RouteLink("SEO", "AdminItem", new { Action = "List", type = "SEO" }, new { @class = Html.AdminIsSelected("AdminSEO") }) </li>
+                </ul>
+            </div>
         </div>
         <div class="content">
-            @RenderBody()
+            <div class="head-block">
+                <div class="logo-head"><a href="/"><img src="/Images/logo.svg" alt="logo"></a></div>
+                <div class="site-link"><a href="/"></a></div>
+                <div class="login-user">Hello, Admin </div>
+                <div class="clear"></div>
+            </div>
+            <div class="content-block">
+                @RenderBody()
+            </div>
         </div>
         <div class="clear"></div>
     </div>
     <footer>
     </footer>
+    <script src="~/Scripts/admin-script.js"></script>
 </body>
 </html>
 

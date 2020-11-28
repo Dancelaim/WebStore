@@ -558,6 +558,7 @@
     <Content Include="Images\WorldOfWarcraft\reputation\rajani_reputation.png" />
     <Content Include="Images\WorldOfWarcraft\reputation\rajani_reputation_large.png" />
     <Content Include="Scripts\accardeon.js" />
+    <Content Include="Scripts\admin-script.js" />
     <Content Include="Scripts\bootstrap-select.js" />
     <Content Include="Scripts\bootstrap-select.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />

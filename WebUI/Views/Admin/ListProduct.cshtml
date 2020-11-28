@@ -9,7 +9,7 @@
     <p>
         <td> @Html.ActionLink("Create New", "Create", new { type = "Product" }, new { @class = "btn" })</td>
     </p>
-    <table class="table">
+    <table class="table products-list-table">
         <thead>
             <tr class="title">
                 <th>Название</th>
@@ -30,6 +30,7 @@
                                    class="btn btn-default btn-xs"
                                    value="Удалить" />
                         }
+                        <input type="submit" value="Product Options" class="btn" id="toProdOptions" />
                     </td>
                 </tr>
             }

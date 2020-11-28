@@ -3,21 +3,21 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('Open Sans Regular'), local('OpenSans-Regular'), url(https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-U1Ug.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v18/mem8YaGs126MiZpBA-U1Ug.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Open Sans';
   font-style: normal;
   font-weight: 600;
   font-display: swap;
-  src: local('Open Sans SemiBold'), local('OpenSans-SemiBold'), url(https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UNirk-VQ.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/opensans/v18/mem5YaGs126MiZpBA-UNirk-VQ.ttf) format('truetype');
 }
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
+  src: url(https://fonts.gstatic.com/s/roboto/v20/KFOmCnqEu92Fr1Me5Q.ttf) format('truetype');
 }
 a {
   color: #6D94C4;
@@ -28,7 +28,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: #eee;
+  color: #eeeeee;
   font-style: normal;
   font-weight: 600;
   text-transform: uppercase;
@@ -112,7 +112,7 @@ select::placeholder,
 textarea::placeholder,
 input[type=text]::placeholder,
 input[type=password]::placeholder {
-  color: #425369;
+  color: #6A7687;
   opacity: 1;
 }
 input[type=checkbox] {
@@ -132,7 +132,7 @@ input[type=checkbox]:before {
   right: -2px;
   bottom: -2px;
   background: #161828;
-  border: 1px solid #425369;
+  border: 1px solid #6A7687;
   box-sizing: border-box;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 2px;
@@ -181,7 +181,7 @@ label {
 .form-control textarea::placeholder,
 .form-control.bootstrap-select textarea::placeholder,
 .form-group .bootstrap-select textarea::placeholder {
-  color: #425369 !important;
+  color: #6A7687 !important;
   opacity: 1;
 }
 .form-control:hover,
@@ -209,14 +209,14 @@ label {
   box-shadow: none;
   outline: none !important;
   background: #161828;
-  border: 1px solid #425369;
+  border: 1px solid #6A7687;
 }
 .form-control button,
 .form-control.bootstrap-select button,
 .form-group .bootstrap-select button {
   background: #161828;
-  border: 1px solid #425369;
-  color: #eee;
+  border: 1px solid #6A7687;
+  color: #eeeeee;
   transition: inherit;
 }
 .form-control button:hover,
@@ -229,8 +229,8 @@ label {
 .form-control.bootstrap-select button:focus,
 .form-group .bootstrap-select button:focus {
   background: #161828;
-  border: 1px solid #425369;
-  color: #eee;
+  border: 1px solid #6A7687;
+  color: #eeeeee;
   box-shadow: none;
   outline: none !important;
 }
@@ -249,15 +249,15 @@ label {
 .form-control .dropdown-item:active,
 .form-control.bootstrap-select .dropdown-item:active,
 .form-group .bootstrap-select .dropdown-item:active {
-  color: #eee;
+  color: #eeeeee;
   background: #212656;
 }
 .form-control.show > .btn-light.dropdown-toggle,
 .form-control.bootstrap-select.show > .btn-light.dropdown-toggle,
 .form-group .bootstrap-select.show > .btn-light.dropdown-toggle {
   background: #161828;
-  border: 1px solid #425369;
-  color: #eee;
+  border: 1px solid #6A7687;
+  color: #eeeeee;
   box-shadow: none;
 }
 .form-control.show button,
@@ -277,8 +277,8 @@ label {
 .form-control.bootstrap-select .btn-light:not(:disabled):not(.disabled):active,
 .form-group .bootstrap-select .btn-light:not(:disabled):not(.disabled):active {
   background: #161828;
-  border: 1px solid #425369;
-  color: #eee;
+  border: 1px solid #6A7687;
+  color: #eeeeee;
   box-shadow: none;
 }
 input[type=text],
@@ -289,10 +289,10 @@ input[type=number],
 input[type=search] {
   box-shadow: none;
   background: #161828;
-  border: 1px solid #425369;
+  border: 1px solid #6A7687;
   box-sizing: border-box;
   border-radius: 100px;
-  color: #eee;
+  color: #eeeeee;
   padding: 6px 12px 6px 22px;
   height: 49px !important;
   font-size: 14px;
@@ -311,8 +311,8 @@ select:active,
 input[type=number]:active,
 input[type=search]:active {
   background: #161828;
-  border: 1px solid #425369;
-  color: #eee;
+  border: 1px solid #6A7687;
+  color: #eeeeee;
 }
 .form-group input[type=text],
 form input[type=text],
@@ -322,10 +322,10 @@ form input[type=password],
 form select {
   box-shadow: none;
   background: #161828;
-  border: 1px solid #425369;
+  border: 1px solid #6A7687;
   box-sizing: border-box;
   border-radius: 100px;
-  color: #eee;
+  color: #eeeeee;
   padding: 6px 12px 6px 22px;
   height: 49px !important;
   font-size: 14px;
@@ -344,8 +344,8 @@ form input[type=password]:active,
 .form-group select:active,
 form select:active {
   background: #161828;
-  border: 1px solid #425369;
-  color: #eee;
+  border: 1px solid #6A7687;
+  color: #eeeeee;
 }
 .form-group button,
 form button,
@@ -428,13 +428,13 @@ html {
   height: 100%;
 }
 body {
-  color: #eee;
+  color: #eeeeee;
   background: #10111B;
 }
 body .bootstrap-select .dropdown-menu.inner {
-  border-left: 1px solid #425369 !important;
-  border-right: 1px solid #425369 !important;
-  border-bottom: 1px solid #425369 !important;
+  border-left: 1px solid #6A7687 !important;
+  border-right: 1px solid #6A7687 !important;
+  border-bottom: 1px solid #6A7687 !important;
   border-radius: 0 0 25px 25px;
   overflow: hidden;
 }
@@ -506,7 +506,7 @@ header .bottom {
   text-transform: uppercase;
   font-size: 18px;
   line-height: 25px;
-  color: #eee;
+  color: #eeeeee;
   padding: 32px 0 10px;
   position: relative;
   font-weight: 600;
@@ -515,7 +515,7 @@ header .bottom {
   width: 100%;
   font-size: 18px;
   line-height: 25px;
-  color: #eee;
+  color: #eeeeee;
   font-weight: 600;
 }
 .modal .modal-content .modal-header .close {
@@ -554,7 +554,7 @@ header .bottom {
   display: block;
   padding: 21px 16px;
   text-transform: capitalize;
-  color: #eee;
+  color: #eeeeee;
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -710,7 +710,7 @@ header .bottom {
   margin: 0;
   padding: 0;
   font-size: 14px;
-  color: #eee;
+  color: #eeeeee;
   text-transform: uppercase;
   position: relative;
 }
@@ -741,7 +741,7 @@ header .bottom {
   display: block;
   font-size: 16px;
   font-family: 'Open Sans', sans-serif;
-  color: #eee;
+  color: #eeeeee;
   text-shadow: none;
 }
 .top_curr .links_store a:hover,
@@ -775,7 +775,7 @@ header .bottom {
   padding: 22px 32px 22px 12px;
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
-  color: #eee;
+  color: #eeeeee;
   text-shadow: none;
   text-align: left;
   line-height: 20px;
@@ -821,7 +821,7 @@ header .bottom {
 .dropdown-menu li button:hover {
   text-decoration: none;
   outline: none;
-  color: #eee;
+  color: #eeeeee;
   background: #212656;
 }
 .fa:before {
@@ -977,7 +977,7 @@ header .bottom {
   font-size: 12px;
   line-height: 16px;
   border: 0 none;
-  color: #eee;
+  color: #eeeeee;
   min-height: 29px;
   text-decoration: none;
   display: block;
@@ -1004,7 +1004,7 @@ header .bottom {
   position: relative;
   background: none;
   border: 0 none;
-  color: #eee;
+  color: #eeeeee;
   font-size: 14px;
   font-family: 'Open Sans', sans-serif;
   border-radius: 0;
@@ -1012,7 +1012,7 @@ header .bottom {
 .btn-cart:hover,
 .btn-cart:active {
   background: #212656;
-  color: #eee;
+  color: #eeeeee;
 }
 .btn-cart:before {
   content: "";
@@ -1129,11 +1129,11 @@ header .bottom {
   word-wrap: break-word;
   vertical-align: top;
   height: 150px;
-  color: #eee;
+  color: #eeeeee;
 }
 .choose_block .choose_in .title {
   text-transform: uppercase;
-  color: #eee;
+  color: #eeeeee;
   text-align: center;
   padding-top: 20px;
   font-size: 20px;
@@ -1438,7 +1438,7 @@ header .bottom {
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
-  color: #eee;
+  color: #eeeeee;
   margin-top: 0;
   padding-top: 0;
   text-transform: uppercase;
@@ -1455,7 +1455,7 @@ header .bottom {
   background: #161828;
   padding: 5px 10px;
   transition: all 0.3s ease;
-  border: 1px solid #425369;
+  border: 1px solid #6A7687;
 }
 .sub-desc .right-block {
   float: right;
@@ -1499,7 +1499,7 @@ header .bottom {
   padding-top: 0;
   border-bottom: 1px solid #1A233B;
   font-size: 25px;
-  color: #eee;
+  color: #eeeeee;
   font-family: 'Open Sans', sans-serif;
 }
 .cart-list-block {
@@ -1514,7 +1514,7 @@ header .bottom {
   vertical-align: top;
 }
 .cart-list-block .cart-item .name-box a {
-  color: #eee;
+  color: #eeeeee;
   font-size: 20px;
   font-family: 'Open Sans', sans-serif;
   text-decoration: none;
@@ -1525,7 +1525,7 @@ header .bottom {
   font-weight: 300;
   font-size: 16px;
   line-height: 22px;
-  color: #425369;
+  color: #6A7687;
   display: block;
   margin-bottom: 10px;
 }
@@ -1548,7 +1548,7 @@ header .bottom {
 }
 .cart-list-block .cart-item .qty-box button {
   background: #161828;
-  border: 1px solid #425369;
+  border: 1px solid #6A7687;
   box-shadow: none;
   border-radius: 5px;
   height: 30px;
@@ -1716,16 +1716,16 @@ footer .foot_menu li {
   padding: 0 0 15px;
 }
 footer ul li a {
-  color: #eee;
+  color: #eeeeee;
 }
 footer ul li a:hover,
 footer ul li a:active {
-  color: #eee;
+  color: #eeeeee;
 }
 .pow {
   font-size: 12px;
   line-height: 16px;
-  color: #eee;
+  color: #eeeeee;
   padding: 30px 0 0;
   max-width: 50%;
   position: absolute;
@@ -1752,7 +1752,7 @@ footer {
   position: relative;
   padding: 0 17px 0;
   height: 334px;
-  color: #eee;
+  color: #eeeeee;
   margin: 0 auto;
   overflow: hidden;
   z-index: 0;
@@ -1793,7 +1793,7 @@ footer .footer_category {
   margin: 10px 0;
 }
 .product-layout a {
-  color: #eee;
+  color: #eeeeee;
 }
 .product-layout a:hover {
   text-decoration: none;
