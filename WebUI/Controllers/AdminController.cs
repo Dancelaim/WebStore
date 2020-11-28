@@ -122,10 +122,10 @@ namespace WowCarry.WebUI.Controllers
             };
             return PartialView(result);
         }
-        public PartialViewResult ProductOptionsEdit(Guid productId)
+        public ViewResult ProductOptionsEdit(Guid productId)
         {
             var result = EntityRepository.ProductOptions.Where(o => o.OptionProductId == productId);
-            return PartialView(result);
+            return View(result);
         }
         public PartialViewResult AddOption(string optionName, Guid prodId)
         {
