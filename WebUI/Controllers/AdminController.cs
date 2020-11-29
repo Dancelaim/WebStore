@@ -49,7 +49,6 @@ namespace WowCarry.WebUI.Controllers
                         CategoriesList = new SelectList(EntityRepository.Games.Where(g => game == null || g.GameName == game).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), prod?.ProductCategory.ProductCategoryName ?? "Select Category"),
                         MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), prod?.SEO.MetaTagTitle ?? "Select Meta tag title from List"),
                         ProductOptions = prod.ProductOptions,
-                        TemplateOptionsList = new SelectList(EntityRepository.TemplateOptions.Select(o=>o.TempOptionName), "Select Option from templates"),
                         ProductName = prod.ProductName,
                         InStock = prod.InStock,
                         PreOrder = prod.PreOrder,
@@ -111,20 +110,26 @@ namespace WowCarry.WebUI.Controllers
         {
             var selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
             var selectedOption = selectedProduct.ProductOptions.Where(o=>o.OptionName == optionName).FirstOrDefault();
+            var templateOption = EntityRepository.TemplateOptions.Where(t => t.TempOptionName == optionName).FirstOrDefault();
             var result = new ProductOptionDetails
             {
                 OptionId = selectedOption.ProductOptionId,
                 OptionName = selectedOption.OptionName,
                 OptionType = selectedOption.OptionType,
                 ParentParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), selectedOption.OptionParamsParentId != null ? selectedOption.ProductOptionParentParam.ParamName : "Empty"),
-                ParamList = new SelectList(selectedOption.ProductOptionParams.Select(p => p.ParamName) , "Empty"),
+                ParamList = new SelectList(templateOption.TempOptionParams.Select(p => p.ParamName) , "Empty"),
                 ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
             };
             return PartialView(result);
         }
         public ViewResult ProductOptionsEdit(Guid productId)
         {
-            var result = EntityRepository.ProductOptions.Where(o => o.OptionProductId == productId);
+            ProductOptionsViewModel result = new ProductOptionsViewModel
+            {
+                ProductOptions = EntityRepository.ProductOptions.Where(o => o.OptionProductId == productId),
+                TemplateOptionList = new SelectList(EntityRepository.TemplateOptions.Select(o => o.TempOptionName), "Select Option from templates"),
+                ProductId = productId
+            };
             return View(result);
         }
         public PartialViewResult AddOption(string optionName, Guid prodId)
@@ -240,7 +245,6 @@ namespace WowCarry.WebUI.Controllers
                     CategoriesList = new SelectList(EntityRepository.Games.Where(g => productDetails.SelectedGame == null || g.GameName == productDetails.SelectedGame).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), productDetails.SelectedCategory ?? "Select Category"),
                     MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), productDetails.SelectedMetaTagTitle ?? "Select Meta tag title from List"),
                     ProductOptions = productDetails.ProductOptions,
-                    TemplateOptionsList = new SelectList(EntityRepository.TemplateOptions.Select(o => o.TempOptionName), "Select Option from templates"),
                     ProductName = productDetails.ProductName,
                     InStock = productDetails.InStock,
                     PreOrder = productDetails.PreOrder,

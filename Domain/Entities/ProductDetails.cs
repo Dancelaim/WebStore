@@ -43,9 +43,9 @@ namespace WowCarry.Domain.Entities
         public int? ProductPriority { get; set; }
 
         #region DropDownLists
-        [Display(Name = "Template Options")]
-        public SelectList TemplateOptionsList { get; set; }
-        public string SelectedTemplateOption { get; set; }
+        //[Display(Name = "Template Options")]
+        //public SelectList TemplateOptionsList { get; set; }
+        //public string SelectedTemplateOption { get; set; }
 
         [Display(Name = "Game name")]
         public SelectList GamesList { get; set; }

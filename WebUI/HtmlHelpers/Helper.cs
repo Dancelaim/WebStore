@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -35,6 +36,20 @@ namespace WebUI.HtmlHelpers
             var currentAction = (string)html.ViewContext.RouteData.Values["action"];
 
             return item == currentAction ? cssClass : String.Empty;
+        }
+        public static MvcHtmlString SetTabsForOptions(this HtmlHelper html, IEnumerable<string> tabNames)
+        {
+            StringBuilder result = new StringBuilder();
+            foreach (string tab in tabNames)
+            {
+                TagBuilder divTag = new TagBuilder("div");
+                divTag.InnerHtml = tab.ToString();
+                divTag.AddCssClass("opt-head");
+                divTag.GenerateId(tab.ToString());
+                result.Append(divTag.ToString());
+            }
+
+            return MvcHtmlString.Create(result.ToString()); ;
         }
     }
 }

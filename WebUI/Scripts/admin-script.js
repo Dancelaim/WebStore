@@ -51,13 +51,15 @@ $(document).on("click", ".option-add", function () {
     $.ajax({
         cache: false,
         type: 'POST',
-        url: '@Url.Action("AddOption")',
+        url: '/admin/AddOption',
         data: {
             optionName: $("#Template_Options").val(),
             prodId: $("#ProductId").val()
         },
         success: function (data) {
             $(".tab3 .newOptions").before(data);
+            window.location.reload();
+
         },
         error: function (ex) {
             alert('Failed to add option.' + ex);
@@ -68,41 +70,43 @@ $(document).on("click", ".options-head .remove-option", function () {
     $.ajax({
         cache: false,
         type: 'POST',
-        url: '@Url.Action("RemoveOption")',
+        url: '/admin/RemoveOption',
         data: {
             optionId: $(this).find("#OptionId").val(),
             prodId: $("#ProductId").val()
+        },
+        success: function (data) {
+            window.location.reload();
         },
         error: function (ex) {
             alert('Failed to remove option.' + ex);
         }
     });
-    $(this).closest('.options-block').remove();
 
 })
 $(document).on("click", ".remove-param", function () {
     $.ajax({
         cache: false,
         type: 'POST',
-        url: '@Url.Action("RemoveParam")',
+        url: '/admin/RemoveParam',
         data: {
             optionId: $(this).closest('.options-block').find("#OptionId").val(),
             paramId: $(this).find("#paramId").val()
+        },
+        success: function (data) {
+            window.location.reload();
         },
         error: function (ex) {
             alert('Failed to remove param.' + ex);
         }
     });
-    $(this).closest('.param-fields').remove();
-
 })
 $(document).on("click", ".param-add", function () {
-    console.log($(this).closest(".add-param-block").find("#Parameter_Parent").val().toString())
     if ($(this).closest(".add-param-block").find("#Parameter_Parent").val().toString() != "") {
         $.ajax({
             cache: false,
             type: 'POST',
-            url: '@Url.Action("AddParam")',
+            url: "/admin/AddParam",
             data: {
                 optionName: $(this).closest('.add-param-block').find("#OptionName").val(),
                 paramName: $(this).closest(".add-param-block").find("#Parameter_Parent").val(),

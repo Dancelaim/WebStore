@@ -38,7 +38,7 @@ namespace WowCarry.Domain.Entities
             public String ParamTooltip { get; set; }
 
             [Display(Name = "Parameter Price")]
-            public Double? ParamPrice { get; set; }
+            public decimal? ParamPrice { get; set; }
 
             [Display(Name = "Parameter Sale")]
             public string Sale { get; set; }

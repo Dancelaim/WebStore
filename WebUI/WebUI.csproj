@@ -826,6 +826,7 @@
     <Compile Include="Infrastructure\Binders\ProductModelBinder.cs" />
     <Compile Include="Infrastructure\Binders\CartModelBinder .cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\ProductOptionsViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\GameCategoryViewModel.cs" />
     <Compile Include="Models\CartViewModel.cs" />

@@ -24,7 +24,7 @@ namespace WowCarry.Domain.Entities
         public System.Guid OptionParamsId { get; set; }
         public string ParamName { get; set; }
         public string ParamTooltip { get; set; }
-        public Nullable<double> ParamPrice { get; set; }
+        public decimal ParamPrice { get; set; }
         public Nullable<System.Guid> ProductOptionId { get; set; }
         public string Sale { get; set; }
         public Nullable<System.Guid> ParamParentId { get; set; }

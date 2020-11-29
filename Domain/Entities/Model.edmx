@@ -33,7 +33,7 @@
             <PropertyRef Name="ProductId" />
           </Key>
           <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ProductName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductCategoryId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="InStock" Type="bit" Nullable="false" />
           <Property Name="PreOrder" Type="bit" Nullable="false" />
@@ -54,9 +54,9 @@
             <PropertyRef Name="ProductCategoryId" />
           </Key>
           <Property Name="ProductCategoryId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="ProductCategoryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductGameId" Type="uniqueidentifier" />
-          <Property Name="CategoryDescription" Type="varchar" MaxLength="255" />
+          <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
           <Property Name="ProductSubCategoryId" Type="uniqueidentifier" />
           <Property Name="CategorySeoId" Type="uniqueidentifier" />
         </EntityType>
@@ -82,9 +82,9 @@
             <PropertyRef Name="ProductGameId" />
           </Key>
           <Property Name="ProductGameId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="GameName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="GameDescription" Type="varchar" MaxLength="255" />
-          <Property Name="GameShortUrl" Type="varchar" MaxLength="50" />
+          <Property Name="GameName" Type="nvarchar" MaxLength="50" />
+          <Property Name="GameDescription" Type="nvarchar" MaxLength="255" />
+          <Property Name="GameShortUrl" Type="nvarchar" MaxLength="50" />
           <Property Name="GameSeoId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ProductOptionParams">
@@ -93,10 +93,10 @@
           </Key>
           <Property Name="OptionParamsId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ParamName" Type="nvarchar" MaxLength="50" />
-          <Property Name="ParamTooltip" Type="nvarchar" MaxLength="255" />
-          <Property Name="ParamPrice" Type="float" />
+          <Property Name="ParamTooltip" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ParamPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ProductOptionId" Type="uniqueidentifier" />
-          <Property Name="Sale" Type="nvarchar" MaxLength="50" />
+          <Property Name="Sale" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ParamParentId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ProductOptions">
@@ -105,7 +105,7 @@
           </Key>
           <Property Name="ProductOptionId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="OptionName" Type="nvarchar" MaxLength="55" />
-          <Property Name="OptionType" Type="nchar" MaxLength="10" />
+          <Property Name="OptionType" Type="nvarchar" MaxLength="10" />
           <Property Name="OptionParamsParentId" Type="uniqueidentifier" />
           <Property Name="OptionProductId" Type="uniqueidentifier" />
         </EntityType>
@@ -114,7 +114,7 @@
             <PropertyRef Name="ProductPriceId" />
           </Key>
           <Property Name="ProductPriceId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Region" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="Region" Type="nvarchar" MaxLength="10" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
           <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ProductSale" Type="decimal" Precision="18" Scale="1" />
@@ -169,10 +169,10 @@
           </Key>
           <Property Name="ParamsId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ParamName" Type="nvarchar" MaxLength="50" />
-          <Property Name="ParamTooltip" Type="nvarchar" MaxLength="255" />
-          <Property Name="ParamPrice" Type="float" />
+          <Property Name="ParamTooltip" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="ParamPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="TempOptionId" Type="uniqueidentifier" />
-          <Property Name="OptionSale" Type="nvarchar" MaxLength="50" />
+          <Property Name="OptionSale" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ParamParentId" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK__HtmlBlock__SiteB__31B762FC">
@@ -532,9 +532,9 @@
             <PropertyRef Name="ProductCategoryId" />
           </Key>
           <Property Name="ProductCategoryId" Type="Guid" Nullable="false" />
-          <Property Name="ProductCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProductGameId" Type="Guid" />
-          <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductGame" Relationship="Self.FK_ProductCategory_ProductGame" FromRole="ProductCategory" ToRole="ProductGame" />
           <Property Name="ProductSubCategoryId" Type="Guid" />
           <NavigationProperty Name="ProductSubCategory" Relationship="WowCarryModel.FK__ProductCa__Produ__2B0A656D" FromRole="ProductCategory" ToRole="ProductSubCategory" />
@@ -547,10 +547,10 @@
             <PropertyRef Name="ProductGameId" />
           </Key>
           <Property Name="ProductGameId" Type="Guid" Nullable="false" />
-          <Property Name="GameName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="GameDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="GameName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="GameDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductCategory" Relationship="Self.FK_ProductCategory_ProductGame" FromRole="ProductGame" ToRole="ProductCategory" />
-          <Property Name="GameShortUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="GameShortUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Realms" Relationship="WowCarryModel.FK__Realms__ProductG__3E1D39E1" FromRole="ProductGame" ToRole="Realms" />
           <Property Name="GameSeoId" Type="Guid" />
           <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK__ProductGa__GameS__4E53A1AA" FromRole="ProductGame" ToRole="SEO" />
@@ -561,7 +561,7 @@
             <PropertyRef Name="ProductPriceId" />
           </Key>
           <Property Name="ProductPriceId" Type="Guid" Nullable="false" />
-          <Property Name="Region" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Region" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="ProductId" Type="Guid" Nullable="false" />
           <Property Name="ProductSale" Type="Decimal" Precision="18" Scale="1" />
@@ -846,7 +846,7 @@
             <PropertyRef Name="ProductId" />
           </Key>
           <Property Name="ProductId" Type="Guid" Nullable="false" />
-          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ProductName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ProductCategoryId" Type="Guid" Nullable="false" />
           <Property Name="InStock" Type="Boolean" Nullable="false" />
           <Property Name="PreOrder" Type="Boolean" Nullable="false" />
@@ -962,10 +962,10 @@
           </Key>
           <Property Name="ParamsId" Type="Guid" Nullable="false" />
           <Property Name="ParamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ParamTooltip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ParamPrice" Type="Double" />
+          <Property Name="ParamTooltip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParamPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="TempOptionId" Type="Guid" />
-          <Property Name="OptionSale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OptionSale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="TemplateOptions" Relationship="WowCarryModel.FK__TempOptio__TempO__12FDD1B2" FromRole="TempOptionParams" ToRole="TemplateOptions" />
           <NavigationProperty Name="TemplateOptions1" Relationship="WowCarryModel.FK_TemplateOptions_TempOptionParams" FromRole="TempOptionParams" ToRole="TemplateOptions" />
           <Property Name="ParamParentId" Type="Guid" />
@@ -990,10 +990,10 @@
           </Key>
           <Property Name="OptionParamsId" Type="Guid" Nullable="false" />
           <Property Name="ParamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ParamTooltip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ParamPrice" Type="Double" />
+          <Property Name="ParamTooltip" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ParamPrice" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="ProductOptionId" Type="Guid" />
-          <Property Name="Sale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sale" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ProductOptions" Relationship="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" FromRole="ProductOptionParams" ToRole="ProductOptions" />
           <NavigationProperty Name="ParentProductOptions" Relationship="WowCarryModel.FK_ProductOption_ProductOptionParams" FromRole="ProductOptionParams" ToRole="ProductOptions" />
           <Property Name="ParamParentId" Type="Guid" />
@@ -1006,7 +1006,7 @@
           </Key>
           <Property Name="ProductOptionId" Type="Guid" Nullable="false" />
           <Property Name="OptionName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="OptionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="OptionType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductOptionParams" Relationship="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" FromRole="ProductOptions" ToRole="ProductOptionParams" />
           <Property Name="OptionParamsParentId" Type="Guid" />
           <NavigationProperty Name="ProductOptionParentParam" Relationship="WowCarryModel.FK_ProductOption_ProductOptionParams" FromRole="ProductOptions" ToRole="ProductOptionParams" />
