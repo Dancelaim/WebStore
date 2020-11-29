@@ -508,7 +508,7 @@ body {
         background: @color4;
     }
 }
-.panel-body, .options-body {
+.panel-body, .options-body, .opt-body {
     .dropdown.bootstrap-select {
         width: 70% !important;
 
@@ -638,7 +638,7 @@ body {
 
 .param-list {
     position: relative;
-    width: 100%;
+    width: 95%;
 
     .param-titles {
         position: relative;
@@ -685,7 +685,7 @@ body {
             font-weight: bold;
             text-align: center;
             display: inline-block;
-            width: 18.5%;
+            width: 19%;
             vertical-align: top;
             padding: 20px 10px;
             box-sizing: border-box;
@@ -845,6 +845,37 @@ body {
         }
     }
 }
+.options-tabs {
+    position: relative;
+
+    .opt-body {
+        display: none;
+
+        .param-fields {
+            input, select, button, .dropdown.bootstrap-select {
+                margin-bottom: 0;
+                width: 100% !important;
+            }
+
+            .btn {
+                padding: 5px 8px;
+            }
+
+            .dropdown.bootstrap-select button {
+                padding: 10px 15px;
+            }
+        }
+
+        input {
+            margin-bottom: 20px;
+        }
+
+        &.active-tab-body {
+            display: block;
+        }
+    }
+}
+
 
 .newOptions {
     margin: 20px 0;
