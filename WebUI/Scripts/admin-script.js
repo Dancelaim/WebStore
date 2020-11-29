@@ -23,19 +23,28 @@ $(document).on("click", ".tab-title", function SetActiveTab() {
             break;
     }
 })
-$(document).on("click", ".options-head", function () {
-    var parentTab = $(this).parents(".options-block");
-    bodyTab = parentTab.find(".options-body");
+//$(document).on("click", ".options-head", function () {
+//    var parentTab = $(this).parents(".options-block");
+//    bodyTab = parentTab.find(".options-body");
 
-    if (parentTab.hasClass("active_block")) {
-        parentTab.removeClass("active_block");
-        bodyTab.slideUp();
-    } else {
-        parentTab.addClass("active_block");
-        bodyTab.slideDown();
-    }
+//    if (parentTab.hasClass("active_block")) {
+//        parentTab.removeClass("active_block");
+//        bodyTab.slideUp();
+//    } else {
+//        parentTab.addClass("active_block");
+//        bodyTab.slideDown();
+//    }
 
+//})
+
+$(document).on("click", ".opt-head", function SetActiveTab() {
+    var TabName = $(this).attr("id");
+    $(".opt-head").removeClass("active-tab-head");
+    $(".opt-body").removeClass("active-tab-body");
+    $(this).addClass("active-tab-head");
+    $(".options-tabs").find("." + TabName).addClass("active-tab-body");
 })
+
 $(document).on("click", "#Submit", function () {
     $('#SelectedGame').val($('#Game_Name').val())
     $('#SelectedCategory').val($('#Category_Name').val())

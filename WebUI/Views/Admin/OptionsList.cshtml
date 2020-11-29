@@ -1,10 +1,9 @@
 ﻿@model WowCarry.Domain.Entities.ProductOptionDetails
 
-<div class="options-block">
-    <div class="options-head">
+    <div id="@Model.OptionName.ToString().Replace(' ','_')" class="opt-head">
         @Model.OptionName<span class="remove-option">@Html.HiddenFor(x => x.OptionId)</span>
     </div>
-    <div class="options-body">
+    <div class="opt-body @Model.OptionName.ToString().Replace(' ','_')">
         @foreach (var property in ViewData.ModelMetadata.Properties)
         {
 

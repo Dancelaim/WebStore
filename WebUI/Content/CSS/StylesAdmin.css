@@ -465,18 +465,22 @@ input[type="submit"]:hover {
   background: #6A7687;
 }
 .panel-body .dropdown.bootstrap-select,
-.options-body .dropdown.bootstrap-select {
+.options-body .dropdown.bootstrap-select,
+.opt-body .dropdown.bootstrap-select {
   width: 70% !important;
 }
 .panel-body .dropdown.bootstrap-select .no-results,
-.options-body .dropdown.bootstrap-select .no-results {
+.options-body .dropdown.bootstrap-select .no-results,
+.opt-body .dropdown.bootstrap-select .no-results {
   color: #6A7687;
   background: #161828;
 }
 .panel-body .dropdown.bootstrap-select button,
 .options-body .dropdown.bootstrap-select button,
+.opt-body .dropdown.bootstrap-select button,
 .panel-body .dropdown.bootstrap-select .btn,
-.options-body .dropdown.bootstrap-select .btn {
+.options-body .dropdown.bootstrap-select .btn,
+.opt-body .dropdown.bootstrap-select .btn {
   background: #161828;
   outline: none;
   border-color: #6A7687;
@@ -485,30 +489,39 @@ input[type="submit"]:hover {
 }
 .panel-body .dropdown.bootstrap-select button:hover:focus,
 .options-body .dropdown.bootstrap-select button:hover:focus,
+.opt-body .dropdown.bootstrap-select button:hover:focus,
 .panel-body .dropdown.bootstrap-select .btn:hover:focus,
-.options-body .dropdown.bootstrap-select .btn:hover:focus {
+.options-body .dropdown.bootstrap-select .btn:hover:focus,
+.opt-body .dropdown.bootstrap-select .btn:hover:focus {
   outline: none !important;
   background: #161828;
   box-shadow: none;
 }
 .panel-body .dropdown.bootstrap-select button:hover,
 .options-body .dropdown.bootstrap-select button:hover,
+.opt-body .dropdown.bootstrap-select button:hover,
 .panel-body .dropdown.bootstrap-select .btn:hover,
 .options-body .dropdown.bootstrap-select .btn:hover,
+.opt-body .dropdown.bootstrap-select .btn:hover,
 .panel-body .dropdown.bootstrap-select button:active,
 .options-body .dropdown.bootstrap-select button:active,
+.opt-body .dropdown.bootstrap-select button:active,
 .panel-body .dropdown.bootstrap-select .btn:active,
 .options-body .dropdown.bootstrap-select .btn:active,
+.opt-body .dropdown.bootstrap-select .btn:active,
 .panel-body .dropdown.bootstrap-select button:focus,
 .options-body .dropdown.bootstrap-select button:focus,
+.opt-body .dropdown.bootstrap-select button:focus,
 .panel-body .dropdown.bootstrap-select .btn:focus,
-.options-body .dropdown.bootstrap-select .btn:focus {
+.options-body .dropdown.bootstrap-select .btn:focus,
+.opt-body .dropdown.bootstrap-select .btn:focus {
   outline: none !important;
   background: #161828;
   box-shadow: none;
 }
 .panel-body .dropdown.bootstrap-select .dropdown-menu,
-.options-body .dropdown.bootstrap-select .dropdown-menu {
+.options-body .dropdown.bootstrap-select .dropdown-menu,
+.opt-body .dropdown.bootstrap-select .dropdown-menu {
   margin-top: -1px;
   margin-bottom: -1px;
   border-radius: 0 0 25px 25px;
@@ -519,42 +532,52 @@ input[type="submit"]:hover {
   right: -1px;
 }
 .panel-body .dropdown.bootstrap-select .dropdown-menu .bs-searchbox .form-control,
-.options-body .dropdown.bootstrap-select .dropdown-menu .bs-searchbox .form-control {
+.options-body .dropdown.bootstrap-select .dropdown-menu .bs-searchbox .form-control,
+.opt-body .dropdown.bootstrap-select .dropdown-menu .bs-searchbox .form-control {
   border-color: #6A7687;
   background: #161828;
 }
 .panel-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item,
-.options-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item {
+.options-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item,
+.opt-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item {
   color: #6A7687;
   padding: 6px;
 }
 .panel-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item:hover,
 .options-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item:hover,
+.opt-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item:hover,
 .panel-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item.active,
 .options-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item.active,
+.opt-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item.active,
 .panel-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item:active,
-.options-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item:active {
+.options-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item:active,
+.opt-body .dropdown.bootstrap-select .dropdown-menu .dropdown-item:active {
   background: #1A233B;
   color: #6A7687;
 }
 .panel-body .dropdown.bootstrap-select.show .dropdown-toggle:after,
-.options-body .dropdown.bootstrap-select.show .dropdown-toggle:after {
+.options-body .dropdown.bootstrap-select.show .dropdown-toggle:after,
+.opt-body .dropdown.bootstrap-select.show .dropdown-toggle:after {
   transform: rotate(270deg);
 }
 .panel-body .dropdown.bootstrap-select.show button,
-.options-body .dropdown.bootstrap-select.show button {
+.options-body .dropdown.bootstrap-select.show button,
+.opt-body .dropdown.bootstrap-select.show button {
   border-radius: 25px 25px 0 0;
 }
 .panel-body .dropdown.bootstrap-select.show.dropup button,
-.options-body .dropdown.bootstrap-select.show.dropup button {
+.options-body .dropdown.bootstrap-select.show.dropup button,
+.opt-body .dropdown.bootstrap-select.show.dropup button {
   border-radius: 0 0 25px 25px;
 }
 .panel-body .dropdown.bootstrap-select.show.dropup .dropdown-menu,
-.options-body .dropdown.bootstrap-select.show.dropup .dropdown-menu {
+.options-body .dropdown.bootstrap-select.show.dropup .dropdown-menu,
+.opt-body .dropdown.bootstrap-select.show.dropup .dropdown-menu {
   border-radius: 25px 25px 0 0;
 }
 .panel-body .dropdown.bootstrap-select .dropdown-toggle:after,
-.options-body .dropdown.bootstrap-select .dropdown-toggle:after {
+.options-body .dropdown.bootstrap-select .dropdown-toggle:after,
+.opt-body .dropdown.bootstrap-select .dropdown-toggle:after {
   transition: all 0.3s ease;
   border: 0 none;
   content: '\f054';
@@ -599,7 +622,7 @@ input[type="submit"]:hover {
 }
 .param-list {
   position: relative;
-  width: 100%;
+  width: 95%;
 }
 .param-list .param-titles {
   position: relative;
@@ -642,7 +665,7 @@ input[type="submit"]:hover {
   font-weight: bold;
   text-align: center;
   display: inline-block;
-  width: 18.5%;
+  width: 19%;
   vertical-align: top;
   padding: 20px 10px;
   box-sizing: border-box;
@@ -782,6 +805,31 @@ input[type="submit"]:hover {
 }
 .options-block.active_block .options-head:after {
   transform: rotate(-90deg);
+}
+.options-tabs {
+  position: relative;
+}
+.options-tabs .opt-body {
+  display: none;
+}
+.options-tabs .opt-body .param-fields input,
+.options-tabs .opt-body .param-fields select,
+.options-tabs .opt-body .param-fields button,
+.options-tabs .opt-body .param-fields .dropdown.bootstrap-select {
+  margin-bottom: 0;
+  width: 100% !important;
+}
+.options-tabs .opt-body .param-fields .btn {
+  padding: 5px 8px;
+}
+.options-tabs .opt-body .param-fields .dropdown.bootstrap-select button {
+  padding: 10px 15px;
+}
+.options-tabs .opt-body input {
+  margin-bottom: 20px;
+}
+.options-tabs .opt-body.active-tab-body {
+  display: block;
 }
 .newOptions {
   margin: 20px 0;

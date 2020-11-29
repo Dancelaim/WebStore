@@ -15,30 +15,30 @@
             })
         </div>
     </div>
-    <div>
-        @Html.SetTabsForOptions(@Model.ProductOptions.Select(o => o.OptionName))
-    </div>
-    foreach (var option in Model.ProductOptions)
-    {
-        @Html.Action("OptionsList", new { optionName = option.OptionName, prodId = option.OptionProductId })
-    }
-    <div class="clear"></div>
-    <div class="panel-footer">
-        <div class="newOptions">
-            <div class="title">Add New Option</div>
-            @Html.DropDownList("Template Options", Model.TemplateOptionList)
-            <div class="option-add"><span>Add</span></div>
-        </div>
-        <div class="save-btns">
+    <div class="options-tabs">
 
-            <input type="submit" value="Save" class="btn" id="Submit" />
-            <input type="submit" value="Save and go to Product" class="btn btn-save" id="goToProd" />
-            @Html.ActionLink("Undo and Exit", "Admin", null, new
-            {
-                @class = "btn btn-default"
-            })
-        </div>
+        @foreach (var option in Model)
+        {
+            @Html.Action("OptionsList", new { optionName = option.OptionName, prodId = option.OptionProductId })
+        }
+    </div>
         <div class="clear"></div>
-    </div>
-}
+        <div class="panel-footer">
+            <div class="save-btns">
 
+                <input type="submit" value="Save" class="btn" id="Submit" />
+                <input type="submit" value="Save and go to Product" class="btn btn-save" id="goToProd" />
+                @Html.ActionLink("Undo and Exit", "Admin", null, new
+                {
+                    @class = "btn btn-default"
+                })
+            </div>
+            <div class="clear"></div>
+        </div>
+        }
+
+        @*<div class="newOptions">
+                <div class="title">Add New Option</div>
+                @Html.DropDownList("Template Options", Model.TemplateOptionsList)
+                <div class="option-add"><span>Add</span></div>
+            </div>*@
