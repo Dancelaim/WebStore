@@ -36,6 +36,8 @@ $(document).on("click", ".tab-title", function SetActiveTab() {
 //    }
 
 //})
+$(".opt-head:first").addClass("active-tab-head");
+$(".opt-body:first").addClass("active-tab-body");
 
 $(document).on("click", ".opt-head", function SetActiveTab() {
     var TabName = $(this).attr("id");

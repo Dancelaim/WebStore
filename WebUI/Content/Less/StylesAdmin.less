@@ -80,7 +80,7 @@ img {
     background: transparent;
 }
 label {
-    width: 25%;
+    width: 26%;
     text-align: right;
     font-weight: bold;
     padding-right: 40px;
@@ -508,7 +508,7 @@ body {
         background: @color4;
     }
 }
-.panel-body, .options-body, .opt-body {
+.panel-body, .options-body, .opt-body, .newOptions {
     .dropdown.bootstrap-select {
         width: 70% !important;
 
@@ -602,7 +602,6 @@ body {
     float:left;
     text-align: left;
 }
-
 #OptionBlock {
     input {
         margin: 15px 0;
@@ -638,7 +637,7 @@ body {
 
 .param-list {
     position: relative;
-    width: 95%;
+    width: 100%;
 
     .param-titles {
         position: relative;
@@ -661,8 +660,20 @@ body {
             display: inline-block;
             width: 19%;
             vertical-align: top;
-            padding: 20px 10px;
+            padding: 20px 10px 0;
             box-sizing: border-box;
+
+            &:nth-child(2) {
+                width: 44%;
+            }
+
+            &:nth-child(3) {
+                width: 8%;
+            }
+
+            &:nth-child(4) {
+                width: 6%;
+            }
         }
     }
 
@@ -691,11 +702,22 @@ body {
             box-sizing: border-box;
             position: relative;
 
+            &:nth-child(2) {
+                width: 44%;
+            }
+
+            &:nth-child(3) {
+                width: 8%;
+            }
+
+            &:nth-child(4) {
+                width: 6%;
+            }
+
             &:last-child {
                 width: 34px;
                 height: 85px;
                 position: absolute;
-                right: 0;
 
                 .remove-option, .remove-param {
                     position: absolute;
@@ -721,7 +743,11 @@ body {
     }
 }
 .add-param-block {
-    padding: 30px 0;
+    padding: 30px 0 30px 10px;
+
+    label {
+        width: auto;
+    }
 
     select, .btn {
         border-radius: 25px;
@@ -848,13 +874,52 @@ body {
 .options-tabs {
     position: relative;
 
+    .titles-options {
+        position: relative;
+
+        .opt-head {
+            display: inline-block;
+            padding: 10px 40px;
+            border: 1px solid @color4;
+            border-radius: 25px 25px 0 0;
+            position: relative;
+            margin-bottom: -1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: @color6;
+            margin-right: 5px;
+
+            &.active-tab-head {
+                border-bottom: 0 none;
+                background: @color3;
+
+                &:after {
+                    content: '';
+                    bottom: -2px;
+                    left: 0;
+                    right: 0;
+                    height: 3px;
+                    background: @color3;
+                    position: absolute;
+                }
+            }
+        }
+    }
+
     .opt-body {
         display: none;
+        border: 1px solid @color4;
+        padding: 20px;
+        border-radius: 0 25px 25px 25px;
 
         .param-fields {
             input, select, button, .dropdown.bootstrap-select {
                 margin-bottom: 0;
                 width: 100% !important;
+            }
+
+            .bootstrap-select > select {
+                width: .5px !important;
             }
 
             .btn {
