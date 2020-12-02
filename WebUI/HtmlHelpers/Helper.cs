@@ -43,7 +43,9 @@ namespace WebUI.HtmlHelpers
             foreach (string tab in tabNames)
             {
                 TagBuilder divTag = new TagBuilder("div");
-                divTag.InnerHtml = tab.ToString();
+                TagBuilder spanTag = new TagBuilder("span");
+                spanTag.AddCssClass("remove-option");
+                divTag.InnerHtml = tab.ToString() + spanTag;
                 divTag.AddCssClass("opt-head");
                 divTag.GenerateId(tab.ToString());
                 result.Append(divTag.ToString());

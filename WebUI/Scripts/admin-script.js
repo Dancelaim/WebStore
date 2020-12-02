@@ -83,7 +83,7 @@ $(document).on("click", ".options-head .remove-option", function () {
         type: 'POST',
         url: '/admin/RemoveOption',
         data: {
-            optionId: $(this).find("#OptionId").val(),
+            optionId: $(this).closest('.options-tabs').find("#OptionId").val(),
             prodId: $("#ProductId").val()
         },
         success: function (data) {
@@ -101,7 +101,7 @@ $(document).on("click", ".remove-param", function () {
         type: 'POST',
         url: '/admin/RemoveParam',
         data: {
-            optionId: $(this).closest('.options-block').find("#OptionId").val(),
+            optionId: $(this).closest('.options-tabs').find("#OptionId").val(),
             paramId: $(this).find("#paramId").val()
         },
         success: function (data) {
@@ -121,7 +121,7 @@ $(document).on("click", ".param-add", function () {
             data: {
                 optionName: $(this).closest('.add-param-block').find("#OptionName").val(),
                 paramName: $(this).closest(".add-param-block").find("#Parameter_Parent").val(),
-                ProdOptId: $(this).closest('.options-block').find("#OptionId").val()
+                ProdOptId: $(this).closest('.options-tabs').find("#OptionId").val()
             },
             success: function (data) {
                 $(".param-list").append(data);

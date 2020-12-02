@@ -36,11 +36,12 @@
                 }
             }
         }
-        <div class="add-param-block">
-            <label>Add Parameter</label>
-            @Html.HiddenFor(x => x.OptionName)
-            @Html.DropDownList("Parameter Parent", Model.ParamList, Model.ParamList.SelectedValue != null ? Model.ParamList.SelectedValue.ToString() : "Empty")
-            <div class="param-add btn">Add</div>
-        </div>
+    <div class="add-param-block">
+        <label>Add Parameter</label>
+        @Html.HiddenFor(x => x.OptionName)
+        @Html.HiddenFor(x => x.OptionId)
+        @Html.DropDownList("Parameter Parent", Model.ParamList, Model.ParamList.SelectedValue != null ? Model.ParamList.SelectedValue.ToString() : "Empty")
+        <div class="param-add btn">Add</div>
+    </div>
     </div>
 

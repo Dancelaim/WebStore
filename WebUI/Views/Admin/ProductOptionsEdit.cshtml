@@ -17,7 +17,7 @@
     </div>
     <div class="options-tabs">
         <div class="titles-options"> @Html.SetTabsForOptions(Model.ProductOptions.Select(o => o.OptionName)) </div>
-
+        
         @foreach (var option in Model.ProductOptions)
         {
             @Html.Action("OptionsList", new { optionName = option.OptionName, prodId = option.OptionProductId })

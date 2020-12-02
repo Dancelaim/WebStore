@@ -737,6 +737,23 @@ input[type="submit"]:hover {
   font-size: 20px;
   text-decoration: inherit;
 }
+.remove-option {
+  display: inline-block;
+  margin-right: 10px;
+  height: 34px;
+  width: 34px;
+  cursor: pointer;
+  color: #6A7687;
+  text-align: center;
+}
+.remove-option:before {
+  content: '\f00d';
+  font-family: FontAwesome;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  text-decoration: inherit;
+}
 .add-param-block {
   padding: 30px 0 30px 10px;
 }
