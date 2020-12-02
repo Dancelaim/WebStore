@@ -145,4 +145,15 @@ $(document).ready(function () {
     });
 });
 
+//left menu collapsed script
+
+$(document).on("click", ".left-column .title span.nav-ico", function () {
+    if ($(".left-column").hasClass("collapsed")) {
+        $(".left-column").removeClass("collapsed");
+        $(".content").removeClass("content-collapsed");
+    } else {
+        $(".left-column").addClass("collapsed");
+        $(".content").addClass("content-collapsed");
+    }
+})
 
