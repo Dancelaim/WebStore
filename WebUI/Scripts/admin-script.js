@@ -77,22 +77,25 @@ $(document).on("click", ".option-add", function () {
         }
     });
 })
-$(document).on("click", ".options-head .remove-option", function () {
-    $.ajax({
-        cache: false,
-        type: 'POST',
-        url: '/admin/RemoveOption',
-        data: {
-            optionId: $(this).closest('.options-tabs').find("#OptionId").val(),
-            prodId: $("#ProductId").val()
-        },
-        success: function (data) {
-            window.location.reload();
-        },
-        error: function (ex) {
-            alert('Failed to remove option.' + ex);
-        }
-    });
+$(document).on("click", ".remove-option", function () {
+    var confirm = confirm("Are you sure you want to delete" );
+    if (confirm == true) {
+        $.ajax({
+            cache: false,
+            type: 'POST',
+            url: '/admin/RemoveOption',
+            data: {
+                optionId: $(this).closest('.options-tabs').find("#OptionId").val(),
+                prodId: $("#ProductId").val()
+            },
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (ex) {
+                alert('Failed to remove option.' + ex);
+            }
+        });
+    } 
 
 })
 $(document).on("click", ".remove-param", function () {
