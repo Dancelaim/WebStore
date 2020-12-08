@@ -61,7 +61,7 @@ namespace WowCarry.Domain.Concrete
                     ,SubDescriptionTitle5 = productDetails.SubDescriptionTitle5
                 };
                 context.ProductDescription.Add(prodDescr);
-
+                //TODO PRICE
                 Product prod = new Product
                 {
                     ProductId = Guid.NewGuid()

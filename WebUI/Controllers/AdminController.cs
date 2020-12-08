@@ -24,8 +24,8 @@ namespace WowCarry.WebUI.Controllers
             {
                 case "Product":
                     return View("List" + type, EntityRepository.Products);
-                case "ProductOption":
-                    return View("List" + type, EntityRepository.ProductOptions);
+                case "TemplateOption":
+                    return View("List" + type, EntityRepository.TemplateOptions);
                 case "ProductGame":
                     return View("List" + type, EntityRepository.Games);
                 case "HtmlBlocks":
@@ -78,7 +78,18 @@ namespace WowCarry.WebUI.Controllers
                 case "ProductGame":
                     return View("Save" + type, EntityRepository.Games.Where(p => p.ProductGameId == Id).FirstOrDefault());
                 case "HtmlBlocks":
-                    return View("Save" + type, EntityRepository.HtmlBlocks.Where(p => p.SiteBlockId == Id).FirstOrDefault());
+                    HtmlBlocks siteBlock = EntityRepository.HtmlBlocks.Where(p => p.SiteBlockId == Id).FirstOrDefault();
+                    return View("Save" + type , new HtmlBlockDetails 
+                    {   
+                        SiteBlockId = siteBlock.SiteBlockId, 
+                        ParentTitle = siteBlock.ParentTitle,
+                        ParentCSSClass = siteBlock.ParentCSSClass,
+                        ChildCSSClass = siteBlock.ChildCSSClass,
+                        SitePage = siteBlock.SitePage,
+                        Order = siteBlock.Order,
+                        HtmlBlockCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(siteBlock)
+
+                    });
                 case "SEO":
                     return View("Save" + type, EntityRepository.SEOs.Where(p => p.SEOId == Id).FirstOrDefault());
                 default: return View("Admin");
