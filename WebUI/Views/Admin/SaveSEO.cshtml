@@ -1,1 +1,6 @@
-﻿
+﻿@model WowCarry.Domain.Entities.SeoDetails
+@foreach (var property in ViewData.ModelMetadata.Properties)
+{
+    <label>@(property.DisplayName ?? property.PropertyName):</label>
+    @Html.Editor(property.PropertyName, new { @class = "form-control" })
+}

@@ -91,7 +91,22 @@ namespace WowCarry.WebUI.Controllers
 
                     });
                 case "SEO":
-                    return View("Save" + type, EntityRepository.SEOs.Where(p => p.SEOId == Id).FirstOrDefault());
+                    SEO seo = EntityRepository.SEOs.Where(p => p.SEOId == Id).FirstOrDefault();
+                    return View("Save" + type, new SeoDetails
+                    {
+                        SEOId = seo.SEOId,
+                        MetaTagTitle = seo.MetaTagTitle,
+                        MetaTagDescription = seo.MetaTagDescription,
+                        MetaTagKeyWords = seo.MetaTagKeyWords,
+                        SEOTags = seo.SEOTags,
+                        CustomTitle1 = seo.CustomTitle1,
+                        CustomTitle2 = seo.CustomTitle2,
+                        CustomImageTitle = seo.CustomImageTitle,
+                        CustomImageAlt = seo.CustomImageAlt,
+                        MetaRobots = seo.MetaRobots,
+                        UrlKeyWord = seo.UrlKeyWord,
+                        SEOImage = seo.SEOImage
+                    });
                 default: return View("Admin");
             }
         }
