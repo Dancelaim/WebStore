@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WowCarry.Domain.Entities.ProductOptions>
+﻿@model IEnumerable<WowCarry.Domain.Entities.TemplateOptions>
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -6,7 +6,7 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create",new { type = "ProductOption" }, new { @class = "btn" })
+        @Html.ActionLink("Create New", "Create",new { type = "TemplateOption" }, new { @class = "btn" })
     </p>
     <table class="table">
         <thead>
@@ -20,11 +20,11 @@
             {
                 <tr>
 
-                    <td> @Html.ActionLink(item.OptionName, "Edit", new { Id = item.ProductOptionId, type = item.GetType().BaseType.Name })</td>
+                    <td> @Html.ActionLink(item.TempOptionName, "Edit", new { Id = item.TempOptionId, type = item.GetType().BaseType.Name })</td>
                     <td class="text-center">
                         @using (Html.BeginForm("Delete", "Admin"))
                         {
-                            @Html.Hidden("GameId", item.ProductOptionId)
+                            @Html.Hidden("GameId", item.TempOptionId)
                             <input type="submit"
                                    class="btn btn-default btn-xs"
                                    value="Удалить" />

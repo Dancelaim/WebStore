@@ -1,5 +1,5 @@
 ﻿@model WowCarry.Domain.Entities.ProductDetails
-
+@Model.ProductName
 <div class="panel">
 
     @using (Html.BeginForm("SaveProduct", "Admin", new { navigateToProdOpt = false },FormMethod.Post))

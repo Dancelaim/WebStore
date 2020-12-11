@@ -78,6 +78,10 @@
     <Compile Include="Abstract\IOrderProcessor.cs" />
     <Compile Include="Concrete\EFEntityRepository.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
+    <Compile Include="Entities\ProductGameDetails.cs" />
+    <Compile Include="Entities\TemplateOptionDetails.cs" />
+    <Compile Include="Entities\SeoDetails.cs" />
+    <Compile Include="Entities\HtmlBlockDetails.cs" />
     <Compile Include="Entities\ProductOptionDetails.cs" />
     <Compile Include="Entities\ProductDetails.cs" />
     <Compile Include="Entities\HtmlBlocks.cs">

@@ -25,7 +25,7 @@ namespace WowCarry.WebUI.Controllers
                 case "Product":
                     return View("List" + type, EntityRepository.Products);
                 case "TemplateOption":
-                    return View("List" + type, EntityRepository.ProductOptions);
+                    return View("List" + type, EntityRepository.TemplateOptions);
                 case "ProductGame":
                     return View("List" + type, EntityRepository.Games);
                 case "HtmlBlocks":
@@ -40,7 +40,7 @@ namespace WowCarry.WebUI.Controllers
             switch (type)
             {
                 case "Product":
-                    var prod = EntityRepository.Products.Where(p => p.ProductId == Id).FirstOrDefault();
+                    Product prod = EntityRepository.Products.Where(p => p.ProductId == Id).FirstOrDefault();
                     return View("Save" + type, new ProductDetails
                     {
                         Product = prod,
@@ -72,15 +72,56 @@ namespace WowCarry.WebUI.Controllers
                         SubDescription4 = prod.ProductDescription.SubDescription4,
                         SubDescriptionTitle5 = prod.ProductDescription.SubDescriptionTitle5,
                         SubDescription5 = prod.ProductDescription.SubDescription5,
-                     });
-                case "ProductOption":
-                    return View("Save" + type, EntityRepository.ProductOptions.Where(p => p.ProductOptionId == Id).FirstOrDefault());
+                    });
+                case "TemplateOptions":
+                    TemplateOptions templateOptions = EntityRepository.TemplateOptions.Where(p => p.TempOptionId == Id).FirstOrDefault();
+                    return View("Save" + type, new TemplateOptionDetails
+                    {
+                        TempOptionId = templateOptions.TempOptionId,
+                        TempOptionName = templateOptions.TempOptionName,
+                        TempOptionType = templateOptions.TempOptionType,
+                        TempOptionParamParentId = templateOptions.TempOptionParamParentId
+                    });
                 case "ProductGame":
-                    return View("Save" + type, EntityRepository.Games.Where(p => p.ProductGameId == Id).FirstOrDefault());
+                    ProductGame productGame = EntityRepository.Games.Where(p => p.ProductGameId == Id).FirstOrDefault();
+                    return View("Save" + type, new ProductGameDetails
+                    {
+                        ProductGameId  = productGame.ProductGameId,
+                        GameName = productGame.GameName,
+                        GameDescription = productGame.GameDescription,
+                        GameShortUrl = productGame.GameShortUrl,
+                        GameSeoId = productGame.GameSeoId 
+                    });
                 case "HtmlBlocks":
-                    return View("Save" + type, EntityRepository.HtmlBlocks.Where(p => p.SiteBlockId == Id).FirstOrDefault());
+                    HtmlBlocks siteBlock = EntityRepository.HtmlBlocks.Where(p => p.SiteBlockId == Id).FirstOrDefault();
+                    return View("Save" + type , new HtmlBlockDetails 
+                    {   
+                        SiteBlockId = siteBlock.SiteBlockId, 
+                        ParentTitle = siteBlock.ParentTitle,
+                        ParentCSSClass = siteBlock.ParentCSSClass,
+                        ChildCSSClass = siteBlock.ChildCSSClass,
+                        SitePage = siteBlock.SitePage,
+                        Order = siteBlock.Order,
+                        HtmlBlockCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(siteBlock)
+
+                    });
                 case "SEO":
-                    return View("Save" + type, EntityRepository.SEOs.Where(p => p.SEOId == Id).FirstOrDefault());
+                    SEO seo = EntityRepository.SEOs.Where(p => p.SEOId == Id).FirstOrDefault();
+                    return View("Save" + type, new SeoDetails
+                    {
+                        SEOId = seo.SEOId,
+                        MetaTagTitle = seo.MetaTagTitle,
+                        MetaTagDescription = seo.MetaTagDescription,
+                        MetaTagKeyWords = seo.MetaTagKeyWords,
+                        SEOTags = seo.SEOTags,
+                        CustomTitle1 = seo.CustomTitle1,
+                        CustomTitle2 = seo.CustomTitle2,
+                        CustomImageTitle = seo.CustomImageTitle,
+                        CustomImageAlt = seo.CustomImageAlt,
+                        MetaRobots = seo.MetaRobots,
+                        UrlKeyWord = seo.UrlKeyWord,
+                        SEOImage = seo.SEOImage
+                    });
                 default: return View("Admin");
             }
         }

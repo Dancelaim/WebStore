@@ -57,6 +57,8 @@ ALTER COLUMN GameDescription  Nvarchar(255)  NULL
 ALTER TABLE ProductGame
 ALTER COLUMN GameShortUrl  Nvarchar(50)  NULL
 
+ALTER TABLE Product
+ALTER COLUMN ProductEnabled bit NOT NULL
 
 exec Update_db_Version 33
 Commit Tran
