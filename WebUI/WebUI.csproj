@@ -881,6 +881,7 @@
     <Content Include="Views\Admin\OptionsList.cshtml" />
     <Content Include="Views\Admin\Param.cshtml" />
     <Content Include="Views\Admin\ProductOptionsEdit.cshtml" />
+    <Content Include="Views\Admin\SaveTemplateOptions.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
