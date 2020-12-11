@@ -31,16 +31,31 @@ namespace WowCarry.Domain.Concrete
             throw new NotImplementedException();
         }
 
-        public void SaveOption(ProductOptions productOptions)
+        public void SaveProductOption(ProductOptionDetails productOptionDetails)
         {
-            throw new NotImplementedException();
-        }
+            ProductOptions dbProductOption = context.ProductOptions.Find(productOptionDetails.ProductOptionId);
+            if (dbProductOption != null)
+            {
+                dbProductOption.OptionName = productOptionDetails.OptionName;
+                dbProductOption.OptionType = productOptionDetails.OptionType;
+                dbProductOption.OptionProductId = productOptionDetails.ProductOptionId;
+                dbProductOption.ProductOptionParentOptionId = productOptionDetails.OptionParent != null ? ProductOptions.Where(po => po.OptionName == productOptionDetails.OptionParent).FirstOrDefault().OptionProductId : Guid.Empty;
+            }
+            foreach (ProductOptionDetails.ProductOptionParamsDetails item in productOptionDetails.ParamCollection) 
+            {
+                ProductOptionParams dbParam = context.ProductOptions.Find(productOptionDetails.ProductOptionId).ProductOptionParams.Where(p=>p.ParamName == item.Paramname).FirstOrDefault();
+                if (dbParam != null)
+                {
+                    dbParam.ParamName = item.Paramname;
+                    dbParam.ParamPrice = item.ParamPrice;
+                    dbParam.ParamTooltip = item.ParamTooltip;
+                    dbParam.Sale = item.Sale;
+                    dbParam.ParamParentId = dbProductOption.ProductOptionParentOptionId != null ?context.ProductOptions.Find(dbProductOption.ProductOptionParentOptionId).ProductOptionParams.Where(p => p.ParamName == item.ParentParam).FirstOrDefault().OptionParamsId :Guid.Empty;
+                }
+            }
 
-        public void SaveContext()
-        {
             context.SaveChanges();
         }
-
         public void SaveProduct(ProductDetails productDetails)
         {
             if (productDetails.ProductId.Equals(Guid.Empty))
@@ -131,6 +146,10 @@ namespace WowCarry.Domain.Concrete
         public void SaveTemplateOption(TemplateOptions tempOptions)
         {
             throw new NotImplementedException();
+        }
+        public void SaveContext()
+        {
+            context.SaveChanges();
         }
     }
 }

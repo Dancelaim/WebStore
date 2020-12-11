@@ -24,7 +24,7 @@ namespace WowCarry.WebUI.Controllers
             {
                 case "Product":
                     return View("List" + type, EntityRepository.Products);
-                case "ProductOption":
+                case "TemplateOption":
                     return View("List" + type, EntityRepository.ProductOptions);
                 case "ProductGame":
                     return View("List" + type, EntityRepository.Games);
@@ -113,12 +113,12 @@ namespace WowCarry.WebUI.Controllers
             var templateOption = EntityRepository.TemplateOptions.Where(t => t.TempOptionName == optionName).FirstOrDefault();
             var result = new ProductOptionDetails
             {
-                OptionId = selectedOption.ProductOptionId,
+                ProductOptionId = selectedOption.ProductOptionId,
                 OptionName = selectedOption.OptionName,
                 OptionType = selectedOption.OptionType,
-                ParentParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), selectedOption.OptionParamsParentId != null ? selectedOption.ProductOptionParentParam.ParamName : "Empty"),
+                ParentOptionList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).Select(o=>o.OptionName), selectedOption.ProductOptionParentOptionId != null ? selectedOption.ProductOptionsParentOption.Select(p=>p.OptionName).FirstOrDefault() : "Empty"),
                 ParamList = new SelectList(templateOption.TempOptionParams.Select(p => p.ParamName) , "Empty"),
-                ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId != selectedOption.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
+                ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId == selectedOption.ProductOptionParentOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
             };
             return PartialView(result);
         }
@@ -165,15 +165,12 @@ namespace WowCarry.WebUI.Controllers
 
             return PartialView("OptionsList", new ProductOptionDetails 
             {
-                OptionId = option.ProductOptionId,
+                ProductOptionId = option.ProductOptionId,
                 OptionName = selectedOption.TempOptionName,
                 OptionType = selectedOption.TempOptionType,
                 ParamList = new SelectList(option.ProductOptionParams.Select(p => p.ParamName), "Empty"),
-
-                //Options parent selector
-                ParentParamList = new SelectList(selectedProduct.ProductOptions.Where(o => o.ProductOptionId != option.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName), "Empty"),
-                //Parameters parent selector
-                ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.ProductOptionId != option.ProductOptionId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParamName))
+                ParentOptionList = new SelectList(Enumerable.Empty<string>(), "Empty"),
+                ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption)
             });
         }
         [HttpPost]
@@ -271,10 +268,13 @@ namespace WowCarry.WebUI.Controllers
                 });
             }
         }
+        [HttpPost]
         public ActionResult SaveProductOption(ProductOptionDetails productOptionDetails)
         {
             if (ModelState.IsValid)
             {
+                EntityRepository.SaveProductOption(productOptionDetails);
+                TempData["message"] = string.Format("Options has been saved");
                 return RedirectToAction("List", new { type = "Product" });
             }
             else

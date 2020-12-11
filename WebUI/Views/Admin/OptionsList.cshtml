@@ -26,10 +26,13 @@
             {
                 if (property.PropertyName == "OptionParent")
                 {
-                    <label>@(property.DisplayName ?? property.PropertyName):</label>
-                    @Html.DropDownList("Option Parameter Parent", Model.ParentParamList, Model.ParentParamList.SelectedValue != null ? Model.ParentParamList.SelectedValue.ToString() : "Empty");
+                    <div class="ddParent">
+                        <label>@(property.DisplayName ?? property.PropertyName):</label>
+                        @Html.DropDownList("Option Parameter Parent", Model.ParentOptionList, Model.ParentOptionList.SelectedValue != null ? Model.ParentOptionList.SelectedValue.ToString() : "Empty")
+                        @Html.HiddenFor(m => m.OptionParent)
+                    </div>
                 }
-                else if (property.PropertyName != "ParentParamList" && property.PropertyName != "OptionId" && property.PropertyName != "ParamList")
+                else if (property.PropertyName != "ParentOptionList" && property.PropertyName != "ProductOptionId" && property.PropertyName != "ParamList")
                 {
                     <label>@(property.DisplayName ?? property.PropertyName):</label>
                     @Html.Editor(property.PropertyName, new { @class = "form-control" })
@@ -39,7 +42,7 @@
     <div class="add-param-block">
         <label>Add Parameter</label>
         @Html.HiddenFor(x => x.OptionName)
-        @Html.HiddenFor(x => x.OptionId)
+        @Html.HiddenFor(x => x.ProductOptionId)
         @Html.DropDownList("Parameter Parent", Model.ParamList, Model.ParamList.SelectedValue != null ? Model.ParamList.SelectedValue.ToString() : "Empty")
         <div class="param-add btn">Add</div>
     </div>

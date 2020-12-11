@@ -22,6 +22,7 @@ namespace WowCarry.Domain.Abstract
         void SaveGame(ProductGame game);
         void SaveSEO(SEO seo);
         void SaveProduct(ProductDetails productDetails);
+        void SaveProductOption(ProductOptionDetails productOptionsDetails);
         void SaveContext();
         void SaveHtmlBlock(HtmlBlocks htmlBlock);
         void SaveTemplateOption(TemplateOptions tempOptions);

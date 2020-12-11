@@ -13,7 +13,7 @@ namespace WowCarry.Domain.Entities
     public class ProductOptionDetails
     {
         [HiddenInput]
-        public Guid OptionId { get; set; }
+        public Guid ProductOptionId { get; set; }
 
         [Display(Name = "Name")]
         public string OptionName { get; set; }
@@ -23,7 +23,7 @@ namespace WowCarry.Domain.Entities
 
         [Display(Name = "Parent")]
         public string OptionParent { get; set; }
-        public SelectList ParentParamList { get; set; }
+        public SelectList ParentOptionList { get; set; }
         public SelectList ParamList { get; set; }
         public List<ProductOptionParamsDetails> ParamCollection { get; set; }
 
@@ -38,7 +38,7 @@ namespace WowCarry.Domain.Entities
             public String ParamTooltip { get; set; }
 
             [Display(Name = "Parameter Price")]
-            public decimal? ParamPrice { get; set; }
+            public decimal ParamPrice { get; set; }
 
             [Display(Name = "Parameter Sale")]
             public string Sale { get; set; }
@@ -67,7 +67,7 @@ namespace WowCarry.Domain.Entities
             }
             return result;
         }
-        public static List<ProductOptionParamsDetails> PopulateParamCollection(TemplateOptions TempOpt,IEnumerable<string> paramCollection)
+        public static List<ProductOptionParamsDetails> PopulateParamCollection(TemplateOptions TempOpt)
         {
             List<ProductOptionParamsDetails> result = new List<ProductOptionParamsDetails>();
             foreach (var item in TempOpt.TempOptionParams)
@@ -80,7 +80,7 @@ namespace WowCarry.Domain.Entities
                     ParamPrice = item.ParamPrice,
                     Sale = item.OptionSale,
                     ParentParam = item.TempOptionParams2?.ParamName,
-                    ParamParentList = new SelectList(paramCollection, "Empty")
+                    ParamParentList = new SelectList(Enumerable.Empty<string>(), "Empty")
                 });
             }
             return result;

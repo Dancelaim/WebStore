@@ -191,6 +191,7 @@
     <Content Include="ScriptHistory\15.sql" />
     <Content Include="ScriptHistory\14.sql" />
     <Content Include="ScriptHistory\13.sql" />
+    <Content Include="ScriptHistory\34.sql" />
     <Content Include="ScriptHistory\33.sql" />
     <Content Include="ScriptHistory\32.sql" />
     <Content Include="ScriptHistory\31.sql" />

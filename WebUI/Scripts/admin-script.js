@@ -1,6 +1,8 @@
 // JS Product
+$(".opt-head:first").addClass("active-tab-head");
+$(".opt-body:first").addClass("active-tab-body");
 
-$(document).on("click", ".tab-title", function SetActiveTab() {
+$(document).on("click", ".tab-title", function () {
     var TabName = $(this).attr("id");
     switch (TabName) {
         case "tab1":
@@ -23,34 +25,25 @@ $(document).on("click", ".tab-title", function SetActiveTab() {
             break;
     }
 })
-//$(document).on("click", ".options-head", function () {
-//    var parentTab = $(this).parents(".options-block");
-//    bodyTab = parentTab.find(".options-body");
-
-//    if (parentTab.hasClass("active_block")) {
-//        parentTab.removeClass("active_block");
-//        bodyTab.slideUp();
-//    } else {
-//        parentTab.addClass("active_block");
-//        bodyTab.slideDown();
-//    }
-
-//})
-$(".opt-head:first").addClass("active-tab-head");
-$(".opt-body:first").addClass("active-tab-body");
-
-$(document).on("click", ".opt-head", function SetActiveTab() {
+$(document).on("click", ".opt-head", function () {
     var TabName = $(this).attr("id");
     $(".opt-head").removeClass("active-tab-head");
     $(".opt-body").removeClass("active-tab-body");
     $(this).addClass("active-tab-head");
     $(".options-tabs").find("." + TabName).addClass("active-tab-body");
 })
-
-$(document).on("click", "#Submit", function () {
+$(document).on("click", "#SubmitProduct", function () {
     $('#SelectedGame').val($('#Game_Name').val())
     $('#SelectedCategory').val($('#Category_Name').val())
     $('#SelectedMetaTagTitle').val($('#Meta_tag_title').val())
+})
+$(document).on("click", "#SubmitOption", function () {
+
+    var pairs = document.querySelectorAll('.ddParent');
+    for (var i = 0; i < pairs.length; i++) {
+        pairs[i].children[2].value = pairs[i].children[1].children[0].value
+    }
+
 })
 $(document).on("click", "#goToProdOptions", function () {
     $(this).closest("form").attr("action", "/admin/SaveProduct?navigateToProdOpt=true");
@@ -78,7 +71,7 @@ $(document).on("click", ".option-add", function () {
     });
 })
 $(document).on("click", ".remove-option", function () {
-    var confirm = confirm("Are you sure you want to delete" );
+    var confirm = window.confirm("Are you sure you want to delete" );
     if (confirm == true) {
         $.ajax({
             cache: false,
