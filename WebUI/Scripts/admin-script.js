@@ -1,7 +1,7 @@
 // JS Product
 $(".opt-head:first").addClass("active-tab-head");
 $(".opt-body:first").addClass("active-tab-body");
-
+//Product tabs
 $(document).on("click", ".tab-title", function () {
     var TabName = $(this).attr("id");
     switch (TabName) {
@@ -25,6 +25,7 @@ $(document).on("click", ".tab-title", function () {
             break;
     }
 })
+//Option tabs
 $(document).on("click", ".opt-head", function () {
     var TabName = $(this).attr("id");
     $(".opt-head").removeClass("active-tab-head");
@@ -32,25 +33,51 @@ $(document).on("click", ".opt-head", function () {
     $(this).addClass("active-tab-head");
     $(".options-tabs").find("." + TabName).addClass("active-tab-body");
 })
+//Fullfill dropdowns for form save
 $(document).on("click", "#SubmitProduct", function () {
     $('#SelectedGame').val($('#Game_Name').val())
     $('#SelectedCategory').val($('#Category_Name').val())
     $('#SelectedMetaTagTitle').val($('#Meta_tag_title').val())
 })
-$(document).on("click", "#SubmitOption", function () {
-
-    var pairs = document.querySelectorAll('.ddParent');
-    for (var i = 0; i < pairs.length; i++) {
-        pairs[i].children[2].value = pairs[i].children[1].children[0].value
-    }
-
+//Populate Option Parent on submit
+//$(document).on("click", '#SubmitOption', function () {
+//    var pairs = document.querySelectorAll('.ddParent');
+//    for (var i = 0; i < pairs.length; i++) {
+//        pairs[i].children[2].value = pairs[i].children[1].children[0].value
+//    }
+//    var ParamPairs = document.querySelectorAll('.pddParent');
+//    for (var i = 0; i < ParamPairs.length; i++) {
+//        ParamPairs[i].children[1].value = ParamPairs[i].children[0].children[1].value
+//    }
+//})
+//Populate Parameter parents with ajax
+$(document).on("change", '.bootstrap-select select', function () {
+    $.ajax({
+        cache: false,
+        type: 'POST',
+        url: '/admin/PopulateSelectLists',
+        data: {
+            optionId: $(this).closest('.opt-body').find(".hiddenOptId").val(),
+            prodId:  $("#ProductId").val(),
+            parentName: $(this).val()
+        },
+        success: function (data) {
+            window.location.reload();
+        }
+    });
 })
+//Fullfill Parameter parent
+$(document).on("change", '#Parameter_Parent', function () {
+    $(this).closest('.ddParent').find('input').val($(this).val())
+})
+//Save product and redirect to Options
 $(document).on("click", "#goToProdOptions", function () {
     $(this).closest("form").attr("action", "/admin/SaveProduct?navigateToProdOpt=true");
     $('#SelectedGame').val($('#Game_Name').val())
     $('#SelectedCategory').val($('#Category_Name').val())
     $('#SelectedMetaTagTitle').val($('#Meta_tag_title').val())
 })
+//Add Option
 $(document).on("click", ".option-add", function () {
     $.ajax({
         cache: false,
@@ -70,15 +97,17 @@ $(document).on("click", ".option-add", function () {
         }
     });
 })
+//Remove Option
 $(document).on("click", ".remove-option", function () {
-    var confirm = window.confirm("Are you sure you want to delete" );
+    var confirm = window.confirm("Are you sure you want to delete" + " " + $(this).closest('.opt-head').text() + " option");
+    var cl = "." + $(this).closest('.opt-head').attr("id");
     if (confirm == true) {
         $.ajax({
             cache: false,
             type: 'POST',
             url: '/admin/RemoveOption',
             data: {
-                optionId: $(this).closest('.options-tabs').find("#OptionId").val(),
+                optionId: $(cl).find("Input:First").val(),
                 prodId: $("#ProductId").val()
             },
             success: function (data) {
@@ -91,23 +120,28 @@ $(document).on("click", ".remove-option", function () {
     } 
 
 })
+//Remove Parameter
 $(document).on("click", ".remove-param", function () {
-    $.ajax({
-        cache: false,
-        type: 'POST',
-        url: '/admin/RemoveParam',
-        data: {
-            optionId: $(this).closest('.options-tabs').find("#OptionId").val(),
-            paramId: $(this).find("#paramId").val()
-        },
-        success: function (data) {
-            window.location.reload();
-        },
-        error: function (ex) {
-            alert('Failed to remove param.' + ex);
-        }
-    });
+    var confirm = window.confirm("Are you sure you want to delete" + " " + $(this).closest('.param-fields').find('.Param_name').val() + " parameter");
+    if (confirm == true) {
+        $.ajax({
+            cache: false,
+            type: 'POST',
+            url: '/admin/RemoveParam',
+            data: {
+                optionId: $(this).closest('.opt-body.active-tab-body').find("input:first").val(),
+                paramId: $(this).closest('.param-fields').find("input").val()
+            },
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (ex) {
+                alert('Failed to remove param.' + ex);
+            }
+        });
+    }
 })
+//Add Parameter
 $(document).on("click", ".param-add", function () {
     if ($(this).closest(".add-param-block").find("#Parameter_Parent").val().toString() != "") {
         $.ajax({
@@ -115,31 +149,30 @@ $(document).on("click", ".param-add", function () {
             type: 'POST',
             url: "/admin/AddParam",
             data: {
-                optionName: $(this).closest('.add-param-block').find("#OptionName").val(),
-                paramName: $(this).closest(".add-param-block").find("#Parameter_Parent").val(),
-                ProdOptId: $(this).closest('.options-tabs').find("#OptionId").val()
+                optionName: $(this).closest('.add-param-block').find("input").val(),
+                OptId: $(this).closest('.opt-body').find(".hiddenOptId").val(),
+                paramName: $(this).closest(".add-param-block").find("#Parameter_Parent").val()
             },
             success: function (data) {
                 $(".param-list").append(data);
                 window.location.reload();
             },
             error: function (ex) {
-                alert('Failed to add option.' + ex);
+                alert('Failed to add Parameter.' + ex);
             }
         });
     }
     else {
-        alert("Can't add Empty Option");
+        alert("Can't add Empty Parameter");
     }
 })
+//Activate LiveSearch for dropdowns
 $(document).ready(function () {
     $('select').selectpicker({
         liveSearch: true
     });
 });
-
 //left menu collapsed script
-
 $(document).on("click", ".left-column .title span.nav-ico", function () {
     if ($(".left-column").hasClass("collapsed")) {
         $(".left-column").removeClass("collapsed");

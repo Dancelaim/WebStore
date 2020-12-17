@@ -1,26 +1,6 @@
 ﻿@model WowCarry.Domain.Entities.ProductOptionDetails.ProductOptionParamsDetails
 
 
-@if (Model.Paramname != "ParameterId")
- {
-     <div class="param-fields">
-         <div>
-             @Html.TextBox(Model.Paramname, Model.Paramname)
-         </div>
-         <div>
-             @Html.TextBox(Model.ParamTooltip, Model.ParamTooltip)
-         </div>
-         <div>
-             @Html.TextBox("Price", Model.ParamPrice)
-         </div>
-         <div>
-             @Html.TextBox(Model.Sale, Model.Sale)
-         </div>
-         <div>
-             @Html.DropDownList("Parameter Parent", Model.ParamParentList, Model.ParamParentList.SelectedValue != null ? Model.ParamParentList.SelectedValue.ToString() : "Empty")
-         </div>
-         <div><span class="remove-param">@Html.Hidden("paramId", Model.ParameterId)</span></div>
-     </div>
- }
+
                     
 

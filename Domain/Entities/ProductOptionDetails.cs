@@ -13,14 +13,15 @@ namespace WowCarry.Domain.Entities
     public class ProductOptionDetails
     {
         [HiddenInput]
-        public Guid ProductOptionId { get; set; }
+        public Guid OptionId { get; set; }
 
         [Display(Name = "Name")]
         public string OptionName { get; set; }
 
         [Display(Name = "Type")]
         public string OptionType { get; set; }
-
+        [HiddenInput]
+        public Guid OptionProductId { get; set; }
         [Display(Name = "Parent")]
         public string OptionParent { get; set; }
         public SelectList ParentOptionList { get; set; }
@@ -54,12 +55,12 @@ namespace WowCarry.Domain.Entities
             {
                 result.Add(new ProductOptionParamsDetails
                 {
-                    ParameterId = item.OptionParamsId,
-                    Paramname = item.ParamName,
-                    ParamTooltip = item.ParamTooltip,
-                    ParamPrice = item.ParamPrice,
-                    Sale = item.Sale,
-                    ParentParam = item.ProductOptionParams2?.ParamName,
+                    ParameterId = item.ParameterId,
+                    Paramname = item.ParameterName,
+                    ParamTooltip = item.ParameterTooltip,
+                    ParamPrice = item.ParameterPrice,
+                    Sale = item.ParameterSale,
+                    ParentParam = item.ProductOptions?.OptionName,
                     ParamParentList = new SelectList(paramCollection, "Empty")
                         
 
@@ -75,11 +76,11 @@ namespace WowCarry.Domain.Entities
                 result.Add(new ProductOptionParamsDetails
                 {
                     ParameterId = Guid.NewGuid(),
-                    Paramname = item.ParamName,
-                    ParamTooltip = item.ParamTooltip,
-                    ParamPrice = item.ParamPrice,
-                    Sale = item.OptionSale,
-                    ParentParam = item.TempOptionParams2?.ParamName,
+                    Paramname = item.ParameterName,
+                    ParamTooltip = item.ParameterTooltip,
+                    ParamPrice = item.ParameterPrice,
+                    Sale = item.ParameterSale,
+                    ParentParam = item.TemplateOptions?.OptionName,
                     ParamParentList = new SelectList(Enumerable.Empty<string>(), "Empty")
                 });
             }

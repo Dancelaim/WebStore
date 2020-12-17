@@ -28,18 +28,16 @@
         <AssociationConnector Association="WowCarryModel.FK__Product__Product__6FE99F9F" />
         <AssociationConnector Association="WowCarryModel.FK_ProductPrice_Product" />
         <AssociationConnector Association="WowCarryModel.FK_Products_ProductCategory" />
-        <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="1.75" PointY="5.375" />
-        <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="3.625" PointY="5.375" />
-        <AssociationConnector Association="WowCarryModel.FK__TempOptio__TempO__12FDD1B2" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductOptionParams" Width="1.5" PointX="18.125" PointY="1.75" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductOptions" Width="1.5" PointX="15.875" PointY="2" />
-        <AssociationConnector Association="WowCarryModel.FK__OptionPar__Produ__3A4CA8FD" />
-        <AssociationConnector Association="WowCarryModel.FK_TemplateOptions_TempOptionParams" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductOptionParams" Width="1.5" PointX="18.5" PointY="1.5" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductOptions" Width="1.5" PointX="16.25" PointY="1.625" />
+        <AssociationConnector Association="WowCarryModel.FK_Product_ProductOption" />
         <AssociationConnector Association="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" />
-        <AssociationConnector Association="WowCarryModel.FK_TempOptionParams_TempOptionParams" />
-        <AssociationConnector Association="WowCarryModel.FK_ProductOptions_Product" />
-        <AssociationConnector Association="WowCarryModel.FK__ProductOp__Produ__3FD07829" />
-      </Diagram>
+        <AssociationConnector Association="WowCarryModel.FK_ProductOptions_ProductOptionParams" />
+        <AssociationConnector Association="WowCarryModel.FK_ProductOptions_ProductOptions" />
+        <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="0.75" PointY="5.125" />
+        <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="3" PointY="5" />
+        <AssociationConnector Association="WowCarryModel.FK_TemplateOptions_TempOptionParams" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

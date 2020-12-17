@@ -1,15 +1,14 @@
 ﻿@model WebUI.Models.ProductOptionsViewModel
 
-@using (Html.BeginForm("SaveProductOption", "Admin", FormMethod.Post))
+@using (Html.BeginForm("SaveProductOption", "Admin", FormMethod.Post,new {@id = "OptionForm" }))
 {
     @Html.HiddenFor(x => x.ProductId)
     <div class="panel-heading">
-        <h3> @("Product name")</h3>
+        <h3> @Model.ProductName</h3>
         <div class="save-btns">
 
             <input type="submit" value="Save" class="btn" id="SubmitOption" />
-            <input type="submit" value="Save and go to Product" class="btn btn-save" id="goToProd" />
-            @Html.ActionLink("Undo and Exit", "Admin", null, new
+            @Html.ActionLink("Exit", "Admin", null, new
             {
                 @class = "btn btn-default"
             })
@@ -17,10 +16,66 @@
     </div>
     <div class="options-tabs">
         <div class="titles-options"> @Html.SetTabsForOptions(Model.ProductOptions.Select(o => o.OptionName)) </div>
-        
-        @foreach (var option in Model.ProductOptions)
+
+        @for (var i = 0; i < Model.ProductOptions.Count(); i++)
         {
-            @Html.Action("OptionsList", new { optionName = option.OptionName, prodId = option.OptionProductId })
+            <div class="opt-body @Model.ProductOptions[i].OptionName.ToString().Replace(' ', '_').Replace("(","_").Replace(")","_")">
+                @Html.HiddenFor(x=>Model.ProductOptions[i].OptionId, new { @class = "hiddenOptId" })
+                <label>Option Name</label>
+                @Html.EditorFor(x => Model.ProductOptions[i].OptionName, new { @class = "form-control" })
+                <label>Option Type</label>
+                @Html.EditorFor(x => Model.ProductOptions[i].OptionType, new { @class = "form-control" })
+                <div class="ddParent">
+                    <label>Option Parent</label>
+                    @Html.DropDownListFor(x => Model.ProductOptions[i].OptionParent ,Model.ProductOptions[i].ParentOptionList)
+                    @Html.HiddenFor(x => Model.ProductOptions[i].OptionParent)
+                </div>
+                <div class="param-list">
+                    <div class="param-titles">
+                        <div>Name</div>
+                        <div>Tooltip</div>
+                        <div>Price</div>
+                        <div>Sale</div>
+                        <div class="parent-title">Parent</div>
+                    </div>
+                    @if (Model.ProductOptions[i].ParamCollection != null)
+                    {
+                        for (var j = 0; j < Model.ProductOptions[i].ParamCollection.Count(); j++)
+                        {
+                            if (Model.ProductOptions[i].ParamCollection[j].Paramname != "ParameterId")
+                            {
+                                <div class="param-fields">
+                                    @Html.HiddenFor(x=>Model.ProductOptions[i].ParamCollection[j].ParameterId)
+                                    <div>
+                                        @Html.TextBoxFor(x=>Model.ProductOptions[i].ParamCollection[j].Paramname,new { @class = "Param_name"})
+                                    </div>
+                                    <div>
+                                        @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].ParamTooltip)
+                                    </div>
+                                    <div>
+                                        @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].ParamPrice)
+                                    </div>
+                                    <div>
+                                        @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].Sale)
+                                    </div>
+                                    <div class="pddParent">
+                                        @Html.DropDownListFor(x=> Model.ProductOptions[i].ParamCollection[j].ParentParam, Model.ProductOptions[i].ParamCollection[j].ParamParentList)
+                                        @Html.HiddenFor(x=>Model.ProductOptions[i].ParamCollection[j].ParentParam)
+                                    </div>
+                                    <div><span class="remove-param"></span></div>
+                                </div>
+                            }
+                        }
+                    }
+                </div>
+
+                <div class="add-param-block">
+                    <label>Add Parameter</label>
+                    @Html.HiddenFor(x=>Model.ProductOptions[i].OptionName)
+                    @Html.DropDownList("Parameter Parent", Model.ProductOptions[i].ParamList, Model.ProductOptions[i].ParamList.SelectedValue != null ? Model.ProductOptions[i].ParamList.SelectedValue.ToString() : "Empty")
+                    <div class="param-add btn">Add</div>
+                </div>
+            </div>
         }
     </div>
     <div class="clear"></div>
@@ -34,8 +89,7 @@
         <div class="save-btns">
 
             <input type="submit" value="Save" class="btn" id="SubmitOption" />
-            <input type="submit" value="Save and go to Product" class="btn btn-save" id="goToProd" />
-            @Html.ActionLink("Undo and Exit", "Admin", null, new
+            @Html.ActionLink("Exit", "Admin", null, new
             {
                 @class = "btn btn-default"
             })
