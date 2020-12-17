@@ -41,15 +41,21 @@ namespace WowCarry.Domain.Concrete
                 dbProductOption.OptionProductId = productOptionDetails.OptionProductId;
                 //dbProductOption.OptionParentId = productOptionDetails.OptionParent != null ? ProductOptions.Where(po => po.OptionName == productOptionDetails.OptionParent).FirstOrDefault().OptionProductId : Guid.Empty;
             }
-            foreach (ProductOptionDetails.ProductOptionParamsDetails item in productOptionDetails.ParamCollection) 
+            foreach (ProductOptionDetails.ProductOptionParamsDetails item in productOptionDetails.ParamCollection)
             {
-                ProductOptionParams dbParam = context.ProductOptions.Find(productOptionDetails.OptionId).ProductOptionParams.Where(p=>p.ParameterName == item.Paramname).FirstOrDefault();
+                Guid? parentId = Guid.Empty;
+                if (dbProductOption.OptionParentId != null) 
+                {
+                    parentId = context.ProductOptions.Find(dbProductOption.OptionParentId).ProductOptionParams.Where(p => p.ParameterName == item.ParentParam).Select(p => p.ParameterId).FirstOrDefault();
+                }
+                ProductOptionParams dbParam = context.ProductOptions.Find(productOptionDetails.OptionId).ProductOptionParams.Where(p=>p.ParameterId == item.ParameterId).FirstOrDefault();
                 if (dbParam != null)
                 {
                     dbParam.ParameterName = item.Paramname;
                     dbParam.ParameterPrice = item.ParamPrice;
                     dbParam.ParameterTooltip = item.ParamTooltip;
                     dbParam.ParameterSale = item.Sale;
+                    dbParam.ParameterParentId = parentId.Equals(Guid.Empty) ? null : parentId;
                 }
             }
 

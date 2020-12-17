@@ -930,8 +930,8 @@
           <Property Name="OptionProductId" Type="Guid" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK_Product_ProductOption" FromRole="ProductOptions" ToRole="Product" />
           <NavigationProperty Name="ProductOptionParams" Relationship="WowCarryModel.FK_ProductOptions_ProductOptionParams" FromRole="ProductOptions" ToRole="ProductOptionParams" />
-          <NavigationProperty Name="ProductOptionsParent" Relationship="WowCarryModel.FK_ProductOptions_ProductOptions" FromRole="ProductOptions" ToRole="ProductOptions1" />
-          <NavigationProperty Name="ProductOptionsChild" Relationship="WowCarryModel.FK_ProductOptions_ProductOptions" FromRole="ProductOptions1" ToRole="ProductOptions" />
+          <NavigationProperty Name="ProductOptionsChild" Relationship="WowCarryModel.FK_ProductOptions_ProductOptions" FromRole="ProductOptions" ToRole="ProductOptions1" />
+          <NavigationProperty Name="ProductOptionsParent" Relationship="WowCarryModel.FK_ProductOptions_ProductOptions" FromRole="ProductOptions1" ToRole="ProductOptions" />
         </EntityType>
         <Association Name="FK_Product_ProductOption">
           <End Type="WowCarryModel.Product" Role="Product" Multiplicity="0..1" />

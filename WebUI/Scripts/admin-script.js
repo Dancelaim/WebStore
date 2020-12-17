@@ -1,6 +1,13 @@
-// JS Product
-$(".opt-head:first").addClass("active-tab-head");
-$(".opt-body:first").addClass("active-tab-body");
+// JS Admib
+var activeTabId = sessionStorage.getItem("ActiveTabId");
+if (activeTabId == null) {
+    $(".opt-head:first").addClass("active-tab-head");
+    $(".opt-body:first").addClass("active-tab-body");
+} else {
+    $("#" + activeTabId).addClass("active-tab-head");
+    $("." + activeTabId).addClass("active-tab-body");
+    sessionStorage.removeItem("ActiveTabId");
+}
 //Product tabs
 $(document).on("click", ".tab-title", function () {
     var TabName = $(this).attr("id");
@@ -34,7 +41,7 @@ $(document).on("click", ".opt-head", function () {
     $(".options-tabs").find("." + TabName).addClass("active-tab-body");
 })
 //Populate Parameter parents with ajax
-$(document).on("change", '.bootstrap-select select', function () {
+$(document).on("change", '.ddParent .bootstrap-select select', function () {
     $.ajax({
         cache: false,
         type: 'POST',
@@ -45,6 +52,7 @@ $(document).on("change", '.bootstrap-select select', function () {
             parentName: $(this).val()
         },
         success: function (data) {
+            sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
             window.location.reload();
         }
     });
@@ -65,6 +73,7 @@ $(document).on("click", ".option-add", function () {
         },
         success: function (data) {
             $(".tab3 .newOptions").before(data);
+            sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
             window.location.reload();
 
         },
@@ -87,6 +96,7 @@ $(document).on("click", ".remove-option", function () {
                 prodId: $("#ProductId").val()
             },
             success: function (data) {
+                sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
                 window.location.reload();
             },
             error: function (ex) {
@@ -109,6 +119,7 @@ $(document).on("click", ".remove-param", function () {
                 paramId: $(this).closest('.param-fields').find("input").val()
             },
             success: function (data) {
+                sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
                 window.location.reload();
             },
             error: function (ex) {
@@ -131,6 +142,7 @@ $(document).on("click", ".param-add", function () {
             },
             success: function (data) {
                 $(".param-list").append(data);
+                sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
                 window.location.reload();
             },
             error: function (ex) {

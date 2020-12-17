@@ -181,7 +181,7 @@ namespace WowCarry.WebUI.Controllers
                         OptionId = opt.OptionId,
                         OptionName = opt.OptionName,
                         OptionType = opt.OptionType,
-                        ParentOptionList = new SelectList(selectedProduct.ProductOptions.Where(o => o.OptionId != opt.OptionId).Select(o => o.OptionName), opt.OptionParentId.HasValue ? opt.ProductOptionsChild.OptionName : "Empty"),
+                        ParentOptionList = new SelectList(selectedProduct.ProductOptions.Where(o => o.OptionId != opt.OptionId).Select(o => o.OptionName), opt.OptionParentId.HasValue ? opt.ProductOptionsParent.OptionName : "Empty"),
                         ParamList = new SelectList(templateOption.TempOptionParams.Select(p => p.ParameterName), "Empty"),
                         ParamCollection = ProductOptionDetails.PopulateParamCollection(opt, selectedProduct.ProductOptions.Where(o => o.OptionId == opt.OptionParentId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParameterName))
                     });
@@ -194,7 +194,6 @@ namespace WowCarry.WebUI.Controllers
                 TemplateOptionList = new SelectList(EntityRepository.TemplateOptions.Select(o => o.OptionName), "Select Option from templates"),
                 ProductId = productId,
                 ProductName = EntityRepository.Products.Where(p => p.ProductId == productId).FirstOrDefault().ProductName
-
             };
             return View(result);
         }
