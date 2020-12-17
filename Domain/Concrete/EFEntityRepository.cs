@@ -43,8 +43,6 @@ namespace WowCarry.Domain.Concrete
             }
             foreach (ProductOptionDetails.ProductOptionParamsDetails item in productOptionDetails.ParamCollection) 
             {
-                ProductOptionParams parameterParent = context.ProductOptions.Find(dbProductOption.OptionParentId).ProductOptionParams.Where(p => p.ParameterName == item.ParentParam.ToString()).FirstOrDefault();
-
                 ProductOptionParams dbParam = context.ProductOptions.Find(productOptionDetails.OptionId).ProductOptionParams.Where(p=>p.ParameterName == item.Paramname).FirstOrDefault();
                 if (dbParam != null)
                 {
@@ -52,7 +50,6 @@ namespace WowCarry.Domain.Concrete
                     dbParam.ParameterPrice = item.ParamPrice;
                     dbParam.ParameterTooltip = item.ParamTooltip;
                     dbParam.ParameterSale = item.Sale;
-                    dbParam.ParameterParentId = parameterParent.ParameterId;
                 }
             }
 

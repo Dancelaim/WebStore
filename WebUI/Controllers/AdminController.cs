@@ -204,9 +204,14 @@ namespace WowCarry.WebUI.Controllers
             Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
             ProductOptions parent = selectedProduct.ProductOptions.Where(o => o.OptionName == parentName).FirstOrDefault();
             ProductOptions option = EntityRepository.ProductOptions.Where(o => o.OptionId == optionId).FirstOrDefault();
-            if (parent != null && option != null)
+            if (parent != null)
             {
                 option.OptionParentId = parent.OptionId;
+                EntityRepository.SaveContext();
+            }
+            else
+            {
+                option.OptionParentId = null;
                 EntityRepository.SaveContext();
             }
         }

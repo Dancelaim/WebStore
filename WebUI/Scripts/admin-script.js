@@ -33,23 +33,6 @@ $(document).on("click", ".opt-head", function () {
     $(this).addClass("active-tab-head");
     $(".options-tabs").find("." + TabName).addClass("active-tab-body");
 })
-//Fullfill dropdowns for form save
-$(document).on("click", "#SubmitProduct", function () {
-    $('#SelectedGame').val($('#Game_Name').val())
-    $('#SelectedCategory').val($('#Category_Name').val())
-    $('#SelectedMetaTagTitle').val($('#Meta_tag_title').val())
-})
-//Populate Option Parent on submit
-//$(document).on("click", '#SubmitOption', function () {
-//    var pairs = document.querySelectorAll('.ddParent');
-//    for (var i = 0; i < pairs.length; i++) {
-//        pairs[i].children[2].value = pairs[i].children[1].children[0].value
-//    }
-//    var ParamPairs = document.querySelectorAll('.pddParent');
-//    for (var i = 0; i < ParamPairs.length; i++) {
-//        ParamPairs[i].children[1].value = ParamPairs[i].children[0].children[1].value
-//    }
-//})
 //Populate Parameter parents with ajax
 $(document).on("change", '.bootstrap-select select', function () {
     $.ajax({
@@ -66,16 +49,9 @@ $(document).on("change", '.bootstrap-select select', function () {
         }
     });
 })
-//Fullfill Parameter parent
-$(document).on("change", '#Parameter_Parent', function () {
-    $(this).closest('.ddParent').find('input').val($(this).val())
-})
 //Save product and redirect to Options
 $(document).on("click", "#goToProdOptions", function () {
     $(this).closest("form").attr("action", "/admin/SaveProduct?navigateToProdOpt=true");
-    $('#SelectedGame').val($('#Game_Name').val())
-    $('#SelectedCategory').val($('#Category_Name').val())
-    $('#SelectedMetaTagTitle').val($('#Meta_tag_title').val())
 })
 //Add Option
 $(document).on("click", ".option-add", function () {

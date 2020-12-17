@@ -27,7 +27,7 @@
                 @Html.EditorFor(x => Model.ProductOptions[i].OptionType, new { @class = "form-control" })
                 <div class="ddParent">
                     <label>Option Parent</label>
-                    @Html.DropDownListFor(x => Model.ProductOptions[i].OptionParent ,Model.ProductOptions[i].ParentOptionList)
+                    @Html.DropDownListFor(x => Model.ProductOptions[i].OptionParent ,Model.ProductOptions[i].ParentOptionList, "Empty")
                     @Html.HiddenFor(x => Model.ProductOptions[i].OptionParent)
                 </div>
                 <div class="param-list">
@@ -59,7 +59,7 @@
                                         @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].Sale)
                                     </div>
                                     <div class="pddParent">
-                                        @Html.DropDownListFor(x=> Model.ProductOptions[i].ParamCollection[j].ParentParam, Model.ProductOptions[i].ParamCollection[j].ParamParentList)
+                                        @Html.DropDownListFor(x=> Model.ProductOptions[i].ParamCollection[j].ParentParam, Model.ProductOptions[i].ParamCollection[j].ParamParentList,"Empty")
                                         @Html.HiddenFor(x=>Model.ProductOptions[i].ParamCollection[j].ParentParam)
                                     </div>
                                     <div><span class="remove-param"></span></div>
