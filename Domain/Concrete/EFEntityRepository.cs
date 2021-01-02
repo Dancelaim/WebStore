@@ -21,14 +21,44 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<TemplateOptions> TemplateOptions => context.TemplateOptions;
 
 
-        public void SaveGame(ProductGame game)
+        public void SaveGame(ProductGameDetails productGameDetails)
         {
-            throw new NotImplementedException();
+            ProductGame dbproductGame = context.ProductGame.Find(productGameDetails.ProductGameId);
+            if(dbproductGame != null)
+            {
+                dbproductGame.GameName = productGameDetails.GameName;
+                dbproductGame.GameDescription = productGameDetails.GameDescription;
+                dbproductGame.GameShortUrl = productGameDetails.GameShortUrl;
+                context.SaveChanges();
+            }
         }
 
-        public void SaveHtmlBlock(HtmlBlocks htmlBlock)
+        public void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
         {
-            throw new NotImplementedException();
+            HtmlBlocks dbhtmlBlocks = context.HtmlBlocks.Find(htmlBlockDetails.SiteBlockId);
+            if(dbhtmlBlocks != null)
+            {
+                dbhtmlBlocks.ParentCSSClass = htmlBlockDetails.ParentCSSClass;
+                dbhtmlBlocks.ParentTitle = htmlBlockDetails.ParentTitle;
+                dbhtmlBlocks.ChildCSSClass = htmlBlockDetails.ChildCSSClass;
+                dbhtmlBlocks.SitePage = htmlBlockDetails.SitePage;
+                dbhtmlBlocks.Order = htmlBlockDetails.Order;
+            }
+            foreach (HtmlBlockDetails.HtmlBlockChildrenDetails item in htmlBlockDetails.HtmlBlockChildDetailsCollection)
+            {
+                HtmlBlocksChildren dbhtmlBlocksChildren = context.HtmlBlocks.Find(htmlBlockDetails.SiteBlockId).HtmlBlocksChildren.Where(p => p.SiteBlockChildsId == item.SiteBlockChildsId).FirstOrDefault();
+                if (dbhtmlBlocksChildren != null)
+                {
+                    dbhtmlBlocksChildren.SiteBlockChildsId = item.SiteBlockChildsId;
+                    dbhtmlBlocksChildren.Text = item.Text;
+                    dbhtmlBlocksChildren.Title = item.Title;
+                    dbhtmlBlocksChildren.Image = item.Image;
+                    dbhtmlBlocksChildren.CSSClass = item.CSSClass;
+                    dbhtmlBlocksChildren.ChildOrder = item.ChildOrder;
+                    dbhtmlBlocksChildren.SiteBlockChildsId = item.SiteBlockChildsId;
+                }
+            }
+            context.SaveChanges();
         }
 
         public void  SaveProductOption(ProductOptionDetails productOptionDetails)
@@ -58,7 +88,6 @@ namespace WowCarry.Domain.Concrete
                     dbParam.ParameterParentId = parentId.Equals(Guid.Empty) ? null : parentId;
                 }
             }
-
             context.SaveChanges();
         }
         public void SaveProduct(ProductDetails productDetails)
@@ -138,9 +167,25 @@ namespace WowCarry.Domain.Concrete
             context.SaveChanges();
         }
         
-        public void SaveSEO(SEO seo)
+        public void SaveSEO(SeoDetails seoDetails)
         {
-            throw new NotImplementedException();
+            SEO dbSeo = context.SEO.Find(seoDetails.SEOId);
+            if( dbSeo  != null)
+            {
+                dbSeo.MetaTagTitle = seoDetails.MetaTagTitle;
+                dbSeo.MetaTagDescription = seoDetails.MetaTagDescription;
+                dbSeo.MetaTagKeyWords = seoDetails.MetaTagKeyWords;
+                dbSeo.SEOTags = seoDetails.SEOTags;
+                dbSeo.CustomTitle1 = seoDetails.CustomTitle1;
+                dbSeo.CustomTitle2 = seoDetails.CustomTitle2;
+                dbSeo.CustomImageTitle = seoDetails.CustomImageTitle;
+                dbSeo.CustomImageAlt = seoDetails.CustomImageAlt;
+                dbSeo.MetaRobots = seoDetails.MetaRobots;
+                dbSeo.UrlKeyWord = seoDetails.UrlKeyWord;
+                dbSeo.SEOImage = seoDetails.SEOImage;
+
+                context.SaveChanges();
+            }
         }
         public string SaveImage()
         {
@@ -148,9 +193,27 @@ namespace WowCarry.Domain.Concrete
             return result;
         }
 
-        public void SaveTemplateOption(TemplateOptions tempOptions)
+        public void SaveTemplateOption(TemplateOptionDetails tempOptionsDetails)
         {
-            throw new NotImplementedException();
+            TemplateOptions dbtemplateOptions = context.TemplateOptions.Find(tempOptionsDetails.TempOptionId);
+            if (dbtemplateOptions != null)
+            {
+                dbtemplateOptions.OptionName = tempOptionsDetails.TempOptionName;
+                dbtemplateOptions.OptionType = tempOptionsDetails.TempOptionType;
+               
+                foreach (TemplateOptionDetails.TempOptionParamsDetails item in tempOptionsDetails.TempOptionParamsDetailsCollection)
+                {
+                    TempOptionParams dbParam = context.TemplateOptions.Find(tempOptionsDetails.TempOptionId).TempOptionParams.Where(p => p.ParameterId == item.ParameterId).FirstOrDefault();
+                    if(dbParam != null)
+                    {
+                        dbParam.ParameterName = item.ParameterName;
+                        dbParam.ParameterPrice = item.ParameterPrice;
+                        dbParam.ParameterTooltip = item.ParameterTooltip;
+                        dbParam.ParameterSale = item.ParameterSale;
+                    }
+                }
+                context.SaveChanges();
+            }
         }
         public void SaveContext()
         {

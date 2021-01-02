@@ -81,7 +81,7 @@ namespace WowCarry.WebUI.Controllers
                         TempOptionId = templateOptions.OptionId,
                         TempOptionName = templateOptions.OptionName,
                         TempOptionType = templateOptions.OptionType,
-                        TempOptionParamParentId = templateOptions.OptionParentId
+                        TempOptionParamsDetailsCollection = TemplateOptionDetails.PopulateTempOptionParamsDetailsCollection(templateOptions)
                     });
                 case "ProductGame":
                     ProductGame productGame = EntityRepository.Games.Where(p => p.ProductGameId == Id).FirstOrDefault();
@@ -103,7 +103,7 @@ namespace WowCarry.WebUI.Controllers
                         ChildCSSClass = siteBlock.ChildCSSClass,
                         SitePage = siteBlock.SitePage,
                         Order = siteBlock.Order,
-                        HtmlBlockCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(siteBlock)
+                        HtmlBlockChildDetailsCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(siteBlock)
 
                     });
                 case "SEO":
@@ -187,7 +187,7 @@ namespace WowCarry.WebUI.Controllers
                     });
                 }
             }
-
+           
             ProductOptionsViewModel result = new ProductOptionsViewModel
             {
                 ProductOptions = Options,
@@ -196,6 +196,17 @@ namespace WowCarry.WebUI.Controllers
                 ProductName = EntityRepository.Products.Where(p => p.ProductId == productId).FirstOrDefault().ProductName
             };
             return View(result);
+        }
+        public ViewResult HtmlBlockEdit(Guid SiteBlockId)
+        {
+            var selectedProduct = EntityRepository.HtmlBlocks.Where(h => h.SiteBlockId == SiteBlockId).FirstOrDefault();
+            List<HtmlBlockDetails> htmlBlockChildrens = new List<HtmlBlockDetails>();
+            //if ()
+            //{
+
+            //}
+
+            return View(SiteBlockId);
         }
         [HttpPost]
         public void PopulateSelectLists(Guid optionId,Guid prodId,string parentName)
@@ -347,6 +358,58 @@ namespace WowCarry.WebUI.Controllers
             else
             {
                 return RedirectToAction("List", new { type = "Product" });
+            }
+        }
+        public ActionResult SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveHtmlBlock(htmlBlockDetails);
+                TempData["message"] = string.Format("HTML BLock has been saved");
+                return RedirectToAction("List", new { type = "HtmlBlock" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "HtmlBlock" });
+            }
+        }
+        public ActionResult SaveTemplateOption(TemplateOptionDetails templateOptionDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveTemplateOption(templateOptionDetails);
+                TempData["message"] = string.Format("Template Option has been saved");
+                return RedirectToAction("List", new { type = "Template Option" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "Template Option" });
+            }
+        }
+        public ActionResult SaveSEO(SeoDetails seoDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveSEO(seoDetails);
+                TempData["message"] = string.Format("Seo has been saved");
+                return RedirectToAction("List", new { type = "SEO" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "SEO" });
+            }
+        }
+        public ActionResult SaveGame(ProductGameDetails productGameDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveGame(productGameDetails);
+                TempData["message"] = string.Format("Product Game Details has been saved");
+                return RedirectToAction("List", new { type = "ProductGame" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "ProductGame" });
             }
         }
     }

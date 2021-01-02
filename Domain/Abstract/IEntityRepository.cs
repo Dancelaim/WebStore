@@ -19,12 +19,12 @@ namespace WowCarry.Domain.Abstract
         IEnumerable<TemplateOptions> TemplateOptions { get; }
 
 
-        void SaveGame(ProductGame game);
-        void SaveSEO(SEO seo);
+        void SaveGame(ProductGameDetails productGameDetails);
+        void SaveSEO(SeoDetails seoDetails);
         void SaveProduct(ProductDetails productDetails);
         void SaveProductOption(ProductOptionDetails productOptionsDetails);
         void SaveContext();
-        void SaveHtmlBlock(HtmlBlocks htmlBlock);
-        void SaveTemplateOption(TemplateOptions tempOptions);
+        void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails);
+        void SaveTemplateOption(TemplateOptionDetails templateOptionDetails);
     }
 }

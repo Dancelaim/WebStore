@@ -31,7 +31,7 @@ namespace WowCarry.Domain.Entities
         [Display(Name ="Order")]
         public Nullable<decimal> Order { get; set; }
 
-        public List<HtmlBlockChildrenDetails> HtmlBlockCollection { get; set; }
+        public List<HtmlBlockChildrenDetails> HtmlBlockChildDetailsCollection { get; set; }
         public class HtmlBlockChildrenDetails
         {
             [HiddenInput]
