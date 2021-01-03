@@ -16,43 +16,46 @@
         @Html.HiddenFor(x => Model.SiteBlockId)
         if (property.PropertyName != "SiteBlockId" && property.PropertyName != "HtmlBlockChildDetailsCollection")
         {
-            <label>@(property.DisplayName ?? property.PropertyName):</label>
-            @Html.Editor(property.PropertyName, new { @class = "form-control" })
+            <div class="input-block">
+                <label>@(property.DisplayName ?? property.PropertyName):</label>
+                @Html.Editor(property.PropertyName, new { @class = "form-control" })
+                </div>
         }
     }
-    <div class="childblock-list">
-        <div class="childblock-titles">
-            <div>Text</div>
-            <div>Title</div>
-            <div>Image</div>
-            <div>CSS Class</div>
-            <div>ChildOrder</div>
-        </div>
-        @if (Model.HtmlBlockChildDetailsCollection != null)
-        {
-            for (var i = 0; i < Model.HtmlBlockChildDetailsCollection.Count(); i++)
-            {
-                <div class="param-fields">
-                    @Html.HiddenFor(x => Model.HtmlBlockChildDetailsCollection[i].SiteBlockChildsId)
-                    <div>
-                        @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection[i].Text)
+                <div class="childblock-list">
+                    
+                    @if (Model.HtmlBlockChildDetailsCollection != null)
+                    {
+                        for (var i = 0; i < Model.HtmlBlockChildDetailsCollection.Count(); i++)
+                        {
+                            
+                    <div class="param-fields">
+                        <h2>Child</h2>
+                        @Html.HiddenFor(x => Model.HtmlBlockChildDetailsCollection[i].SiteBlockChildsId)
+                        <div class="input-block">
+                            <label>Text</label>
+                            @Html.TextAreaFor(x => Model.HtmlBlockChildDetailsCollection[i].Text)
+                        </div>
+                        <div class="input-block">
+                            <label>Title</label>
+                            @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection[i].Title)
+                        </div>
+                        <div class="input-block">
+                            <label>Image</label>
+                            @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection[i].Image)
+                        </div>
+                        <div class="input-block">
+                            <label>CSS Class</label>
+                            @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection[i].CSSClass)
+                        </div>
+                        <div class="input-block">
+                            <label>ChildOrder</label>
+                            @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection[i].ChildOrder)
+                        </div>
+                        <div><span class="remove-param"></span></div>
                     </div>
-                    <div>
-                        @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection[i].Title)
-                    </div>
-                    <div>
-                        @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection[i].Image)
-                    </div>
-                    <div>
-                        @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection[i].CSSClass)
-                    </div>
-                    <div>
-                        @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection[i].ChildOrder)
-                    </div>
-                    <div><span class="remove-param"></span></div>
-                </div>
 
-            }
-        }
-    </div>
-}
+                        }
+                    }
+                </div>
+                }

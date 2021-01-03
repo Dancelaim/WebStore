@@ -16,8 +16,10 @@
         @Html.HiddenFor(x => Model.ProductGameId)
         if (property.PropertyName != "ProductGameId" && property.PropertyName !="GameSeoId")
         {
+        <div class="input-block">
             <label>@(property.DisplayName ?? property.PropertyName):</label>
             @Html.Editor(property.PropertyName, new { @class = "form-control" })
+        </div>
         }
     }
 }
