@@ -833,13 +833,13 @@ input[type="submit"]:hover {
   box-sizing: border-box;
   position: relative;
 }
-.param-list .param-fields > div:nth-child(2) {
+.param-list .param-fields > div:nth-child(3) {
   width: 44%;
 }
-.param-list .param-fields > div:nth-child(3) {
+.param-list .param-fields > div:nth-child(4) {
   width: 8%;
 }
-.param-list .param-fields > div:nth-child(4) {
+.param-list .param-fields > div:nth-child(5) {
   width: 6%;
 }
 .param-list .param-fields > div:last-child {

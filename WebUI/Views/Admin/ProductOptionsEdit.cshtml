@@ -1,5 +1,6 @@
 ﻿@model WebUI.Models.ProductOptionsViewModel
 
+
 @using (Html.BeginForm("SaveProductOption", "Admin", FormMethod.Post,new {@id = "OptionForm" }))
 {
     @Html.HiddenFor(x => x.ProductId)
@@ -42,29 +43,27 @@
                     {
                         for (var j = 0; j < Model.ProductOptions[i].ParamCollection.Count(); j++)
                         {
-                            if (Model.ProductOptions[i].ParamCollection[j].Paramname != "ParameterId")
-                            {
-                                <div class="param-fields">
-                                    @Html.HiddenFor(x=>Model.ProductOptions[i].ParamCollection[j].ParameterId)
-                                    <div>
-                                        @Html.TextBoxFor(x=>Model.ProductOptions[i].ParamCollection[j].Paramname,new { @class = "Param_name"})
-                                    </div>
-                                    <div>
-                                        @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].ParamTooltip)
-                                    </div>
-                                    <div>
-                                        @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].ParamPrice)
-                                    </div>
-                                    <div>
-                                        @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].Sale)
-                                    </div>
-                                    <div class="pddParent">
-                                        @Html.DropDownListFor(x=> Model.ProductOptions[i].ParamCollection[j].ParentParam, Model.ProductOptions[i].ParamCollection[j].ParamParentList,"Empty")
-                                        @Html.HiddenFor(x=>Model.ProductOptions[i].ParamCollection[j].ParentParam)
-                                    </div>
-                                    <div><span class="remove-param"></span></div>
+                            <div class="param-fields">
+                                @Html.HiddenFor(x=>Model.ProductOptions[i].ParamCollection[j].ParameterId)
+                                <div>
+                                    @Html.TextBoxFor(x=>Model.ProductOptions[i].ParamCollection[j].Paramname,new { @class = "Param_name"})
                                 </div>
-                            }
+                                <div>
+                                    @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].ParamTooltip)
+                                </div>
+                                <div>
+                                    @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].ParamPrice)
+                                </div>
+                                <div>
+                                    @Html.TextBoxFor(x => Model.ProductOptions[i].ParamCollection[j].Sale)
+                                </div>
+                                <div class="pddParent">
+                                    @Html.DropDownListFor(x=> Model.ProductOptions[i].ParamCollection[j].ParentParam, Model.ProductOptions[i].ParamCollection[j].ParamParentList,"Empty")
+                                    @Html.HiddenFor(x=>Model.ProductOptions[i].ParamCollection[j].ParentParam)
+                                </div>
+                                <div><span class="remove-param"></span></div>
+                            </div>
+                           
                         }
                     }
                 </div>

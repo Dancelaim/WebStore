@@ -21,7 +21,47 @@ namespace WowCarry.Domain.Entities
         [Display(Name = "TempOptionType")]
         public string TempOptionType { get; set; }
 
-        [Display(Name = "TempOptionParamParentId")]
-        public Nullable<System.Guid> TempOptionParamParentId { get; set; }
+        //[Display(Name = "TempOptionParamParentId")]
+        //public Nullable<System.Guid> TempOptionParamParentId { get; set; }
+
+        public List<TempOptionParamsDetails> TempOptionParamsDetailsCollection { get; set; }
+        public class TempOptionParamsDetails
+        {
+            [HiddenInput]
+            public System.Guid ParameterId { get; set; }
+
+            [Display(Name = "ParameterName")]
+            public string ParameterName { get; set; }
+
+            [Display(Name = "ParameterTooltip")]
+            public string ParameterTooltip { get; set; }
+
+            [Display(Name = "ParameterPrice")]
+            public decimal ParameterPrice { get; set; }
+
+            [HiddenInput]
+            public Nullable<System.Guid> ParentOptionId { get; set; }
+
+            [Display(Name = "ParameterSale")]
+            public string ParameterSale { get; set; }
+        }
+        public static List<TempOptionParamsDetails> PopulateTempOptionParamsDetailsCollection(TemplateOptions templateOptions)
+        {
+            List<TempOptionParamsDetails> result = new List<TempOptionParamsDetails>();
+            foreach (var item in templateOptions.TempOptionParams)
+            {
+                result.Add(new TempOptionParamsDetails
+                {
+                    ParameterId = item.ParameterId,
+                    ParameterName = item.ParameterName,
+                    ParameterTooltip = item.ParameterTooltip,
+                    ParameterPrice = item.ParameterPrice,
+                    ParentOptionId = item.ParentOptionId,
+                    ParameterSale = item.ParameterSale
+                });
+            }
+            return result;
+        }
+
     }
 }

@@ -1,6 +1,61 @@
 ﻿@model WowCarry.Domain.Entities.TemplateOptionDetails
-@foreach (var property in ViewData.ModelMetadata.Properties)
+@using (Html.BeginForm("SaveTemplateOption", "Admin", FormMethod.Post))
 {
-    <label>@(property.DisplayName ?? property.PropertyName):</label>
-    @Html.Editor(property.PropertyName, new { @class = "form-control" })
-}
+    <div class="panel-heading">
+        <div class="save-btns">
+
+            <input type="submit" value="Save" class="btn" id="SubmitOption" />
+            @Html.ActionLink("Exit", "Admin", null, new
+       {
+           @class = "btn btn-default exitBtn"
+       })
+        </div>
+    </div>
+    foreach (var property in ViewData.ModelMetadata.Properties)
+    {
+        @Html.HiddenFor(x => Model.TempOptionId)
+        if (property.PropertyName != "TempOptionId" && property.PropertyName != "TempOptionParamsDetailsCollection")
+        {
+            <div class="input-block">
+                <label>@(property.DisplayName ?? property.PropertyName):</label>
+                @Html.Editor(property.PropertyName, new { @class = "form-control" })
+            </div>
+         }
+      }
+                <div class="childblock-list">
+                    <div class="childblock-titles">
+                        <div>ParameterName</div>
+                        <div>ParameterTooltip</div>
+                        <div>ParameterPrice</div>
+                        <div>ParentOptionId</div>
+                        <div>ParameterSale</div>
+                    </div>
+                    @if (Model.TempOptionParamsDetailsCollection != null)
+                    {
+                        for (var i = 0; i < Model.TempOptionParamsDetailsCollection.Count(); i++)
+                        {
+                            <div class="param-fields">
+                                @Html.HiddenFor(x => Model.TempOptionParamsDetailsCollection[i].ParameterId)
+                                <div>
+                                    @Html.TextBoxFor(x => Model.TempOptionParamsDetailsCollection[i].ParameterName)
+                                </div>
+                                <div>
+                                    @Html.TextBoxFor(x => Model.TempOptionParamsDetailsCollection[i].ParameterTooltip)
+                                </div>
+                                <div>
+                                    @Html.TextBoxFor(x => Model.TempOptionParamsDetailsCollection[i].ParameterPrice)
+                                </div>
+                                <div>
+                                    @Html.TextBoxFor(x => Model.TempOptionParamsDetailsCollection[i].ParentOptionId)
+                                </div>
+                                <div>
+                                    @Html.TextBoxFor(x => Model.TempOptionParamsDetailsCollection[i].ParameterSale)
+                                </div>
+                                <div><span class="remove-param"></span></div>
+                            </div>
+                        }
+                    }
+                </div>
+
+                }
+
