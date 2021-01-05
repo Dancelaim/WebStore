@@ -84,6 +84,8 @@ textarea {
   background: #161828;
   border: 1px solid #6A7687;
   color: #6A7687;
+  font-size: 16px;
+  line-height: 22px;
 }
 input[type=text]:hover,
 input[type=number]:hover,
@@ -1123,4 +1125,55 @@ input[type="submit"]:hover {
 }
 ::-webkit-scrollbar {
   width: 8px;
+}
+.header-login {
+  border-bottom: 1px solid #1A233B;
+  padding: 15px 20px;
+}
+.panel-login {
+  margin: 5% auto 0;
+  text-align: center;
+}
+.panel-login .panel-heading h3 {
+  margin: 0;
+}
+.panel-login .panel-body {
+  margin: 0 auto;
+}
+.panel-login .form-group {
+  margin-bottom: 15px;
+}
+.panel-login .input-validation-error {
+  border-color: #C03F3F;
+}
+.panel-login .validation-summary-errors {
+  margin: 20px;
+}
+.panel-login .validation-summary-errors ul {
+  list-style: none;
+}
+.panel-login .validation-summary-errors ul li {
+  color: #C03F3F;
+}
+.panel-login input[type="submit"] {
+  cursor: pointer;
+  margin-top: 10px;
+}
+.panel-login label {
+  width: 100%;
+  text-align: left;
+  padding: 0 20px 10px;
+  position: relative;
+}
+.panel-login label:after {
+  content: '*';
+}
+.panel-login input {
+  width: 100%;
+  padding: 12px 20px;
+}
+@media only screen and (min-width: 800px) {
+  .panel-login {
+    max-width: 700px;
+  }
 }
