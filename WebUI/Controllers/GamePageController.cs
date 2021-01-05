@@ -5,7 +5,7 @@ using System.Web.Mvc;
 using WebUI.Controllers;
 using WowCarry.Domain.Abstract;
 
-namespace GameStore.WebUI.Controllers
+namespace WebUI.Controllers
 {
     public class GamePageController : Controller
     {
