@@ -91,7 +91,9 @@ namespace WowCarry.WebUI.Controllers
                         GameName = productGame.GameName,
                         GameDescription = productGame.GameDescription,
                         GameShortUrl = productGame.GameShortUrl,
-                        GameSeoId = productGame.GameSeoId 
+                        GameSeoId = productGame.GameSeoId,
+                        ProductCategoryDetailsCollection  = ProductGameDetails.PopulateProductGameDetails(productGame)
+
                     });
                 case "HtmlBlocks":
                     HtmlBlocks siteBlock = EntityRepository.HtmlBlocks.Where(p => p.SiteBlockId == Id).FirstOrDefault();
@@ -398,7 +400,7 @@ namespace WowCarry.WebUI.Controllers
             {
                 return RedirectToAction("List", new { type = "SEO" });
             }
-        }
+        }   
         public ActionResult SaveGame(ProductGameDetails productGameDetails)
         {
             if (ModelState.IsValid)
