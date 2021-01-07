@@ -8,6 +8,7 @@ using System.Collections.Generic;
 
 namespace WowCarry.WebUI.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         IEntityRepository EntityRepository;
