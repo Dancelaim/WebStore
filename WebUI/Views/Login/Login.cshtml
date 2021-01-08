@@ -10,6 +10,7 @@
         <p class="lead">Пожалуйста, войдите в систему, чтобы получить доступ к админ. панели:</p>
         @using (Html.BeginForm())
         {
+            @Html.AntiForgeryToken()
             @Html.ValidationSummary()
             <div class="form-group">
                 <label>Имя пользователя:</label>

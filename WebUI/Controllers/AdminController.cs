@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace WowCarry.WebUI.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         IEntityRepository EntityRepository;
@@ -16,10 +16,12 @@ namespace WowCarry.WebUI.Controllers
         {
             EntityRepository = entityRepo;
         }
+
         public ViewResult Admin()
         {
             return View();
         }
+
         public ViewResult List(string type)
         {
             switch (type)
@@ -39,6 +41,7 @@ namespace WowCarry.WebUI.Controllers
                 default: return View("Admin");
             }
         }
+
         public ViewResult Edit(Guid Id, string type, string game)
         {
             switch (type)
@@ -129,6 +132,7 @@ namespace WowCarry.WebUI.Controllers
                 default: return View("Admin");
             }
         }
+
         public ViewResult Create(string type, string game)
         {
             switch (type)
