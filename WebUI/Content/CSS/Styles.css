@@ -463,20 +463,26 @@ header .bottom {
 .modal-dialog {
   margin-top: 10%;
 }
-.modal .modal-content {
-  background: #161828;
+.modal .modal-dialog {
+  width: 603px;
+  margin: 5% auto 30px;
+  max-width: initial;
 }
-.modal .modal-content .modal-body {
+.modal .modal-dialog .modal-content {
+  background: #161828;
+  border: 1px solid #6A7687;
+}
+.modal .modal-dialog .modal-body {
   border: 0 none;
 }
-.modal .modal-content .modal-footer {
+.modal .modal-dialog .modal-footer {
   border: 0 none;
   text-align: center;
   display: block;
   padding: 0;
 }
-.modal .modal-content .modal-footer button,
-.modal .modal-content .modal-footer a {
+.modal .modal-dialog .modal-footer button,
+.modal .modal-dialog .modal-footer a {
   margin: 0 30px 30px;
   padding: 13px 26px 13px;
   width: 45%;
@@ -492,15 +498,15 @@ header .bottom {
   transition: all 0.2s ease;
   display: inline-block;
 }
-.modal .modal-content .modal-footer button:hover,
-.modal .modal-content .modal-footer a:hover,
-.modal .modal-content .modal-footer button:active,
-.modal .modal-content .modal-footer a:active {
+.modal .modal-dialog .modal-footer button:hover,
+.modal .modal-dialog .modal-footer a:hover,
+.modal .modal-dialog .modal-footer button:active,
+.modal .modal-dialog .modal-footer a:active {
   text-decoration: none;
   color: #10111B;
   background: #91B9EF;
 }
-.modal .modal-content .modal-header {
+.modal .modal-dialog .modal-header {
   border: 0 none;
   text-align: center;
   text-transform: uppercase;
@@ -511,14 +517,14 @@ header .bottom {
   position: relative;
   font-weight: 600;
 }
-.modal .modal-content .modal-header .modal-title {
+.modal .modal-dialog .modal-header .modal-title {
   width: 100%;
   font-size: 18px;
   line-height: 25px;
   color: #eeeeee;
   font-weight: 600;
 }
-.modal .modal-content .modal-header .close {
+.modal .modal-dialog .modal-header .close {
   color: #6D94C4;
   opacity: 1;
   text-shadow: none;
@@ -531,7 +537,7 @@ header .bottom {
   z-index: 9999;
   background: url(/Images/close.svg) 50% 50% no-repeat;
 }
-.modal .modal-content .modal-header .close span {
+.modal .modal-dialog .modal-header .close span {
   display: none;
 }
 .navbar {
@@ -1670,6 +1676,60 @@ header .bottom {
 .cart-right-column .total-box .final-price-value .price {
   display: inline-block;
   vertical-align: top;
+}
+#loginModal,
+#registerModal {
+  text-align: left;
+}
+#loginModal label,
+#registerModal label {
+  padding-left: 20px;
+  padding-bottom: 5px;
+}
+#loginModal .agree-checkbox,
+#registerModal .agree-checkbox {
+  margin: 0;
+}
+#loginModal input[type=checkbox],
+#registerModal input[type=checkbox] {
+  margin-right: 15px;
+}
+#loginModal .modal-content .modal-footer,
+#registerModal .modal-content .modal-footer {
+  padding: 0 20px 20px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+}
+#loginModal .modal-content .modal-footer button,
+#registerModal .modal-content .modal-footer button {
+  width: 100%;
+  margin: 0;
+  display: block;
+}
+#loginModal .modal-content .modal-footer a,
+#registerModal .modal-content .modal-footer a {
+  background: none;
+  border: 0 none;
+  text-transform: none;
+  color: #6D94C4;
+  padding: 0;
+  margin: 0;
+  width: auto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 16px;
+}
+#loginModal .modal-content .modal-footer a.forgot_link,
+#registerModal .modal-content .modal-footer a.forgot_link {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+#loginModal .modal-content .modal-footer a:hover,
+#registerModal .modal-content .modal-footer a:hover {
+  text-decoration: underline;
 }
 .field-validation-error {
   color: #C03F3F !important;

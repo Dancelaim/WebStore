@@ -886,6 +886,8 @@
     <Content Include="Views\Admin\ProductOptionsEdit.cshtml" />
     <Content Include="Views\Admin\SaveTemplateOptions.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
