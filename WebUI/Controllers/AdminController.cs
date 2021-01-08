@@ -34,6 +34,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("List" + type, EntityRepository.HtmlBlocks);
                 case "SEO":
                     return View("List" + type, EntityRepository.SEOs);
+                case "Users":
+                    return View("List" + type, EntityRepository.Users);
                 default: return View("Admin");
             }
         }

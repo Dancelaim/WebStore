@@ -137,6 +137,13 @@
           <Property Name="ProductGameId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="RealmName" Type="nvarchar" MaxLength="55" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RollName" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="SEO">
           <Key>
             <PropertyRef Name="SEOId" />
@@ -173,6 +180,15 @@
           <Property Name="ParameterPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ParentOptionId" Type="uniqueidentifier" />
           <Property Name="ParameterSale" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="UserPassword" Type="varchar" MaxLength="50" />
+          <Property Name="RoleId" Type="uniqueidentifier" />
         </EntityType>
         <Association Name="FK__HtmlBlock__SiteB__31B762FC">
           <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
@@ -291,6 +307,18 @@
             </Principal>
             <Dependent Role="Realms">
               <PropertyRef Name="ProductGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleId__5C37ACAD">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -414,9 +442,11 @@
           <EntitySet Name="ProductPrice" EntityType="Self.ProductPrice" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProductSubCategory" EntityType="Self.ProductSubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Realms" EntityType="Self.Realms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEO" EntityType="Self.SEO" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TemplateOptions" EntityType="Self.TemplateOptions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TempOptionParams" EntityType="Self.TempOptionParams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__HtmlBlock__SiteB__31B762FC" Association="Self.FK__HtmlBlock__SiteB__31B762FC">
             <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
             <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
@@ -456,6 +486,10 @@
           <AssociationSet Name="FK__Realms__ProductG__3E1D39E1" Association="Self.FK__Realms__ProductG__3E1D39E1">
             <End Role="ProductGame" EntitySet="ProductGame" />
             <End Role="Realms" EntitySet="Realms" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleId__5C37ACAD" Association="Self.FK__Users__RoleId__5C37ACAD">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductOption" Association="Self.FK_Product_ProductOption">
             <End Role="Product" EntitySet="Product" />
@@ -640,6 +674,12 @@
           <AssociationSet Name="FK_TemplateOptions_TempOptionParams" Association="WowCarryModel.FK_TemplateOptions_TempOptionParams">
             <End Role="TemplateOptions" EntitySet="TemplateOptions" />
             <End Role="TempOptionParams" EntitySet="TempOptionParams" />
+          </AssociationSet>
+          <EntitySet Name="Roles" EntityType="WowCarryModel.Roles" />
+          <EntitySet Name="Users" EntityType="WowCarryModel.Users" />
+          <AssociationSet Name="FK__Users__RoleId__5C37ACAD" Association="WowCarryModel.FK__Users__RoleId__5C37ACAD">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="ProductDescription">
@@ -1015,6 +1055,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="Guid" Nullable="false" />
+          <Property Name="RollName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="WowCarryModel.FK__Users__RoleId__5C37ACAD" FromRole="Roles" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Guid" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="RoleId" Type="Guid" />
+          <NavigationProperty Name="Roles" Relationship="WowCarryModel.FK__Users__RoleId__5C37ACAD" FromRole="Users" ToRole="Roles" />
+        </EntityType>
+        <Association Name="FK__Users__RoleId__5C37ACAD">
+          <End Type="WowCarryModel.Roles" Role="Roles" Multiplicity="0..1" />
+          <End Type="WowCarryModel.Users" Role="Users" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="Users">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1203,6 +1273,24 @@
                 <ScalarProperty Name="ParameterTooltip" ColumnName="ParameterTooltip" />
                 <ScalarProperty Name="ParameterName" ColumnName="ParameterName" />
                 <ScalarProperty Name="ParameterId" ColumnName="ParameterId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="WowCarryModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="RollName" ColumnName="RollName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WowCarryModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

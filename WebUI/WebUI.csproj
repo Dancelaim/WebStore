@@ -808,6 +808,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -823,10 +824,9 @@
     </Compile>
     <Compile Include="HtmlHelpers\Helper.cs" />
     <Compile Include="HtmlHelpers\PagingHelper.cs" />
-    <Compile Include="Infrastructure\Abstract\IAuthProvider.cs" />
     <Compile Include="Infrastructure\Binders\ProductModelBinder.cs" />
     <Compile Include="Infrastructure\Binders\CartModelBinder .cs" />
-    <Compile Include="Infrastructure\Concrete\FormAuthProvider.cs" />
+    <Compile Include="Infrastructure\Concrete\UsersRoleProvider.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ProductOptionsViewModel.cs" />
@@ -895,6 +895,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Infrastructure\Abstract\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

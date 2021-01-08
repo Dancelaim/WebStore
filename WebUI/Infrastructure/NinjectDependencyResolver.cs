@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Web.Mvc;
 using Ninject;
-
-using WebUI.Infrastructure.Abstract;
 using WebUI.Infrastructure.Concrete;
 
 using WowCarry.Domain.Abstract;
@@ -35,7 +33,6 @@ namespace WowCarry.WebUI.Infrastructure
         private void AddBindings()
         {
             kernel.Bind<IEntityRepository>().To<EFEntityRepository>();
-            kernel.Bind<IAuthProvider>().To<FormAuthProvider>();
 
             EmailSettings emailSettings = new EmailSettings
             {

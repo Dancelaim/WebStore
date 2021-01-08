@@ -12,7 +12,7 @@
         <EntityTypeShape EntityType="WowCarryModel.ProductDescription" Width="2.625" PointX="13.625" PointY="8.875" />
         <EntityTypeShape EntityType="WowCarryModel.ProductSubCategory" Width="1.5" PointX="13.625" PointY="0.5" />
         <AssociationConnector Association="WowCarryModel.FK__ProductCa__Produ__2B0A656D" />
-        <EntityTypeShape EntityType="WowCarryModel.HtmlBlocks" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="WowCarryModel.HtmlBlocks" Width="1.5" PointX="0.75" PointY="1" />
         <EntityTypeShape EntityType="WowCarryModel.HtmlBlocksChildren" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" />
         <EntityTypeShape EntityType="WowCarryModel.Realms" Width="1.5" PointX="8" PointY="2.5" />
@@ -34,9 +34,12 @@
         <AssociationConnector Association="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" />
         <AssociationConnector Association="WowCarryModel.FK_ProductOptions_ProductOptionParams" />
         <AssociationConnector Association="WowCarryModel.FK_ProductOptions_ProductOptions" />
-        <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="0.75" PointY="5.125" />
-        <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="3" PointY="5" />
+        <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="0.875" PointY="4.125" />
+        <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="3" PointY="4.125" />
         <AssociationConnector Association="WowCarryModel.FK_TemplateOptions_TempOptionParams" />
+        <EntityTypeShape EntityType="WowCarryModel.Roles" Width="1.5" PointX="1" PointY="7.125" />
+        <EntityTypeShape EntityType="WowCarryModel.Users" Width="1.5" PointX="3" PointY="7.125" />
+        <AssociationConnector Association="WowCarryModel.FK__Users__RoleId__5C37ACAD" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

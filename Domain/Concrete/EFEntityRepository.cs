@@ -19,6 +19,7 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<ProductOptions> ProductOptions => context.ProductOptions;
         public IEnumerable<HtmlBlocks> HtmlBlocks => context.HtmlBlocks;
         public IEnumerable<TemplateOptions> TemplateOptions => context.TemplateOptions;
+        public IEnumerable<Users> Users  => context.Users;
 
 
         public void SaveGame(ProductGameDetails productGameDetails)
