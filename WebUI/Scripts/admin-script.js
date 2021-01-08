@@ -141,7 +141,6 @@ $(document).on("click", ".param-add", function () {
                 paramName: $(this).closest(".add-param-block").find("#Parameter_Parent").val()
             },
             success: function (data) {
-                $(".param-list").append(data);
                 sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
                 window.location.reload();
             },

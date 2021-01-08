@@ -30,8 +30,20 @@ namespace WowCarry.Domain.Concrete
                 dbproductGame.GameName = productGameDetails.GameName;
                 dbproductGame.GameDescription = productGameDetails.GameDescription;
                 dbproductGame.GameShortUrl = productGameDetails.GameShortUrl;
-                context.SaveChanges();
             }
+            foreach(ProductGameDetails.ProductCategoryDetails item in productGameDetails.ProductCategoryDetailsCollection)
+            {
+                ProductCategory dbProductCategory = context.ProductGame.Find(productGameDetails.ProductGameId).ProductCategory.Where(p => p.ProductCategoryId == item.ProductCategoryId).FirstOrDefault();
+                if(dbProductCategory != null)
+                {
+                    dbProductCategory.ProductCategoryName = item.ProductCategoryName;
+                    dbProductCategory.ProductGameId = item.ProductGameId;
+                    dbProductCategory.CategoryDescription = item.CategoryDescription;
+                    dbProductCategory.ProductSubCategoryId = item.ProductSubCategoryId;
+                    dbProductCategory.CategorySeoId = item.CategorySeoId;
+                }
+            }
+            context.SaveChanges();
         }
 
         public void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
@@ -50,13 +62,11 @@ namespace WowCarry.Domain.Concrete
                 HtmlBlocksChildren dbhtmlBlocksChildren = context.HtmlBlocks.Find(htmlBlockDetails.SiteBlockId).HtmlBlocksChildren.Where(p => p.SiteBlockChildsId == item.SiteBlockChildsId).FirstOrDefault();
                 if (dbhtmlBlocksChildren != null)
                 {
-                    dbhtmlBlocksChildren.SiteBlockChildsId = item.SiteBlockChildsId;
                     dbhtmlBlocksChildren.Text = item.Text;
                     dbhtmlBlocksChildren.Title = item.Title;
                     dbhtmlBlocksChildren.Image = item.Image;
                     dbhtmlBlocksChildren.CSSClass = item.CSSClass;
                     dbhtmlBlocksChildren.ChildOrder = item.ChildOrder;
-                    dbhtmlBlocksChildren.SiteBlockChildsId = item.SiteBlockChildsId;
                 }
             }
             context.SaveChanges();
