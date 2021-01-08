@@ -16,7 +16,7 @@ Alter table Users ADD FOREIGN KEY (RankId) REFERENCES Ranks(RankId);
 
 insert into Roles values  (newid(),'Root Admin'),(newid(),'Agent'),(newid(),'Admin'),(newid(),'User'),(newid(),' Price Admin')
 
-declare @RoleId uniqueidentifier  = (select RoleId from Roles )
+declare @RoleId uniqueidentifier  = (select RoleId from Roles where RoleName = 'Root Admin' )
 insert into Users values  (newid(),'Admin','123',@RoleId,null,null)
 
 insert into Ranks values (newid(),'Member',null),(newid(),'Bronze','1'),(newid(),'Silver','3'),(newid(),'Gold','5'),(newid(),'Diamond','7'),(newid(),'Shadow','10')
