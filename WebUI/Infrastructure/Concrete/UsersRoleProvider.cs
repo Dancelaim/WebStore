@@ -56,7 +56,7 @@ namespace WebUI.Infrastructure.Concrete
                                  join r in context.Roles
                                  on user.RoleId equals r.RoleId
                                  where user.UserName == username
-                                 select r.RollName).ToArray();
+                                 select r.RoleName).ToArray();
                 return userRoles;
             }
         }

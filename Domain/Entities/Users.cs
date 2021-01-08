@@ -14,11 +14,14 @@ namespace WowCarry.Domain.Entities
     
     public partial class Users
     {
-        public System.Guid ID { get; set; }
         public string UserName { get; set; }
         public string UserPassword { get; set; }
         public Nullable<System.Guid> RoleId { get; set; }
+        public System.Guid UserId { get; set; }
+        public Nullable<System.Guid> RankId { get; set; }
+        public string Email { get; set; }
     
         public virtual Roles Roles { get; set; }
+        public virtual Ranks Ranks { get; set; }
     }
 }

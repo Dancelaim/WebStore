@@ -43,6 +43,7 @@ namespace WowCarry.Domain.Entities
         public virtual DbSet<TempOptionParams> TempOptionParams { get; set; }
         public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<Ranks> Ranks { get; set; }
     
         public virtual int Check_db_Version(Nullable<short> script)
         {

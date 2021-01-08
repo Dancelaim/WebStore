@@ -40,6 +40,8 @@
         <EntityTypeShape EntityType="WowCarryModel.Roles" Width="1.5" PointX="1" PointY="7.125" />
         <EntityTypeShape EntityType="WowCarryModel.Users" Width="1.5" PointX="3" PointY="7.125" />
         <AssociationConnector Association="WowCarryModel.FK__Users__RoleId__5C37ACAD" />
+        <EntityTypeShape EntityType="WowCarryModel.Ranks" Width="1.5" PointX="5.25" PointY="7.125" />
+        <AssociationConnector Association="WowCarryModel.FK__Users__RankId__6F4A8121" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

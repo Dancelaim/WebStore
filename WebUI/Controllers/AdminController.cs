@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace WowCarry.WebUI.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Root Admin")]
     public class AdminController : Controller
     {
         IEntityRepository EntityRepository;
