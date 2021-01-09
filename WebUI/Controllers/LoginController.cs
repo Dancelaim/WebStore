@@ -23,7 +23,7 @@ namespace WebUI.Controllers
                     FormsAuthentication.SetAuthCookie(model.UserName, false);
                     return RedirectToAction("Admin", "Admin");
                 }
-                ModelState.AddModelError("", "invalid Username or Password");
+                ModelState.AddModelError("", "Invalid Username or Password");
                 return View();
             }
 
