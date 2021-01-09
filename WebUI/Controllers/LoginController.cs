@@ -1,43 +1,38 @@
 ﻿using System.Web.Mvc;
-
-using WebUI.Infrastructure.Abstract;
+using System.Web.Security;
+using WowCarry.Domain.Entities;
 using WebUI.Models;
+using System.Linq;
 
 namespace WebUI.Controllers
 {
     public class LoginController : Controller
     {
-        IAuthProvider authProvider;
-        public LoginController(IAuthProvider auth)
-        {
-            authProvider = auth;
-        }
-
-        public ViewResult Login()
+        public ActionResult Login()
         {
             return View();
         }
-
         [HttpPost]
-        public ActionResult Login(LoginViewModel model, string returnUrl)
+        public ActionResult Login(LoginViewModel model)
         {
-
-            if (ModelState.IsValid)
+            using (WowCarryEntities context = new WowCarryEntities())
             {
-                if (authProvider.Authenticate(model.UserName, model.Password))
+                bool IsValidUser = context.Users.Any(user => user.UserName.ToLower() == model.UserName.ToLower() && user.UserPassword == model.Password);
+                if (IsValidUser)
                 {
-                    return Redirect(returnUrl ?? Url.Action("Index", "Admin"));
+                    FormsAuthentication.SetAuthCookie(model.UserName, false);
+                    return RedirectToAction("Admin", "Admin");
                 }
-                else
-                {
-                    ModelState.AddModelError("", "Неправильный логин или пароль");
-                    return View();
-                }
-            }
-            else
-            {
+                ModelState.AddModelError("", "invalid Username or Password");
                 return View();
             }
+
         }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Login");
+        }
+
     }
 }

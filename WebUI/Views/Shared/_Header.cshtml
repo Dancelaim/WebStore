@@ -63,14 +63,20 @@
                     <div class="account_block">
                         <ul class="list-inline">
                             <li>
-                              <span class="txt_acc">My Account</span>
+                                <span class="txt_acc">My Account</span>
 
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">Register</a></li>
-                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#registerModal">Register</a></li>
+                                    <li><a href="#" data-toggle="modal" data-target="#loginModal">Login</a></li>
                                 </ul>
                             </li>
                         </ul>
+                        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+                            Login-popUp
+                        </div>
+                        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+                            register-popUp
+                        </div>
                     </div>
 
                     <form action="" class="search-bar">
