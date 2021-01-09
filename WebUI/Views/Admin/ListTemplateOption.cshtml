@@ -5,9 +5,17 @@
     <title>AdminOptions</title>
 </head>
 <body>
-    <p>
-        @Html.ActionLink("Create New", "Create",new { type = "TemplateOption" }, new { @class = "btn" })
-    </p>
+    <div class="panel-heading">
+        @if (TempData["message"] != null)
+        {
+            <div class="alert alert-success">@TempData["message"]</div>
+        }
+        <div class="save-btns">
+            @Html.ActionLink("Create New", "Create", new { type = "TemplateOptions" }, new { @class = "btn" })
+        </div>
+    </div>
+
+
     <table class="table">
         <thead>
             <tr class="title">

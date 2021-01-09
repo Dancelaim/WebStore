@@ -140,14 +140,14 @@ namespace WowCarry.WebUI.Controllers
                         CategoriesList = new SelectList(EntityRepository.Games.Where(g => game == null || g.GameName == game).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), "Select Category"),
                         MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), "Select Meta tag title from List"),
                     });
-                case "ProductOption":
-                    return View("Save" + type, EntityRepository);
+                case "TemplateOptions":
+                    return View("Save" + type, new TemplateOptionDetails{});
                 case "ProductGame":
-                    return View("Save" + type, EntityRepository);
+                    return View("Save" + type, new ProductGameDetails{});
                 case "HtmlBlocks":
-                    return View("Save" + type, EntityRepository);
+                    return View("Save" + type, new HtmlBlockDetails { });
                 case "SEO":
-                    return View("Save" + type, EntityRepository);
+                    return View("Save" + type, new SeoDetails { });
                 default: return View("Admin");
             }
         }
