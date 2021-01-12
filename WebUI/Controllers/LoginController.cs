@@ -53,6 +53,11 @@ namespace WebUI.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
+        public ActionResult CustomerLogout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Home", "HomePage");
+        }
 
     }
 }
