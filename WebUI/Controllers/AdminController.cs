@@ -38,6 +38,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("List" + type, EntityRepository.SEOs);
                 case "Users":
                     return View("List" + type, EntityRepository.Users);
+                case "Ranks":
+                    return View("List" + type, EntityRepository.Ranks);
                 default: return View("Admin");
             }
         }
@@ -131,6 +133,25 @@ namespace WowCarry.WebUI.Controllers
                         UrlKeyWord = seo.UrlKeyWord,
                         SEOImage = seo.SEOImage
                     });
+                case "Users":
+                    Users user = EntityRepository.Users.Where(p => p.UserId == Id).FirstOrDefault();
+                    return View("Save" + type, new UsersDetails
+                    {
+                        UserId = user.UserId,
+                        UserName = user.UserName,
+                        UserPassword = user.UserPassword,
+                        Email = user.Email,
+                        RoleId = user.RoleId,
+                        RankId = user.RankId
+                    });
+                case "Ranks":
+                    Ranks ranks = EntityRepository.Ranks.Where(p => p.RankId == Id).FirstOrDefault();
+                    return View("Save" + type, new RankDetails 
+                    {
+                        RankId = ranks.RankId,
+                        Name = ranks.Name,
+                        Sale = ranks.Sale
+                    });
                 default: return View("Admin");
             }
         }
@@ -154,6 +175,10 @@ namespace WowCarry.WebUI.Controllers
                     return View("Save" + type, new HtmlBlockDetails { });
                 case "SEO":
                     return View("Save" + type, new SeoDetails { });
+                case "Users":
+                    return View("Save" + type, new UsersDetails { });
+                case "Ranks":
+                    return View("Save" + type, new RankDetails { });
                 default: return View("Admin");
             }
         }
@@ -407,7 +432,7 @@ namespace WowCarry.WebUI.Controllers
             {
                 return RedirectToAction("List", new { type = "SEO" });
             }
-        }   
+        }
         public ActionResult SaveGame(ProductGameDetails productGameDetails)
         {
             if (ModelState.IsValid)
@@ -419,6 +444,32 @@ namespace WowCarry.WebUI.Controllers
             else
             {
                 return RedirectToAction("List", new { type = "ProductGame" });
+            }
+        }
+        public ActionResult SaveUsers(UsersDetails userDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveUsers(userDetails);
+                TempData["message"] = string.Format("User has been saved");
+                return RedirectToAction("List", new { type = "Users" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "Users" });
+            }
+        }
+        public ActionResult SaveRanks(RankDetails rankDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveRanks(rankDetails);
+                TempData["message"] = string.Format("Ranks has been saved");
+                return RedirectToAction("List", new { type = "Users" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "Users" });
             }
         }
     }

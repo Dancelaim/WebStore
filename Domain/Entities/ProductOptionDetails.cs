@@ -12,6 +12,7 @@ namespace WowCarry.Domain.Entities
 {
     public class ProductOptionDetails
     {
+    
         [HiddenInput]
         public Guid OptionId { get; set; }
 

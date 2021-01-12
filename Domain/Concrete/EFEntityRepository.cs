@@ -20,6 +20,7 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<HtmlBlocks> HtmlBlocks => context.HtmlBlocks;
         public IEnumerable<TemplateOptions> TemplateOptions => context.TemplateOptions;
         public IEnumerable<Users> Users  => context.Users;
+        public IEnumerable<Ranks> Ranks => context.Ranks;
 
 
         public void SaveGame(ProductGameDetails productGameDetails)
@@ -71,7 +72,19 @@ namespace WowCarry.Domain.Concrete
             }
             context.SaveChanges();
         }
+        public void SaveRanks(RankDetails rankDetails)
+        {
+            Ranks dbRanks = context.Ranks.Find(rankDetails.RankId);
+            if(dbRanks !=null)
+            {
+                dbRanks.RankId = rankDetails.RankId;
+                dbRanks.Name = rankDetails.Name;
+                dbRanks.Sale = rankDetails.Sale;
 
+
+                context.SaveChanges();
+            }
+        }
         public void  SaveProductOption(ProductOptionDetails productOptionDetails)
         {
             ProductOptions dbProductOption = context.ProductOptions.Find(productOptionDetails.OptionId);
@@ -203,7 +216,21 @@ namespace WowCarry.Domain.Concrete
             string result = "";
             return result;
         }
+        public void SaveUsers(UsersDetails userDetails)
+        {
+            Users dbUsers = context.Users.Find(userDetails.UserId);
+            if(dbUsers != null)
+            {
+                dbUsers.UserId = userDetails.UserId;
+                dbUsers.UserName = userDetails.UserName;
+                dbUsers.UserPassword = userDetails.UserPassword;
+                dbUsers.Email = userDetails.Email;
+                dbUsers.RoleId = userDetails.RoleId;
+                dbUsers.RankId = userDetails.RankId;
 
+                context.SaveChanges();
+            }
+        }
         public void SaveTemplateOption(TemplateOptionDetails tempOptionsDetails)
         {
             TemplateOptions dbtemplateOptions = context.TemplateOptions.Find(tempOptionsDetails.TempOptionId);

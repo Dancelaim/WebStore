@@ -86,6 +86,8 @@
     <Compile Include="Entities\Roles.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\RankDetails.cs" />
+    <Compile Include="Entities\UsersDetails.cs" />
     <Compile Include="Entities\TemplateOptionDetails.cs" />
     <Compile Include="Entities\SeoDetails.cs" />
     <Compile Include="Entities\HtmlBlockDetails.cs" />

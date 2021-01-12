@@ -47,8 +47,8 @@ else
                     <li><span class="menu-ico ico6"></span><span class="text-menu"> @Html.RouteLink("SEO", "AdminItem", new { Action = "List", type = "SEO" }) </span></li>
                     <li><span class="menu-ico ico7"></span><span class="text-menu"><a> Coupons</a> </span></li>
                     <li><span class="menu-ico ico8"></span><span class="text-menu"><a> Orders</a> </span></li>
-                    <li><span class="menu-ico ico9"></span><span class="text-menu"><a> Users</a> </span></li>
-                    <li><span class="menu-ico ico10"></span><span class="text-menu"><a> Rang</a> </span></li>
+                    <li><span class="menu-ico ico9"></span><span class="text-menu">@Html.RouteLink("Users", "AdminItem",new { Action = "List",type="Users"})</span></li>
+                    <li><span class="menu-ico ico10"></span><span class="text-menu">@Html.RouteLink("Ranks", "AdminItem", new { Action = "List", type = "Ranks" })</span></li>
                 </ul>
             </div>
         </div>

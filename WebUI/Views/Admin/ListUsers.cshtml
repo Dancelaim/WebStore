@@ -1,0 +1,36 @@
+﻿@model IEnumerable<WowCarry.Domain.Entities.UsersDetails>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Users</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create",new { type = "Users" }, new { @class = "btn" })
+    </p>
+    <table class="table">
+        <thead>
+            <tr class="title">
+                <th>Название</th>
+                <th class="text-center">Действия</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="text-center">
+                        @using (Html.BeginForm("Delete", "Admin"))
+                        {
+                            @Html.Hidden("UserId", item.UserId)
+                            <input type="submit"
+                                   class="btn btn-default btn-xs"
+                                   value="Удалить" />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

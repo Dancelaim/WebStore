@@ -18,6 +18,7 @@ namespace WowCarry.Domain.Abstract
         IEnumerable<HtmlBlocks> HtmlBlocks { get; }
         IEnumerable<TemplateOptions> TemplateOptions { get; }
         IEnumerable<Users> Users { get; }
+        IEnumerable<Ranks> Ranks { get; }
 
 
         void SaveGame(ProductGameDetails productGameDetails);
@@ -27,5 +28,7 @@ namespace WowCarry.Domain.Abstract
         void SaveContext();
         void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails);
         void SaveTemplateOption(TemplateOptionDetails templateOptionDetails);
+        void SaveUsers(UsersDetails usersDetails);
+        void SaveRanks(RankDetails rankDetails);
     }
 }
