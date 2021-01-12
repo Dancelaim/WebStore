@@ -804,6 +804,7 @@ header .bottom {
   padding: 0;
   border-radius: 0;
   text-align: left;
+  right: 0;
 }
 .dropdown-menu li {
   display: block;
@@ -1017,7 +1018,7 @@ header .bottom {
 }
 .btn-cart:hover,
 .btn-cart:active {
-  background: #212656;
+  background: #161828;
   color: #eeeeee;
 }
 .btn-cart:before {
@@ -1045,7 +1046,7 @@ header .bottom {
 }
 .account_block:hover,
 .account_block:active {
-  background: #10111B;
+  background: #161828;
 }
 .account_block:hover .dropdown-menu,
 .account_block:active .dropdown-menu {
@@ -1071,6 +1072,7 @@ header .bottom {
 .search-bar .search-btn {
   text-align: center;
   background: none;
+  border: 0 none;
 }
 .search-bar .search-btn:hover,
 .search-bar .search-btn:active {
