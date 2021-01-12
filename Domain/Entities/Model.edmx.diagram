@@ -37,11 +37,16 @@
         <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="0.875" PointY="4.125" />
         <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="3" PointY="4.125" />
         <AssociationConnector Association="WowCarryModel.FK_TemplateOptions_TempOptionParams" />
-        <EntityTypeShape EntityType="WowCarryModel.Roles" Width="1.5" PointX="1" PointY="7.125" />
+        <EntityTypeShape EntityType="WowCarryModel.Roles" Width="1.5" PointX="0.875" PointY="7.125" />
         <EntityTypeShape EntityType="WowCarryModel.Users" Width="1.5" PointX="3" PointY="7.125" />
         <AssociationConnector Association="WowCarryModel.FK__Users__RoleId__5C37ACAD" />
-        <EntityTypeShape EntityType="WowCarryModel.Ranks" Width="1.5" PointX="5.25" PointY="7.125" />
-        <AssociationConnector Association="WowCarryModel.FK__Users__RankId__6F4A8121" />
+        <EntityTypeShape EntityType="WowCarryModel.Ranks" Width="1.5" PointX="0.875" PointY="9.875" />
+        <EntityTypeShape EntityType="WowCarryModel.Customers" Width="1.5" PointX="3" PointY="9.875" />
+        <EntityTypeShape EntityType="WowCarryModel.OrderCustomFields" Width="1.5" PointX="7.125" PointY="9.875" />
+        <AssociationConnector Association="WowCarryModel.FK__Customers__RankI__0539C240" />
+        <EntityTypeShape EntityType="WowCarryModel.Orders" Width="1.5" PointX="5" PointY="9.875" />
+        <AssociationConnector Association="WowCarryModel.FK__Orders__Customer__119F9925" />
+        <AssociationConnector Association="WowCarryModel.FK__Orders__OrderCus__10AB74EC" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

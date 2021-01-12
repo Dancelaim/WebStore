@@ -12,19 +12,22 @@ namespace WowCarry.Domain.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Ranks
+    public partial class Customers
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Ranks()
+        public Customers()
         {
-            this.Customers = new HashSet<Customers>();
+            this.Orders = new HashSet<Orders>();
         }
     
-        public System.Guid RankId { get; set; }
+        public System.Guid CustomerId { get; set; }
         public string Name { get; set; }
-        public string Sale { get; set; }
+        public string Password { get; set; }
+        public Nullable<System.Guid> RankId { get; set; }
+        public string Email { get; set; }
     
+        public virtual Ranks Ranks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Customers> Customers { get; set; }
+        public virtual ICollection<Orders> Orders { get; set; }
     }
 }

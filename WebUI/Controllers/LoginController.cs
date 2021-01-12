@@ -8,9 +8,16 @@ namespace WebUI.Controllers
 {
     public class LoginController : Controller
     {
-        public ActionResult Login()
+        public ActionResult Login(bool isWebView = false)
         {
-            return View();
+            if (isWebView)
+            {
+                return PartialView("CustomerLogin");
+            }
+            else
+            {
+                return View();
+            }
         }
         [HttpPost]
         public ActionResult Login(LoginViewModel model)
@@ -21,12 +28,25 @@ namespace WebUI.Controllers
                 if (IsValidUser)
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName, false);
-                    return RedirectToAction("Admin", "Admin");
+                    return  RedirectToAction("Admin", "Admin");
                 }
                 ModelState.AddModelError("", "Invalid Username or Password");
-                return View();
+                return PartialView();
             }
-
+        }
+        [HttpPost]
+        public bool AjaxLogin(string userName, string password)
+        {
+            using (WowCarryEntities context = new WowCarryEntities())
+            {
+                bool IsValidUser = context.Customers.Any(user => user.Name.ToLower() == userName.ToLower() && user.Password == password);
+                if (IsValidUser)
+                {
+                    FormsAuthentication.SetAuthCookie(userName, false);
+                    return true;
+                }
+                return false;
+            }
         }
         public ActionResult Logout()
         {

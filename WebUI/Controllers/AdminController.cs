@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace WowCarry.WebUI.Controllers
 {
-    [Authorize(Roles = "Root Admin")]
+    [Authorize(Roles = "Root Admin,Agent,Admin,Price Admin")]
     public class AdminController : Controller
     {
         IEntityRepository EntityRepository;
@@ -16,12 +16,10 @@ namespace WowCarry.WebUI.Controllers
         {
             EntityRepository = entityRepo;
         }
-
         public ViewResult Admin()
         {
             return View();
         }
-
         public ViewResult List(string type)
         {
             switch (type)
@@ -41,7 +39,7 @@ namespace WowCarry.WebUI.Controllers
                 default: return View("Admin");
             }
         }
-
+        [Authorize(Roles = "Root Admin,Admin,Price Admin")]
         public ViewResult Edit(Guid Id, string type, string game)
         {
             switch (type)
@@ -53,8 +51,11 @@ namespace WowCarry.WebUI.Controllers
                         Product = prod,
                         ProductId = prod.ProductId,
                         GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), prod?.ProductGame.GameName ?? "Select Game"),
+                        SelectedGame = prod?.ProductGame.GameName,
                         CategoriesList = new SelectList(EntityRepository.Games.Where(g => game == null || g.GameName == game).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), prod?.ProductCategory.ProductCategoryName ?? "Select Category"),
+                        SelectedCategory = prod?.ProductCategory.ProductCategoryName,
                         MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), prod?.SEO.MetaTagTitle ?? "Select Meta tag title from List"),
+                        SelectedMetaTagTitle = prod?.SEO.MetaTagTitle,
                         ProductOptions = prod.ProductOptions,
                         ProductName = prod.ProductName,
                         InStock = prod.InStock,
@@ -134,7 +135,7 @@ namespace WowCarry.WebUI.Controllers
                 default: return View("Admin");
             }
         }
-
+        [Authorize(Roles = "Root Admin,Admin")]
         public ViewResult Create(string type, string game)
         {
             switch (type)
@@ -174,6 +175,7 @@ namespace WowCarry.WebUI.Controllers
         //    };
         //    return PartialView(result);
         //}
+        [Authorize(Roles = "Root Admin,Admin,Price Admin")]
         public ViewResult ProductOptionsEdit(Guid productId)
         {
             var selectedProduct = EntityRepository.Products.Where(p => p.ProductId == productId).FirstOrDefault();
@@ -206,17 +208,7 @@ namespace WowCarry.WebUI.Controllers
             };
             return View(result);
         }
-        public ViewResult HtmlBlockEdit(Guid SiteBlockId)
-        {
-            var selectedProduct = EntityRepository.HtmlBlocks.Where(h => h.SiteBlockId == SiteBlockId).FirstOrDefault();
-            List<HtmlBlockDetails> htmlBlockChildrens = new List<HtmlBlockDetails>();
-            //if ()
-            //{
-
-            //}
-
-            return View(SiteBlockId);
-        }
+        #region POST
         [HttpPost]
         public void PopulateSelectLists(Guid optionId,Guid prodId,string parentName)
         {
@@ -369,6 +361,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Product" });
             }
         }
+        [HttpPost]
         public ActionResult SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
         {
             if (ModelState.IsValid)
@@ -382,6 +375,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "HtmlBlock" });
             }
         }
+        [HttpPost]
         public ActionResult SaveTemplateOption(TemplateOptionDetails templateOptionDetails)
         {
             if (ModelState.IsValid)
@@ -395,6 +389,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Template Option" });
             }
         }
+        [HttpPost]
         public ActionResult SaveSEO(SeoDetails seoDetails)
         {
             if (ModelState.IsValid)
@@ -407,7 +402,8 @@ namespace WowCarry.WebUI.Controllers
             {
                 return RedirectToAction("List", new { type = "SEO" });
             }
-        }   
+        }
+        [HttpPost]
         public ActionResult SaveGame(ProductGameDetails productGameDetails)
         {
             if (ModelState.IsValid)
@@ -421,5 +417,6 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "ProductGame" });
             }
         }
+        #endregion
     }
 }
