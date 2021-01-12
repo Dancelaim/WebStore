@@ -808,6 +808,7 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
@@ -886,7 +887,7 @@
     <Content Include="Views\Admin\ProductOptionsEdit.cshtml" />
     <Content Include="Views\Admin\SaveTemplateOptions.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Login\CustomerLogin.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Admin\ListUsers.cshtml" />
     <Content Include="Views\Admin\ListRanks.cshtml" />

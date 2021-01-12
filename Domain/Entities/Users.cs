@@ -18,10 +18,9 @@ namespace WowCarry.Domain.Entities
         public string UserPassword { get; set; }
         public Nullable<System.Guid> RoleId { get; set; }
         public System.Guid UserId { get; set; }
-        public Nullable<System.Guid> RankId { get; set; }
         public string Email { get; set; }
+        public string DefaultPage { get; set; }
     
         public virtual Roles Roles { get; set; }
-        public virtual Ranks Ranks { get; set; }
     }
 }

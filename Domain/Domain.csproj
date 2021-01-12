@@ -79,6 +79,15 @@
     <Compile Include="Abstract\IOrderProcessor.cs" />
     <Compile Include="Concrete\EFEntityRepository.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
+    <Compile Include="Entities\Customers.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\OrderCustomFields.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Orders.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\ProductGameDetails.cs" />
     <Compile Include="Entities\Ranks.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -207,6 +216,7 @@
     <Content Include="ScriptHistory\15.sql" />
     <Content Include="ScriptHistory\14.sql" />
     <Content Include="ScriptHistory\13.sql" />
+    <Content Include="ScriptHistory\36.sql" />
     <Content Include="ScriptHistory\35.sql" />
     <Content Include="ScriptHistory\34.sql" />
     <Content Include="ScriptHistory\33.sql" />
