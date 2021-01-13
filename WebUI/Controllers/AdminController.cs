@@ -142,8 +142,7 @@ namespace WowCarry.WebUI.Controllers
                         UserName = user.UserName,
                         UserPassword = user.UserPassword,
                         Email = user.Email,
-                        RoleId = user.RoleId,
-                        RankId = user.RankId
+                        RoleId = user.RoleId
                     });
                 case "Ranks":
                     Ranks ranks = EntityRepository.Ranks.Where(p => p.RankId == Id).FirstOrDefault();
@@ -428,6 +427,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "SEO" });
             }
         }
+        #endregion
         public ActionResult SaveGame(ProductGameDetails productGameDetails)
         {
             if (ModelState.IsValid)

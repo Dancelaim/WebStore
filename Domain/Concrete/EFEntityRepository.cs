@@ -226,7 +226,6 @@ namespace WowCarry.Domain.Concrete
                 dbUsers.UserPassword = userDetails.UserPassword;
                 dbUsers.Email = userDetails.Email;
                 dbUsers.RoleId = userDetails.RoleId;
-                dbUsers.RankId = userDetails.RankId;
 
                 context.SaveChanges();
             }
