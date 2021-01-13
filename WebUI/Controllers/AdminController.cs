@@ -460,11 +460,11 @@ namespace WowCarry.WebUI.Controllers
             {
                 EntityRepository.SaveRanks(rankDetails);
                 TempData["message"] = string.Format("Ranks has been saved");
-                return RedirectToAction("List", new { type = "Users" });
+                return RedirectToAction("List", new { type = "Ranks" });
             }
             else
             {
-                return RedirectToAction("List", new { type = "Users" });
+                return RedirectToAction("List", new { type = "Ranks" });
             }
         }
     }

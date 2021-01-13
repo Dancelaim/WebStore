@@ -891,6 +891,8 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Admin\ListUsers.cshtml" />
     <Content Include="Views\Admin\ListRanks.cshtml" />
+    <Content Include="Views\Admin\SaveUsers.cshtml" />
+    <Content Include="Views\Admin\SaveRanks.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
