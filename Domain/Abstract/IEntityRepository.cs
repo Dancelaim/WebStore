@@ -20,6 +20,8 @@ namespace WowCarry.Domain.Abstract
         IEnumerable<Users> Users { get; }
         IEnumerable<Ranks> Ranks { get; }
         IEnumerable<Customers> Customers { get; }
+        IEnumerable<Orders> Orders { get; }
+
 
 
         void SaveGame(ProductGameDetails productGameDetails);

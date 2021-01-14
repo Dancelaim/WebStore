@@ -28,7 +28,9 @@ namespace WowCarry.WebUI.Controllers
         }
         public ViewResult AccountOrders()
         {
-            return View();
+            Customers Customer = EntityRepository.Customers.Where(c => c.Email == User.Identity.Name).FirstOrDefault();
+            IEnumerable<Orders> orders = EntityRepository.Orders.Where(o => o.CustomerId == Customer.CustomerId);
+            return View(orders);
         }
         public ViewResult AccountPersonalInfo()
         {

@@ -29,12 +29,10 @@ namespace WowCarry.Domain.Entities
                 line.Quantity += qty;
             }
         }
-
         public void RemoveLine(Product product)
         {
             lineCollection.RemoveAll(l => l.Product.ProductId == product.ProductId);
         }
-
         public decimal ComputeTotalValue()
         {
             return (decimal)lineCollection.Sum(e => e.Product.ProductPrice.Select(p=>p.Price).FirstOrDefault() * e.Quantity);

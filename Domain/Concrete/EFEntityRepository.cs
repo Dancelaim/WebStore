@@ -22,6 +22,7 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<Users> Users  => context.Users;
         public IEnumerable<Ranks> Ranks => context.Ranks;
         public IEnumerable<Customers> Customers => context.Customers;
+        public IEnumerable<Orders> Orders => context.Orders;
 
 
 
