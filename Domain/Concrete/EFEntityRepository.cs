@@ -252,6 +252,21 @@ namespace WowCarry.Domain.Concrete
                 context.SaveChanges();
             }
         }
+
+        public void SaveCustomers(CustomersDetails customersDetails)
+        {
+            Customers dbcustomers = context.Customers.Find(customersDetails.CustomerId);
+            if(dbcustomers != null)
+            {
+                dbcustomers.Name = customersDetails.Name;
+                dbcustomers.Password = customersDetails.Password;
+                dbcustomers.RankId = customersDetails.RankId;
+                dbcustomers.Email = customersDetails.Email;
+                dbcustomers.CarryCoinsValue = customersDetails.CarryCoinsValue;
+
+                context.SaveChanges();
+            }
+        }
         public void SaveContext()
         {
             context.SaveChanges();

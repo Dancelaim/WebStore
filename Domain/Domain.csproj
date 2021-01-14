@@ -89,6 +89,7 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ProductGameDetails.cs" />
+    <Compile Include="Entities\CustomersDetails.cs" />
     <Compile Include="Entities\Ranks.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

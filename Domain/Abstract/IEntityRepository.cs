@@ -31,5 +31,6 @@ namespace WowCarry.Domain.Abstract
         void SaveTemplateOption(TemplateOptionDetails templateOptionDetails);
         void SaveUsers(UsersDetails usersDetails);
         void SaveRanks(RankDetails rankDetails);
+        void SaveCustomers(CustomersDetails customersDetails);
     }
 }

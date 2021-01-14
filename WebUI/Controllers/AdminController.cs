@@ -38,6 +38,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("List" + type, EntityRepository.Users);
                 case "Ranks":
                     return View("List" + type, EntityRepository.Ranks);
+                case "Customers":
+                    return View("List" + type, EntityRepository.Customers);
                 default: return View("Admin");
             }
         }
@@ -148,9 +150,18 @@ namespace WowCarry.WebUI.Controllers
                     Ranks ranks = EntityRepository.Ranks.Where(p => p.RankId == Id).FirstOrDefault();
                     return View("Save" + type, new RankDetails 
                     {
-                        RankId = ranks.RankId,
                         Name = ranks.Name,
                         Sale = ranks.Sale
+                    });
+                case "Customers":
+                    Customers customers = EntityRepository.Customers.Where(p => p.CustomerId == Id).FirstOrDefault();
+                    return View("Save" + type, new CustomersDetails
+                    { 
+                        Name = customers.Name,
+                        Password = customers.Password,
+                        Email = customers.Email,
+                        CarryCoinsValue = customers.CarryCoinsValue
+                        
                     });
                 default: return View("Admin");
             }
@@ -179,6 +190,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("Save" + type, new UsersDetails { });
                 case "Ranks":
                     return View("Save" + type, new RankDetails { });
+                case "Customers":
+                    return View("Save" + type, new CustomersDetails { });
                 default: return View("Admin");
             }
         }
@@ -465,6 +478,19 @@ namespace WowCarry.WebUI.Controllers
             else
             {
                 return RedirectToAction("List", new { type = "Ranks" });
+            }
+        }
+        public ActionResult SaveCustomers(CustomersDetails customers)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveCustomers(customers);
+                TempData["message"] = string.Format("Customers has been saved");
+                return RedirectToAction("List", new { type = "Customers" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "Customers" });
             }
         }
     }
