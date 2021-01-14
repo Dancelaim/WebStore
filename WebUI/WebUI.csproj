@@ -897,6 +897,7 @@
     <Content Include="Views\Admin\SaveUsers.cshtml" />
     <Content Include="Views\Admin\SaveRanks.cshtml" />
     <Content Include="Views\Account\Account.cshtml" />
+    <Content Include="Views\Account\AccountOrders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
