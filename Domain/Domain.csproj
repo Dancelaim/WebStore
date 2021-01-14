@@ -96,7 +96,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\RankDetails.cs" />
-    <Compile Include="Entities\UsersDetails - Копировать.cs" />
     <Compile Include="Entities\UsersDetails.cs" />
     <Compile Include="Entities\TemplateOptionDetails.cs" />
     <Compile Include="Entities\SeoDetails.cs" />
@@ -217,6 +216,7 @@
     <Content Include="ScriptHistory\15.sql" />
     <Content Include="ScriptHistory\14.sql" />
     <Content Include="ScriptHistory\13.sql" />
+    <Content Include="ScriptHistory\37.sql" />
     <Content Include="ScriptHistory\36.sql" />
     <Content Include="ScriptHistory\35.sql" />
     <Content Include="ScriptHistory\34.sql" />

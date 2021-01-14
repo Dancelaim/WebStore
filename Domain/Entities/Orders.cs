@@ -31,6 +31,8 @@ namespace WowCarry.Domain.Entities
         public Nullable<System.DateTime> OrderUpdateTime { get; set; }
         public Nullable<bool> EmailSended { get; set; }
         public Nullable<System.DateTime> EmailSendTime { get; set; }
+        public Nullable<decimal> CarryCoinsSpent { get; set; }
+        public Nullable<decimal> CarryCoinsCollected { get; set; }
     
         public virtual Customers Customers { get; set; }
         public virtual OrderCustomFields OrderCustomFields { get; set; }

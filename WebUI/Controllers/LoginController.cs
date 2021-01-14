@@ -8,6 +8,7 @@ namespace WebUI.Controllers
 {
     public class LoginController : Controller
     {
+        [ValidateAntiForgeryToken]
         public ActionResult Login(bool isWebView = false)
         {
             if (isWebView)
@@ -20,6 +21,7 @@ namespace WebUI.Controllers
             }
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
         {
             using (WowCarryEntities context = new WowCarryEntities())
@@ -35,14 +37,15 @@ namespace WebUI.Controllers
             }
         }
         [HttpPost]
-        public bool AjaxLogin(string userName, string password)
+        [ValidateAntiForgeryToken]
+        public bool AjaxLogin(string email, string password)
         {
             using (WowCarryEntities context = new WowCarryEntities())
             {
-                bool IsValidUser = context.Customers.Any(user => user.Name.ToLower() == userName.ToLower() && user.Password == password);
+                bool IsValidUser = context.Customers.Any(user => user.Email.ToLower() == email.ToLower() && user.Password == password);
                 if (IsValidUser)
                 {
-                    FormsAuthentication.SetAuthCookie(userName, false);
+                    FormsAuthentication.SetAuthCookie(email, false);
                     return true;
                 }
                 return false;

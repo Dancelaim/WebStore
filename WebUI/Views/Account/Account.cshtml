@@ -1,0 +1,10 @@
+﻿@model WowCarry.Domain.Entities.Customers
+
+@*  РАНГ НАЗВАНИЕ  *@
+@Model.Ranks.Name
+@*  РАНГ СКИДКА  *@
+@Model.Ranks.Sale
+@*  Керри койны  *@
+@Model.CarryCoinsValue
+@*  СУММА ПОТРАЧЕННАЯ ПОЛЬЗОВАТЕЛЕМ ВООБЩЕ Для подсчета сколько надо до лвл апа *@
+@Model.Orders.Sum(e => e.Total)

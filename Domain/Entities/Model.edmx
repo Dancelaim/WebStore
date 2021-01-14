@@ -14,6 +14,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="55" />
           <Property Name="RankId" Type="uniqueidentifier" />
           <Property Name="Email" Type="nvarchar" MaxLength="55" />
+          <Property Name="CarryCoinsValue" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="HtmlBlocks">
           <Key>
@@ -77,6 +78,8 @@
           <Property Name="OrderUpdateTime" Type="datetime" />
           <Property Name="EmailSended" Type="bit" />
           <Property Name="EmailSendTime" Type="datetime" />
+          <Property Name="CarryCoinsSpent" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CarryCoinsCollected" Type="decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -1235,6 +1238,7 @@
           <Property Name="Email" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Ranks" Relationship="WowCarryModel.FK__Customers__RankI__0539C240" FromRole="Customers" ToRole="Ranks" />
           <NavigationProperty Name="Orders" Relationship="WowCarryModel.FK__Orders__Customer__119F9925" FromRole="Customers" ToRole="Orders" />
+          <Property Name="CarryCoinsValue" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <EntityType Name="OrderCustomFields">
           <Key>
@@ -1290,6 +1294,8 @@
           <Property Name="EmailSendTime" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Customers" Relationship="WowCarryModel.FK__Orders__Customer__119F9925" FromRole="Orders" ToRole="Customers" />
           <NavigationProperty Name="OrderCustomFields" Relationship="WowCarryModel.FK__Orders__OrderCus__10AB74EC" FromRole="Orders" ToRole="OrderCustomFields" />
+          <Property Name="CarryCoinsSpent" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CarryCoinsCollected" Type="Decimal" Precision="18" Scale="2" />
         </EntityType>
         <Association Name="FK__Orders__Customer__119F9925">
           <End Type="WowCarryModel.Customers" Role="Customers" Multiplicity="0..1" />
@@ -1538,6 +1544,7 @@
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="WowCarryModel.Customers">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CarryCoinsValue" ColumnName="CarryCoinsValue" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="RankId" ColumnName="RankId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
@@ -1568,6 +1575,8 @@
           <EntitySetMapping Name="Orders">
             <EntityTypeMapping TypeName="WowCarryModel.Orders">
               <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="CarryCoinsCollected" ColumnName="CarryCoinsCollected" />
+                <ScalarProperty Name="CarryCoinsSpent" ColumnName="CarryCoinsSpent" />
                 <ScalarProperty Name="EmailSendTime" ColumnName="EmailSendTime" />
                 <ScalarProperty Name="EmailSended" ColumnName="EmailSended" />
                 <ScalarProperty Name="OrderUpdateTime" ColumnName="OrderUpdateTime" />

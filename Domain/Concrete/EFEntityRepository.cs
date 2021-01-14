@@ -21,6 +21,8 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<TemplateOptions> TemplateOptions => context.TemplateOptions;
         public IEnumerable<Users> Users  => context.Users;
         public IEnumerable<Ranks> Ranks => context.Ranks;
+        public IEnumerable<Customers> Customers => context.Customers;
+
 
 
         public void SaveGame(ProductGameDetails productGameDetails)
@@ -46,7 +48,6 @@ namespace WowCarry.Domain.Concrete
             }
             context.SaveChanges();
         }
-
         public void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
         {
             HtmlBlocks dbhtmlBlocks = context.HtmlBlocks.Find(htmlBlockDetails.SiteBlockId);
@@ -190,7 +191,6 @@ namespace WowCarry.Domain.Concrete
             }
             context.SaveChanges();
         }
-        
         public void SaveSEO(SeoDetails seoDetails)
         {
             SEO dbSeo = context.SEO.Find(seoDetails.SEOId);

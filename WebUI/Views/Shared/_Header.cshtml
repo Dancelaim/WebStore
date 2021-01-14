@@ -73,13 +73,11 @@
                                 }
                                 else
                                 {
-                                    <span class="txt_acc"> Hello, @User.Identity.Name</span>
+                                    <span class="txt_acc">@User.Identity.Name</span>
                                     <ul class="dropdown-menu">
-                                        <li> <div class="login-user"> @Html.ActionLink("Logout", "Logout", "Login")</div></li>
+                                        <li> <div class="login-user"> @Html.ActionLink("Logout", "CustomerLogout", "Login")</div></li>
                                     </ul>
                                 }
-
-
                             </li>
                         </ul>
                             <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
@@ -88,14 +86,8 @@
                             <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
                                 register-popUp
                             </div>
-                        </div>
-                    }
-                    else
-                    {
-                        <div class="login-user">Hello @User.Identity.Name @Html.ActionLink("Logout", "AjaxLogout", "Login")</div>
-
-                    }
-                    </div>
+                    
+                </div>
                     
                     <form action="" class="search-bar">
 

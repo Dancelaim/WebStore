@@ -7,9 +7,10 @@ using WowCarry.Domain.Entities;
 
 namespace WebUI.Models
 {
-    public class CartViewModel
+    public class AccountViewModel
     {
-        public Cart cart { get; set; }
-        public List<Guid> productsId { get; set; }
+        public Customers Customer { get; set; }
+        public IEnumerable<Orders> Orders { get; set; }
+
     }
 }

@@ -25,6 +25,7 @@ namespace WowCarry.Domain.Entities
         public string Password { get; set; }
         public Nullable<System.Guid> RankId { get; set; }
         public string Email { get; set; }
+        public Nullable<decimal> CarryCoinsValue { get; set; }
     
         public virtual Ranks Ranks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
