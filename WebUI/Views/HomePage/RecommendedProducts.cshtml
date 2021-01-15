@@ -1,0 +1,9 @@
+﻿@model IEnumerable<WowCarry.Domain.Entities.Product>
+
+
+@foreach (var Product in Model)
+{
+    <div>@Product.ProductName</div>
+    <div>@Product.ProductPrice.Select(p => p.Price).FirstOrDefault()</div>
+    <div>@Product.ProductImageThumb</div>
+}

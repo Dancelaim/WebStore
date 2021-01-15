@@ -3,24 +3,33 @@
 @model ProductsListViewModel
 <div id="product-category" class="container">
     <h1>@Model.CurrentCategory</h1>
+
+    @*описание категории*@
+    @Model.productCategory.CategoryDescription
+
     @foreach (var p in @Model.Products)
     {
-         <div class="product-layout d-inline-block">
-             <div class="product-thumb">
-                 <a href="@Url.Action("Details","ProductDetails",new {productUrl= p.SEO.UrlKeyWord})">
-                     <div class="image">
-                         <img src=@String.Format(p.ProductImage + ".png") alt="Alternate Text" />
-                         <div class="clear"></div>
-                     </div>
-                     <div class="caption">
-                         <h4>@p.ProductName</h4>
-                         <p class="price">
-                             @p.ProductPrice.Select(pr => pr.Price).FirstOrDefault()
-                         </p>
-                     </div>
-                 </a>
-             </div>
-         </div>
+        //if(p.InStock) Если товар в стоке добавить ! перед p Если надо что товар оут оф сток
+        //    if (p.ProductEnabled) товар активен не уверен что надо тут. Могу на уровне контроллера сортировать
+        //        if (p.PreOrder) если товар является преордером
+
+
+        <div class="product-layout d-inline-block">
+            <div class="product-thumb">
+                <a href="@Url.Action("Details","ProductDetails",new {productUrl= p.SEO.UrlKeyWord})">
+                    <div class="image">
+                        <img src=@String.Format(p.ProductImage + ".png") alt="Alternate Text" />
+                        <div class="clear"></div>
+                    </div>
+                    <div class="caption">
+                        <h4>@p.ProductName</h4>
+                        <p class="price">
+                            @p.ProductPrice.Select(pr => pr.Price).FirstOrDefault()
+                        </p>
+                    </div>
+                </a>
+            </div>
+        </div>
     }
 
     <div class="container">
@@ -29,6 +38,6 @@
                 @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", new { categoryName = Model.CurrentCategory, page = x }))
             </ul>
         </nav>
-</div>
+    </div>
 
 </div>

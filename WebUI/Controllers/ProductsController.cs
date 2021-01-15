@@ -31,7 +31,7 @@ namespace WowCarry.WebUI.Controllers
 
             ProductsListViewModel model = new ProductsListViewModel
             {
-                Products = EntityRepository.Products.Where(p=> categoryName == null || p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == selectedGame)
+                Products = EntityRepository.Products.Where(p => categoryName == null || p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == selectedGame)
                 .OrderBy(p => p.ProductUpdateDate)
                 .Skip((page - 1) * pageSize)
                 .Take(pageSize),
@@ -41,7 +41,8 @@ namespace WowCarry.WebUI.Controllers
                     ItemsPerPage = pageSize,
                     TotalItems = categoryName == null ? EntityRepository.Products.Count() : EntityRepository.Products.Where(p => p.ProductCategory.ProductCategoryName == categoryName && p.ProductGame.GameShortUrl == (string)Session["SelectedGame"]).Count()
                 },
-                CurrentCategory = categoryName
+                CurrentCategory = categoryName,
+                productCategory = EntityRepository.Products.Where(p => categoryName == null || p.ProductCategory.ProductCategoryName == categoryName).Select(p => p.ProductCategory).FirstOrDefault()
             };
             return View(model);
         }
