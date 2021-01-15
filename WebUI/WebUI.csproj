@@ -900,6 +900,8 @@
     <Content Include="Views\Admin\ListCustomers.cshtml" />
     <Content Include="Views\Admin\SaveCustomers.cshtml" />
     <Content Include="Views\Account\AccountOrders.cshtml" />
+    <Content Include="Views\Admin\ListRoles.cshtml" />
+    <Content Include="Views\Admin\SaveRoles.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -21,6 +21,7 @@ namespace WowCarry.Domain.Abstract
         IEnumerable<Ranks> Ranks { get; }
         IEnumerable<Customers> Customers { get; }
         IEnumerable<Orders> Orders { get; }
+        IEnumerable<Roles> Roles { get; }
 
 
 
@@ -34,5 +35,6 @@ namespace WowCarry.Domain.Abstract
         void SaveUsers(UsersDetails usersDetails);
         void SaveRanks(RankDetails rankDetails);
         void SaveCustomers(CustomersDetails customersDetails);
+        void SaveRoles(RolesDetails rolesDetails);
     }
 }

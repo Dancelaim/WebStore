@@ -40,6 +40,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("List" + type, EntityRepository.Ranks);
                 case "Customers":
                     return View("List" + type, EntityRepository.Customers);
+                case "Roles":
+                    return View("List" + type, EntityRepository.Roles);
                 default: return View("Admin");
             }
         }
@@ -163,6 +165,12 @@ namespace WowCarry.WebUI.Controllers
                         CarryCoinsValue = customers.CarryCoinsValue
                         
                     });
+                case "Roles":
+                    Roles roles = EntityRepository.Roles.Where(p => p.RoleId == Id).FirstOrDefault();
+                    return View("Save" + type, new RolesDetails 
+                    {
+                        RoleName = roles.RoleName
+                    });
                 default: return View("Admin");
             }
         }
@@ -192,6 +200,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("Save" + type, new RankDetails { });
                 case "Customers":
                     return View("Save" + type, new CustomersDetails { });
+                case "Roles":
+                    return View("Save" + type, new RolesDetails { });
                 default: return View("Admin");
             }
         }
@@ -493,5 +503,19 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Customers" });
             }
         }
+        public ActionResult SaveRoles(RolesDetails rolesDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveRoles(rolesDetails);
+                TempData["message"] = string.Format("Roles has been saved");
+                return RedirectToAction("List", new { type = "Roles" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "Roles" });
+            }
+        }
+
     }
 }
