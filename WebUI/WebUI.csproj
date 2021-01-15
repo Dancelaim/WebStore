@@ -812,6 +812,7 @@
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -904,6 +905,7 @@
     <Content Include="Views\Admin\ListRoles.cshtml" />
     <Content Include="Views\Admin\SaveRoles.cshtml" />
     <Content Include="Views\HomePage\RecommendedProducts.cshtml" />
+    <Content Include="Views\Options\Options.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
