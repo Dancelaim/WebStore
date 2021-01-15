@@ -23,6 +23,7 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<Ranks> Ranks => context.Ranks;
         public IEnumerable<Customers> Customers => context.Customers;
         public IEnumerable<Orders> Orders => context.Orders;
+        public IEnumerable<Roles> Roles => context.Roles;
 
 
 
@@ -266,6 +267,14 @@ namespace WowCarry.Domain.Concrete
                 dbcustomers.CarryCoinsValue = customersDetails.CarryCoinsValue;
 
                 context.SaveChanges();
+            }
+        }
+        public void SaveRoles(RolesDetails rolesDetails)
+        {
+            Roles dbroles = context.Roles.Find(rolesDetails.RoleId);
+            if (dbroles != null)
+            {
+                dbroles.RoleName = rolesDetails.RoleName;
             }
         }
         public void SaveContext()
