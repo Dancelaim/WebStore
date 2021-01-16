@@ -31,11 +31,9 @@ h6 {
   color: #eeeeee;
   font-style: normal;
   font-weight: 600;
-  text-transform: uppercase;
 }
 h1 {
   font-size: 26px;
-  text-transform: uppercase;
   text-align: center;
   margin-left: 15px;
   margin-right: 15px;
@@ -361,7 +359,6 @@ form input[type=button] {
   font-size: 16px;
   line-height: 22px;
   text-align: center;
-  text-transform: uppercase;
   box-shadow: none;
   transition: all 0.2s ease;
   display: inline-block;
@@ -493,7 +490,6 @@ header .bottom {
   font-size: 16px;
   line-height: 22px;
   text-align: center;
-  text-transform: uppercase;
   box-shadow: none;
   transition: all 0.2s ease;
   display: inline-block;
@@ -509,7 +505,6 @@ header .bottom {
 .modal .modal-dialog .modal-header {
   border: 0 none;
   text-align: center;
-  text-transform: uppercase;
   font-size: 18px;
   line-height: 25px;
   color: #eeeeee;
@@ -695,7 +690,6 @@ header .bottom {
   line-height: 250px;
   margin: 20px 0;
   background: #161828;
-  text-transform: uppercase;
   font-size: 30px;
 }
 #logo {
@@ -717,7 +711,6 @@ header .bottom {
   padding: 0;
   font-size: 14px;
   color: #eeeeee;
-  text-transform: uppercase;
   position: relative;
 }
 .top_curr {
@@ -1061,7 +1054,6 @@ header .bottom {
   font-style: normal;
   font-weight: 600;
   font-size: 14px;
-  text-transform: uppercase;
   line-height: 24px;
 }
 .search-bar {
@@ -1140,7 +1132,6 @@ header .bottom {
   color: #eeeeee;
 }
 .choose_block .choose_in .title {
-  text-transform: uppercase;
   color: #eeeeee;
   text-align: center;
   padding-top: 20px;
@@ -1164,72 +1155,68 @@ header .bottom {
 /**purchase_block*/
 .purchase_block {
   padding-top: 0;
-  padding-bottom: 25px;
+  padding-bottom: 0;
+  margin-bottom: 30px;
 }
 .purchase_block h2 {
   text-align: center;
   padding-top: 0;
+  margin: 0;
 }
 .purchase_block .purchase_block_in {
-  padding-top: 19px;
+  padding-top: 12px;
   text-align: center;
+}
+.purchase_block .purchase_block_in .descripiton_block {
+  margin-bottom: 16px;
 }
 .purchase_block .purchase_block_in .purchase_in {
   position: relative;
-  width: 15%;
-  margin: 0 30px;
+  width: 19%;
+  margin: 0;
   display: inline-block;
   vertical-align: top;
 }
 .purchase_block .purchase_block_in .purchase_in:first-child {
-  margin: 0 0 29px 0;
-  width: 100%;
   display: block;
-  text-align: center;
+  width: 100%;
+  padding-bottom: 12px;
+}
+.purchase_block .purchase_block_in .purchase_in:first-child:before {
+  display: none;
 }
 .purchase_block .purchase_block_in .purchase_in .title {
+  font-style: normal;
+  font-weight: 600;
   font-size: 20px;
+  line-height: 27px;
+  text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
-.purchase_block .purchase_block_in .purchase_in .text {
-  padding-bottom: 20px;
+.purchase_block .purchase_block_in .purchase_in .desc {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  color: #6A7687;
 }
-.purchase_block .purchase_block_in .purchase_in .image {
+.purchase_block .purchase_block_in .purchase_in .image_block {
   padding-bottom: 20px;
   height: 120px;
 }
 .purchase_block .purchase_block_in .purchase_in:before {
   content: "";
   position: absolute;
-  height: 4px;
-  width: 170px;
-  top: 77px;
-  right: -118px;
-  transform: rotate(20deg);
-  background: #1A233B;
+  height: 23px;
+  width: 37px;
+  top: 47px;
+  right: -45px;
+  background: url(https://wowcarry.com/image/catalog/arrow-main-right.svg) 100% 50% no-repeat;
 }
-.purchase_block .purchase_block_in .purchase_in:nth-child(2):before {
-  transform: rotate(20deg);
-}
-.purchase_block .purchase_block_in .purchase_in:nth-child(3) {
-  padding-top: 60px;
-}
-.purchase_block .purchase_block_in .purchase_in:nth-child(3):before {
-  transform: rotate(-20deg);
-}
-.purchase_block .purchase_block_in .purchase_in:nth-child(4):before {
-  transform: rotate(20deg);
-}
-.purchase_block .purchase_block_in .purchase_in:nth-child(5) {
-  padding-top: 60px;
-}
-.purchase_block .purchase_block_in .purchase_in:nth-child(5):before {
-  transform: rotate(-20deg);
-}
-.purchase_block .purchase_block_in .purchase_in:nth-child(6):before,
-.purchase_block .purchase_block_in .purchase_in:nth-child(1):before {
-  height: 0;
-  width: 0;
+.purchase_block .purchase_block_in .purchase_in:last-child:before {
+  display: none;
 }
 .who-we-are {
   padding-top: 0;
@@ -1269,7 +1256,6 @@ header .bottom {
   line-height: 54px;
   padding-bottom: 15px;
   position: relative;
-  text-transform: uppercase;
 }
 .who-we-are .purchase_block_in .purchase_in .text {
   padding-bottom: 50px;
@@ -1449,7 +1435,6 @@ header .bottom {
   color: #eeeeee;
   margin-top: 0;
   padding-top: 0;
-  text-transform: uppercase;
 }
 .product-info-block {
   position: relative;
@@ -1839,12 +1824,66 @@ footer .footer_category {
   float: left;
   vertical-align: top;
   padding-left: 80px;
-  max-width: initial;
+}
+.social_footer span {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+}
+.social_footer a {
+  display: block;
+  margin: 0 0 15px;
+  transition: all 0.2s ease;
+  color: #eeeeee;
+}
+.social_footer a span {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+}
+.social_footer a img {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  margin-right: 15px;
+}
+.social_footer a:hover {
+  text-decoration: none;
+}
+.social_footer a:hover img {
+  animation: socialHover 1s;
+}
+@keyframes socialHover {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+@-webkit-keyframes socialHover {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
 }
 .product-layout {
   width: 378px;
   overflow: hidden;
   margin-right: 25px;
+  vertical-align: top;
 }
 .product-layout .image {
   width: 378px;
@@ -1859,4 +1898,309 @@ footer .footer_category {
 }
 .product-layout a:hover {
   text-decoration: none;
+}
+.featured_title {
+  margin: 0 0 16px 0;
+  padding-top: 0;
+  text-align: center;
+}
+.featured_title:before {
+  font-family: 'Open Sans', sans-serif;
+}
+.featured-links span {
+  cursor: pointer;
+  display: inline-block;
+}
+.featured_box {
+  display: none;
+}
+.featured_box.active {
+  display: block;
+}
+.featured_title {
+  font-size: 24px;
+  line-height: 33px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.featured_box .featured_title {
+  display: none;
+}
+.featured-links {
+  text-align: center;
+  position: relative;
+  max-width: 1600px;
+  margin: 0 auto 30px;
+}
+.featured-links .featured-links_in {
+  display: inline-block;
+  border: 1px solid #6D94C4;
+  box-sizing: border-box;
+  border-radius: 48px;
+  font-size: 0;
+}
+.featured-links .featured-links_in span {
+  padding: 13px 26px;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  color: #6D94C4;
+  border-radius: 48px;
+  position: relative;
+  z-index: 9;
+  transition: all 0.7s ease;
+  /*&:hover{
+				color: @color3;
+			}*/
+}
+.featured-links .featured-links_in span.active {
+  /*background:@color1;*/
+  color: #10111B;
+}
+.featured-links .featured-links_in #magic-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0;
+  padding: 0 26px;
+  margin-left: 0;
+  background: #6D94C4;
+  z-index: 1;
+  border-radius: 48px;
+  box-sizing: content-box;
+}
+.featured-links .featured-links-mobile {
+  display: none;
+}
+.featured-links .desktop-list {
+  display: inline-block;
+  position: relative;
+}
+.select-games-block.category-games {
+  position: relative;
+  background: url(/Images/games-bg1.jpg) 50% 0 no-repeat;
+  padding: 30px 20px 0;
+  text-align: center;
+  overflow: hidden;
+  height: auto;
+}
+.select-games-block.category-games .games-list {
+  margin: 0 auto;
+  max-width: 1600px;
+  position: relative;
+  text-align: center;
+}
+.select-games-block.category-games .games-list .games-list-in {
+  position: relative;
+  margin-right: 0;
+  text-align: justify;
+  margin-bottom: -20px;
+}
+.select-games-block.category-games .games-list .games-list-in:after {
+  display: inline-block;
+  content: '';
+  width: 100%;
+  text-align: justify;
+}
+.select-games-block.category-games .games-list .game-item {
+  display: inline-block;
+  width: 32%;
+  min-height: 240px;
+  outline: 1px solid #1A233B;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  vertical-align: top;
+  text-align: left;
+  margin-bottom: 30px;
+  padding-bottom: 24px;
+  padding-right: 36px;
+  margin-right: 0;
+  padding-left: 36px;
+  position: relative;
+  transition: all 0.5s ease;
+}
+.select-games-block.category-games .games-list .game-item:before {
+  content: '';
+  background: #6D94C4;
+  opacity: 0.2;
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+}
+.select-games-block.category-games .games-list .game-item:after {
+  transition: all 0.5s ease;
+  content: '';
+  background: linear-gradient(180deg, rgba(22, 24, 40, 0.2) 0%, #161828 100%);
+  position: absolute;
+  top: -1px;
+  bottom: -1px;
+  left: -1px;
+  right: -1px;
+}
+.select-games-block.category-games .games-list .game-item .title {
+  position: relative;
+  z-index: 1;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 26px;
+  line-height: 35px;
+  padding: 22px 0 29px 0;
+  text-shadow: 0px 0px 10px #000000;
+}
+.select-games-block.category-games .games-list .game-item .title span {
+  position: relative;
+  z-index: 1;
+}
+.select-games-block.category-games .games-list .game-item .title:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: -15px;
+  bottom: 0;
+  width: 90px;
+  background-repeat: no-repeat;
+  background-position: 100% 50%;
+}
+.select-games-block.category-games .games-list .game-item .links-list {
+  z-index: 1;
+  position: absolute;
+  bottom: 18px;
+  left: 32px;
+  right: 32px;
+}
+.select-games-block.category-games .games-list .game-item a {
+  background: #1A233B;
+  border: 1px solid #6D94C4;
+  box-sizing: border-box;
+  border-radius: 100px;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  color: #6D94C4;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 22px;
+  text-align: center;
+  padding: 8px 16px;
+  display: inline-block;
+  margin-right: 7px;
+  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+.select-games-block.category-games .games-list .game-item a:hover {
+  text-decoration: none;
+  border-color: #91B9EF;
+  color: #91B9EF;
+}
+.select-games-block.category-games .games-list .game-item a.main-link {
+  background: #6D94C4;
+  border: 0 none;
+  color: #10111B;
+}
+.select-games-block.category-games .games-list .game-item a.main-link:hover {
+  text-decoration: none;
+  background: #91B9EF;
+  color: #10111B;
+}
+.select-games-block.category-games .games-list .game-item a.main-link-mobile {
+  display: none;
+}
+.select-games-block.category-games .games-list .game-item.bfa {
+  background: url(/Images/homePage/bfa.jpg) 50% 0 no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.bfa .main-link-mobile {
+  background: url(/Images/homePage/wowbfa-large.png) 50% 50% no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.bfa .title:before {
+  background-image: url(/Images/homePage/bfa-small.png);
+}
+.select-games-block.category-games .games-list .game-item.Exile {
+  background: url(/Images/homePage/PoE.jpg) 50% 0 no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.Exile .main-link-mobile {
+  background: url(/Images/homePage/poe-large.png) 50% 50% no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.Exile .title:before {
+  background-image: url(/Images/homePage/poe-small.png);
+}
+.select-games-block.category-games .games-list .game-item.shadowlands,
+.select-games-block.category-games .games-list .game-item.Warcraft {
+  background: url(/Images/homePage/Shadowlands.jpg) 50% 0 no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.shadowlands .main-link-mobile,
+.select-games-block.category-games .games-list .game-item.Warcraft .main-link-mobile {
+  background: url(/Images/homePage/wow-large.png) 50% 50% no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.shadowlands .title:before,
+.select-games-block.category-games .games-list .game-item.Warcraft .title:before {
+  background-image: url(/Images/homePage/wow-small.png);
+}
+.select-games-block.category-games .games-list .game-item.Classic {
+  background: url(/Images/homePage/Classic.jpg) 50% 0 no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.Classic .main-link-mobile {
+  background: url(/Images/homePage/wow-classic-large.png) 50% 50% no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.Classic .title:before {
+  background-image: url(/Images/homePage/wow-classic-small.png);
+}
+.select-games-block.category-games .games-list .game-item.Legends {
+  background: url(/Images/homePage/LoL.jpg) 50% 0 no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.Legends .main-link-mobile {
+  background: url(/Images/homePage/lol-large.png) 50% 50% no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.Legends .title:before {
+  background-image: url(/Images/homePage/lol-small.png);
+}
+.select-games-block.category-games .games-list .game-item.Heartstone {
+  background: url(/Images/homePage/hs.jpg) 50% 0 no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.Heartstone .main-link-mobile {
+  background: url(/Images/homePage/hearthstone-large.png) 50% 50% no-repeat;
+}
+.select-games-block.category-games .games-list .game-item.Heartstone .title:before {
+  background-image: url(/Images/homePage/hearthstone-small.png);
+}
+.select-games-block.category-games .games-list .game-item.coming-soon {
+  filter: grayscale(100%);
+  -webkit-filter: grayscale(100%);
+}
+.select-games-block.category-games .games-list .game-item.coming-soon .title {
+  text-align: center;
+  padding-top: 75px;
+  padding-bottom: 5px;
+}
+.select-games-block.category-games .games-list .game-item.coming-soon .title:before {
+  top: 0;
+  background-position: 100% 0;
+}
+.select-games-block.category-games .games-list .game-item.coming-soon .desc {
+  text-align: center;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 40px;
+  line-height: 54px;
+  z-index: 9;
+  position: relative;
+}
+.select-games-block.category-games .games-list .game-item.coming-soon .desc span {
+  color: #eeeeee;
+}
+.select-games-block.category-games h2 {
+  padding-top: 0 !important;
+  position: relative;
+  margin: 0 -30px 30px -30px;
+  text-align: center;
+  font-size: 26px;
+  line-height: 35px;
+}
+.select-games-block.category-games h2:before {
+  display: none;
 }
