@@ -46,11 +46,9 @@ h1,h2,h3,h4,h5,h6 {
 color: @h1color;
 font-style: @h1style;
 font-weight: @h1weight;
-text-transform:uppercase;
 }
 h1 {
 font-size: @hsize;
-text-transform: uppercase;
 text-align: center;
 margin-left: 15px;
 margin-right: 15px;
@@ -315,7 +313,6 @@ input[type=text], input[type=email], input[type=password], select, input[type=nu
         font-size: 16px;
         line-height: 22px;
         text-align: center;
-        text-transform: uppercase;
         box-shadow: none;
         transition: all 0.2s ease;
         display: inline-block;
@@ -453,7 +450,6 @@ header {
                 font-size: 16px;
                 line-height: 22px;
                 text-align: center;
-                text-transform: uppercase;
                 box-shadow: none;
                 transition: all 0.2s ease;
                 display: inline-block;
@@ -469,7 +465,6 @@ header {
         .modal-header {
             border: 0 none;
             text-align: center;
-            text-transform: uppercase;
             font-size: 18px;
             line-height: 25px;
             color: @color2;
@@ -682,7 +677,6 @@ header {
     line-height: 250px;
     margin: 20px 0;
     background: @color6;
-    text-transform: uppercase;
     font-size: 30px;
 }
 
@@ -708,7 +702,6 @@ header {
     padding: 0;
     font-size: 14px;
     color: @color2;
-    text-transform: uppercase;
     position: relative;
 }
 
@@ -1103,7 +1096,6 @@ header {
         font-style: normal;
         font-weight: 600;
         font-size: 14px;
-        text-transform: uppercase;
         line-height: 24px;
     }
 }
@@ -1193,7 +1185,6 @@ header {
         color: @color2;
 
         .title {
-            text-transform: uppercase;
             font-size: 20px;
             color: @color2;
             text-align: center;
@@ -1222,41 +1213,60 @@ header {
 /**purchase_block*/
 .purchase_block {
     padding-top: 0;
-    padding-bottom: 25px;
+    padding-bottom: 0;
+    margin-bottom: 30px;
 
     h2 {
         text-align: center;
         padding-top: 0;
+        margin: 0;
     }
 
     .purchase_block_in {
-        padding-top: 19px;
+        padding-top: 12px;
         text-align: center;
+
+        .descripiton_block {
+            margin-bottom: 16px;
+        }
 
         .purchase_in {
             position: relative;
-            width: 15%;
-            margin: 0 30px;
+            width: 19%;
+            margin: 0;
             display: inline-block;
             vertical-align: top;
 
             &:first-child {
-                margin: 0 0 29px 0;
-                width: 100%;
                 display: block;
-                text-align: center;
+                width: 100%;
+                padding-bottom: 12px;
+
+                &:before {
+                    display: none;
+                }
             }
 
             .title {
+                font-style: normal;
+                font-weight: 600;
                 font-size: 20px;
+                line-height: 27px;
+                text-align: center;
                 font-family: @o;
             }
 
-            .text {
-                padding-bottom: 20px;
+            .desc {
+                font-family: @o;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+                color: @color4;
             }
 
-            .image {
+            .image_block {
                 padding-bottom: 20px;
                 height: 120px;
             }
@@ -1264,46 +1274,16 @@ header {
             &:before {
                 content: "";
                 position: absolute;
-                height: 4px;
-                width: 170px;
-                top: 77px;
-                right: -118px;
-                transform: rotate(20deg);
-                background: @color9;
+                height: 23px;
+                width: 37px;
+                top: 47px;
+                right: -45px;
+                background: url(https://wowcarry.com/image/catalog/arrow-main-right.svg) 100% 50% no-repeat;
             }
 
-            &:nth-child(2) {
+            &:last-child {
                 &:before {
-                    transform: rotate(20deg);
-                }
-            }
-
-            &:nth-child(3) {
-                padding-top: 60px;
-
-                &:before {
-                    transform: rotate(-20deg);
-                }
-            }
-
-            &:nth-child(4) {
-                &:before {
-                    transform: rotate(20deg);
-                }
-            }
-
-            &:nth-child(5) {
-                padding-top: 60px;
-
-                &:before {
-                    transform: rotate(-20deg);
-                }
-            }
-
-            &:nth-child(6), &:nth-child(1) {
-                &:before {
-                    height: 0;
-                    width: 0;
+                    display: none;
                 }
             }
         }
@@ -1350,7 +1330,6 @@ header {
                 line-height: 54px;
                 padding-bottom: 15px;
                 position: relative;
-                text-transform: uppercase;
             }
 
             .text {
@@ -1576,7 +1555,6 @@ header {
             color: @color2;
             margin-top: 0;
             padding-top: 0;
-            text-transform: uppercase;
         }
     }
 }
@@ -2034,13 +2012,78 @@ footer .footer_category {
     float: left;
     vertical-align: top;
     padding-left: 80px;
-    max-width: initial;
+
+    span {
+        font-family: @o;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 22px;
+    }
+
+    a {
+        display: block;
+        margin: 0 0 15px;
+        transition: all 0.2s ease;
+        color:@color2;
+        span {
+            font-family: @o;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 22px;
+        }
+
+        img {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            margin-right: 15px;
+        }
+
+        &:hover {
+            text-decoration: none;
+
+            img {
+                animation: socialHover 1s;
+            }
+        }
+    }
+}
+
+@keyframes socialHover {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@-webkit-keyframes socialHover {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-2px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 .product-layout {
     width: 378px;
     overflow: hidden;
     margin-right: 25px;
+    vertical-align:top;
 
     .image {
         width: 378px;
@@ -2057,6 +2100,374 @@ footer .footer_category {
 
         &:hover {
             text-decoration: none;
+        }
+    }
+}
+//Recommended
+.featured_title {
+    margin: 0 0 16px 0;
+    padding-top: 0;
+    text-align: center;
+
+    &:before {
+        font-family: @o;
+    }
+}
+.featured-links span {
+    cursor: pointer;
+    display: inline-block;
+}
+
+.featured_box {
+    display: none;
+}
+
+.featured_box.active {
+    display: block;
+}
+
+.featured_title {
+    font-size: 24px;
+    line-height: 33px;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.featured_box .featured_title {
+    display: none;
+}
+.featured-links {
+    text-align: center;
+    position: relative;
+    max-width: @maxwidth;
+    margin: 0 auto 30px;
+
+    .featured-links_in {
+        display: inline-block;
+        border: 1px solid @color1;
+        box-sizing: border-box;
+        border-radius: 48px;
+        font-size: 0;
+
+        span {
+            padding: 13px 26px;
+            font-family: @o;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 22px;
+            color: @color1;
+            border-radius: 48px;
+            position: relative;
+            z-index: 9;
+            transition: all 0.7s ease;
+
+            &.active {
+                /*background:@color1;*/
+                color: @color3;
+            }
+            /*&:hover{
+				color: @color3;
+			}*/
+        }
+
+        #magic-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0;
+            padding: 0 26px;
+            margin-left: 0;
+            background: @color1;
+            z-index: 1;
+            border-radius: 48px;
+            box-sizing: content-box;
+        }
+    }
+
+    .featured-links-mobile {
+        display: none;
+    }
+
+    .desktop-list {
+        display: inline-block;
+        position: relative;
+    }
+}
+
+//Category list main page
+.select-games-block.category-games {
+    position: relative;
+    background: url(/Images/games-bg1.jpg) 50% 0 no-repeat;
+    padding: 30px 20px 0;
+    text-align: center;
+    overflow: hidden;
+    height: auto;
+
+    .games-list {
+        margin: 0 auto;
+        max-width: 1600px;
+        position: relative;
+        text-align: center;
+
+        .games-list-in {
+            position: relative;
+            margin-right: 0;
+            text-align: justify;
+            margin-bottom: -20px;
+
+            &:after {
+                display: inline-block;
+                content: '';
+                width: 100%;
+                text-align: justify;
+            }
+        }
+
+        .game-item {
+            display: inline-block;
+            width: 32%;
+            min-height: 240px;
+            outline: 1px solid @color9;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+            vertical-align: top;
+            text-align: left;
+            margin-bottom: 30px;
+            padding-bottom: 24px;
+            padding-right: 36px;
+            margin-right: 0;
+            padding-left: 36px;
+            position: relative;
+            transition: all 0.5s ease;
+
+            &:before {
+                content: '';
+                background: @color1;
+                opacity: 0.2;
+                position: absolute;
+                top: -1px;
+                bottom: -1px;
+                left: -1px;
+                right: -1px;
+            }
+
+            &:after {
+                transition: all 0.5s ease;
+                content: '';
+                background: linear-gradient(180deg, rgba(22, 24, 40, 0.2) 0%, @color6 100%);
+                position: absolute;
+                top: -1px;
+                bottom: -1px;
+                left: -1px;
+                right: -1px;
+            }
+
+            .title {
+                position: relative;
+                z-index: 1;
+                font-family: @o;
+                font-style: normal;
+                font-weight: 600;
+                font-size: 26px;
+                line-height: 35px;
+                padding: 22px 0 29px 0;
+                text-shadow: 0px 0px 10px #000000;
+
+                span {
+                    position: relative;
+                    z-index: 1;
+                }
+
+                &:before {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: -15px;
+                    bottom: 0;
+                    width: 90px;
+                    background-repeat: no-repeat;
+                    background-position: 100% 50%;
+                }
+            }
+
+            .links-list {
+                z-index: 1;
+                position: absolute;
+                bottom: 18px;
+                left: 32px;
+                right: 32px;
+            }
+
+            a {
+                background: @color9;
+                border: 1px solid @color1;
+                box-sizing: border-box;
+                border-radius: 100px;
+                text-decoration: none;
+                font-family: @o;
+                color: @color1;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 16px;
+                line-height: 22px;
+                text-align: center;
+                padding: 8px 16px;
+                display: inline-block;
+                margin-right: 7px;
+                transition: all 0.3s ease;
+                margin-bottom: 8px;
+
+                &:hover {
+                    text-decoration: none;
+                    border-color: @color5;
+                    color: @color5;
+                }
+
+                &.main-link {
+                    background: @color1;
+                    border: 0 none;
+                    color: @color3;
+
+                    &:hover {
+                        text-decoration: none;
+                        background: @color5;
+                        color: @color3;
+                    }
+                }
+
+                &.main-link-mobile {
+                    display: none;
+                }
+            }
+
+            &.bfa {
+                background: url(/Images/homePage/bfa.jpg) 50% 0 no-repeat;
+
+                .main-link-mobile {
+                    background: url(/Images/homePage/wowbfa-large.png) 50% 50% no-repeat;
+                }
+
+                .title {
+                    &:before {
+                        background-image: url(/Images/homePage/bfa-small.png);
+                    }
+                }
+            }
+
+            &.Exile {
+                background: url(/Images/homePage/PoE.jpg) 50% 0 no-repeat;
+
+                .main-link-mobile {
+                    background: url(/Images/homePage/poe-large.png) 50% 50% no-repeat;
+                }
+
+                .title {
+                    &:before {
+                        background-image: url(/Images/homePage/poe-small.png);
+                    }
+                }
+            }
+
+            &.shadowlands, &.Warcraft {
+                background: url(/Images/homePage/Shadowlands.jpg) 50% 0 no-repeat;
+
+                .main-link-mobile {
+                    background: url(/Images/homePage/wow-large.png) 50% 50% no-repeat;
+                }
+
+                .title {
+                    &:before {
+                        background-image: url(/Images/homePage/wow-small.png);
+                    }
+                }
+            }
+
+            &.Classic {
+                background: url(/Images/homePage/Classic.jpg) 50% 0 no-repeat;
+
+                .main-link-mobile {
+                    background: url(/Images/homePage/wow-classic-large.png) 50% 50% no-repeat;
+                }
+
+                .title {
+                    &:before {
+                        background-image: url(/Images/homePage/wow-classic-small.png);
+                    }
+                }
+            }
+
+            &.Legends {
+                background: url(/Images/homePage/LoL.jpg) 50% 0 no-repeat;
+
+                .main-link-mobile {
+                    background: url(/Images/homePage/lol-large.png) 50% 50% no-repeat;
+                }
+
+                .title {
+                    &:before {
+                        background-image: url(/Images/homePage/lol-small.png);
+                    }
+                }
+            }
+
+            &.Heartstone {
+                background: url(/Images/homePage/hs.jpg) 50% 0 no-repeat;
+
+                .main-link-mobile {
+                    background: url(/Images/homePage/hearthstone-large.png) 50% 50% no-repeat;
+                }
+
+                .title {
+                    &:before {
+                        background-image: url(/Images/homePage/hearthstone-small.png);
+                    }
+                }
+            }
+
+            &.coming-soon {
+                filter: grayscale(100%);
+                -webkit-filter: grayscale(100%);
+
+                .title {
+                    text-align: center;
+                    padding-top: 75px;
+                    padding-bottom: 5px;
+
+                    &:before {
+                        top: 0;
+                        background-position: 100% 0;
+                    }
+                }
+
+                .desc {
+                    text-align: center;
+                    font-family: @o;
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 40px;
+                    line-height: 54px;
+                    z-index: 9;
+                    position: relative;
+
+                    span {
+                        color: @color2;
+                    }
+                }
+            }
+        }
+    }
+
+    h2 {
+        padding-top: 0 !important;
+        position: relative;
+        margin: 0 -30px 30px -30px;
+        text-align: center;
+        font-size: 26px;
+        line-height: 35px;
+
+        &:before {
+            display: none;
         }
     }
 }

@@ -1,22 +1,26 @@
 ﻿@using WebUI.Models
 @model GameCategoryViewModel
-<div class="select-games-block">
+<div class="select-games-block category-games">
     <h2>Professional Gaming Boosting Services</h2>
-    <span>
-        WowCarry boosting services have 11 years of experience.<br /> You can buy powerlevelling, mythic+, gearing, PoE currency, achievements, and many more items in WoW, Valorant, PoE, Hearthstone, and other.
-        </span>
-            <div class="games-list">
-                @foreach (var game in Model.Games)
-                {
-                <div class="game-item">
-                    <img src="@string.Format("/Images/"+game.GameName+".png")" alt="@game" />
-                    <div class="title"> @game.GameName </div>
+    <div class="games-list">
+        <div class="games-list-in">
+            @foreach (var game in Model.Games)
+            {
+            <div class="game-item @game.GameName">
+               
+                <div class="title">@game.GameName</div>
+                <a href="/wow" class="main-link-mobile"></a>
+                <div class="links-list">
+                    <a href="/wow" class="main-link">Show Services</a>
                     @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
                     {
                         @Html.RouteLink(b.Value, "Sorted",
                        new { selectedGame = game.GameShortUrl, categoryName = b.Value })
                     }
                 </div>
-                }
             </div>
+
+            }
+        </div>
+     </div>
 </div>
