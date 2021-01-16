@@ -6,7 +6,7 @@
 
     @*описание категории*@
     @Model.productCategory.CategoryDescription
-
+<div class="product-list">
     @foreach (var p in @Model.Products)
     {
         //if(p.InStock) Если товар в стоке добавить ! перед p Если надо что товар оут оф сток
@@ -31,7 +31,7 @@
             </div>
         </div>
     }
-
+</div>
     <div class="container">
         <nav aria-label="Page navigation example">
             <ul class="pagination">

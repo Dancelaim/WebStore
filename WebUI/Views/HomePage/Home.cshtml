@@ -2,6 +2,8 @@
     <div class="row">
         @Html.Action("GameCategoryMenu", "Navigation")
         @Html.Action("SiteBlock", "SiteBlock")
-        @Html.Action("RecommendedProducts")
+        @Html.Action("RecommendedProducts", new { game = "World of Warcraft" })
+        @Html.Action("RecommendedProducts", new { game = "Path Of Exile" })
+        @Html.Action("RecommendedProducts", new { game = "World of Warcraft Classic" })
     </div>
 </div>

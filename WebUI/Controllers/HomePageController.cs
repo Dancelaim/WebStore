@@ -21,10 +21,9 @@ namespace WebUI.Controllers
             return View();
         }
 
-        public PartialViewResult RecommendedProducts()
+        public PartialViewResult RecommendedProducts(string game)
         {
-            var random = new Random();
-            IEnumerable<Product> result = EntityRepository.Products.Take(random.Next(10));
+            IEnumerable<Product> result = EntityRepository.Products.Where(p=>p.ProductGame.GameName == game).Take(4);
             return PartialView(result);
         }
     }
