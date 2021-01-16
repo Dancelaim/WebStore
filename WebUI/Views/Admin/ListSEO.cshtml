@@ -6,7 +6,7 @@
 </head>
 <body>
     <p>
-        @Html.ActionLink("Create New", "Create",new {type ="SEO" }, new { @class = "btn" })
+        @Html.ActionLink("Create New", "CreateEdit", new {type ="SEO" }, new { @class = "btn" })
     </p>
     <table class="table">
         <thead>
@@ -20,7 +20,7 @@
             {
                 <tr>
 
-                    <td> @Html.ActionLink(item.UrlKeyWord, "Edit", new { Id = item.SEOId, type = item.GetType().BaseType.Name })</td>
+                    <td> @Html.ActionLink(item.UrlKeyWord, "CreateEdit", new { Id = item.SEOId, type = item.GetType().BaseType.Name })</td>
                     <td class="text-center">
                         @using (Html.BeginForm("Delete", "Admin"))
                         {

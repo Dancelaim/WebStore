@@ -57,6 +57,24 @@ $(document).on("change", '.ddParent .bootstrap-select select', function () {
         }
     });
 })
+//Remove entity from list
+$(document).on("click", '.rmvbtn', function () {
+    var confirm = window.confirm("Are you sure you want to delete this Entity?");
+    if (confirm) {
+        $.ajax({
+            cache: false,
+            type: 'POST',
+            url: '/admin/Remove',
+            data: {
+                Id: $("#SiteBlockId").val(),
+                type: $("#HtmlBlocks").val()
+            },
+            success: function (data) {
+                window.location.reload();
+            }
+        });
+    }
+})
 //Save product and redirect to Options
 $(document).on("click", "#goToProdOptions", function () {
     $(this).closest("form").attr("action", "/admin/SaveProduct?navigateToProdOpt=true");
@@ -76,6 +94,23 @@ $(document).on("click", ".option-add", function () {
             sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
             window.location.reload();
 
+        },
+        error: function (ex) {
+            alert('Failed to add option.' + ex);
+        }
+    });
+})
+//Add StieBlock
+$(document).on("click", ".siteblock-add", function () {
+    $.ajax({
+        cache: false,
+        type: 'POST',
+        url: '/admin/AddSiteBlock',
+        data: {
+            siteblockId: $("#SiteBlockId").val()
+        },
+        success: function (data) {
+            window.location.href = window.location.href.replace("?type=HtmlBlocks", "?Id=" + data + "&type=HtmlBlocks");
         },
         error: function (ex) {
             alert('Failed to add option.' + ex);

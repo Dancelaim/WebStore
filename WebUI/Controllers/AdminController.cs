@@ -45,102 +45,149 @@ namespace WowCarry.WebUI.Controllers
                 default: return View("Admin");
             }
         }
+        
         [Authorize(Roles = "Root Admin,Admin,Price Admin")]
-        public ViewResult Edit(Guid Id, string type, string game)
+        public ViewResult CreateEdit(Guid? Id, string type, string game = null)
         {
             switch (type)
             {
                 case "Product":
                     Product prod = EntityRepository.Products.Where(p => p.ProductId == Id).FirstOrDefault();
-                    return View("Save" + type, new ProductDetails
+                    if (prod != null)
                     {
-                        Product = prod,
-                        ProductId = prod.ProductId,
-                        GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), prod?.ProductGame.GameName ?? "Select Game"),
-                        SelectedGame = prod?.ProductGame.GameName,
-                        CategoriesList = new SelectList(EntityRepository.Games.Where(g => game == null || g.GameName == game).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), prod?.ProductCategory.ProductCategoryName ?? "Select Category"),
-                        SelectedCategory = prod?.ProductCategory.ProductCategoryName,
-                        MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), prod?.SEO.MetaTagTitle ?? "Select Meta tag title from List"),
-                        SelectedMetaTagTitle = prod?.SEO.MetaTagTitle,
-                        ProductOptions = prod.ProductOptions,
-                        ProductName = prod.ProductName,
-                        InStock = prod.InStock,
-                        PreOrder = prod.PreOrder,
-                        ProductEnabled = prod.ProductEnabled,
-                        ProductQuantity = prod.ProductQuantity,
-                        ProductImageThumb = prod.ProductImageThumb,
-                        ProductImage = prod.ProductImage,
-                        ProductPriority = prod.ProductPriority,
-                        ProductPriceEU = prod.ProductPrice.Where(p => p.Region == "EU").Select(p => p.Price).FirstOrDefault(),
-                        ProductPriceUS = prod.ProductPrice.Where(p => p.Region == "US").Select(p => p.Price).FirstOrDefault(),
-                        ProductSaleEU = prod.ProductPrice.Where(p => p.Region == "EU").Select(p => p.ProductSale).FirstOrDefault(),
-                        ProductSaleUS = prod.ProductPrice.Where(p => p.Region == "US").Select(p => p.ProductSale).FirstOrDefault(),
-                        Description = prod.ProductDescription.Description,
-                        SubDescriptionTitle1 = prod.ProductDescription.SubDescriptionTitle1,
-                        SubDescription1 = prod.ProductDescription.SubDescription1,
-                        SubDescriptionTitle2 = prod.ProductDescription.SubDescriptionTitle2,
-                        SubDescription2 = prod.ProductDescription.SubDescription2,
-                        SubDescriptionTitle3 = prod.ProductDescription.SubDescriptionTitle3,
-                        SubDescription3 = prod.ProductDescription.SubDescription3,
-                        SubDescriptionTitle4 = prod.ProductDescription.SubDescriptionTitle4,
-                        SubDescription4 = prod.ProductDescription.SubDescription4,
-                        SubDescriptionTitle5 = prod.ProductDescription.SubDescriptionTitle5,
-                        SubDescription5 = prod.ProductDescription.SubDescription5,
-                    });
+                        return View("Save" + type, new ProductDetails
+                        {
+                            Product = prod,
+                            ProductId = prod.ProductId,
+                            GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), prod?.ProductGame.GameName ?? "Select Game"),
+                            SelectedGame = prod?.ProductGame.GameName,
+                            CategoriesList = new SelectList(EntityRepository.Games.Where(g => game == null || g.GameName == game).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), prod?.ProductCategory.ProductCategoryName ?? "Select Category"),
+                            SelectedCategory = prod?.ProductCategory.ProductCategoryName,
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), prod?.SEO.MetaTagTitle ?? "Select Meta tag title from List"),
+                            SelectedMetaTagTitle = prod?.SEO.MetaTagTitle,
+                            ProductOptions = prod.ProductOptions,
+                            ProductName = prod.ProductName,
+                            InStock = prod.InStock,
+                            PreOrder = prod.PreOrder,
+                            ProductEnabled = prod.ProductEnabled,
+                            ProductQuantity = prod.ProductQuantity,
+                            ProductImageThumb = prod.ProductImageThumb,
+                            ProductImage = prod.ProductImage,
+                            ProductPriority = prod.ProductPriority,
+                            ProductPriceEU = prod.ProductPrice.Where(p => p.Region == "EU").Select(p => p.Price).FirstOrDefault(),
+                            ProductPriceUS = prod.ProductPrice.Where(p => p.Region == "US").Select(p => p.Price).FirstOrDefault(),
+                            ProductSaleEU = prod.ProductPrice.Where(p => p.Region == "EU").Select(p => p.ProductSale).FirstOrDefault(),
+                            ProductSaleUS = prod.ProductPrice.Where(p => p.Region == "US").Select(p => p.ProductSale).FirstOrDefault(),
+                            Description = prod.ProductDescription.Description,
+                            SubDescriptionTitle1 = prod.ProductDescription.SubDescriptionTitle1,
+                            SubDescription1 = prod.ProductDescription.SubDescription1,
+                            SubDescriptionTitle2 = prod.ProductDescription.SubDescriptionTitle2,
+                            SubDescription2 = prod.ProductDescription.SubDescription2,
+                            SubDescriptionTitle3 = prod.ProductDescription.SubDescriptionTitle3,
+                            SubDescription3 = prod.ProductDescription.SubDescription3,
+                            SubDescriptionTitle4 = prod.ProductDescription.SubDescriptionTitle4,
+                            SubDescription4 = prod.ProductDescription.SubDescription4,
+                            SubDescriptionTitle5 = prod.ProductDescription.SubDescriptionTitle5,
+                            SubDescription5 = prod.ProductDescription.SubDescription5,
+                        });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new ProductDetails
+                        {
+                            GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), "Select Game"),
+                            CategoriesList = new SelectList(EntityRepository.Games.Where(g => game == null || g.GameName == game).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), "Select Category"),
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), "Select Meta tag title from List"),
+                        });
+                    }
                 case "TemplateOptions":
                     TemplateOptions templateOptions = EntityRepository.TemplateOptions.Where(p => p.OptionId == Id).FirstOrDefault();
-                    return View("Save" + type, new TemplateOptionDetails
+                    if (templateOptions != null)
                     {
-                        TempOptionId = templateOptions.OptionId,
-                        TempOptionName = templateOptions.OptionName,
-                        TempOptionType = templateOptions.OptionType,
-                        TempOptionParamsDetailsCollection = TemplateOptionDetails.PopulateTempOptionParamsDetailsCollection(templateOptions)
-                    });
+                        return View("Save" + type, new TemplateOptionDetails
+                        {
+                            TempOptionId = templateOptions.OptionId,
+                            TempOptionName = templateOptions.OptionName,
+                            TempOptionType = templateOptions.OptionType,
+                            TempOptionParamsDetailsCollection = TemplateOptionDetails.PopulateTempOptionParamsDetailsCollection(templateOptions)
+                        });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new TemplateOptionDetails { });
+
+                    }
                 case "ProductGame":
                     ProductGame productGame = EntityRepository.Games.Where(p => p.ProductGameId == Id).FirstOrDefault();
-                    return View("Save" + type, new ProductGameDetails
+                    if (productGame != null)
                     {
-                        ProductGameId  = productGame.ProductGameId,
-                        GameName = productGame.GameName,
-                        GameDescription = productGame.GameDescription,
-                        GameShortUrl = productGame.GameShortUrl,
-                        GameSeoId = productGame.GameSeoId,
-                        ProductCategoryDetailsCollection  = ProductGameDetails.PopulateProductGameDetails(productGame)
+                        return View("Save" + type, new ProductGameDetails
+                        {
+                            ProductGameId = productGame.ProductGameId,
+                            GameName = productGame.GameName,
+                            GameDescription = productGame.GameDescription,
+                            GameShortUrl = productGame.GameShortUrl,
+                            GameSeoId = productGame.GameSeoId,
+                            ProductCategoryDetailsCollection = ProductGameDetails.PopulateProductGameDetails(productGame)
 
-                    });
+                        });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new ProductGameDetails { });
+
+                    }
                 case "HtmlBlocks":
                     HtmlBlocks siteBlock = EntityRepository.HtmlBlocks.Where(p => p.SiteBlockId == Id).FirstOrDefault();
-                    return View("Save" + type , new HtmlBlockDetails 
-                    {   
-                        SiteBlockId = siteBlock.SiteBlockId, 
-                        ParentTitle = siteBlock.ParentTitle,
-                        ParentCSSClass = siteBlock.ParentCSSClass,
-                        ChildCSSClass = siteBlock.ChildCSSClass,
-                        SitePage = siteBlock.SitePage,
-                        Order = siteBlock.Order,
-                        HtmlBlockChildDetailsCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(siteBlock)
+                    if (siteBlock != null)
+                    {
+                        return View("Save" + type, new HtmlBlockDetails
+                        {
+                            SiteBlockId = siteBlock.SiteBlockId,
+                            ParentTitle = siteBlock.ParentTitle,
+                            ParentCSSClass = siteBlock.ParentCSSClass,
+                            ChildCSSClass = siteBlock.ChildCSSClass,
+                            SitePage = siteBlock.SitePage,
+                            Order = siteBlock.Order,
+                            HtmlBlockChildDetailsCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(siteBlock)
 
-                    });
+                        });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new HtmlBlockDetails { });
+
+                    }
                 case "SEO":
                     SEO seo = EntityRepository.SEOs.Where(p => p.SEOId == Id).FirstOrDefault();
-                    return View("Save" + type, new SeoDetails
+                    if (seo != null)
                     {
-                        SEOId = seo.SEOId,
-                        MetaTagTitle = seo.MetaTagTitle,
-                        MetaTagDescription = seo.MetaTagDescription,
-                        MetaTagKeyWords = seo.MetaTagKeyWords,
-                        SEOTags = seo.SEOTags,
-                        CustomTitle1 = seo.CustomTitle1,
-                        CustomTitle2 = seo.CustomTitle2,
-                        CustomImageTitle = seo.CustomImageTitle,
-                        CustomImageAlt = seo.CustomImageAlt,
-                        MetaRobots = seo.MetaRobots,
-                        UrlKeyWord = seo.UrlKeyWord,
-                        SEOImage = seo.SEOImage
-                    });
+                        return View("Save" + type, new SeoDetails
+                        {
+                            SEOId = seo.SEOId,
+                            MetaTagTitle = seo.MetaTagTitle,
+                            MetaTagDescription = seo.MetaTagDescription,
+                            MetaTagKeyWords = seo.MetaTagKeyWords,
+                            SEOTags = seo.SEOTags,
+                            CustomTitle1 = seo.CustomTitle1,
+                            CustomTitle2 = seo.CustomTitle2,
+                            CustomImageTitle = seo.CustomImageTitle,
+                            CustomImageAlt = seo.CustomImageAlt,
+                            MetaRobots = seo.MetaRobots,
+                            UrlKeyWord = seo.UrlKeyWord,
+                            SEOImage = seo.SEOImage
+                        });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new SeoDetails { });
+
+                    }
                 case "Users":
                     Users user = EntityRepository.Users.Where(p => p.UserId == Id).FirstOrDefault();
-                    return View("Save" + type, new UsersDetails
+                    if (user != null)
+                    {
+                        return View("Save" + type, new UsersDetails
                     {
                         UserId = user.UserId,
                         UserName = user.UserName,
@@ -148,16 +195,32 @@ namespace WowCarry.WebUI.Controllers
                         Email = user.Email,
                         RoleId = user.RoleId
                     });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new UsersDetails { });
+
+                    }
                 case "Ranks":
                     Ranks ranks = EntityRepository.Ranks.Where(p => p.RankId == Id).FirstOrDefault();
-                    return View("Save" + type, new RankDetails 
+                    if (ranks != null)
+                    {
+                        return View("Save" + type, new RankDetails 
                     {
                         Name = ranks.Name,
                         Sale = ranks.Sale
                     });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new RankDetails { });
+
+                    }
                 case "Customers":
                     Customers customers = EntityRepository.Customers.Where(p => p.CustomerId == Id).FirstOrDefault();
-                    return View("Save" + type, new CustomersDetails
+                    if (customers != null)
+                    {
+                        return View("Save" + type, new CustomersDetails
                     { 
                         Name = customers.Name,
                         Password = customers.Password,
@@ -165,63 +228,30 @@ namespace WowCarry.WebUI.Controllers
                         CarryCoinsValue = customers.CarryCoinsValue
                         
                     });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new CustomersDetails { });
+
+                    }
                 case "Roles":
                     Roles roles = EntityRepository.Roles.Where(p => p.RoleId == Id).FirstOrDefault();
-                    return View("Save" + type, new RolesDetails 
+                    if (roles != null)
                     {
-                        RoleName = roles.RoleName
-                    });
-                default: return View("Admin");
-            }
-        }
-        [Authorize(Roles = "Root Admin,Admin")]
-        public ViewResult Create(string type, string game)
-        {
-            switch (type)
-            {
-                case "Product":
-                    return View("Save" + type, new ProductDetails
+                        return View("Save" + type, new RolesDetails
+                        {
+                            RoleName = roles.RoleName
+                        });
+                    }
+                    else
                     {
-                        GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), "Select Game"),
-                        CategoriesList = new SelectList(EntityRepository.Games.Where(g => game == null || g.GameName == game).SelectMany(g => g.ProductCategory).Select(p => p.ProductCategoryName), "Select Category"),
-                        MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), "Select Meta tag title from List"),
-                    });
-                case "TemplateOptions":
-                    return View("Save" + type, new TemplateOptionDetails{});
-                case "ProductGame":
-                    return View("Save" + type, new ProductGameDetails{});
-                case "HtmlBlocks":
-                    return View("Save" + type, new HtmlBlockDetails { });
-                case "SEO":
-                    return View("Save" + type, new SeoDetails { });
-                case "Users":
-                    return View("Save" + type, new UsersDetails { });
-                case "Ranks":
-                    return View("Save" + type, new RankDetails { });
-                case "Customers":
-                    return View("Save" + type, new CustomersDetails { });
-                case "Roles":
-                    return View("Save" + type, new RolesDetails { });
-                default: return View("Admin");
-            }
-        }
-        //public PartialViewResult OptionsList(string optionName,Guid prodId)
-        //{
-        //    var selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
-        //    var selectedOption = selectedProduct.ProductOptions.Where(o=>o.OptionName == optionName).FirstOrDefault();
+                        return View("Save" + type, new RolesDetails { });
 
-        //    var templateOption = EntityRepository.TemplateOptions.Where(t => t.OptionName == optionName).FirstOrDefault();
-        //    var result = new ProductOptionDetails
-        //    {
-        //        OptionId = selectedOption.OptionId,
-        //        OptionName = selectedOption.OptionName,
-        //        OptionType = selectedOption.OptionType,
-        //        ParentOptionList = new SelectList(selectedProduct.ProductOptions.Where(o => o.OptionId != selectedOption.OptionId).Select(o=>o.OptionName), selectedOption.OptionParentId.HasValue ? selectedOption.ProductOptionsParent.Select(p=>p.OptionName).FirstOrDefault() : "Empty"),
-        //        ParamList = new SelectList(templateOption.TempOptionParams.Select(p => p.ParameterName) , "Empty"),
-        //        ParamCollection = ProductOptionDetails.PopulateParamCollection(selectedOption, selectedProduct.ProductOptions.Where(o => o.OptionId == selectedOption.OptionParentId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParameterName))
-        //    };
-        //    return PartialView(result);
-        //}
+                    }
+                default: return View("Admin");
+            }
+        }
+
         [Authorize(Roles = "Root Admin,Admin,Price Admin")]
         public ViewResult ProductOptionsEdit(Guid productId)
         {
@@ -306,6 +336,34 @@ namespace WowCarry.WebUI.Controllers
 
             selectedProduct.ProductOptions.Add(option);
             EntityRepository.SaveContext();
+        }
+        [HttpPost]
+        public string AddSiteBlock(Guid siteblockId)
+        {
+            var siteblock = EntityRepository.HtmlBlocks.Where(b => b.SiteBlockId == siteblockId).FirstOrDefault();
+            if (siteblock != null)
+            {
+                var siteblockchild = new HtmlBlocksChildren();
+                siteblockchild.SiteBlockChildsId = Guid.NewGuid();
+                siteblockchild.SiteBlockId = siteblockId;
+                siteblock.HtmlBlocksChildren.Add(siteblockchild);
+                EntityRepository.SaveContext();
+                return siteblockchild.SiteBlockChildsId.ToString();
+            }
+            else
+            {
+                var newSiteBlock = new HtmlBlockDetails { };
+                newSiteBlock.SiteBlockId = Guid.NewGuid();
+
+                var newSiteBlockChild = new HtmlBlockDetails.HtmlBlockChildrenDetails { };
+                newSiteBlockChild.SiteBlockChildsId = Guid.NewGuid();
+
+                newSiteBlock.HtmlBlockChildDetailsCollection = new List<HtmlBlockDetails.HtmlBlockChildrenDetails>();
+                newSiteBlock.HtmlBlockChildDetailsCollection.Add(newSiteBlockChild);
+
+                EntityRepository.SaveHtmlBlock(newSiteBlock);
+                return newSiteBlock.SiteBlockId.ToString();
+            }
         }
         [HttpPost]
         public void RemoveOption(Guid optionId, Guid prodId)
@@ -421,7 +479,17 @@ namespace WowCarry.WebUI.Controllers
             }
             else
             {
-                return RedirectToAction("List", new { type = "HtmlBlock" });
+                return View("SaveHtmlBlocks", new HtmlBlockDetails
+                {
+                    SiteBlockId = htmlBlockDetails.SiteBlockId,
+                    ParentTitle = htmlBlockDetails.ParentTitle,
+                    ParentCSSClass = htmlBlockDetails.ParentCSSClass,
+                    ChildCSSClass = htmlBlockDetails.ChildCSSClass,
+                    SitePage = htmlBlockDetails.SitePage,
+                    Order = htmlBlockDetails.Order,
+                    HtmlBlockChildDetailsCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(null,htmlBlockDetails)
+
+                });
             }
         }
         [HttpPost]
@@ -452,7 +520,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "SEO" });
             }
         }
-        #endregion
+        [HttpPost]
         public ActionResult SaveGame(ProductGameDetails productGameDetails)
         {
             if (ModelState.IsValid)
@@ -466,6 +534,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "ProductGame" });
             }
         }
+        [HttpPost]
         public ActionResult SaveUsers(UsersDetails userDetails)
         {
             if (ModelState.IsValid)
@@ -479,6 +548,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Users" });
             }
         }
+        [HttpPost]
         public ActionResult SaveRanks(RankDetails rankDetails)
         {
             if (ModelState.IsValid)
@@ -492,6 +562,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Ranks" });
             }
         }
+        [HttpPost]
         public ActionResult SaveCustomers(CustomersDetails customers)
         {
             if (ModelState.IsValid)
@@ -505,6 +576,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Customers" });
             }
         }
+        [HttpPost]
         public ActionResult SaveRoles(RolesDetails rolesDetails)
         {
             if (ModelState.IsValid)
@@ -518,6 +590,25 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Roles" });
             }
         }
-
+        [HttpPost]
+        public void Remove(Guid Id,string type)
+        {
+            switch (type)
+            {
+                case "Product":
+                case "TemplateOptions":
+                case "ProductGame":
+                case "HtmlBlocks":
+                    EntityRepository.RemoveHtmlBlock(Id);
+                    break;
+                case "SEO":
+                case "Users":
+                case "Ranks":
+                case "Customers":
+                case "Roles":
+                    break;
+            }
+        }
     }
+    #endregion
 }

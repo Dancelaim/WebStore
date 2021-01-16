@@ -25,7 +25,7 @@
           <Property Name="ParentTitle" Type="nvarchar" MaxLength="55" />
           <Property Name="ChildCSSClass" Type="nvarchar" MaxLength="55" />
           <Property Name="SitePage" Type="nvarchar" MaxLength="55" />
-          <Property Name="Order" Type="numeric" Precision="18" Scale="0" />
+          <Property Name="Order" Type="int" />
         </EntityType>
         <EntityType Name="HtmlBlocksChildren">
           <Key>
@@ -37,7 +37,7 @@
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
           <Property Name="Image" Type="nvarchar" MaxLength="255" />
           <Property Name="CSSClass" Type="nvarchar" MaxLength="50" />
-          <Property Name="ChildOrder" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ChildOrder" Type="int" />
         </EntityType>
         <EntityType Name="OrderCustomFields">
           <Key>
@@ -866,7 +866,7 @@
           <Property Name="ChildCSSClass" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HtmlBlocksChildren" Relationship="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" FromRole="HtmlBlocks" ToRole="HtmlBlocksChildren" />
           <Property Name="SitePage" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
-          <Property Name="Order" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Order" Type="Int32" />
         </EntityType>
         <EntityType Name="HtmlBlocksChildren">
           <Key>
@@ -879,7 +879,7 @@
           <Property Name="Image" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CSSClass" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="HtmlBlocks" Relationship="WowCarryModel.FK__HtmlBlock__SiteB__31B762FC" FromRole="HtmlBlocksChildren" ToRole="HtmlBlocks" />
-          <Property Name="ChildOrder" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ChildOrder" Type="Int32" />
         </EntityType>
         <Association Name="FK__HtmlBlock__SiteB__31B762FC">
           <End Type="WowCarryModel.HtmlBlocks" Role="HtmlBlocks" Multiplicity="1" />
