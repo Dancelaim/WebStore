@@ -1059,16 +1059,34 @@ header .bottom {
 .search-bar {
   float: right;
   height: 33px;
-  margin: 11px 20px 8px;
+  margin: 0;
 }
 .search-bar .search-btn {
+  padding: 17px 20px 18px;
   text-align: center;
   background: none;
   border: 0 none;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+}
+.search-bar .search-btn:focus,
+.search-bar .search-btn:not(:disabled),
+.search-bar .search-btn:not(:disabled):focus,
+.search-bar .search-btn:not(.disabled):active:focus {
+  outline: none;
+  border: 0 none;
+  box-shadow: none;
+  background: none;
 }
 .search-bar .search-btn:hover,
-.search-bar .search-btn:active {
-  background: none;
+.search-bar .search-btn:active,
+.search-bar .search-btn:not(:disabled):hover,
+.search-bar .search-btn:not(:disabled):active {
+  background: #161828;
+  outline: none;
+  border: 0 none;
+  box-shadow: none;
 }
 .search-bar .search-btn:before {
   content: "\f002";
@@ -1078,6 +1096,8 @@ header .bottom {
   font-weight: normal;
   text-decoration: inherit;
   color: #6D94C4;
+  display: inline-block;
+  padding-right: 10px;
 }
 .container {
   width: 100%;
@@ -2203,4 +2223,135 @@ footer .footer_category {
 }
 .select-games-block.category-games h2:before {
   display: none;
+}
+.review_block {
+  position: relative;
+  margin: 0;
+  padding: 0 75px 0;
+  height: 240px;
+  overflow: hidden;
+  margin-bottom: 14px;
+}
+.review_block .slick-track {
+  position: relative;
+}
+.review_block h2 {
+  padding-top: 0;
+  text-align: center;
+  margin: 0 0 20px 0;
+}
+.review_block .absolute_rew {
+  display: block;
+  margin: -30px 0 16px 0;
+  padding: 0;
+}
+.review_block .review_block_in {
+  position: relative;
+  max-width: 1455px;
+  margin: 0 auto;
+}
+.review_block .review_block_in .slick-dots {
+  display: none !important;
+}
+.review_block .review_block_in .slick-list {
+  overflow: hidden;
+}
+.review_block .slick-arrow {
+  background: #212656;
+  border: 1px solid #6D94C4 !important;
+  box-sizing: border-box;
+  border-radius: 24px;
+  width: 44px;
+  height: 44px;
+  font-size: 0;
+  position: absolute;
+  border: 0 none;
+  z-index: 1;
+}
+.review_block .slick-arrow:before {
+  color: #6D94C4;
+  font-size: 25px;
+  position: absolute;
+  top: 3px;
+}
+.review_block .slick-arrow.slick-disabled {
+  opacity: 1;
+  background: #1A233B;
+  border: 1px solid #6A7687 !important;
+}
+.review_block .slick-arrow.slick-disabled:before {
+  color: #6A7687;
+  font-size: 25px;
+}
+.review_block .slick-prev {
+  top: 50%;
+  margin-top: -30px;
+  left: -69px;
+}
+.review_block .slick-prev:before {
+  content: '\f104';
+  left: 15px;
+  font-family: FontAwesome;
+}
+.review_block .slick-next {
+  top: 50%;
+  margin-top: -30px;
+  right: -69px;
+}
+.review_block .slick-next:before {
+  content: '\f105';
+  right: 15px;
+  font-family: FontAwesome;
+}
+.review_block .slick-disabled {
+  opacity: 0.4;
+}
+.review_block .review_box {
+  display: inline-block;
+  background: #161828;
+  border: 1px solid #6A7687;
+  padding: 13px 15px 13px 14px;
+  font-size: 13px;
+  color: #eeeeee;
+  font-family: 'Open Sans', sans-serif;
+  position: relative;
+  overflow: hidden;
+  margin: 0 15px;
+  height: 175px;
+  vertical-align: top;
+}
+.review_block .review_box a {
+  color: #eeeeee;
+}
+.review_block .review_box .data_top {
+  position: absolute;
+  right: 18px;
+  top: 16px;
+  font: 12px 'Open Sans', sans-serif;
+  color: #6A7687;
+}
+.review_block .review_box .name_customer {
+  margin-top: 0;
+  font: 12px 'Open Sans', sans-serif;
+  color: #6A7687;
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+}
+.review_block .review_box .title {
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  margin: 15px 0 6px;
+  max-width: 9em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  vertical-align: top;
+}
+.review_block .review_box .image_block {
+  width: 98px;
+  height: 18px;
+}
+.review_block .review_box .image_block img {
+  width: 100%;
 }

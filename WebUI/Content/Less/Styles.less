@@ -1104,14 +1104,29 @@ header {
 .search-bar {
     float: right;
     height: 33px;
-    margin: 11px 20px 8px;
+    margin: 0;
 
     .search-btn {
+        padding: 17px 20px 18px;
         text-align: center;
         background: none;
-        border:0 none;
-        &:hover, &:active {
+        border: 0 none;
+        border-radius: 0;
+        box-shadow: none;
+        outline: none;
+
+        &:focus, &:not(:disabled), &:not(:disabled):focus, &:not(.disabled):active:focus {
+            outline: none;
+            border: 0 none;
+            box-shadow: none;
             background: none;
+        }
+
+        &:hover, &:active,&:not(:disabled):hover, &:not(:disabled):active, {
+            background: @color6;
+            outline: none;
+            border: 0 none;
+            box-shadow: none;
         }
 
         &:before {
@@ -1122,6 +1137,8 @@ header {
             font-weight: normal;
             text-decoration: inherit;
             color: @color1;
+            display: inline-block;
+            padding-right: 10px;
         }
     }
 }
@@ -2468,6 +2485,160 @@ footer .footer_category {
 
         &:before {
             display: none;
+        }
+    }
+}
+//review
+.review_block {
+    position: relative;
+    margin: 0;
+    padding: 0 75px 0;
+    height: 240px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    .slick-track{
+        position:relative;
+    }
+
+    h2 {
+        padding-top: 0;
+        text-align: center;
+        margin: 0 0 20px 0;
+    }
+
+    .absolute_rew {
+        display: block;
+        margin: -30px 0 16px 0;
+        padding: 0;
+    }
+
+    .review_block_in {
+        position: relative;
+        max-width: 1455px;
+        margin: 0 auto;
+
+        .slick-dots {
+            display: none !important;
+        }
+
+        .slick-list {
+            overflow: hidden;
+        }
+    }
+
+    .slick-arrow {
+        border-radius: 24px;
+        background: @color10;
+        border: 1px solid @color1 !important;
+        box-sizing: border-box;
+        border-radius: 24px;
+        width: 44px;
+        height: 44px;
+        font-size: 0;
+        position: absolute;
+        border: 0 none;
+        z-index: 1;
+
+        &:before {
+            color: @color1;
+            font-size: 25px;
+            position: absolute;
+            top: 3px;
+        }
+
+        &.slick-disabled {
+            opacity: 1;
+            background: @color9;
+            border: 1px solid @color4 !important;
+
+            &:before {
+                color: @color4;
+                font-size: 25px;
+            }
+        }
+    }
+
+    .slick-prev {
+        top: 50%;
+        margin-top: -30px;
+        left: -69px;
+
+        &:before {
+            content: '\f104';
+            left: 15px;
+            font-family: FontAwesome;
+        }
+    }
+
+    .slick-next {
+        top: 50%;
+        margin-top: -30px;
+        right: -69px;
+
+        &:before {
+            content: '\f105';
+            right: 15px;
+            font-family: FontAwesome;
+        }
+    }
+
+    .slick-disabled {
+        opacity: 0.4;
+    }
+
+    .review_box {
+        display: inline-block;
+        background: @color6;
+        border: 1px solid @color4;
+        padding: 13px 15px 13px 14px;
+        font-size: 13px;
+        color: @color2;
+        font-family: @o;
+        position: relative;
+        overflow: hidden;
+        margin: 0 15px;
+        height: 175px;
+        vertical-align: top;
+
+        a {
+            color: @color2;
+        }
+
+        .data_top {
+            position: absolute;
+            right: 18px;
+            top: 16px;
+            font: 12px @o;
+            color: @color4;
+        }
+
+        .name_customer {
+            margin-top: 0;
+            font: 12px @o;
+            color: @color4;
+            position: absolute;
+            bottom: 10px;
+            left: 15px;
+        }
+
+        .title {
+            font-size: 14px;
+            font-family: @o;
+            margin: 15px 0 6px;
+            max-width: 9em;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            vertical-align: top;
+        }
+
+        .image_block {
+            width: 98px;
+            height: 18px;
+
+            img {
+                width: 100%;
+            }
         }
     }
 }

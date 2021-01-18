@@ -35,10 +35,8 @@ namespace WowCarry.Domain.Entities
         {
             [HiddenInput]
             public Guid SiteBlockChildsId { get; set; }
-            [Required]
             [Display(Name = "Text")]
             public string Text { get; set; }
-            [Required]
             [Display(Name = "Title")]
             public string Title { get; set; }
 
