@@ -1395,6 +1395,8 @@
     <Content Include="Views\Admin\SaveRoles.cshtml" />
     <Content Include="Views\HomePage\RecommendedProducts.cshtml" />
     <Content Include="Views\Options\Options.cshtml" />
+    <Content Include="Views\Admin\ListOrders.cshtml" />
+    <Content Include="Views\Admin\SaveOrders.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

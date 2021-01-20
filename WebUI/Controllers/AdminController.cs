@@ -42,6 +42,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("List" + type, EntityRepository.Customers);
                 case "Roles":
                     return View("List" + type, EntityRepository.Roles);
+                case "Orders":
+                    return View("List" + type, EntityRepository.Orders);
                 default: return View("Admin");
             }
         }
@@ -247,6 +249,46 @@ namespace WowCarry.WebUI.Controllers
                     {
                         return View("Save" + type, new RolesDetails { });
 
+                    }
+                case "Orders":
+                    Orders orders = EntityRepository.Orders.Where(p => p.OrderId == Id).FirstOrDefault();
+                    if(orders != null)
+                    {
+                        return View("Save" + type, new OrderDetails 
+                        {
+                            Discord = orders.Discord,
+                            Comments = orders.Comment,
+                            Email = orders.Email,
+                            PaymentMethod = orders.PaymentMethod,
+                            PaymentCode = orders.PaymentCode,
+                            Total = orders.Total,
+                            OrderStatus = orders.OrderStatus,
+                            Currency = orders.Currency,
+                            CustomerIP = orders.CustomerIP,
+                            UserAgent = orders.UserAgent,
+                            OrderCreateTime = orders.OrderCreateTime,
+                            OrderUpdateTime = orders.OrderUpdateTime,
+                            EmailSended = orders.EmailSended,
+                            EmailSendTime = orders.EmailSendTime,
+                            CarryCoinsSpent = orders.CarryCoinsSpent,
+                            CarryCoinsCollected = orders.CarryCoinsCollected,
+                            ShlCharacterName = orders.OrderCustomFields.ShlCharacterName,
+                            ShlRealmName = orders.OrderCustomFields.ShlRealmName,
+                            ShlFaction = orders.OrderCustomFields.ShlFaction,
+                            ShlRegion = orders.OrderCustomFields.ShlRegion,
+                            ShlBattleTag = orders.OrderCustomFields.ShlBattleTag,
+                            Poe_CharacterName = orders.OrderCustomFields.PoeCharacterName,
+                            Poe_AccountName = orders.OrderCustomFields.PoeAccountName,
+                            Classic_CharacterName = orders.OrderCustomFields.ClassicCharacterName,
+                            Classic_RealmName = orders.OrderCustomFields.ClassicRealmName,
+                            Classic_Faction = orders.OrderCustomFields.ClassicFaction,
+                            Classic_Region = orders.OrderCustomFields.ClassicRegion,
+                            Classic_BattleTag = orders.OrderCustomFields.ClassicBattleTag
+                        });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new OrderDetails { });
                     }
                 default: return View("Admin");
             }
@@ -590,6 +632,19 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Roles" });
             }
         }
+        public ActionResult SaveOrders(OrderDetails orderDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveOrders(orderDetails);
+                TempData["message"] = string.Format("Orders has been saved");
+                return RedirectToAction("List", new { type = "Orders" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "Orders" });
+            }
+        }
         [HttpPost]
         public void Remove(Guid Id,string type)
         {
@@ -606,6 +661,7 @@ namespace WowCarry.WebUI.Controllers
                 case "Ranks":
                 case "Customers":
                 case "Roles":
+                case "Orders":
                     break;
             }
         }

@@ -243,6 +243,49 @@ namespace WowCarry.Domain.Concrete
             }
             context.SaveChanges();
         }
+        public void SaveOrders(OrderDetails orderDetails)
+        {
+            if (orderDetails.OrderId.Equals(Guid.Empty))
+            {
+                OrderCustomFields orderCustomFields = new OrderCustomFields
+                {
+                    ShlCharacterName = orderDetails.ShlCharacterName,
+                    ShlRealmName = orderDetails.ShlRealmName,
+                    ShlFaction = orderDetails.ShlFaction,
+                    ShlRegion = orderDetails.ShlRegion,
+                    ShlBattleTag = orderDetails.ShlBattleTag,
+                    PoeCharacterName = orderDetails.Poe_CharacterName,
+                    PoeAccountName = orderDetails.Poe_AccountName,
+                    ClassicCharacterName = orderDetails.Classic_CharacterName,
+                    ClassicRealmName = orderDetails.Classic_RealmName,
+                    ClassicFaction = orderDetails.Classic_Faction,
+                    ClassicRegion = orderDetails.Classic_Region,
+                    ClassicBattleTag = orderDetails.Classic_BattleTag
+                };
+                context.OrderCustomFields.Add(orderCustomFields);
+                Orders orders = new Orders
+                {
+                    Discord = orderDetails.Discord,
+                    Comment = orderDetails.Comments,
+                    Email = orderDetails.Email,
+                    PaymentMethod = orderDetails.PaymentMethod,
+                    PaymentCode = orderDetails.PaymentCode,
+                    Total = orderDetails.Total,
+                    OrderStatus = orderDetails.OrderStatus,
+                    Currency = orderDetails.Currency,
+                    CustomerIP = orderDetails.CustomerIP,
+                    UserAgent = orderDetails.UserAgent,
+                    OrderCreateTime = orderDetails.OrderCreateTime,
+                    OrderUpdateTime = orderDetails.OrderUpdateTime,
+                    EmailSended = orderDetails.EmailSended,
+                    EmailSendTime = orderDetails.EmailSendTime,
+                    CarryCoinsSpent = orderDetails.CarryCoinsSpent,
+                    CarryCoinsCollected = orderDetails.CarryCoinsCollected
+                };
+                context.Orders.Add(orders);
+            }
+            context.SaveChanges();
+        }
         public void SaveSEO(SeoDetails seoDetails)
         {
             SEO dbSeo = context.SEO.Find(seoDetails.SEOId);
