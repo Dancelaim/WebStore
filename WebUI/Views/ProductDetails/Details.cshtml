@@ -11,7 +11,9 @@
             <div class="product_left">
                 <div class="added-alert">@Model.ProductName added to cart</div>
                 <div class="product_info">
-                    <div class="options">OPTIONS</div>
+                    <div class="options">
+                        @Html.Action("Options", "Options",new { ProductId = @Model.ProductId } )
+                    </div>
                     <div class="price-info">
                         <div class="price"></div>
 

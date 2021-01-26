@@ -1,0 +1,87 @@
+﻿@model IEnumerable<WowCarry.Domain.Entities.Product>
+
+
+@foreach (var Product in Model)
+{
+
+    <div class="product-layout d-inline-block">
+        <div class="product-thumb">
+            <a href="@Url.Action("Details","ProductDetails",new {productUrl= Product.SEO.UrlKeyWord})">
+                <div class="image">
+                    @*<img src=@String.Format(@Product.ProductImageThumb + ".png") alt="Alternate Text" />*@
+                    <div class="clear"></div>
+                </div>
+                <div class="caption">
+                    <h4>@Product.ProductName</h4>
+                    <p class="price">
+                        @Product.ProductPrice.Select(p => p.Price).FirstOrDefault()
+                    </p>
+                </div>
+            </a>
+        </div>
+    </div>
+}
+
+<script>
+    //bb-title
+    $(document).ready(function () {
+        // initially reset
+        var posLeft = $('.featured-links_in.desktop-list span:first-child').position().left;
+        var posWidth = $('.featured-links_in.desktop-list span:first-child').width();
+        $('#magic-bg').css({ 'left': posLeft, 'width': posWidth });
+
+        // sliding
+        $('.featured-links_in.desktop-list span').click(function () {
+            var posLeft = $(this).position().left;
+            var posWidth = $(this).width();
+
+            $('#magic-bg').stop().animate({
+                'left': posLeft,
+                'width': posWidth
+            });
+        });
+    });
+    //active tab recommended
+    $(document).ready(function () {
+        var firstTab = $('.featured-links span:first').attr("class");
+        var tabFirstText = $('.featured-links span:first').text();
+        $('.title-item').text(tabFirstText);
+
+        $('#' + firstTab).addClass('active');
+        $('.featured-links span:first').addClass('active');
+        $('.featured-links .title-item:first').addClass('active-title');
+
+        $(".featured-links span").on("click", function () {
+            var tabName = $(this).attr("class");
+
+            if ($('.featured_box').hasClass('active')) {
+
+                if (!$(this).hasClass('active')) {
+                    $('.featured_box').removeClass('active');
+                    $('.featured-links span').removeClass('active');
+                }
+                $('#' + tabName).addClass('active');
+                $('span.' + tabName).addClass('active');
+                $('.mobile-list').removeClass('active-menu');
+            }
+            else {
+                $('#' + tabName).addClass('active');
+                $('span.' + tabName).addClass('active');
+                $('.mobile-list').removeClass('active-menu');
+            }
+            var tabText = $(this).text();
+            $('.title-item').text(tabText);
+        });
+
+        $('.title-list').on("click", function () {
+
+            if ($('.mobile-list').hasClass('active-menu')) {
+                $('.mobile-list').removeClass('active-menu');
+            } else {
+                $('.mobile-list').addClass('active-menu');
+            }
+
+        });
+
+    });
+</script>

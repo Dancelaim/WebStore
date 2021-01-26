@@ -49,7 +49,7 @@ namespace WowCarry.Domain.Entities
             public string ParentParam { get; set; }
             public SelectList ParamParentList { get; set; }
         }
-        public static List<ProductOptionParamsDetails> PopulateParamCollection(ProductOptions ProdOpt,IEnumerable<string> paramCollection)
+        public static List<ProductOptionParamsDetails> PopulateParamCollection(ProductOptions ProdOpt,IEnumerable<string> paramCollection,ProductOptions ParentOption)
         {
             List<ProductOptionParamsDetails> result = new List<ProductOptionParamsDetails>();
             foreach (var item in ProdOpt.ProductOptionParams)
@@ -62,9 +62,7 @@ namespace WowCarry.Domain.Entities
                     ParamPrice = item.ParameterPrice,
                     Sale = item.ParameterSale,
                     ParentParam = item.ProductOptions?.OptionName,
-                    ParamParentList = new SelectList(paramCollection, "Empty")
-                        
-
+                    ParamParentList = new SelectList(paramCollection, item.ParameterParentId !=null ? ParentOption.ProductOptionParams.Where(p=>p.ParameterId == item.ParameterParentId).FirstOrDefault().ParameterName : "Empty")
                 });
             }
             return result;

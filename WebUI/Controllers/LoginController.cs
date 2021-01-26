@@ -8,7 +8,6 @@ namespace WebUI.Controllers
 {
     public class LoginController : Controller
     {
-        [ValidateAntiForgeryToken]
         public ActionResult Login(bool isWebView = false)
         {
             if (isWebView)
