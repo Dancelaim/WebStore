@@ -898,6 +898,13 @@
     <Content Include="Views\Admin\SaveRanks.cshtml" />
     <Content Include="Views\Account\Account.cshtml" />
     <Content Include="Views\Account\AccountOrders.cshtml" />
+    <Content Include="ConnectionStrings.config" />
+    <Content Include="ConnectionStrings.Debug.config">
+      <DependentUpon>ConnectionStrings.config</DependentUpon>
+    </Content>
+    <Content Include="ConnectionStrings.Release.config">
+      <DependentUpon>ConnectionStrings.config</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
