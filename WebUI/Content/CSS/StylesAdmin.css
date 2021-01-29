@@ -381,6 +381,24 @@ body {
   font-size: 15px;
   font-weight: bold;
 }
+.left-column ul .menu-ico.ico7:before {
+  content: '\f02c';
+}
+.left-column ul .menu-ico.ico8:before {
+  content: '\f0f6';
+}
+.left-column ul .menu-ico.ico9:before {
+  content: '\f007';
+}
+.left-column ul .menu-ico.ico10:before {
+  content: '\f005';
+}
+.left-column ul .menu-ico.ico11:before {
+  content: '\f0c0';
+}
+.left-column ul .menu-ico.ico12:before {
+  content: '\f0b1';
+}
 .left-column ul .text-menu {
   display: block;
 }

@@ -495,6 +495,7 @@
     <Content Include="Images\80000.svg" />
     <Content Include="Images\account.svg" />
     <Content Include="Images\arrow-down.svg" />
+    <Content Include="Images\burger.svg" />
     <Content Include="Images\cart.svg" />
     <Content Include="Images\clock_img.svg" />
     <Content Include="Images\close.svg" />
@@ -519,9 +520,13 @@
     <Content Include="Images\homePage\wow-classic-small.png" />
     <Content Include="Images\homePage\wow-large.png" />
     <Content Include="Images\homePage\wow-small.png" />
+    <Content Include="Images\icon-site.png" />
     <Content Include="Images\logo.svg" />
+    <Content Include="Images\mainImages\discord.svg" />
     <Content Include="Images\mainImages\Discover-02.svg" />
     <Content Include="Images\mainImages\facebook.svg" />
+    <Content Include="Images\mainImages\icons\minus.svg" />
+    <Content Include="Images\mainImages\icons\plus.svg" />
     <Content Include="Images\mainImages\instagram.svg" />
     <Content Include="Images\mainImages\Mastercard-logo.svg" />
     <Content Include="Images\mainImages\PayPal_2014_logo.svg" />
@@ -1404,6 +1409,7 @@
     <Content Include="ConnectionStrings.Release.config">
       <DependentUpon>ConnectionStrings.config</DependentUpon>
     </Content>
+    <Content Include="Views\Navigation\MobileMenu.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
