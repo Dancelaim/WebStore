@@ -7,6 +7,7 @@
     <script src="~/Scripts/umd/popper.min.js"></script>
     <script src="~/Scripts/Slick/slick.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    <link rel="icon" href="/Images/icon-site.png" type="image/x-icon">
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Content/bootstrap-select.min.css">
@@ -22,7 +23,9 @@
         <header>
             <div class="top">
                 <div id="content">
+
                     <div id="logo"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
+
                     <div class="games-top-menu-block">
                         <div class="hover-button">
                             <div class="no-category" style="display: inline-block;">@Session["SelectedGame"]</div>
@@ -61,7 +64,7 @@
                     <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
                         @Html.Action("CartPopUp", "Cart")
                     </div>
-                    
+
                     <div class="account_block">
                         <ul class="list-inline">
                             <li>
@@ -91,11 +94,11 @@
                         </div>
 
                     </div>
-                    
+
                     <form action="" class="search-bar">
 
                         <button class="btn btn-primary search-btn" type="submit">
-                              Search
+                            Search
                         </button>
                     </form>
                     <div class="clear"></div>

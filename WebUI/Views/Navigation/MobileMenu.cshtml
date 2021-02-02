@@ -1,0 +1,134 @@
+﻿
+
+<nav id="mobile-menu" class="navbar">
+    <div class="navbar-header">
+        <button type="button" class="btn btn-navbar navbar-toggle btn btn-primary btn-lg" data-toggle="modal" data-target="#menuModal"><i class="fa fa-bars"></i></button>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse modal fade" id="menuModal" tabindex="-1" role="dialog" aria-labelledby="menuModalLabel" aria-modal="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="top-currency-mobile">
+                        <form action="" method="post" enctype="multipart/form-data" id="form-currency">
+                            <div class="btn-group">
+                                <div class="hover-button">
+                                    <span> Europe </span>
+                                    <i class="fa"></i>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <button class="currency-select btn btn-link btn-block" type="button" name="EUR">Europe</button>
+                                    </li>
+                                    <li>
+                                        <button class="currency-select btn btn-link btn-block" type="button" name="USD">US&amp;Oceania</button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="title_cat">Games</div>
+
+                    <ul class="nav navbar-nav mobile-menu">
+                        <li class="dropdown-li">
+                            <span>
+                                <a href="" class="cat_plus_link"> category.name </a> <a class="cat_plus dropdown-plus"></a>
+                            </span>
+                            <div class="dropdown-menu">
+                            <ul class="list-unstyled submenu">
+                                <li @*if child.children*@ class="dropdown-parent">
+                                    <span>
+                                        <a href="" @*if child.children*@ class="cat_plus_link" >child.name </a>
+                                        @*if child.children*@ <a class="cat_plus submenu-dropdown"></a> 
+                                    </span>
+                                    <ul class="list-unstyled dropdown-submenu">
+                                        <li class="subcategory"><a href=""> child3.name </a></li>
+                                    </ul>  
+                                </li>     
+                            </div>
+                        </li>
+                    </ul>
+
+                    
+
+                    <div class="info_menu">
+                        <div class="title">Support</div>
+                        <ul class="list-unstyled">
+                            <li><a href="/about" data-has-wh-touch-event="true">ABOUT US</a></li>
+                            <li><a href="/contacts" data-has-wh-touch-event="true">CONTACTS</a></li>
+                            <li><a href="/faq" data-has-wh-touch-event="true">F.A.Q.</a></li>
+                            <li><a href="/privacy-policy" data-has-wh-touch-event="true">PRIVACY POLICY</a></li>
+                            <li><a href="/terms" data-has-wh-touch-event="true">TERMS &amp; CONDITIONS</a></li>
+                            <li><a href="/carrycoins" data-has-wh-touch-event="true">CARRYCOINS</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        if ($(window).width() < 1270) {
+
+            $(".top-currency-mobile .btn-group").on('click', function () {
+                if ($(this).hasClass('open')) {
+                    $(this).removeClass('open')
+                } else {
+                    $(this).addClass('open');
+                }
+            });
+        }
+    });
+
+    var parentBlock;
+    //child
+    $("a.dropdown-plus").on("click", function () {
+
+        parentBlock = $(this).parents(".dropdown-li");
+
+        if (parentBlock.hasClass("active-dropdown")) {
+            parentBlock.removeClass('active-dropdown');
+        }
+        else if ($('.dropdown-li').hasClass("active-dropdown")) {
+            $('.dropdown-li').removeClass("active-dropdown")
+            parentBlock.addClass('active-dropdown');
+        }
+        else {
+            parentBlock.addClass('active-dropdown');
+        }
+
+    });
+    //sub child
+    $("a.submenu-dropdown").on("click", function () {
+
+        parentBlock = $(this).parents(".dropdown-parent");
+
+        if (parentBlock.hasClass("active-subdropdown")) {
+            parentBlock.removeClass('active-subdropdown');
+        }
+        else if ($('.dropdown-parent').hasClass("active-subdropdown")) {
+            $('.dropdown-parent').removeClass("active-subdropdown")
+            parentBlock.addClass('active-subdropdown');
+        }
+        else {
+            parentBlock.addClass('active-subdropdown');
+        }
+
+    });
+    $(document).ready(function () {
+
+        if ($('.mobile-menu a').hasClass("active")) {
+            parentBlock = $('a.active').parents(".dropdown-li");
+
+            parentBlock.addClass('active-dropdown');
+        }
+
+        if ($('.submenu a').hasClass("active")) {
+            parentBlock = $('.submenu a.active').parents(".dropdown-parent");
+
+            parentBlock.addClass('active-subdropdown');
+        }
+    });
+</script>

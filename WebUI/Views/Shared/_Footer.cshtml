@@ -14,13 +14,13 @@
                 <div class="col-sm-3 foot_menu">
                     <div class="title">Information</div>
                     <ul class="list-unstyled">
-                        <li><a href="https://wowcarry.com/about">ABOUT US</a></li>
-                        <li><a href="https://wowcarry.com/contacts">CONTACTS</a></li>
-                        <li><a href="https://wowcarry.com/faq">F.A.Q.</a></li>
-                        <li><a href="https://wowcarry.com/privacy-policy">PRIVACY POLICY</a></li>
-                        <li><a href="https://wowcarry.com/terms">TERMS &amp; CONDITIONS</a></li>
-                        <li><a href="https://wowcarry.com/carrycoins">CARRYCOINS</a></li>
-                        <li><a href="https://wowcarry.com/jobs">JOBS</a></li>
+                        <li><a href="/about">ABOUT US</a></li>
+                        <li><a href="/contacts">CONTACTS</a></li>
+                        <li><a href="/faq">F.A.Q.</a></li>
+                        <li><a href="/privacy-policy">PRIVACY POLICY</a></li>
+                        <li><a href="/terms">TERMS &amp; CONDITIONS</a></li>
+                        <li><a href="/carrycoins">CARRYCOINS</a></li>
+                        <li><a href="/jobs">JOBS</a></li>
                     </ul>
                 </div>
 
@@ -33,7 +33,7 @@
                 <div class="social_footer">
                     <div class="title">Social links</div>
                     <a href="skype:live:wowcarryshop?chat"><img src="/Images/mainImages/skype.svg" alt="skype" class="img-responsive"><span>&#64;wowcarryshop</span> </a>
-                    @*<div class="disc_link">
+                    <div class="disc_link">
                         <img src="/Images/mainImages/discord.svg" alt="discord" class="img-responsive"> <span>WowCarry#0001</span>
                         <div class="text_block" style="opacity: 0; z-index: -9;">
                             <p style="text-align: center;font-size:20px;">Code copied!</p>
@@ -41,7 +41,7 @@
                             <p style="text-align: center;"><br></p><p style="text-align: center;">Contact us fast via discord any time. We are available 24/7</p>
                             <div class="hidden_input"><input type="text" value="WowCarry#0001"></div>
                         </div>
-                    </div>*@
+                    </div>
                     <a href="https://twitter.com/wow_carry" target=" _blank"><img src="/Images/mainImages/twitter.svg" alt="twitter" class="img-responsive"><span>&#64;wow_carry</span></a>
                     <a href="https://www.facebook.com/wowcarry" target=" _blank"><img src="/Images/mainImages/facebook.svg" alt="facebook" class="img-responsive"><span>&#64;wowcarry</span></a>
                     <a href="https://www.instagram.com/wow_carry" target=" _blank"><img src="/Images/mainImages/instagram.svg" alt="instagram" class="img-responsive"><span>&#64;wow_carry</span> </a>
@@ -65,5 +65,23 @@
     </div>
 </footer>
 <script src="~/Scripts/accardeon.js"></script>
+<script>
+    function hideText() {
+        $(".social_footer .disc_link .text_block").css({ "opacity": "0", "z-index": "-9" });
+    }
+    $(".social_footer .disc_link").on("click", function () {
+        var copyText = $(".hidden_input input");
+        copyText.select();
+        document.execCommand("copy");
+        $(".social_footer .disc_link .text_block").css({ "opacity": "1", "z-index": "1" });
+        setTimeout(hideText, 5000);
+    });
+    $(document).mouseup(function (e) {
+        var container = $(".social_footer .disc_link .text_block");
+        if (container.has(e.target).length === 0) {
+            container.css({ "opacity": "0", "z-index": "-9" });
+        }
+    });
+</script>
 </body>
 </html>
