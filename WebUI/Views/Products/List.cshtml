@@ -4,7 +4,8 @@
 <div id="product-category" class="container">
     <h1>@Model.CurrentCategory</h1>
 
-
+    @*описание категории*@
+    @*Model.productCategory.CategoryDescription*@
     <div class="product-list">
         @foreach (var p in @Model.Products)
         {
