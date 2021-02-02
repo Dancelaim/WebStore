@@ -102,6 +102,7 @@ namespace WowCarry.Domain.Concrete
             }
             context.SaveChanges();
         }
+
         public void SaveRanks(RankDetails rankDetails)
         {
             Ranks dbRanks = context.Ranks.Find(rankDetails.RankId);

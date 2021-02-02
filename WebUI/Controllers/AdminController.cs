@@ -5,6 +5,9 @@ using WowCarry.Domain.Abstract;
 using WebUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Web;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace WowCarry.WebUI.Controllers
 {
@@ -47,7 +50,7 @@ namespace WowCarry.WebUI.Controllers
                 default: return View("Admin");
             }
         }
-        
+
         [Authorize(Roles = "Root Admin,Admin,Price Admin")]
         public ViewResult CreateEdit(Guid? Id, string type, string game = null)
         {
@@ -190,13 +193,13 @@ namespace WowCarry.WebUI.Controllers
                     if (user != null)
                     {
                         return View("Save" + type, new UsersDetails
-                    {
-                        UserId = user.UserId,
-                        UserName = user.UserName,
-                        UserPassword = user.UserPassword,
-                        Email = user.Email,
-                        RoleId = user.RoleId
-                    });
+                        {
+                            UserId = user.UserId,
+                            UserName = user.UserName,
+                            UserPassword = user.UserPassword,
+                            Email = user.Email,
+                            RoleId = user.RoleId
+                        });
                     }
                     else
                     {
@@ -207,11 +210,11 @@ namespace WowCarry.WebUI.Controllers
                     Ranks ranks = EntityRepository.Ranks.Where(p => p.RankId == Id).FirstOrDefault();
                     if (ranks != null)
                     {
-                        return View("Save" + type, new RankDetails 
-                    {
-                        Name = ranks.Name,
-                        Sale = ranks.Sale
-                    });
+                        return View("Save" + type, new RankDetails
+                        {
+                            Name = ranks.Name,
+                            Sale = ranks.Sale
+                        });
                     }
                     else
                     {
@@ -223,13 +226,13 @@ namespace WowCarry.WebUI.Controllers
                     if (customers != null)
                     {
                         return View("Save" + type, new CustomersDetails
-                    { 
-                        Name = customers.Name,
-                        Password = customers.Password,
-                        Email = customers.Email,
-                        CarryCoinsValue = customers.CarryCoinsValue
-                        
-                    });
+                        {
+                            Name = customers.Name,
+                            Password = customers.Password,
+                            Email = customers.Email,
+                            CarryCoinsValue = customers.CarryCoinsValue
+
+                        });
                     }
                     else
                     {
@@ -252,9 +255,9 @@ namespace WowCarry.WebUI.Controllers
                     }
                 case "Orders":
                     Orders orders = EntityRepository.Orders.Where(p => p.OrderId == Id).FirstOrDefault();
-                    if(orders != null)
+                    if (orders != null)
                     {
-                        return View("Save" + type, new OrderDetails 
+                        return View("Save" + type, new OrderDetails
                         {
                             Discord = orders.Discord,
                             Comments = orders.Comment,
@@ -319,7 +322,7 @@ namespace WowCarry.WebUI.Controllers
                     });
                 }
             }
-           
+
             ProductOptionsViewModel result = new ProductOptionsViewModel
             {
                 ProductOptions = Options,
@@ -331,7 +334,7 @@ namespace WowCarry.WebUI.Controllers
         }
         #region POST
         [HttpPost]
-        public void PopulateSelectLists(Guid optionId,Guid prodId,string parentName)
+        public void PopulateSelectLists(Guid optionId, Guid prodId, string parentName)
         {
             Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
             ProductOptions parent = selectedProduct.ProductOptions.Where(o => o.OptionName == parentName).FirstOrDefault();
@@ -351,7 +354,7 @@ namespace WowCarry.WebUI.Controllers
         public void AddOption(string optionName, Guid prodId)
         {
             Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
-            TemplateOptions selectedOption = EntityRepository.TemplateOptions.Where(t=>t.OptionName == optionName).FirstOrDefault();
+            TemplateOptions selectedOption = EntityRepository.TemplateOptions.Where(t => t.OptionName == optionName).FirstOrDefault();
 
             ProductOptions option = new ProductOptions
             {
@@ -361,7 +364,7 @@ namespace WowCarry.WebUI.Controllers
 
             };
 
-            foreach(var param in selectedOption.TempOptionParams)
+            foreach (var param in selectedOption.TempOptionParams)
             {
                 ProductOptionParams optionParams = new ProductOptionParams
                 {
@@ -424,7 +427,7 @@ namespace WowCarry.WebUI.Controllers
             EntityRepository.SaveContext();
         }
         [HttpPost]
-        public void AddParam(string optionName, string paramName,Guid OptId)
+        public void AddParam(string optionName, string paramName, Guid OptId)
         {
             TempOptionParams TempOptionParams = EntityRepository.TemplateOptions.Where(po => po.OptionName == optionName).FirstOrDefault().TempOptionParams.Where(p => p.ParameterName == paramName).FirstOrDefault();
             ProductOptions selectedOption = EntityRepository.ProductOptions.Where(o => o.OptionId == OptId).FirstOrDefault();
@@ -441,7 +444,7 @@ namespace WowCarry.WebUI.Controllers
             EntityRepository.SaveContext();
         }
         [HttpPost]
-        public ActionResult SaveProduct(ProductDetails productDetails,bool  navigateToProdOpt = false)
+        public ActionResult SaveProduct(ProductDetails productDetails, bool navigateToProdOpt = false)
         {
             if (ModelState.IsValid)
             {
@@ -449,11 +452,11 @@ namespace WowCarry.WebUI.Controllers
                 TempData["message"] = string.Format(productDetails.ProductName + " was saved");
                 if (navigateToProdOpt)
                 {
-                    return RedirectToAction("ProductOptionsEdit", new { productId = productDetails.ProductId});
+                    return RedirectToAction("ProductOptionsEdit", new { productId = productDetails.ProductId });
                 }
-                else 
+                else
                 {
-                    return RedirectToAction("List", new { type = "Product" }); 
+                    return RedirectToAction("List", new { type = "Product" });
                 }
             }
             else
@@ -497,7 +500,7 @@ namespace WowCarry.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
-                foreach(var productOptionDetails in productOptionViewModel.ProductOptions)
+                foreach (var productOptionDetails in productOptionViewModel.ProductOptions)
                 {
                     productOptionDetails.OptionProductId = productOptionViewModel.ProductId;
                     EntityRepository.SaveProductOption(productOptionDetails);
@@ -529,7 +532,7 @@ namespace WowCarry.WebUI.Controllers
                     ChildCSSClass = htmlBlockDetails.ChildCSSClass,
                     SitePage = htmlBlockDetails.SitePage,
                     Order = htmlBlockDetails.Order,
-                    HtmlBlockChildDetailsCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(null,htmlBlockDetails)
+                    HtmlBlockChildDetailsCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(null, htmlBlockDetails)
 
                 });
             }
@@ -646,7 +649,7 @@ namespace WowCarry.WebUI.Controllers
             }
         }
         [HttpPost]
-        public void Remove(Guid Id,string type)
+        public void Remove(Guid Id, string type)
         {
             switch (type)
             {
@@ -665,6 +668,34 @@ namespace WowCarry.WebUI.Controllers
                     break;
             }
         }
+        [HttpPost]
+        public string Upload()
+        {
+            var file = Request.Files[0];
+            var path = Request.Form[0];
+            var requiredFileName = Request.Form[1];
+            string extension = Path.GetExtension(file.FileName);
+
+            string endPath = Server.MapPath(path);
+
+            if (!Directory.Exists(endPath))
+                Directory.CreateDirectory(endPath);
+
+            if (System.IO.File.Exists(endPath + requiredFileName + extension))
+                System.IO.File.Delete(endPath + requiredFileName + extension);
+
+            file.SaveAs(endPath + @"\" + requiredFileName + extension);
+            
+            return endPath + @"\" + requiredFileName + extension;
+        }
+        #endregion
+
+        private static string MakeValidFileName(string name)
+        {
+            string invalidChars = Regex.Escape(new string(Path.GetInvalidFileNameChars()));
+            string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
+
+            return Regex.Replace(name, invalidRegStr, "_");
+        }
     }
-    #endregion
 }

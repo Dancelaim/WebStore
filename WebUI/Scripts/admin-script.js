@@ -204,4 +204,33 @@ $(document).on("click", ".left-column .title span.nav-ico", function () {
         $(".content").addClass("content-collapsed");
     }
 })
+//Upload product image to Controller
+$(".ImageUpload").change(function () {
+    var formData = new FormData();
+    var file = document.getElementById($(this).attr("id")).files[0];
+
+    formData.append("File", file);
+
+    var curEl = $(this);
+
+    var path = "~/Images/Product/" + $("#SelectedGame").val().toLowerCase() + "/" + $("#SelectedCategory").val().toLowerCase();
+    formData.append("Path", path);
+
+    formData.append("RequiredFileName", $("#ProductName").val().toLowerCase().replace(/[.*+?^${}()|/[\]\\]/g, '_') + ($(this).attr("id") == "Thumbfile" ? "" : "_large"));
+    
+
+    $.ajax({
+        cache: false,
+        type: 'POST',
+        url: '/admin/Upload',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data)
+        {
+            console.log($(this).attr('id'))
+            curEl.closest('.imageBlock').find('input').last().val(data)
+        }
+    });
+})
 

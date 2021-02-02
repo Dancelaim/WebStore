@@ -2,6 +2,12 @@
 @Model.ProductName
 <div class="panel">
 
+    @*@using (Html.BeginForm("SaveImage", "Admin",new { type = "Product" , game =Model.Product.ProductGame.GameName,  category = Model.Product.ProductCategory.ProductCategoryName , RequireFileName = Model.ProductName }, FormMethod.Post,
+                            new { enctype = "multipart/form-data" }))*@
+    
+
+    
+
     @using (Html.BeginForm("SaveProduct", "Admin", new { navigateToProdOpt = false }, FormMethod.Post))
     {
 
@@ -50,6 +56,25 @@
                                         @Html.DropDownListFor(m => m.SelectedMetaTagTitle, Model.MetaTagTitleList)
                                         @Html.HiddenFor(m => m.SelectedMetaTagTitle)
                                     }
+                                    else if (property.PropertyName.Contains("ProductImageThumb"))
+                                    {
+                                        <div class="imageBlock">
+                                            <label for="file">Upload Image:</label>
+                                            <input type="file" name="file" id="Thumbfile" class="ImageUpload" required style="width: 100%;" />
+                                            <label for="file">Product Image Thumb path</label>
+                                            @Html.TextBoxFor(m => m.ProductImageThumb, new { @readonly = "readonly"});
+                                        </div>
+
+                                    }
+                                    else if (property.PropertyName.Contains("ProductImage"))
+                                    {
+                                        <div class="imageBlock">
+                                        <label for="file">Upload Image:</label>
+                                        <input type="file" name="file" id="Largefile" class="ImageUpload" required style="width: 100%;" />
+                                        <label for="file">Product Image path</label>
+                                        @Html.TextBoxFor(m => m.ProductImage, new { @readonly = "readonly"});
+                                        </div>
+                                    }
                                     else
                                     {
                                         @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
@@ -57,6 +82,7 @@
                                 </div>
                             }
                         }
+                        
                     </div>
                     <div class="tab2">
                         @foreach (var property in ViewData.ModelMetadata.Properties.Where(p => p.PropertyName.ToLower().Contains("description")))
@@ -191,8 +217,8 @@
                         </div>
                     </div>
                 </div>
-             </div>
-           
+            </div>
+
         }
         <div class="panel-footer">
             <div class="save-btns">

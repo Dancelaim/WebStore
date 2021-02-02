@@ -33,7 +33,7 @@ namespace WowCarry.Domain.Entities
         [Display(Name = "Product Quantity")]
         public int? ProductQuantity { get; set; }
 
-        [Display(Name = "Image")]
+        [Display(Name = "Image Thumbnail")]
         public string ProductImageThumb { get; set; }
 
         [Display(Name = "Large Image")]
