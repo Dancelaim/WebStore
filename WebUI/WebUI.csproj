@@ -1360,7 +1360,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\HomePage\Home.cshtml" />
     <Content Include="Views\MasterPage.cshtml" />
-    <Content Include="Views\SiteBlock\SiteBlock.cshtml" />
+    <Content Include="Views\SiteBlock\SiteBlocks.cshtml" />
     <Content Include="Views\Shared\SiteBlockChild.cshtml" />
     <Content Include="Views\Navigation\GameMenu.cshtml" />
     <Content Include="Views\GamePage\GameDetails.cshtml" />
