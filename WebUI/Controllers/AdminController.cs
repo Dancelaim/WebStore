@@ -444,6 +444,7 @@ namespace WowCarry.WebUI.Controllers
             EntityRepository.SaveContext();
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveProduct(ProductDetails productDetails, bool navigateToProdOpt = false)
         {
             if (ModelState.IsValid)
@@ -673,21 +674,25 @@ namespace WowCarry.WebUI.Controllers
         public string Upload()
         {
             var file = Request.Files[0];
-            var path = Request.Form[0];
-            var requiredFileName = Request.Form[1];
-            string extension = Path.GetExtension(file.FileName);
+            if (file != null)
+            { 
+                var path = Request.Form[0];
+                var requiredFileName = Request.Form[1];
+                string extension = Path.GetExtension(file.FileName);
+                string endPath = Server.MapPath(path);
 
-            string endPath = Server.MapPath(path);
-
-            if (!Directory.Exists(endPath))
+         
+                if (!Directory.Exists(endPath))
                 Directory.CreateDirectory(endPath);
 
-            if (System.IO.File.Exists(endPath + requiredFileName + extension))
+                if (System.IO.File.Exists(endPath + requiredFileName + extension))
                 System.IO.File.Delete(endPath + requiredFileName + extension);
 
-            file.SaveAs(endPath + @"\" + requiredFileName + extension);
+                file.SaveAs(endPath + @"/" + requiredFileName + extension);
             
-            return endPath + @"\" + requiredFileName + extension;
+            return  path + @"/" + requiredFileName + extension;
+            }
+            return "";
         }
         #endregion
 

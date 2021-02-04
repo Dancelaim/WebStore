@@ -60,7 +60,7 @@
                                     {
                                         <div class="imageBlock">
                                             <label for="file">Upload Image:</label>
-                                            <input type="file" name="file" id="Thumbfile" class="ImageUpload" required style="width: 100%;" />
+                                            <input type="file" name="file" id="Thumbfile" class="ImageUpload"  style="width: 100%;" />
                                             <label for="file">Product Image Thumb path</label>
                                             @Html.TextBoxFor(m => m.ProductImageThumb, new { @readonly = "readonly"});
                                         </div>
@@ -69,8 +69,9 @@
                                     else if (property.PropertyName.Contains("ProductImage"))
                                     {
                                         <div class="imageBlock">
+                                            <img src="" />
                                         <label for="file">Upload Image:</label>
-                                        <input type="file" name="file" id="Largefile" class="ImageUpload" required style="width: 100%;" />
+                                        <input type="file" name="file" id="Largefile" class="ImageUpload"  style="width: 100%;" />
                                         <label for="file">Product Image path</label>
                                         @Html.TextBoxFor(m => m.ProductImage, new { @readonly = "readonly"});
                                         </div>

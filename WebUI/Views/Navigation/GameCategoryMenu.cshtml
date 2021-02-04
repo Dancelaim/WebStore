@@ -14,8 +14,7 @@
                         <a href="/wow" class="main-link">Show Services</a>
                         @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
                         {
-                            @Html.RouteLink(b.Value, "Sorted",
-                           new { selectedGame = game.GameShortUrl, categoryName = b.Value })
+                            @Html.RouteLink(b.Value, "Sorted", new { selectedGame = game.GameShortUrl, categoryName = b.Value })
                         }
                     </div>
                 </div>

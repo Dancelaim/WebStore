@@ -4,14 +4,23 @@ using System.Web;
 using System.Web.Mvc;
 using WebUI.Controllers;
 using WowCarry.Domain.Abstract;
+using WowCarry.Domain.Entities;
 
 namespace WebUI.Controllers
 {
     public class GamePageController : Controller
     {
-        public ActionResult GameDetails()
+        IEntityRepository EntityRepository;
+
+        public GamePageController(IEntityRepository entityRepo)
         {
-            return View();
+            EntityRepository = entityRepo;
+        }
+        public ActionResult GameDetails(string currentGame)
+        {
+            ProductGame result = EntityRepository.Products.Where(p => p.ProductGame.GameName == currentGame).Select(p => p.ProductGame).FirstOrDefault();
+            Session["SelectedGame"] = currentGame;
+            return View(result);
         }
     }
 }
