@@ -4,15 +4,6 @@
 @foreach (ProductGame game in Model)
 {
     <li>
-            @Html.RouteLink(game.GameName, "GameDetails",
-        new
-        {
-            currentGame = game.GameShortUrl
-        },
-        new
-        {
-            @class = String.Format(game.GameShortUrl + "_ico")
-        }
-       )
+       @Html.RouteLink(game.GameName, "GameDetails", new { currentGame = game.GameShortUrl}, new { @class = String.Format(game.GameShortUrl + "_ico navMenu") })
     </li>
 }
