@@ -235,7 +235,6 @@ $(".ImageUpload").change(function () {
 })
 //TextArea to HtmlEditor
 $(document).ready(function () {
-
     var textAreas = document.getElementsByTagName('textarea');
     for (let i = 0; i <= textAreas.length - 1; i++) {
         CKEDITOR.replace(textAreas[i].id);

@@ -514,6 +514,7 @@ namespace WowCarry.WebUI.Controllers
             }
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
         {
             if (ModelState.IsValid)
