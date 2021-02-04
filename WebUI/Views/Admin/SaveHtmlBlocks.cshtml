@@ -1,4 +1,5 @@
 ﻿@model WowCarry.Domain.Entities.HtmlBlockDetails
+
 @using (Html.BeginForm("SaveHtmlBlock", "Admin", FormMethod.Post))
 {
     <div class="panel-heading">
@@ -58,6 +59,3 @@
  }
 
 <div class="siteblock-add btn">Add</div>
-<script>
-    CKEDITOR.replace("HtmlBlockChildDetailsCollection[0].Text");
-</script>
