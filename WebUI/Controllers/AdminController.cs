@@ -444,6 +444,7 @@ namespace WowCarry.WebUI.Controllers
             EntityRepository.SaveContext();
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveProduct(ProductDetails productDetails, bool navigateToProdOpt = false)
         {
             if (ModelState.IsValid)
