@@ -11,6 +11,6 @@
     }
     @if (!String.IsNullOrEmpty(Model.Text))
     {
-        <div class="text">@Model.Text</div>
+<div class="text">@Html.Raw(HttpUtility.HtmlDecode(@Model.Text)) </div>
     }
 </div>
