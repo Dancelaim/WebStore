@@ -213,7 +213,7 @@ $(".ImageUpload").change(function () {
 
     var curEl = $(this);
 
-    var path = "~/Images/Product/" + $("#SelectedGame").val().toLowerCase() + "/" + $("#SelectedCategory").val().toLowerCase();
+    var path = "/Images/Product/" + $("#SelectedGame").val().toLowerCase() + "/" + $("#SelectedCategory").val().toLowerCase();
     formData.append("Path", path);
 
     formData.append("RequiredFileName", $("#ProductName").val().toLowerCase().replace(/[.*+?^${}()|/[\]\\]/g, '_') + ($(this).attr("id") == "Thumbfile" ? "" : "_large"));
@@ -228,8 +228,10 @@ $(".ImageUpload").change(function () {
         contentType: false,
         success: function (data)
         {
-            console.log($(this).attr('id'))
+            if (data != "") {
             curEl.closest('.imageBlock').find('input').last().val(data)
+            curEl.closest('.imageBlock').find('img').attr("src", data);
+            }
         }
     });
 })

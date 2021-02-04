@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -147,6 +148,7 @@ namespace WowCarry.Domain.Concrete
         }
         public void SaveProduct(ProductDetails productDetails)
         {
+
             if (productDetails.ProductId.Equals(Guid.Empty))
             {
                 ProductDescription prodDescr = new ProductDescription
@@ -176,7 +178,7 @@ namespace WowCarry.Domain.Concrete
                     SubDescriptionTitle5 = productDetails.SubDescriptionTitle5
                 };
                 context.ProductDescription.Add(prodDescr);
-                //TODO PRICE
+
                 Product prod = new Product
                 {
                     ProductId = Guid.NewGuid()
@@ -189,7 +191,7 @@ namespace WowCarry.Domain.Concrete
                     ,
                     ProductQuantity = productDetails.ProductQuantity
                     ,
-                    ProductImage = SaveImage()
+                    ProductImage = productDetails.ProductImage
                     ,
                     ProductDescriptionId = context.ProductDescription.Find(prodDescr.ProductDescriptionId).ProductDescriptionId
                     ,
@@ -204,9 +206,34 @@ namespace WowCarry.Domain.Concrete
                     ,
                     ProductEnabled = productDetails.ProductEnabled
                     ,
-                    ProductImageThumb = SaveImage()
+                    ProductImageThumb = productDetails.ProductImageThumb
                 };
                 context.Product.Add(prod);
+
+                if (productDetails.ProductPriceEU != null)
+                {
+                    ProductPrice prodPrice = new ProductPrice
+                    {
+                        ProductPriceId = Guid.NewGuid(),
+                        Region = "Europe",
+                        Price = productDetails.ProductPriceEU,
+                        ProductId = prod.ProductId,
+                        ProductSale = productDetails.ProductSaleEU
+                    };
+                    context.ProductPrice.Add(prodPrice);
+                }
+                else if (productDetails.ProductPriceUS != null)
+                {
+                    ProductPrice prodPrice = new ProductPrice
+                    {
+                        ProductPriceId = Guid.NewGuid(),
+                        Region = "US&Oceania",
+                        Price = productDetails.ProductPriceUS,
+                        ProductId = prod.ProductId,
+                        ProductSale = productDetails.ProductSaleUS
+                    };
+                    context.ProductPrice.Add(prodPrice);
+                }
             }
             else
             {
@@ -232,17 +259,34 @@ namespace WowCarry.Domain.Concrete
                     dbProduct.InStock = productDetails.InStock;
                     dbProduct.PreOrder = productDetails.PreOrder;
                     dbProduct.ProductQuantity = productDetails.ProductQuantity;
-                    dbProduct.ProductImage = SaveImage();
+                    dbProduct.ProductImage = productDetails.ProductImage;
                     dbProduct.ProductCategoryId = context.ProductCategory.Where(c => c.ProductCategoryName == productDetails.SelectedCategory).Select(c => c.ProductCategoryId).FirstOrDefault();
                     dbProduct.ProductSEOId = context.SEO.Where(c => c.MetaTagTitle == productDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault();
                     dbProduct.ProductGameId = context.ProductGame.Where(c => c.GameName == productDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault();
                     //dbProduct.ProductSubCategoryId = context.ProductSubCategory.Where(c => c.ProductCategoryName == productDetails.ProductSubCategoryName).Select(c => c.ProductSubCategoryId).FirstOrDefault()
                     dbProduct.ProductPriority = productDetails.ProductPriority;
                     dbProduct.ProductEnabled = productDetails.ProductEnabled;
-                    dbProduct.ProductImageThumb = SaveImage();
+                    dbProduct.ProductImageThumb = productDetails.ProductImageThumb;
                 }
             }
-            context.SaveChanges();
+            try
+            {
+                context.SaveChanges();
+            }
+            catch (DbEntityValidationException e)
+            {
+                foreach (var eve in e.EntityValidationErrors)
+                {
+                    Console.WriteLine("Entity of type \"{0}\" in state \"{1}\" has the following validation errors:",
+                        eve.Entry.Entity.GetType().Name, eve.Entry.State);
+                    foreach (var ve in eve.ValidationErrors)
+                    {
+                        Console.WriteLine("- Property: \"{0}\", Error: \"{1}\"",
+                            ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                throw;
+            }
         }
         public void SaveOrders(OrderDetails orderDetails)
         {
@@ -306,11 +350,6 @@ namespace WowCarry.Domain.Concrete
 
                 context.SaveChanges();
             }
-        }
-        public string SaveImage()
-        {//TO DO
-            string result = "";
-            return result;
         }
         public void SaveUsers(UsersDetails userDetails)
         {
