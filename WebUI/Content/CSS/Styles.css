@@ -936,7 +936,7 @@ header .bottom {
   float: right;
   padding: 20px 20px 21px 20px;
   min-height: 33px;
-  margin: 0 20px;
+  margin: 0;
   text-align: center;
   background: none;
   border: 0 none;
@@ -1863,7 +1863,7 @@ footer .disc_link:hover img {
 .product-layout {
   width: 378px;
   overflow: hidden;
-  margin-right: 25px;
+  margin-right: 17px;
   vertical-align: top;
 }
 .product-layout .image {
@@ -2637,8 +2637,28 @@ footer .disc_link:hover img {
   .top {
     padding: 0 15px !important;
   }
+  .product-layout {
+    width: 23%;
+    margin: 0 16px 0 0 !important;
+    text-align: left;
+  }
   #common-home .row {
     margin: 0;
+  }
+  #common-home .description,
+  #common-home .featured-block {
+    padding: 0 20px;
+  }
+  .review_block .slick-prev {
+    left: -55px;
+  }
+  .review_block .slick-next {
+    right: -55px;
+  }
+}
+@media only screen and (min-width: 1425px) {
+  .select-games-block.category-games .games-list .game-item.coming-soon {
+    display: none;
   }
 }
 @media only screen and (max-width: 1480px) {
@@ -2650,6 +2670,10 @@ footer .disc_link:hover img {
 @media only screen and (max-width: 1280px) {
   .top {
     margin: 0 0 -1px 0;
+  }
+  .games-top-menu-block,
+  .top_curr {
+    display: none;
   }
   .select-games-block.category-games .games-list .game-item {
     display: inline-block;
