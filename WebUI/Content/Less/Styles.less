@@ -683,7 +683,7 @@ header {
     padding: 0;
     border-radius: 0;
     text-align: left;
-    right:0;
+    right: 0;
 
     li {
         display: block;
@@ -707,6 +707,45 @@ header {
                 outline: none;
                 color: @color2;
                 background: @color10;
+            }
+
+            &:before {
+                left: 16px;
+                top: 0;
+                bottom: 0;
+                content: '';
+                width: 24px;
+                position: absolute;
+            }
+
+            &.bfa_ico {
+                padding-left: 48px;
+                position: relative;
+
+                &:before {
+                    background: url(/Images/homePage/wow.svg) 0 50% no-repeat;
+                    background-size: 100% auto;
+                }
+            }
+
+            &.classic_ico {
+                padding-left: 48px;
+                position: relative;
+
+                &:before {
+                    background: url(/Images/homePage/wow.svg) 0 50% no-repeat;
+                    background-size: 100% auto;
+                }
+            }
+
+            &.poe_ico {
+                padding-left: 48px;
+                position: relative;
+
+                &:before {
+                    background: url(/Images/homePage/poe.svg) 0 50% no-repeat;
+                    background-size: 100% auto;
+                }
             }
         }
     }
@@ -1144,6 +1183,11 @@ header {
                 display: block;
                 width: 100%;
                 padding-bottom: 12px;
+                margin:0;
+
+                .text {
+                    color: @color2;
+                }
 
                 &:before {
                     display: none;
@@ -1159,7 +1203,7 @@ header {
                 font-family: @o;
             }
 
-            .desc {
+            .text {
                 font-family: @o;
                 font-style: normal;
                 font-weight: normal;
@@ -1169,7 +1213,7 @@ header {
                 color: @color4;
             }
 
-            .image_block {
+            .image {
                 padding-bottom: 20px;
                 height: 120px;
             }
@@ -2441,8 +2485,9 @@ footer .disc_link {
     height: 240px;
     overflow: hidden;
     margin-bottom: 14px;
-    .slick-track{
-        position:relative;
+
+    .slick-track {
+        position: relative;
     }
 
     h2 {
@@ -2577,7 +2622,7 @@ footer .disc_link {
             vertical-align: top;
         }
 
-        .image_block {
+        .image {
             width: 98px;
             height: 18px;
 
@@ -2993,6 +3038,7 @@ footer .disc_link {
     //main page
     .product-layout {
         width: 23%;
+        height:auto;
         margin: 0 16px 0 0 !important;
         text-align:left;
     }
@@ -3035,6 +3081,11 @@ footer .disc_link {
         width: 46%;
         margin-right: 20px;
     }
+    .select-games-block.category-games .games-list .game-item.coming-soon .desc {
+        font-size: 20px;
+        line-height: 25px;
+        padding-top: 11px;
+    }
     //main page end
 }
 @media only screen and (max-width: 1280px) {
@@ -3058,6 +3109,96 @@ footer .disc_link {
         margin-right: 0;
         min-height: 280px;
     }
-    
+
+    .purchase_block .purchase_block_in .purchase_in {
+        width: 96%;
+        text-align: left;
+        display: block;
+        margin: 0 22px 16px;
+        padding-bottom: 16px;
+        border-bottom: 1px solid @color9;
+
+        &:first-child {
+             border-bottom:0 none;
+            .text {
+                    text-align: center;
+                    width: 100%;
+                    display: block;
+                }
+            }
+
+            &:before {
+                display: none;
+            }
+
+            .image {
+                padding-bottom: 0;
+                margin-right: 16px;
+                display: inline-block;
+                height: auto;
+
+                img {
+                    width: 50px;
+                    height: 50px;
+                }
+            }
+
+            .title {
+                text-align: left;
+                width: 40%;
+                display: inline-block;
+            }
+
+            .text {
+                text-align: left;
+                width: 46%;
+                display: inline-block;
+            }
+        }
+        //main page end
+    }
+@media only screen and (max-width: 850px) {
+    //header
+
+    //header end
+
+    //footer
+
+    //footer end
+    //main page
+    .select-games-block.category-games .games-list .game-item .links-list, .select-games-block.category-games .games-list .game-item .title {
+        display: none;
+    }
+
+    .select-games-block.category-games .games-list .games-list-in {
+        position: relative;
+        margin-right: -10px;
+    }
+
+    .select-games-block.category-games .games-list .game-item {
+        width: 45%;
+        margin-right: 15px;
+        margin-bottom: 20px;
+        min-height: 80px;
+
+        &:hover {
+            &:after {
+                background: @color3;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .select-games-block.category-games .games-list .game-item a.main-link-mobile {
+        position: absolute;
+        z-index: 1;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: block;
+        border-radius: 0;
+        border: 0 none;
+    }
     //main page end
 }
