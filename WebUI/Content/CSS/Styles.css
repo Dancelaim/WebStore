@@ -733,6 +733,45 @@ header .bottom {
   color: #eeeeee;
   background: #212656;
 }
+.dropdown-menu li a:before,
+.dropdown-menu li button:before {
+  left: 16px;
+  top: 0;
+  bottom: 0;
+  content: '';
+  width: 24px;
+  position: absolute;
+}
+.dropdown-menu li a.bfa_ico,
+.dropdown-menu li button.bfa_ico {
+  padding-left: 48px;
+  position: relative;
+}
+.dropdown-menu li a.bfa_ico:before,
+.dropdown-menu li button.bfa_ico:before {
+  background: url(/Images/homePage/wow.svg) 0 50% no-repeat;
+  background-size: 100% auto;
+}
+.dropdown-menu li a.classic_ico,
+.dropdown-menu li button.classic_ico {
+  padding-left: 48px;
+  position: relative;
+}
+.dropdown-menu li a.classic_ico:before,
+.dropdown-menu li button.classic_ico:before {
+  background: url(/Images/homePage/wow.svg) 0 50% no-repeat;
+  background-size: 100% auto;
+}
+.dropdown-menu li a.poe_ico,
+.dropdown-menu li button.poe_ico {
+  padding-left: 48px;
+  position: relative;
+}
+.dropdown-menu li a.poe_ico:before,
+.dropdown-menu li button.poe_ico:before {
+  background: url(/Images/homePage/poe.svg) 0 50% no-repeat;
+  background-size: 100% auto;
+}
 .fa:before {
   background: url(/Images/arrow-down.svg) 0 0 no-repeat;
   background-size: 18px;
@@ -1110,6 +1149,10 @@ header .bottom {
   display: block;
   width: 100%;
   padding-bottom: 12px;
+  margin: 0;
+}
+.purchase_block .purchase_block_in .purchase_in:first-child .text {
+  color: #eeeeee;
 }
 .purchase_block .purchase_block_in .purchase_in:first-child:before {
   display: none;
@@ -1122,7 +1165,7 @@ header .bottom {
   text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
-.purchase_block .purchase_block_in .purchase_in .desc {
+.purchase_block .purchase_block_in .purchase_in .text {
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -1131,7 +1174,7 @@ header .bottom {
   text-align: center;
   color: #6A7687;
 }
-.purchase_block .purchase_block_in .purchase_in .image_block {
+.purchase_block .purchase_block_in .purchase_in .image {
   padding-bottom: 20px;
   height: 120px;
 }
@@ -2309,11 +2352,11 @@ footer .disc_link:hover img {
   white-space: nowrap;
   vertical-align: top;
 }
-.review_block .review_box .image_block {
+.review_block .review_box .image {
   width: 98px;
   height: 18px;
 }
-.review_block .review_box .image_block img {
+.review_block .review_box .image img {
   width: 100%;
 }
 #product-category .description,
@@ -2639,6 +2682,7 @@ footer .disc_link:hover img {
   }
   .product-layout {
     width: 23%;
+    height: auto;
     margin: 0 16px 0 0 !important;
     text-align: left;
   }
@@ -2666,6 +2710,11 @@ footer .disc_link:hover img {
     width: 46%;
     margin-right: 20px;
   }
+  .select-games-block.category-games .games-list .game-item.coming-soon .desc {
+    font-size: 20px;
+    line-height: 25px;
+    padding-top: 11px;
+  }
 }
 @media only screen and (max-width: 1280px) {
   .top {
@@ -2680,5 +2729,75 @@ footer .disc_link:hover img {
     width: 49%;
     margin-right: 0;
     min-height: 280px;
+  }
+  .purchase_block .purchase_block_in .purchase_in {
+    width: 96%;
+    text-align: left;
+    display: block;
+    margin: 0 22px 16px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #1A233B;
+  }
+  .purchase_block .purchase_block_in .purchase_in:first-child {
+    border-bottom: 0 none;
+  }
+  .purchase_block .purchase_block_in .purchase_in:first-child .text {
+    text-align: center;
+    width: 100%;
+    display: block;
+  }
+  .purchase_block .purchase_block_in .purchase_in:before {
+    display: none;
+  }
+  .purchase_block .purchase_block_in .purchase_in .image {
+    padding-bottom: 0;
+    margin-right: 16px;
+    display: inline-block;
+    height: auto;
+  }
+  .purchase_block .purchase_block_in .purchase_in .image img {
+    width: 50px;
+    height: 50px;
+  }
+  .purchase_block .purchase_block_in .purchase_in .title {
+    text-align: left;
+    width: 40%;
+    display: inline-block;
+  }
+  .purchase_block .purchase_block_in .purchase_in .text {
+    text-align: left;
+    width: 46%;
+    display: inline-block;
+  }
+}
+@media only screen and (max-width: 850px) {
+  .select-games-block.category-games .games-list .game-item .links-list,
+  .select-games-block.category-games .games-list .game-item .title {
+    display: none;
+  }
+  .select-games-block.category-games .games-list .games-list-in {
+    position: relative;
+    margin-right: -10px;
+  }
+  .select-games-block.category-games .games-list .game-item {
+    width: 45%;
+    margin-right: 15px;
+    margin-bottom: 20px;
+    min-height: 80px;
+  }
+  .select-games-block.category-games .games-list .game-item:hover:after {
+    background: #10111B;
+    opacity: 0.5;
+  }
+  .select-games-block.category-games .games-list .game-item a.main-link-mobile {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: block;
+    border-radius: 0;
+    border: 0 none;
   }
 }

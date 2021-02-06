@@ -31,25 +31,24 @@
             {
 
                 <div class="param-fields">
-                    <h2>Child</h2>
+                    <h2>Category</h2>
                     @Html.HiddenFor(x => Model.ProductCategoryDetailsCollection[i].ProductCategoryId)
                     <div class="input-block">
                         <label>ProductCategoryName</label>
-                        @Html.TextAreaFor(x => Model.ProductCategoryDetailsCollection[i].ProductCategoryName)
+                        @Html.TextBoxFor(x => Model.ProductCategoryDetailsCollection[i].ProductCategoryName)
                     </div>
-                    <div class="input-block">
+                    
                         @Html.HiddenFor(x => Model.ProductCategoryDetailsCollection[i].ProductGameId)
-                    </div>
+                   
                     <div class="input-block">
                         <label>CategoryDescription</label>
-                        @Html.TextBoxFor(x => Model.ProductCategoryDetailsCollection[i].CategoryDescription)
+                        @Html.TextAreaFor(x => Model.ProductCategoryDetailsCollection[i].CategoryDescription)
                     </div>
-                    <div class="input-block">
+                    
                         @Html.HiddenFor(x => Model.ProductCategoryDetailsCollection[i].ProductSubCategoryId)
-                    </div>
-                    <div class="input-block">
+                   
                         @Html.HiddenFor(x => Model.ProductCategoryDetailsCollection[i].CategorySeoId)
-                    </div>
+                   
                     <div><span class="remove-param"></span></div>
                 </div>
 
