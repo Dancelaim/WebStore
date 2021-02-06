@@ -33,12 +33,15 @@
 }
 <script>
     $(document).on("click", '#loginFormButton', function () {
+
+        var token = $("[name='__RequestVerificationToken']").val();
         $.ajax({
             cache: false,
             type: 'POST',
             url: '/Login/AjaxLogin',
             data: {
-                userName: $('#UserName').val(),
+                __RequestVerificationToken: token, 
+                email: $('#UserName').val(),
                 password: $("#Password").val()
             },
             success: function (data) {

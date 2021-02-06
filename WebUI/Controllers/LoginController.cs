@@ -3,6 +3,8 @@ using System.Web.Security;
 using WowCarry.Domain.Entities;
 using WebUI.Models;
 using System.Linq;
+using System.Net.Mail;
+using System;
 
 namespace WebUI.Controllers
 {
@@ -19,6 +21,11 @@ namespace WebUI.Controllers
                 return View();
             }
         }
+        public PartialViewResult Registration()
+        {
+            return PartialView();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Login(LoginViewModel model)
@@ -49,6 +56,32 @@ namespace WebUI.Controllers
                 }
                 return false;
             }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public string AjaxRegistration(string CustomerName,string Email,string Password)
+        {
+            var addr = new MailAddress(Email);
+            if (addr.Address == Email)
+            {
+                using (WowCarryEntities context = new WowCarryEntities())
+                {
+                    Customers newCustomer = new Customers()
+                    {
+                        CustomerId = Guid.NewGuid(),
+                        Name = CustomerName,
+                        Email = Email,
+                        Password = Password
+                    };
+                    context.Customers.Add(newCustomer);
+                    context.SaveChanges();
+                }
+                FormsAuthentication.SetAuthCookie(Email, false);
+                return "success";
+            }
+            return "failed";
+
+
         }
         public ActionResult Logout()
         {

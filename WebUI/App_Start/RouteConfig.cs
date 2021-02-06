@@ -37,6 +37,12 @@ namespace WowCarry.WebUI
                 constraints: new { AjaxLogin = "AjaxLogin" }
             );
             routes.MapRoute(
+                name: "AjaxRegistration",
+                url: "{Login}/{AjaxRegistration}",
+                defaults: new { controller = "Login", action = "AjaxRegistration" },
+                constraints: new { AjaxRegistration = "AjaxRegistration" }
+            );
+            routes.MapRoute(
                 name: "CustomerLogout",
                 url: "{Login}/{CustomerLogout}",
                 defaults: new { controller = "Login", action = "CustomerLogout" },
