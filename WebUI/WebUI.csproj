@@ -1309,7 +1309,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -1387,7 +1386,6 @@
     <Content Include="Views\Admin\SaveTemplateOptions.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\CustomerLogin.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Admin\ListUsers.cshtml" />
     <Content Include="Views\Admin\ListRanks.cshtml" />
     <Content Include="Views\Admin\SaveUsers.cshtml" />
@@ -1410,6 +1408,7 @@
       <DependentUpon>ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Views\Navigation\MobileMenu.cshtml" />
+    <Content Include="Views\Login\Registration.cshtml" />
     <Content Include="Views\SiteBlock\SiteBlock.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
