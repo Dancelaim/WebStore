@@ -1,0 +1,11 @@
+﻿@model WowCarry.Domain.Entities.HtmlBlocks
+
+<div class=@Model.ParentCSSClass>
+        <h2>@Model.ParentTitle </h2>
+        <div class=@Model.ChildCSSClass>
+            @foreach (var b in Model.HtmlBlocksChildren.OrderBy(c => c.ChildOrder))
+            {
+                @Html.Partial("SiteBlockChild", b)
+            }
+        </div>
+    </div>
