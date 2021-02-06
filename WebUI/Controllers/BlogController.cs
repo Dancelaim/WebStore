@@ -26,9 +26,10 @@ namespace WowCarry.WebUI.Controllers
             return View();
         }
         //One blog
-        public ViewResult Blog(Guid BlogId)
+        public ViewResult Article(Guid articleId)
         {
-            return View();
+            var result = EntityRepository.Articles.Where(a => a.ArticleId == articleId).FirstOrDefault();
+            return View(result);
         }
         //Shorcuts for homepage
         public PartialViewResult BlogShort()

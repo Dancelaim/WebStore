@@ -22,6 +22,8 @@ namespace WowCarry.Domain.Abstract
         IEnumerable<Customers> Customers { get; }
         IEnumerable<Orders> Orders { get; }
         IEnumerable<Roles> Roles { get; }
+        IEnumerable<Article> Articles { get; }
+
 
 
 

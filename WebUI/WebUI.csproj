@@ -1409,6 +1409,7 @@
     </Content>
     <Content Include="Views\Navigation\MobileMenu.cshtml" />
     <Content Include="Views\Login\Registration.cshtml" />
+    <Content Include="Views\Blog\Article.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -20,6 +20,7 @@ namespace WowCarry.Domain.Entities
             this.ProductCategory = new HashSet<ProductCategory>();
             this.Realms = new HashSet<Realms>();
             this.Product = new HashSet<Product>();
+            this.Article = new HashSet<Article>();
         }
     
         public System.Guid ProductGameId { get; set; }
@@ -35,5 +36,7 @@ namespace WowCarry.Domain.Entities
         public virtual SEO SEO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Article> Article { get; set; }
     }
 }

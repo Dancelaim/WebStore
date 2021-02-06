@@ -25,6 +25,8 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<Customers> Customers => context.Customers;
         public IEnumerable<Orders> Orders => context.Orders;
         public IEnumerable<Roles> Roles => context.Roles;
+        public IEnumerable<Article> Articles => context.Article;
+
 
 
 
