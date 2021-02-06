@@ -1410,6 +1410,7 @@
       <DependentUpon>ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Views\Navigation\MobileMenu.cshtml" />
+    <Content Include="Views\SiteBlock\SiteBlock.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
