@@ -495,6 +495,7 @@
     <Content Include="Images\80000.svg" />
     <Content Include="Images\account.svg" />
     <Content Include="Images\arrow-down.svg" />
+    <Content Include="Images\Blog\icons\tocomment.svg" />
     <Content Include="Images\burger.svg" />
     <Content Include="Images\cart.svg" />
     <Content Include="Images\clock_img.svg" />
@@ -544,6 +545,14 @@
     <Content Include="Images\PathOfExile\gear\bow_package_large.png" />
     <Content Include="Images\PathOfExile\services\bronze-exile-package.png" />
     <Content Include="Images\PathOfExile\services\bronze-exile-package_large.png" />
+    <Content Include="Images\Product\world of warcraft classic\powerleveling\character leveling to 60.jpg" />
+    <Content Include="Images\Product\World of Warcraft\dungeons\custom mythic key.jpg" />
+    <Content Include="Images\Product\World of Warcraft\dungeons\mythic _15 x3 package.jpg" />
+    <Content Include="Images\Product\World of Warcraft\raid\glacial tide strorm.jpg" />
+    <Content Include="Images\Product\World of Warcraft\raid\ny’alotha 11_12 heroic.jpg" />
+    <Content Include="Images\Product\World of Warcraft\raid\ny’alotha 11_12 heroic.png" />
+    <Content Include="Images\Product\World of Warcraft\raid\ny’alotha 11_12 heroic_large.jpg" />
+    <Content Include="Images\Product\World of Warcraft\raid\ny’alotha 11_12 heroic_large.png" />
     <Content Include="Images\Security.svg" />
     <Content Include="Images\Service.svg" />
     <Content Include="Images\seven.svg" />

@@ -1019,7 +1019,7 @@ header {
         background: url(/Images/account.svg) 0 50% no-repeat;
         font-family: @o;
         font-style: normal;
-        font-weight: 600;
+        font-weight: normal;
         font-size: 14px;
         line-height: 24px;
     }
@@ -1091,6 +1091,8 @@ header {
     margin-top: -48px;
 }
 /**Blocks**/
+
+
 .choose_block {
     padding-bottom: 25px;
     position: relative;
@@ -3022,6 +3024,83 @@ footer .disc_link {
     }
 }
 
+/**Blog Pages**/
+blog-article {
+    .info_article {
+        position: relative;
+        min-height: 170px;
+
+        .article_title {
+            min-height: 170px;
+            position: relative;
+            z-index: 1;
+            width: 75%;
+            margin: 0 auto;
+
+            .title-information {
+                display: block;
+            }
+
+            .tocomment {
+                display: none;
+                float: right;
+                color: @color1;
+
+                a {
+                    text-decoration: none;
+                    color: @color1;
+                    font-family: @o;
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 12px;
+                    line-height: 16px;
+                    display: inline-block;
+                    position: relative;
+                    padding-left: 18px;
+
+                    &:before {
+                        content: '';
+                        background: url(/Images/Blog/icons/tocomment.svg) 0 50% no-repeat;
+                        position: absolute;
+                        top: 0;
+                        bottom: 0;
+                        left: 0;
+                        width: 18px;
+                    }
+                }
+            }
+
+            .tag {
+                padding-top: 15px;
+
+                a {
+                    display: inline-block;
+                    background: @color3;
+                    border: 1px solid @color10;
+                    box-sizing: border-box;
+                    border-radius: 16px;
+                    text-decoration: none;
+                    font-family: @o;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: @color1;
+                    padding: 4px 8px;
+                    transition: all 0.3s ease;
+                    margin: 0 8px 0 0;
+
+                    &:hover {
+                        border-color: @color5;
+                        color: @color5;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/**Blog Pages and**/
 
 //Media styles
 @media only screen and (max-width: 1600px) {

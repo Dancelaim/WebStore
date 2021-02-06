@@ -6,10 +6,35 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Article</title>
+    <title>@Model.SEO.MetaTagTitle</title>
 </head>
 <body>
-    <div>
+    <div class="blog-article">
+        <div class="info_article">
+            <div class="image img-article" @*style="background"*@>
+            </div>
+            <div class="article_title">
+                <div class="tag">
+                    @Model.Tags
+                </div>
+                <div class="title-information">
+                    <h1 class="h1 title">
+                        @Model.Title
+                    </h1>
+                    <div class="date">
+                        @Model.ArticlePostTime
+                        <span class="readtime">
+                            @Model.ReadTime
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="description">
+            @Model.Description
+        </div>
+
     </div>
 </body>
 </html>
