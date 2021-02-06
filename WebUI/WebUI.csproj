@@ -1328,6 +1328,7 @@
     <Compile Include="Infrastructure\Binders\CartModelBinder .cs" />
     <Compile Include="Infrastructure\Concrete\UsersRoleProvider.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\TagSearchViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ProductOptionsViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -1411,6 +1412,9 @@
     <Content Include="Views\Login\Registration.cshtml" />
     <Content Include="Views\SiteBlock\SiteBlock.cshtml" />
     <Content Include="Views\Blog\Article.cshtml" />
+    <Content Include="Views\Blog\Articles.cshtml" />
+    <Content Include="Views\Blog\Blog.cshtml" />
+    <Content Include="Views\Blog\TagSearch.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
