@@ -70,25 +70,25 @@ namespace WowCarry.WebUI
                 constraints: new { Admin = "Admin" }
             );
             routes.MapRoute(
-                name: "Blog",
+                name: "Article",
                 url: "{Blog}/{Article}",
                 defaults: new { controller = "Blog", action = "Article" },
                 constraints: new { Article = "Article" }
             );
-                        routes.MapRoute(
-                name: "Blog",
+           routes.MapRoute(
+                name: "GameBlog",
                 url: "{Blog}/{Articles}",
                 defaults: new { controller = "Blog", action = "Articles" },
                 constraints: new { Articles = "Articles" }
             );
-                        routes.MapRoute(
+           routes.MapRoute(
                 name: "Blog",
                 url: "{Blog}",
                 defaults: new { controller = "Blog", action = "Blog" },
                 constraints: new { Blog = "Blog" }
             );
-                        routes.MapRoute(
-                name: "Blog",
+            routes.MapRoute(
+                name: "TagSearch",
                 url: "{Blog}/{TagSearch}",
                 defaults: new { controller = "Blog", action = "TagSearch" },
                 constraints: new { TagSearch = "TagSearch" }
