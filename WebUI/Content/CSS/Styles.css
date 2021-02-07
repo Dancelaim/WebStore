@@ -1000,7 +1000,7 @@ header .bottom {
   background: url(/Images/account.svg) 0 50% no-repeat;
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
-  font-weight: 600;
+  font-weight: normal;
   font-size: 14px;
   line-height: 24px;
 }
@@ -2676,6 +2676,72 @@ footer .disc_link:hover img {
 #mobile-menu #menuModal .modal-dialog .modal-content .modal-body .mobile-menu .active-subdropdown a.cat_plus {
   background: url(/Images/mainImages/icons/minus.svg) 50% 50% no-repeat !important;
 }
+/**Blog Pages**/
+blog-article .info_article {
+  position: relative;
+  min-height: 170px;
+}
+blog-article .info_article .article_title {
+  min-height: 170px;
+  position: relative;
+  z-index: 1;
+  width: 75%;
+  margin: 0 auto;
+}
+blog-article .info_article .article_title .title-information {
+  display: block;
+}
+blog-article .info_article .article_title .tocomment {
+  display: none;
+  float: right;
+  color: #6D94C4;
+}
+blog-article .info_article .article_title .tocomment a {
+  text-decoration: none;
+  color: #6D94C4;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  display: inline-block;
+  position: relative;
+  padding-left: 18px;
+}
+blog-article .info_article .article_title .tocomment a:before {
+  content: '';
+  background: url(/Images/Blog/icons/tocomment.svg) 0 50% no-repeat;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 18px;
+}
+blog-article .info_article .article_title .tag {
+  padding-top: 15px;
+}
+blog-article .info_article .article_title .tag a {
+  display: inline-block;
+  background: #10111B;
+  border: 1px solid #212656;
+  box-sizing: border-box;
+  border-radius: 16px;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  line-height: 16px;
+  color: #6D94C4;
+  padding: 4px 8px;
+  transition: all 0.3s ease;
+  margin: 0 8px 0 0;
+}
+blog-article .info_article .article_title .tag a:hover {
+  border-color: #91B9EF;
+  color: #91B9EF;
+}
+/**Blog Pages and**/
 @media only screen and (max-width: 1600px) {
   .top {
     padding: 0 15px !important;
