@@ -1,14 +1,15 @@
 ﻿@model IEnumerable<WowCarry.Domain.Entities.Article>
 
-<!DOCTYPE html>
+@foreach (var game in Model.Select(a => a.ProductGame.GameName).Distinct())
+{
+    var bigArticle = Model.Where(a => a.ProductGame.GameName == game).OrderBy(a => a.ArticlePostTime).FirstOrDefault();
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Blog</title>
-</head>
-<body>
-    <div>
-    </div>
-</body>
-</html>
+    <h1>@bigArticle.Title</h1>
+    <div>@bigArticle.Description</div>
+
+    foreach (var atrticles in Model.Where(a => a.ProductGame.GameName == game).OrderBy(a => a.ArticlePostTime).Take(4).Skip(1))
+    {
+        <h1>@atrticles.Title</h1>
+        <div>@atrticles.Description</div>
+    }
+}
