@@ -1,15 +1,11 @@
-﻿@using WebUI.Models
-@model SiteBlockViewModel
+﻿@model WowCarry.Domain.Entities.HtmlBlocks
 
-@foreach (var pb in Model.HtmlBlocks)
-{
-<div class=@pb.ParentCSSClass>
-    <h2>@pb.ParentTitle</h2>
-    <div class=@pb.ChildCSSClass>
-        @foreach (var b in Model.HtmlBlocksChildren.Where(chb =>chb.SiteBlockId == pb.SiteBlockId))
-        {
-            @Html.Partial("SiteBlockChild", b)
-        }
+<div class=@Model.ParentCSSClass>
+        <h2>@Model.ParentTitle </h2>
+        <div class=@Model.ChildCSSClass>
+            @foreach (var b in Model.HtmlBlocksChildren.OrderBy(c => c.ChildOrder))
+            {
+                @Html.Partial("SiteBlockChild", b)
+            }
+        </div>
     </div>
-</div>
-}

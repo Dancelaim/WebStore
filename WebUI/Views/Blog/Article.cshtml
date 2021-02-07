@@ -1,0 +1,35 @@
+﻿@model WowCarry.Domain.Entities.Article
+
+<div class="blog-article">
+    <div class="info_article">
+        <div class="image img-article" style="background:url(@Url.Content(string.Format("~/" + Model.ImagePath)))no-repeat; background-size: 110%; background-position: center 10%;">
+        </div>
+        <div class="article_title">
+            <div class="tag">
+                @foreach (var tag in Model.Tags.Split(','))
+                {
+                    @Html.ActionLink(tag, "TagSearch",new { Tag = tag })
+                }
+            </div>
+
+            <div class="title-information">
+                <h1>
+                    @Model.Title
+                </h1>
+                <div class="date">
+                    @Model.ArticlePostTime
+                    <span class="readtime">
+                        @Model.ReadTime
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <article class="description">
+        @Model.Description
+    </article>
+</div>
+
+

@@ -79,6 +79,9 @@
     <Compile Include="Abstract\IOrderProcessor.cs" />
     <Compile Include="Concrete\EFEntityRepository.cs" />
     <Compile Include="Concrete\EmailOrderProcessor.cs" />
+    <Compile Include="Entities\Article.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\Customers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -218,6 +221,7 @@
     <Content Include="ScriptHistory\15.sql" />
     <Content Include="ScriptHistory\14.sql" />
     <Content Include="ScriptHistory\13.sql" />
+    <Content Include="ScriptHistory\39.sql" />
     <Content Include="ScriptHistory\38.sql" />
     <Content Include="ScriptHistory\37.sql" />
     <Content Include="ScriptHistory\36.sql" />

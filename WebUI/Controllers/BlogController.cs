@@ -4,6 +4,7 @@ using WowCarry.Domain.Entities;
 using WowCarry.Domain.Abstract;
 using WebUI.Models;
 using System;
+using System.Collections.Generic;
 
 namespace WowCarry.WebUI.Controllers
 {
@@ -15,27 +16,34 @@ namespace WowCarry.WebUI.Controllers
         {
             EntityRepository = EntityRep;
         }
-        //All blogs for one category
-        public ViewResult BlogsCategory(string categoryName)
+        public ViewResult Article(Guid articleId)
         {
-            return View();
+            Article result = EntityRepository.Articles.Where(a => a.ArticleId == articleId).FirstOrDefault();
+            return View(result);
         }
-        //Several category blogs
-        public ViewResult Blogs()
+        public ViewResult Articles(string game)
         {
-            return View();
+            IEnumerable<Article> result = EntityRepository.Articles.Where(a => a.ProductGame.GameName == game);
+            return View(result);
         }
-        //One blog
-        public ViewResult Blog(Guid BlogId)
+        public ViewResult Blog()
         {
-            return View();
+            IEnumerable<Article> result = EntityRepository.Articles;
+            return View(result);
         }
-        //Shorcuts for homepage
-        public PartialViewResult BlogShort()
+        public ViewResult TagSearch(string Tag)
         {
-            return PartialView();
+            TagSearchViewModel result = new TagSearchViewModel()
+            {
+                articles = EntityRepository.Articles,
+                tags = EntityRepository.Articles.Select(a => a.Tags).Distinct()
+            };
+            return View(result);
         }
-
-
+        public PartialViewResult LatestPosts()
+        {
+            IEnumerable<Article> result = EntityRepository.Articles.OrderBy(a => a.ArticlePostTime).Take(4);
+            return PartialView(result);
+        }
     }
 }

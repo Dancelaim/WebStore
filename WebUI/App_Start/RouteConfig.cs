@@ -37,6 +37,12 @@ namespace WowCarry.WebUI
                 constraints: new { AjaxLogin = "AjaxLogin" }
             );
             routes.MapRoute(
+                name: "AjaxRegistration",
+                url: "{Login}/{AjaxRegistration}",
+                defaults: new { controller = "Login", action = "AjaxRegistration" },
+                constraints: new { AjaxRegistration = "AjaxRegistration" }
+            );
+            routes.MapRoute(
                 name: "CustomerLogout",
                 url: "{Login}/{CustomerLogout}",
                 defaults: new { controller = "Login", action = "CustomerLogout" },
@@ -63,56 +69,71 @@ namespace WowCarry.WebUI
                 defaults: new { controller = "Admin", action = "Admin" },
                 constraints: new { Admin = "Admin" }
             );
-
+            routes.MapRoute(
+                name: "Article",
+                url: "{Blog}/{Article}",
+                defaults: new { controller = "Blog", action = "Article" },
+                constraints: new { Article = "Article" }
+            );
+           routes.MapRoute(
+                name: "GameBlog",
+                url: "{Blog}/{Articles}",
+                defaults: new { controller = "Blog", action = "Articles" },
+                constraints: new { Articles = "Articles" }
+            );
+           routes.MapRoute(
+                name: "Blog",
+                url: "{Blog}",
+                defaults: new { controller = "Blog", action = "Blog" },
+                constraints: new { Blog = "Blog" }
+            );
+            routes.MapRoute(
+                name: "TagSearch",
+                url: "{Blog}/{TagSearch}",
+                defaults: new { controller = "Blog", action = "TagSearch" },
+                constraints: new { TagSearch = "TagSearch" }
+            );
             routes.MapRoute(
                 name: "AddToCart",
                 url: "{ProductDetails}/{AddToCart}",
                 defaults: new { controller = "ProductDetails", action = "AddToCart" },
                 constraints: new { AddToCart = "AddToCart" }
             );
-
             routes.MapRoute(
                 name: "RemoveFromCart",
                 url: "{Cart}/{RemoveFromCart}",
                 defaults: new { controller = "Cart", action = "RemoveFromCart" },
                 constraints: new { RemoveFromCart = "RemoveFromCart" }
             );
-
             routes.MapRoute(
                 name: "UpdateCart",
                 url: "{Cart}/{UpdateCart}",
                 defaults: new { controller = "Cart", action = "UpdateCart" },
                 constraints: new { UpdateCart = "UpdateCart" }
             );
-
-
             routes.MapRoute(
                  name: "Checkout",
                  url: "{Checkout}",
                  defaults: new { controller = "Checkout", action = "Checkout" },
                  constraints: new { Checkout = "Checkout" }
             );
-
             routes.MapRoute(
                  name: "GameDetails",
                  url: "{currentGame}",
                  defaults: new { controller = "GamePage", action = "GameDetails" },
                  constraints: new { currentGame = "classic|destiny|poe|hs|lol|valorant|bfa" }
             );
-
             routes.MapRoute(
                 name: "Sorted",
                 url: "{selectedGame}/{categoryName}",
                 defaults: new { controller = "Products", action = "List", page = 1 }
             );
-
             routes.MapRoute(
                  name: null,
                  url: "{selectedGame}/{categoryName}/{page}",
                  defaults: new { controller = "Products", action = "List" },
                  constraints: new { page = @"\d+" }
             );
-
             routes.MapRoute(
                  name: "ProductDetails",
                  url: "{productUrl}",

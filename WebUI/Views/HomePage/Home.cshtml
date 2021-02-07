@@ -1,7 +1,7 @@
 ﻿<div id="common-home" class="container">
     <div class="row">
         @Html.Action("GameCategoryMenu", "Navigation")
-        @Html.Action("SiteBlock", "SiteBlock")
+        @Html.Action("SiteBlock", "SiteBlock", new { title = "Reviews" })
         <div class="featured-block">
             <div class="featured_title">Featured Products</div>
             <div class="featured-links">
@@ -38,6 +38,9 @@
                 @Html.Action("RecommendedProducts", new { game = "World of Warcraft Classic" })
             </div>
         </div>
+        @Html.Action("SiteBlock", "SiteBlock", new { title = "How our service works" })
+        @Html.Action("LatestPosts", "Blog")
+        @Html.Action("SiteBlock", "SiteBlock", new { title = "WowCarry - Professional carry service" })
     </div>
 </div>
 <script>

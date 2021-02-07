@@ -47,6 +47,10 @@
         <EntityTypeShape EntityType="WowCarryModel.Orders" Width="1.5" PointX="5" PointY="9.875" />
         <AssociationConnector Association="WowCarryModel.FK__Orders__Customer__119F9925" />
         <AssociationConnector Association="WowCarryModel.FK__Orders__OrderCus__10AB74EC" />
+        <EntityTypeShape EntityType="WowCarryModel.Article" Width="1.5" PointX="12" PointY="8.875" />
+        <AssociationConnector Association="WowCarryModel.FK_ProductGame" />
+        <AssociationConnector Association="WowCarryModel.FK_SEO" />
+        <AssociationConnector Association="WowCarryModel.FK_TempOptionParams_TempOptionParams" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

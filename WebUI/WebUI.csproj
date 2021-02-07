@@ -495,6 +495,12 @@
     <Content Include="Images\80000.svg" />
     <Content Include="Images\account.svg" />
     <Content Include="Images\arrow-down.svg" />
+    <Content Include="Images\Blog\article-images\mythic.jpg" />
+    <Content Include="Images\Blog\article-images\poe2.jpg" />
+    <Content Include="Images\Blog\article-images\shl.jpg" />
+    <Content Include="Images\Blog\icons\miniclock1.svg" />
+    <Content Include="Images\Blog\icons\miniclock2.svg" />
+    <Content Include="Images\Blog\icons\tocomment.svg" />
     <Content Include="Images\burger.svg" />
     <Content Include="Images\cart.svg" />
     <Content Include="Images\clock_img.svg" />
@@ -544,6 +550,14 @@
     <Content Include="Images\PathOfExile\gear\bow_package_large.png" />
     <Content Include="Images\PathOfExile\services\bronze-exile-package.png" />
     <Content Include="Images\PathOfExile\services\bronze-exile-package_large.png" />
+    <Content Include="Images\Product\world of warcraft classic\powerleveling\character leveling to 60.jpg" />
+    <Content Include="Images\Product\World of Warcraft\dungeons\custom mythic key.jpg" />
+    <Content Include="Images\Product\World of Warcraft\dungeons\mythic _15 x3 package.jpg" />
+    <Content Include="Images\Product\World of Warcraft\raid\glacial tide strorm.jpg" />
+    <Content Include="Images\Product\World of Warcraft\raid\ny’alotha 11_12 heroic.jpg" />
+    <Content Include="Images\Product\World of Warcraft\raid\ny’alotha 11_12 heroic.png" />
+    <Content Include="Images\Product\World of Warcraft\raid\ny’alotha 11_12 heroic_large.jpg" />
+    <Content Include="Images\Product\World of Warcraft\raid\ny’alotha 11_12 heroic_large.png" />
     <Content Include="Images\Security.svg" />
     <Content Include="Images\Service.svg" />
     <Content Include="Images\seven.svg" />
@@ -1309,7 +1323,6 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\OptionsController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
-    <Compile Include="Controllers\SignUpController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -1329,6 +1342,7 @@
     <Compile Include="Infrastructure\Binders\CartModelBinder .cs" />
     <Compile Include="Infrastructure\Concrete\UsersRoleProvider.cs" />
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Models\TagSearchViewModel.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\ProductOptionsViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
@@ -1360,7 +1374,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\HomePage\Home.cshtml" />
     <Content Include="Views\MasterPage.cshtml" />
-    <Content Include="Views\SiteBlock\SiteBlock.cshtml" />
+    <Content Include="Views\SiteBlock\SiteBlocks.cshtml" />
     <Content Include="Views\Shared\SiteBlockChild.cshtml" />
     <Content Include="Views\Navigation\GameMenu.cshtml" />
     <Content Include="Views\GamePage\GameDetails.cshtml" />
@@ -1387,7 +1401,6 @@
     <Content Include="Views\Admin\SaveTemplateOptions.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\CustomerLogin.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Admin\ListUsers.cshtml" />
     <Content Include="Views\Admin\ListRanks.cshtml" />
     <Content Include="Views\Admin\SaveUsers.cshtml" />
@@ -1410,6 +1423,13 @@
       <DependentUpon>ConnectionStrings.config</DependentUpon>
     </Content>
     <Content Include="Views\Navigation\MobileMenu.cshtml" />
+    <Content Include="Views\Login\Registration.cshtml" />
+    <Content Include="Views\SiteBlock\SiteBlock.cshtml" />
+    <Content Include="Views\Blog\Article.cshtml" />
+    <Content Include="Views\Blog\Articles.cshtml" />
+    <Content Include="Views\Blog\Blog.cshtml" />
+    <Content Include="Views\Blog\TagSearch.cshtml" />
+    <Content Include="Views\Blog\LatestPosts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

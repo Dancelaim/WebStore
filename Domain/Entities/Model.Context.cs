@@ -47,6 +47,7 @@ namespace WowCarry.Domain.Entities
         public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<OrderCustomFields> OrderCustomFields { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
+        public virtual DbSet<Article> Article { get; set; }
     
         public virtual int Check_db_Version(Nullable<short> script)
         {

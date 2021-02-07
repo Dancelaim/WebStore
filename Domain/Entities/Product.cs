@@ -35,7 +35,7 @@ namespace WowCarry.Domain.Entities
         public Nullable<System.Guid> ProductGameId { get; set; }
         public Nullable<System.Guid> ProductSubCategoryId { get; set; }
         public Nullable<int> ProductPriority { get; set; }
-        public bool ProductEnabled { get; set; }
+        public Nullable<bool> ProductEnabled { get; set; }
         public string ProductImageThumb { get; set; }
     
         public virtual ProductGame ProductGame { get; set; }
