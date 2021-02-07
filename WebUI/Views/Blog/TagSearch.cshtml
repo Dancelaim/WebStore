@@ -16,20 +16,23 @@
         <div class="articles-list">
             @foreach (var art in Model.articles)
             {
+                var tags = art.Tags.Split(',');
                 <div class="post-item">
                     <div class="post-image">
-                        <a href="@Html.Action("Article", "Blog", new { articleId = art.ArticleId })">
-                            <img src="@art.ImagePath" alt="@art.Title" title="@art.Title" class="img-responsive">
+                        <a href="@Url.Action("Article","Blog",new {articleId = art.ArticleId})">
+                            <img src="@Url.Content(string.Format("~/" + art.ImagePath))" alt="@art.Title" title="@art.Title" class="img-responsive">
                         </a>
                     </div>
 
                     <div class="post-text">
                         <div class="post-heading">
                             <div class="tag">
-                                <span class="tag-title">tags:</span>
-                                @art.Tags
+                                @foreach (var tag in tags)
+                                {
+                                    @Html.ActionLink(tag, "TagSearch", "Blog", new { Tag = tag })
+                                }
                             </div>
-                            <h3 class="title"><a href="">@art.Title </a></h3>
+                            <h3 class="title"><a href="@Url.Action("Article", "Blog", new { articleId = art.ArticleId })">@art.Title </a></h3>
 
                         </div>
                         <div class="post-body">
@@ -40,8 +43,10 @@
                                 @art.ShortDescription
                             </div>
                             <div class="tag mob-tag">
-                                <span class="tag-title">tags:</span>
-                                @art.Tags
+                                @foreach (var tag in tags)
+                                {
+                                    @Html.ActionLink(tag, "TagSearch", "Blog", new { Tag = tag })
+                                }
                             </div>
                         </div>
                     </div>

@@ -495,6 +495,11 @@
     <Content Include="Images\80000.svg" />
     <Content Include="Images\account.svg" />
     <Content Include="Images\arrow-down.svg" />
+    <Content Include="Images\Blog\article-images\mythic.jpg" />
+    <Content Include="Images\Blog\article-images\poe2.jpg" />
+    <Content Include="Images\Blog\article-images\shl.jpg" />
+    <Content Include="Images\Blog\icons\miniclock1.svg" />
+    <Content Include="Images\Blog\icons\miniclock2.svg" />
     <Content Include="Images\Blog\icons\tocomment.svg" />
     <Content Include="Images\burger.svg" />
     <Content Include="Images\cart.svg" />
