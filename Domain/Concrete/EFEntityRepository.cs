@@ -109,13 +109,17 @@ namespace WowCarry.Domain.Concrete
             Ranks dbRanks = context.Ranks.Find(rankDetails.RankId);
             if (dbRanks != null)
             {
+                dbRanks.Name = rankDetails.Name;
+                dbRanks.Sale = rankDetails.Sale;
+            }
+            else
+            {
+                dbRanks = new Ranks();
                 dbRanks.RankId = rankDetails.RankId;
                 dbRanks.Name = rankDetails.Name;
                 dbRanks.Sale = rankDetails.Sale;
-
-
-                context.SaveChanges();
             }
+            context.SaveChanges();
         }
         public void SaveProductOption(ProductOptionDetails productOptionDetails)
         {
@@ -329,28 +333,87 @@ namespace WowCarry.Domain.Concrete
                 };
                 context.Orders.Add(orders);
             }
+            else
+            {
+                Orders dbOrder = context.Orders.Find(orderDetails.OrderId);
+                OrderCustomFields dbOrderCustomFields = dbOrder.OrderCustomFields;
+                if (dbOrderCustomFields != null)
+                {
+                    dbOrderCustomFields.ShlCharacterName = orderDetails.ShlCharacterName;
+                    dbOrderCustomFields.ShlRealmName = orderDetails.ShlRealmName;
+                    dbOrderCustomFields.ShlFaction = orderDetails.ShlFaction;
+                    dbOrderCustomFields.ShlRegion = orderDetails.ShlRegion;
+                    dbOrderCustomFields.ShlBattleTag = orderDetails.ShlBattleTag;
+                    dbOrderCustomFields.PoeCharacterName = orderDetails.Poe_CharacterName;
+                    dbOrderCustomFields.PoeAccountName = orderDetails.Poe_AccountName;
+                    dbOrderCustomFields.ClassicCharacterName = orderDetails.Classic_CharacterName;
+                    dbOrderCustomFields.ClassicRealmName = orderDetails.Classic_RealmName;
+                    dbOrderCustomFields.ClassicFaction = orderDetails.Classic_Faction;
+                    dbOrderCustomFields.ClassicRegion = orderDetails.Classic_Region;
+                    dbOrderCustomFields.ClassicBattleTag = orderDetails.Classic_BattleTag;
+                }
+                if (dbOrder != null)
+                {
+                    dbOrder.Discord = orderDetails.Discord;
+                    dbOrder.Comment = orderDetails.Comments;
+                    dbOrder.Email = orderDetails.Email;
+                    dbOrder.PaymentMethod = orderDetails.PaymentMethod;
+                    dbOrder.PaymentCode = orderDetails.PaymentCode;
+                    dbOrder.Total = orderDetails.Total;
+                    dbOrder.OrderStatus = orderDetails.OrderStatus;
+                    dbOrder.Currency = orderDetails.Currency;
+                    dbOrder.CustomerIP = orderDetails.CustomerIP;
+                    dbOrder.UserAgent = orderDetails.UserAgent;
+                    dbOrder.OrderCreateTime = orderDetails.OrderCreateTime;
+                    dbOrder.OrderUpdateTime = orderDetails.OrderUpdateTime;
+                    dbOrder.EmailSended = orderDetails.EmailSended;
+                    dbOrder.EmailSendTime = orderDetails.EmailSendTime;
+                    dbOrder.CarryCoinsSpent = orderDetails.CarryCoinsSpent;
+                    dbOrder.CarryCoinsCollected = orderDetails.CarryCoinsCollected;
+                }
+            }
             context.SaveChanges();
         }
         public void SaveSEO(SeoDetails seoDetails)
         {
-            SEO dbSeo = context.SEO.Find(seoDetails.SEOId);
-            if (dbSeo != null)
+            if (seoDetails.SEOId.Equals(Guid.Empty))
             {
-                dbSeo.MetaTagTitle = seoDetails.MetaTagTitle;
-                dbSeo.MetaTagDescription = seoDetails.MetaTagDescription;
-                dbSeo.MetaTagKeyWords = seoDetails.MetaTagKeyWords;
-                dbSeo.SEOTags = seoDetails.SEOTags;
-                dbSeo.CustomTitle1 = seoDetails.CustomTitle1;
-                dbSeo.CustomTitle2 = seoDetails.CustomTitle2;
-                dbSeo.CustomImageTitle = seoDetails.CustomImageTitle;
-                dbSeo.CustomImageAlt = seoDetails.CustomImageAlt;
-                dbSeo.MetaRobots = seoDetails.MetaRobots;
-                dbSeo.UrlKeyWord = seoDetails.UrlKeyWord;
-                dbSeo.SEOImage = seoDetails.SEOImage;
-
-                context.SaveChanges();
+                SEO dbSeo = new SEO
+                {
+                    MetaTagTitle = seoDetails.MetaTagTitle,
+                    MetaTagDescription = seoDetails.MetaTagDescription,
+                    MetaTagKeyWords = seoDetails.MetaTagKeyWords,
+                    SEOTags = seoDetails.SEOTags,
+                    CustomTitle1 = seoDetails.CustomTitle1,
+                    CustomTitle2 = seoDetails.CustomTitle2,
+                    CustomImageTitle = seoDetails.CustomImageTitle,
+                    CustomImageAlt = seoDetails.CustomImageAlt,
+                    MetaRobots = seoDetails.MetaRobots,
+                    UrlKeyWord = seoDetails.UrlKeyWord,
+                    SEOImage = seoDetails.SEOImage
+                };
             }
-        }
+            else
+            {
+                SEO dbSeo = context.SEO.Find(seoDetails.SEOId);
+                    if (dbSeo != null)
+                    {
+                        dbSeo.MetaTagTitle = seoDetails.MetaTagTitle;
+                        dbSeo.MetaTagDescription = seoDetails.MetaTagDescription;
+                        dbSeo.MetaTagKeyWords = seoDetails.MetaTagKeyWords;
+                        dbSeo.SEOTags = seoDetails.SEOTags;
+                        dbSeo.CustomTitle1 = seoDetails.CustomTitle1;
+                        dbSeo.CustomTitle2 = seoDetails.CustomTitle2;
+                        dbSeo.CustomImageTitle = seoDetails.CustomImageTitle;
+                        dbSeo.CustomImageAlt = seoDetails.CustomImageAlt;
+                        dbSeo.MetaRobots = seoDetails.MetaRobots;
+                        dbSeo.UrlKeyWord = seoDetails.UrlKeyWord;
+                        dbSeo.SEOImage = seoDetails.SEOImage;
+                        }
+
+                    }
+            context.SaveChanges();
+            }
         public void SaveUsers(UsersDetails userDetails)
         {
             Users dbUsers = context.Users.Find(userDetails.UserId);
