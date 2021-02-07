@@ -8,7 +8,7 @@ Create table Article
 (
 	ArticleId uniqueidentifier Primary key
 	,Title nvarchar(100)
-	,ShortDescription nvarchar(255)
+	,ShortDescription nvarchar(500)
 	,[Description] nvarchar(max)
 	,ReadTime nvarchar(55)
 	,Tags nvarchar(255)
