@@ -1424,6 +1424,7 @@
     <Content Include="Views\Blog\Articles.cshtml" />
     <Content Include="Views\Blog\Blog.cshtml" />
     <Content Include="Views\Blog\TagSearch.cshtml" />
+    <Content Include="Views\Blog\LatestPosts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

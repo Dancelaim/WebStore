@@ -40,5 +40,10 @@ namespace WowCarry.WebUI.Controllers
             };
             return View(result);
         }
+        public PartialViewResult LatestPosts()
+        {
+            IEnumerable<Article> result = EntityRepository.Articles.OrderBy(a => a.ArticlePostTime).Take(4);
+            return PartialView(result);
+        }
     }
 }
