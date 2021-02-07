@@ -218,7 +218,7 @@ namespace WowCarry.Domain.Concrete
                     {
                         ProductPriceId = Guid.NewGuid(),
                         Region = "Europe",
-                        Price = productDetails.ProductPriceEU,
+                        Price = productDetails.ProductPriceEU ?? 0,
                         ProductId = prod.ProductId,
                         ProductSale = productDetails.ProductSaleEU
                     };
@@ -230,7 +230,7 @@ namespace WowCarry.Domain.Concrete
                     {
                         ProductPriceId = Guid.NewGuid(),
                         Region = "US&Oceania",
-                        Price = productDetails.ProductPriceUS,
+                        Price = productDetails.ProductPriceUS ?? 0,
                         ProductId = prod.ProductId,
                         ProductSale = productDetails.ProductSaleUS
                     };
