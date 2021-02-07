@@ -18,7 +18,7 @@
                         <div class="tag">
                             @foreach (var tag in tags)
                             {
-                                @Html.ActionLink(tag, "TagSearch", "Blog", new { Tag = tag })
+                                @Html.ActionLink(tag, "TagSearch", new { Tag = tag })
                             }
                         </div>
                         <h3 class="title"><a href="@Url.Action("Article", "Blog", new { articleId = bigArticle.ArticleId })">@bigArticle.Title </a></h3>
@@ -34,7 +34,7 @@
                         <div class="tag mob-tag">
                             @foreach (var tag in tags)
                             {
-                                @Html.ActionLink(tag, "TagSearch", "Blog", new { Tag = tag })
+                                @Html.ActionLink(tag, "TagSearch", new { Tag = tag })
                             }
                         </div>
                     </div>
