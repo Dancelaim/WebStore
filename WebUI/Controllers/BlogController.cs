@@ -35,7 +35,7 @@ namespace WowCarry.WebUI.Controllers
         {
             TagSearchViewModel result = new TagSearchViewModel()
             {
-                articles = EntityRepository.Articles,
+                articles = EntityRepository.Articles.Where(a=>a.Tags.Contains(Tag)),
                 tags = EntityRepository.Articles.Select(a => a.Tags).Distinct()
             };
             return View(result);
