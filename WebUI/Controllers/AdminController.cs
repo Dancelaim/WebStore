@@ -47,6 +47,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("List" + type, EntityRepository.Roles);
                 case "Orders":
                     return View("List" + type, EntityRepository.Orders);
+                case "Article":
+                    return View("List" + type, EntityRepository.Articles);
                 default: return View("Admin");
             }
         }
@@ -246,12 +248,36 @@ namespace WowCarry.WebUI.Controllers
                         return View("Save" + type, new RolesDetails
                         {
                             RoleName = roles.RoleName
+
                         });
                     }
                     else
                     {
                         return View("Save" + type, new RolesDetails { });
 
+                    }
+                case "Article":
+                    Article article = EntityRepository.Articles.Where(p => p.ArticleId == Id).FirstOrDefault();
+                    if (article != null)
+                    {
+                        return View("Save" + type, new ArticleDetails
+                        {
+                            ArticleId = article.ArticleId,
+                            Title = article.Title,
+                            ShortDescription = article.ShortDescription,
+                            Description = article.Description,
+                            ReadTime = article.ReadTime,
+                            Tags = article.Tags,
+                            ImagePath = article.ImagePath,
+                            Enabled = article.Enabled,
+                            Rating = article.Rating,
+                            ArticleCreateTime = article.ArticleCreateTime,
+                            ArticleUpdateTime = article.ArticleUpdateTime,
+                            ArticlePostTime = article.ArticlePostTime
+                        });
+                    }
+                    else {
+                        return View("Save" + type, new ArticleDetails { });
                     }
                 case "Orders":
                     Orders orders = EntityRepository.Orders.Where(p => p.OrderId == Id).FirstOrDefault();
@@ -607,6 +633,19 @@ namespace WowCarry.WebUI.Controllers
             else
             {
                 return RedirectToAction("List", new { type = "Ranks" });
+            }
+        }
+        public ActionResult SaveArticle(ArticleDetails ArticleDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveArticle(ArticleDetails);
+                TempData["message"] = string.Format("Article has been saved");
+                return RedirectToAction("List", new { type = "Article" });
+            }
+            else
+            {
+                return RedirectToAction("List", new { type = "Article" });
             }
         }
         [HttpPost]

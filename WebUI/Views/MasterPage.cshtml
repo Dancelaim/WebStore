@@ -58,6 +58,8 @@ else
                             <li><span class="menu-ico ico10"></span><span class="text-menu">@Html.RouteLink("Ranks", "AdminItem", new { Action = "List", type = "Ranks" }) </span></li>
                             <li><span class="menu-ico ico11"></span><span class="text-menu">@Html.RouteLink("Customers", "AdminItem", new { Action = "List", type = "Customers" })</span></li>
                             <li><span class="menu-ico ico12"></span><span class="text-menu">@Html.RouteLink("Roles","AdminItem",new { Action = "List", type = "Roles"})</span></li>
+                            <li><span class="menu-ico ico12"></span><span class="text-menu">@Html.RouteLink("Article", "AdminItem",new { Action = "List", type = "Article" })</span></li>
+
                         }
                         else if (User.IsInRole("Price Admin"))
                         {

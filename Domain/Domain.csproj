@@ -85,6 +85,7 @@
     <Compile Include="Entities\Customers.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ArticleDetails.cs" />
     <Compile Include="Entities\OrderCustomFields.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>

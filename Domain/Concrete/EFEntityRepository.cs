@@ -105,7 +105,41 @@ namespace WowCarry.Domain.Concrete
             }
             context.SaveChanges();
         }
+        public void SaveArticle(ArticleDetails articlesDetails)
+        {
+            Article dbArticle = context.Article.Find(articlesDetails.ArticleId);
+            if(dbArticle !=null)
+            {
+                dbArticle.Title = articlesDetails.Title;
+                dbArticle.ShortDescription = articlesDetails.ShortDescription;
+                dbArticle.Description = articlesDetails.Description;
+                dbArticle.ReadTime = articlesDetails.ReadTime;
+                dbArticle.Tags = articlesDetails.Tags;
+                dbArticle.ImagePath = articlesDetails.ImagePath;
+                dbArticle.Enabled = articlesDetails.Enabled;
+                dbArticle.Rating = articlesDetails.Rating;
+                dbArticle.ArticleCreateTime = articlesDetails.ArticleCreateTime;
+                dbArticle.ArticleUpdateTime = articlesDetails.ArticleUpdateTime;
+                dbArticle.ArticlePostTime = articlesDetails.ArticlePostTime;
+            }
+            else
+            {
+                dbArticle = new Article();
+                dbArticle.ArticleId = articlesDetails.ArticleId;
 
+                dbArticle.Title = articlesDetails.Title;
+                dbArticle.ShortDescription = articlesDetails.ShortDescription;
+                dbArticle.Description = articlesDetails.Description;
+                dbArticle.ReadTime = articlesDetails.ReadTime;
+                dbArticle.Tags = articlesDetails.Tags;
+                dbArticle.ImagePath = articlesDetails.ImagePath;
+                dbArticle.Enabled = articlesDetails.Enabled;
+                dbArticle.Rating = articlesDetails.Rating;
+                dbArticle.ArticleCreateTime = articlesDetails.ArticleCreateTime;
+                dbArticle.ArticleUpdateTime = articlesDetails.ArticleUpdateTime;
+                dbArticle.ArticlePostTime = articlesDetails.ArticlePostTime;
+            }
+        }
         public void SaveRanks(RankDetails rankDetails)
         {
             Ranks dbRanks = context.Ranks.Find(rankDetails.RankId);

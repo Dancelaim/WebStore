@@ -39,6 +39,7 @@ namespace WowCarry.Domain.Abstract
         void SaveCustomers(CustomersDetails customersDetails);
         void SaveRoles(RolesDetails rolesDetails);
         void SaveOrders(OrderDetails orderDetails);
+        void SaveArticle(ArticleDetails articleDetails);
         void RemoveHtmlBlock(Guid htmlBlockId);
     }
 }
