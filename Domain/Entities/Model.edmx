@@ -22,7 +22,7 @@
           <Property Name="Rating" Type="int" />
           <Property Name="ArticleCreateTime" Type="datetime" />
           <Property Name="ArticleUpdateTime" Type="datetime" />
-          <Property Name="ArticlePostTime" Type="datetime" />
+          <Property Name="ArticlePostTime" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -1377,7 +1377,7 @@
           <Property Name="Rating" Type="Int32" />
           <Property Name="ArticleCreateTime" Type="DateTime" Precision="3" />
           <Property Name="ArticleUpdateTime" Type="DateTime" Precision="3" />
-          <Property Name="ArticlePostTime" Type="DateTime" Precision="3" />
+          <Property Name="ArticlePostTime" Type="DateTime" Precision="3" Nullable="false" />
           <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK_ProductGame" FromRole="Article" ToRole="ProductGame" />
           <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK_SEO" FromRole="Article" ToRole="SEO" />
         </EntityType>
