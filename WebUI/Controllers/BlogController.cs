@@ -5,6 +5,7 @@ using WowCarry.Domain.Abstract;
 using WebUI.Models;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 namespace WowCarry.WebUI.Controllers
 {
@@ -33,10 +34,19 @@ namespace WowCarry.WebUI.Controllers
         }
         public ViewResult TagSearch(string Tag)
         {
+            List<string> resultTags = new List<string>();
+
+            var tags = string.Join(", ", EntityRepository.Articles.Select(a => a.Tags).Distinct());
+
+            foreach (var singleTag in tags.Split(','))
+            {
+                resultTags.Add(singleTag);
+            }
+
             TagSearchViewModel result = new TagSearchViewModel()
             {
                 articles = EntityRepository.Articles.Where(a=>a.Tags.Contains(Tag)),
-                tags = EntityRepository.Articles.Select(a => a.Tags).Distinct()
+                tags = resultTags
             };
             return View(result);
         }

@@ -52,7 +52,7 @@ namespace WowCarry.Domain.Entities
         public Nullable<System.DateTime> ArticleUpdateTime { get; set; }
 
         [Display(Name = "ArticlePostTime")]
-        public Nullable<System.DateTime> ArticlePostTime { get; set; }
+        public System.DateTime ArticlePostTime { get; set; }
 
         public virtual ProductGame ProductGame { get; set; }
         public virtual SEO SEO { get; set; }
