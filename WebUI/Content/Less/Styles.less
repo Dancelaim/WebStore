@@ -3241,6 +3241,13 @@ blog-article {
 
     h2 {
         margin: 15px 0;
+
+        a {
+            font-style: normal;
+            font-weight: 600;
+            font-size: 18px;
+            line-height: 25px;
+        }
     }
 
     .post-item {
@@ -3251,9 +3258,10 @@ blog-article {
         border-bottom: 1px solid @color9;
 
         .tag {
-            &.mob-tag{
-                display:none;
-            } 
+            &.mob-tag {
+                display: none;
+            }
+
             a {
                 display: inline-block;
                 background: @color3;
@@ -3308,7 +3316,7 @@ blog-article {
                     img {
                         display: block;
                         max-width: 105%;
-                        margin-top:-2%;
+                        margin-top: -2%;
                         height: auto;
                     }
                 }
@@ -3359,6 +3367,7 @@ blog-article {
         position: relative;
         overflow: hidden;
         padding-right: 30px;
+        margin-bottom: 45px;
 
         .post-image {
             margin-bottom: 15px;
@@ -3366,6 +3375,182 @@ blog-article {
 
         .title {
             margin-top: 10px;
+        }
+    }
+}
+.blog-tags {
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+    max-width: @maxwidth;
+
+    aside {
+        width: 27%;
+        position: relative;
+        float: left;
+
+        .tags-list {
+            li {
+                display: inline-block;
+                margin: 0 15px 15px 0;
+
+                a {
+                    display: inline-block;
+                    background: @color3;
+                    border: 1px solid @color10;
+                    box-sizing: border-box;
+                    border-radius: 38px;
+                    text-decoration: none;
+                    font-family: @o;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: @color1;
+                    padding: 8px 16px;
+                    transition: all 0.3s ease;
+
+                    &.active {
+                        background: @color1;
+                        border-color: transparent;
+                        color: @color3;
+
+                        &:hover {
+                            background: @color5;
+                            color: @color3;
+                        }
+                    }
+
+                    &:hover {
+                        border-color: @color5;
+                        color: @color5;
+                    }
+                }
+            }
+        }
+    }
+
+    .articles-list {
+        float: right;
+        width: 72%;
+
+        .post-item {
+            width: 100%;
+            float: left;
+            padding: 0 20px 20px 0;
+            margin-bottom: 20px;
+            position: relative;
+
+            &:after {
+                bottom: 0;
+                left: 0;
+                right: 20px;
+                border-bottom: 1px solid @color9;
+                content: '';
+                height: 1px;
+                position: absolute;
+            }
+
+
+            .tag {
+                &.mob-tag {
+                    display: none;
+                }
+
+                a {
+                    display: inline-block;
+                    background: @color3;
+                    border: 1px solid @color10;
+                    box-sizing: border-box;
+                    border-radius: 16px;
+                    text-decoration: none;
+                    font-family: @o;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 16px;
+                    color: @color1;
+                    padding: 4px 8px;
+                    margin: 0 8px 3px 0;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        border-color: @color5;
+                        color: @color5;
+                    }
+                }
+            }
+
+
+            .post-heading {
+                .title {
+                    a {
+                        color: @color2;
+                    }
+                }
+            }
+
+            .post-image {
+                display: inline-block;
+                overflow: hidden;
+                vertical-align: top;
+                margin-right: 30px;
+                width: 293px;
+                height: 194px;
+
+                a {
+                    display: inline-block;
+                    overflow: hidden;
+                    vertical-align: top;
+                    margin-right: 30px;
+                    width: 293px;
+                    height: 194px;
+                    position: relative;
+
+                    img {
+                        display: block;
+                        max-width: 100%;
+                        height: auto;
+                    }
+                }
+            }
+
+            .post-text {
+                display: inline-block;
+                vertical-align: top;
+                width: 70%;
+            }
+
+
+            .post-body {
+                color: @color4;
+
+                .date {
+                    font-style: normal;
+                    font-weight: bold;
+                    font-size: 12px;
+                    line-height: 16px;
+                    display: inline-block;
+                }
+
+                .readtime_thumb {
+                    display: inline-block;
+                    margin-left: 17px;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 12px;
+                    line-height: 16px;
+                    position: relative;
+
+                    &:before {
+                        position: relative;
+                        top: 4px;
+                        display: inline-block;
+                        padding-right: 5px;
+                        content: url(/Images/Blog/icons/miniclock2.svg);
+                    }
+                }
+            }
         }
     }
 }

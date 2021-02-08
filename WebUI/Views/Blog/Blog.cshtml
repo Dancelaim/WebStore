@@ -54,9 +54,9 @@
                     <div class="post-text">
                         <div class="post-heading">
                             <div class="tag">
-                                @foreach (var tag in tags)
+                                @foreach (var tag in atrticles.Tags.Split(','))
                                 {
-                                    @Html.ActionLink(tag, "TagSearch", "Blog", new { Tag = tag })
+                                    @Html.ActionLink(tag, "TagSearch", new { Tag = tag })
                                 }
                             </div>
                             <h3 class="title"><a href="@Url.Action("Article", "Blog", new { articleId = atrticles.ArticleId })">@atrticles.Title </a></h3>
@@ -72,7 +72,7 @@
                             <div class="tag mob-tag">
                                 @foreach (var tag in tags)
                                 {
-                                    @Html.ActionLink(tag, "TagSearch", "Blog", new { Tag = tag })
+                                    @Html.ActionLink(tag, "TagSearch", new { Tag = tag })
                                 }
                             </div>
                         </div>
