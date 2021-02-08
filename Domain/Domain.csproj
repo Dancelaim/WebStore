@@ -222,6 +222,7 @@
     <Content Include="ScriptHistory\15.sql" />
     <Content Include="ScriptHistory\14.sql" />
     <Content Include="ScriptHistory\13.sql" />
+    <Content Include="ScriptHistory\40.sql" />
     <Content Include="ScriptHistory\39.sql" />
     <Content Include="ScriptHistory\38.sql" />
     <Content Include="ScriptHistory\37.sql" />

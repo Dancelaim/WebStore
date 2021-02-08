@@ -2916,7 +2916,8 @@ blog-article .info_article .article_title .tag a:hover {
 }
 .articles-blog .post-item.small-post .post-image a img {
   display: block;
-  max-width: 100%;
+  max-width: 105%;
+  margin-top: -2%;
   height: auto;
 }
 .articles-blog .post-item.small-post .post-text {
