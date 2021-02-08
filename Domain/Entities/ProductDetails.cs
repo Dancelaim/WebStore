@@ -28,7 +28,7 @@ namespace WowCarry.Domain.Entities
         public bool PreOrder { get; set; }
 
         [Display(Name = "Status")]
-        public bool? ProductEnabled { get; set; }
+        public bool ProductEnabled { get; set; }
 
         [Display(Name = "Product Quantity")]
         public int? ProductQuantity { get; set; }
