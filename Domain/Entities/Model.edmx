@@ -118,7 +118,7 @@
           <Property Name="ProductGameId" Type="uniqueidentifier" />
           <Property Name="ProductSubCategoryId" Type="uniqueidentifier" />
           <Property Name="ProductPriority" Type="int" />
-          <Property Name="ProductEnabled" Type="bit" />
+          <Property Name="ProductEnabled" Type="bit" Nullable="false" />
           <Property Name="ProductImageThumb" Type="nvarchar" MaxLength="55" />
         </EntityType>
         <EntityType Name="ProductCategory">
@@ -1031,7 +1031,7 @@
           <NavigationProperty Name="ProductPrice" Relationship="WowCarryModel.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
           <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK_Products_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
           <Property Name="ProductPriority" Type="Int32" />
-          <Property Name="ProductEnabled" Type="Boolean" />
+          <Property Name="ProductEnabled" Type="Boolean" Nullable="false" />
           <Property Name="ProductImageThumb" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="ProductOptions" Relationship="WowCarryModel.FK_Product_ProductOption" FromRole="Product" ToRole="ProductOptions" />
         </EntityType>
