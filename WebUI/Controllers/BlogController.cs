@@ -38,14 +38,14 @@ namespace WowCarry.WebUI.Controllers
 
             var tags = string.Join(", ", EntityRepository.Articles.Select(a => a.Tags).Distinct());
 
-            foreach (var singleTag in tags.Split(','))
+            foreach (var singleTag in tags.Split(',').Distinct())
             {
                 resultTags.Add(singleTag);
             }
 
             TagSearchViewModel result = new TagSearchViewModel()
             {
-                articles = EntityRepository.Articles.Where(a=>a.Tags.Contains(Tag)),
+                articles = EntityRepository.Articles.Where(a=>a.Tags.Contains(Tag.Trim())),
                 tags = resultTags
             };
             return View(result);

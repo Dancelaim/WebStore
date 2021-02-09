@@ -5,29 +5,34 @@
         <div class="featured-block">
             <div class="featured_title">Featured Products</div>
             <div class="featured-links">
-                <div class="featured-links_in desktop-list">
-                    <span class="best_wow_shadowlands_deals">WoW Shadowlands</span>
-                    <span class="best_world_of_warcraft_classic_deals">World of Warcraft Classic</span>
-                    <span class="best_path_of_exile_boosting_deals">Path Of Exile Boosting</span>
-                    <div id="magic-bg" style="left: 195.062px; width: 187px;"></div>
-                </div>
-                <div class="featured-links-mobile">
-                    <div class="mobile-title">Choose the game:</div>
-                    <div class="featured-links_in mobile-list">
-                        <div class="title-list">
-                            <div class="title-item">WoW Shadowlands</div>
-                            <div class="title-item">World of Warcraft Classic</div>
-                            <div class="title-item">Path Of Exile Boosting</div>
-                        </div>
-                        <div class="cat-list">
-                            <span class="best_wow_shadowlands_deals">WoW Shadowlands</span>
-                            <span class="best_world_of_warcraft_classic_deals">World of Warcraft Classic</span>
-                            <span class="best_path_of_exile_boosting_deals">Path Of Exile Boosting</span>
+                @if (Request.Browser.IsMobileDevice)
+                {<div class="featured-links-mobile">
+                        <div class="mobile-title">Choose the game:</div>
+                        <div class="featured-links_in mobile-list">
+                            <div class="title-list">
+                                <div class="title-item">WoW Shadowlands</div>
+                                <div class="title-item">World of Warcraft Classic</div>
+                                <div class="title-item">Path Of Exile Boosting</div>
+                            </div>
+                            <div class="cat-list">
+                                <span class="best_wow_shadowlands_deals">WoW Shadowlands</span>
+                                <span class="best_world_of_warcraft_classic_deals">World of Warcraft Classic</span>
+                                <span class="best_path_of_exile_boosting_deals">Path Of Exile Boosting</span>
+                            </div>
                         </div>
                     </div>
-                </div>
+                    
+                }
+                else
+                {
+                   <div class="featured-links_in desktop-list">
+                        <span class="best_wow_shadowlands_deals">WoW Shadowlands</span>
+                        <span class="best_world_of_warcraft_classic_deals">World of Warcraft Classic</span>
+                        <span class="best_path_of_exile_boosting_deals">Path Of Exile Boosting</span>
+                        <div id="magic-bg" style="left: 195.062px; width: 187px;"></div>
+                    </div> 
+                }
             </div>
-
             <div class="featured_box" id="best_wow_shadowlands_deals">
                 @Html.Action("RecommendedProducts", new { game = "World of Warcraft" })
             </div>

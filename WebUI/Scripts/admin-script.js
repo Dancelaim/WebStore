@@ -204,6 +204,10 @@ $(document).on("click", ".left-column .title span.nav-ico", function () {
         $(".content").addClass("content-collapsed");
     }
 })
+$(document).on("click", ".left-column ul .dropdown", function () {
+    $(this).find(".dropdown-menu").toggle();
+})
+
 //Upload product image to Controller
 $(".ImageUpload").change(function () {
     var formData = new FormData();

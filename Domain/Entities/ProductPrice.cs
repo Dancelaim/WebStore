@@ -16,7 +16,7 @@ namespace WowCarry.Domain.Entities
     {
         public System.Guid ProductPriceId { get; set; }
         public string Region { get; set; }
-        public decimal Price { get; set; }
+        public Nullable<decimal> Price { get; set; }
         public System.Guid ProductId { get; set; }
         public Nullable<decimal> ProductSale { get; set; }
     

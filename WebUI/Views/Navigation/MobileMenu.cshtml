@@ -31,24 +31,35 @@
                     <div class="title_cat">Games</div>
 
                     <ul class="nav navbar-nav mobile-menu">
-                        <li class="dropdown-li">
-                            <span>
-                                <a href="" class="cat_plus_link"> category.name </a> <a class="cat_plus dropdown-plus"></a>
-                            </span>
-                            <div class="dropdown-menu">
-                                <ul class="list-unstyled submenu">
-                                    <li @*if child.children*@ class="dropdown-parent">
-                                        <span>
-                                            <a href="" @*if child.children*@ class="cat_plus_link">child.name </a>
-                                            @*if child.children*@ <a class="cat_plus submenu-dropdown"></a>
-                                        </span>
-                                        <ul class="list-unstyled dropdown-submenu">
-                                            <li class="subcategory"><a href=""> child3.name </a></li>
-                                        </ul>
-                                    </li>
-                            </div>
-                        </li>
-                    </ul>
+                        @foreach (var game in Model.Games)
+                        {
+                            <li class="dropdown-li">
+                                <span>
+                                    @Html.RouteLink(game.GameName, "GameDetails", new { currentGame = game.GameShortUrl }, new { @class = String.Format(game.GameShortUrl + "_ico") })
+                                    <a class="cat_plus dropdown-plus"></a>
+                                </span>
+                                <div class="dropdown-menu">
+                                    <ul class="list-unstyled submenu">
+                                    @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
+                                    {
+                                        <li @*if child.children*@ class="dropdown-parent">
+                                            <span>
+                                                @Html.RouteLink(b.Value, "Sorted", new { selectedGame = game.GameShortUrl, categoryName = b.Value }, new { @class = "cat_plus_link" })
+                                                <a class="cat_plus submenu-dropdown"></a>
+                                            </span>
+                                            @*  @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
+                                                {
+                                                   <ul class="list-unstyled dropdown-submenu">
+                                                        <li class="subcategory"><a href=""> child3.name </a></li>
+                                                    </ul>
+                                            }*@
+
+                                        </li>
+                                    }
+                                </div>
+                            </li>
+                        }
+                        </ul>
 
 
 

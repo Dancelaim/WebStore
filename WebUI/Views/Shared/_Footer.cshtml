@@ -66,6 +66,7 @@
 </footer>
 <script src="~/Scripts/accardeon.js"></script>
 <script>
+    //discord copy link
     function hideText() {
         $(".social_footer .disc_link .text_block").css({ "opacity": "0", "z-index": "-9" });
     }
@@ -82,6 +83,24 @@
             container.css({ "opacity": "0", "z-index": "-9" });
         }
     });
+
+    //footer menu
+    $(".foot_menu .title").on("click", function () {
+        if ($(".foot_menu").hasClass("active_menu")) {
+            $(".foot_menu").removeClass("active_menu");
+        } else {
+            $(".foot_menu").addClass("active_menu");
+        }
+    });
+    $(".footer_category .title").on("click", function () {
+        if ($(".footer_category").hasClass("active_menu")) {
+            $(".footer_category").removeClass("active_menu");
+        } else {
+            $(".footer_category").addClass("active_menu");
+        }
+    });
+</script>
+
 </script>
 </body>
 </html>

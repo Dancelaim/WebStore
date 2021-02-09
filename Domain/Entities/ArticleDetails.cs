@@ -54,6 +54,8 @@ namespace WowCarry.Domain.Entities
         [Display(Name = "ArticlePostTime")]
         public System.DateTime ArticlePostTime { get; set; }
 
+        [Display(Name = "Game name")]
+        public SelectList GamesList { get; set; }
         public virtual ProductGame ProductGame { get; set; }
         public virtual SEO SEO { get; set; }
     }

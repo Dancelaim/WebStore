@@ -49,7 +49,15 @@ else
                         {
                             <li><span class="menu-ico ico2"></span><span class="text-menu"> @Html.RouteLink("Products", "AdminItem", new { Action = "List", type = "Product" }) </span></li>
                             <li><span class="menu-ico ico3"></span><span class="text-menu"> @Html.RouteLink("TemplateOptions", "AdminItem", new { Action = "List", type = "TemplateOption" }) </span></li>
-                            <li><span class="menu-ico ico4"></span><span class="text-menu"> @Html.RouteLink("Product Games", "AdminItem", new { Action = "List", type = "ProductGame" }) </span></li>
+                            <li class="dropdown">
+                        <span class="menu-ico ico4"></span>
+                        <span class="text-menu"><a>Games & Categories</a></span>
+                        <ul class="dropdown-menu">
+                            <li> @Html.RouteLink("Product Games", "AdminItem", new { Action = "List", type = "ProductGame" })</li>
+                            <li> @Html.RouteLink("Product Category", "AdminItem", new { Action = "List", type = "ProductGame" })</li>
+                            <li> @Html.RouteLink("Product SubCategory", "AdminItem", new { Action = "List", type = "ProductGame" })</li>
+                        </ul>
+                            </li>
                             <li><span class="menu-ico ico5"></span><span class="text-menu"> @Html.RouteLink("Html Blocks", "AdminItem", new { Action = "List", type = "HtmlBlocks" }) </span></li>
                             <li><span class="menu-ico ico6"></span><span class="text-menu"> @Html.RouteLink("SEO", "AdminItem", new { Action = "List", type = "SEO" }) </span></li>
                             <li><span class="menu-ico ico7"></span><span class="text-menu"><a> Coupons</a> </span></li>
