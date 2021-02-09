@@ -35,7 +35,7 @@ namespace WebUI.Controllers
             };
             return PartialView(result);
         }
-        public PartialViewResult GameCategoryMenu()
+        public PartialViewResult GameCategoryMenu(bool isMobile = false)
         {
             var cat = EntityRepository.Products.Select(p => p.ProductCategory).Select(c => new { c.ProductGame.GameName, c.ProductCategoryName }).Distinct();
 
@@ -44,6 +44,9 @@ namespace WebUI.Controllers
                 Games = EntityRepository.Products.Select(p => p.ProductGame).Distinct(),
                 ProductCategories = cat.AsEnumerable().Select(item => new KeyValuePair<string, string>(item.GameName, item.ProductCategoryName)).ToList()
             };
+
+            if (isMobile)
+                return PartialView("MobileMenu", model);
 
             return PartialView(model);
         }
