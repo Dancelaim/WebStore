@@ -50,6 +50,7 @@
         <AssociationConnector Association="WowCarryModel.FK__Users__RoleId__3A179ED3" />
         <AssociationConnector Association="WowCarryModel.FK__TempOptio__Paren__66EA454A" />
         <AssociationConnector Association="WowCarryModel.FK_TempOptionParams_TempOptionParams" />
+        <AssociationConnector Association="WowCarryModel.FK__ProductOp__Optio__67DE6983" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -405,6 +405,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ProductOp__Optio__67DE6983">
+          <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="0..1" />
+          <End Role="ProductOptions1" Type="Self.ProductOptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOptions">
+              <PropertyRef Name="OptionId" />
+            </Principal>
+            <Dependent Role="ProductOptions1">
+              <PropertyRef Name="OptionParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ProductOp__Paren__65F62111">
           <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="0..1" />
           <End Role="ProductOptionParams" Type="Self.ProductOptionParams" Multiplicity="*" />
@@ -639,6 +651,10 @@
             <End Role="SEO" EntitySet="SEO" />
             <End Role="ProductGame" EntitySet="ProductGame" />
           </AssociationSet>
+          <AssociationSet Name="FK__ProductOp__Optio__67DE6983" Association="Self.FK__ProductOp__Optio__67DE6983">
+            <End Role="ProductOptions" EntitySet="ProductOptions" />
+            <End Role="ProductOptions1" EntitySet="ProductOptions" />
+          </AssociationSet>
           <AssociationSet Name="FK__ProductOp__Paren__65F62111" Association="Self.FK__ProductOp__Paren__65F62111">
             <End Role="ProductOptions" EntitySet="ProductOptions" />
             <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
@@ -819,6 +835,10 @@
           <AssociationSet Name="FK_TempOptionParams_TempOptionParams" Association="WowCarryModel.FK_TempOptionParams_TempOptionParams">
             <End Role="TempOptionParams" EntitySet="TempOptionParams" />
             <End Role="TempOptionParams1" EntitySet="TempOptionParams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductOp__Optio__67DE6983" Association="WowCarryModel.FK__ProductOp__Optio__67DE6983">
+            <End Role="ProductOptions" EntitySet="ProductOptions" />
+            <End Role="ProductOptions1" EntitySet="ProductOptions" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="Article">
@@ -1013,7 +1033,7 @@
           <Property Name="ParameterSale" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ParameterParentId" Type="Guid" />
           <NavigationProperty Name="ProductOptions" Relationship="WowCarryModel.FK__ProductOp__Paren__65F62111" FromRole="ProductOptionParams" ToRole="ProductOptions" />
-          <NavigationProperty Name="ProductOptionParams1" Relationship="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" FromRole="ProductOptionParams" ToRole="ProductOptionParams1" />
+          <NavigationProperty Name="ParamParent" Relationship="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" FromRole="ProductOptionParams" ToRole="ProductOptionParams1" />
           <NavigationProperty Name="ProductOptionParams2" Relationship="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" FromRole="ProductOptionParams1" ToRole="ProductOptionParams" />
         </EntityType>
         <EntityType Name="ProductOptions">
@@ -1027,6 +1047,8 @@
           <Property Name="OptionProductId" Type="Guid" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK_ProductOptions_Product" FromRole="ProductOptions" ToRole="Product" />
           <NavigationProperty Name="ProductOptionParams" Relationship="WowCarryModel.FK__ProductOp__Paren__65F62111" FromRole="ProductOptions" ToRole="ProductOptionParams" />
+          <NavigationProperty Name="ProductOptionsChild" Relationship="WowCarryModel.FK__ProductOp__Optio__67DE6983" FromRole="ProductOptions" ToRole="ProductOptions1" />
+          <NavigationProperty Name="ProductOptionsParent" Relationship="WowCarryModel.FK__ProductOp__Optio__67DE6983" FromRole="ProductOptions1" ToRole="ProductOptions" />
         </EntityType>
         <EntityType Name="ProductPrice">
           <Key>
@@ -1428,6 +1450,18 @@
             </Principal>
             <Dependent Role="TempOptionParams1">
               <PropertyRef Name="Delete" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductOp__Optio__67DE6983">
+          <End Type="WowCarryModel.ProductOptions" Role="ProductOptions" Multiplicity="0..1" />
+          <End Type="WowCarryModel.ProductOptions" Role="ProductOptions1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOptions">
+              <PropertyRef Name="OptionId" />
+            </Principal>
+            <Dependent Role="ProductOptions1">
+              <PropertyRef Name="OptionParentId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
