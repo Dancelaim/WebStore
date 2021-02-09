@@ -28,6 +28,7 @@ namespace WowCarry.Domain.Entities
         public string ParameterSale { get; set; }
         public Nullable<System.Guid> ParameterParentId { get; set; }
     
+        public virtual ProductOptions ProductOptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductOptionParams> ProductOptionParams1 { get; set; }
         public virtual ProductOptionParams ProductOptionParams2 { get; set; }

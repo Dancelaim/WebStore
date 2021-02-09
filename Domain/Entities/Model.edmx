@@ -10,8 +10,8 @@
             <PropertyRef Name="ArticleId" />
           </Key>
           <Property Name="ArticleId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="100" />
-          <Property Name="ShortDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="ShortDescription" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="ReadTime" Type="nvarchar" MaxLength="55" />
           <Property Name="Tags" Type="nvarchar" MaxLength="255" />
@@ -187,7 +187,7 @@
           </Key>
           <Property Name="ProductPriceId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Region" Type="nvarchar" MaxLength="10" />
-          <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Price" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ProductId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ProductSale" Type="decimal" Precision="18" Scale="1" />
         </EntityType>
@@ -215,7 +215,7 @@
           </Key>
           <Property Name="RealmId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ProductGameId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RealmName" Type="nvarchar" MaxLength="55" />
+          <Property Name="RealmName" Type="nvarchar" MaxLength="55" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -260,6 +260,7 @@
           <Property Name="ParameterPrice" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="ParentOptionId" Type="uniqueidentifier" />
           <Property Name="ParameterSale" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Delete" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="Users">
           <Key>
@@ -272,7 +273,7 @@
           <Property Name="Email" Type="nvarchar" MaxLength="55" />
           <Property Name="DefaultPage" Type="nvarchar" MaxLength="55" />
         </EntityType>
-        <Association Name="FK__Customers__RankI__038683F8">
+        <Association Name="FK__Customers__RankI__44952D46">
           <End Role="Ranks" Type="Self.Ranks" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -284,19 +285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__RankI__056ECC6A">
-          <End Role="Ranks" Type="Self.Ranks" Multiplicity="0..1" />
-          <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Ranks">
-              <PropertyRef Name="RankId" />
-            </Principal>
-            <Dependent Role="Customers">
-              <PropertyRef Name="RankId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__HtmlBlock__SiteB__31B762FC">
+        <Association Name="FK__HtmlBlocksChildren_HtmlBlocks">
           <End Role="HtmlBlocks" Type="Self.HtmlBlocks" Multiplicity="1" />
           <End Role="HtmlBlocksChildren" Type="Self.HtmlBlocksChildren" Multiplicity="*" />
           <ReferentialConstraint>
@@ -308,7 +297,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__Customer__0B27A5C0">
+        <Association Name="FK__Orders__Customer__4A4E069C">
           <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -320,7 +309,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__OrderCus__0A338187">
+        <Association Name="FK__Orders__OrderCus__4959E263">
           <End Role="OrderCustomFields" Type="Self.OrderCustomFields" Multiplicity="0..1" />
           <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
           <ReferentialConstraint>
@@ -329,6 +318,18 @@
             </Principal>
             <Dependent Role="Orders">
               <PropertyRef Name="OrderCustomFieldsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Product__Product__662B2B3B">
+          <End Role="SEO" Type="Self.SEO" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEO">
+              <PropertyRef Name="SEOId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductSEOId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -368,19 +369,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__SEO">
-          <End Role="SEO" Type="Self.SEO" Multiplicity="0..1" />
-          <End Role="Product" Type="Self.Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SEO">
-              <PropertyRef Name="SEOId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ProductSEOId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductCa__Categ__4F47C5E3">
+        <Association Name="FK__ProductCa__Categ__6AEFE058">
           <End Role="SEO" Type="Self.SEO" Multiplicity="0..1" />
           <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -404,7 +393,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductGa__GameS__4E53A1AA">
+        <Association Name="FK__ProductGa__GameS__69FBBC1F">
           <End Role="SEO" Type="Self.SEO" Multiplicity="0..1" />
           <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="*" />
           <ReferentialConstraint>
@@ -416,7 +405,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductSu__SubCa__503BEA1C">
+        <Association Name="FK__ProductOp__Paren__65F62111">
+          <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="0..1" />
+          <End Role="ProductOptionParams" Type="Self.ProductOptionParams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOptions">
+              <PropertyRef Name="OptionId" />
+            </Principal>
+            <Dependent Role="ProductOptionParams">
+              <PropertyRef Name="ParentOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductSu__SubCa__6BE40491">
           <End Role="SEO" Type="Self.SEO" Multiplicity="0..1" />
           <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="*" />
           <ReferentialConstraint>
@@ -428,7 +429,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Realms__ProductG__3E1D39E1">
+        <Association Name="FK__Realms__ProductG__4F47C5E3">
           <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="1" />
           <End Role="Realms" Type="Self.Realms" Multiplicity="*" />
           <ReferentialConstraint>
@@ -440,7 +441,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Users__RoleId__6BAEFA67">
+        <Association Name="FK__TempOptio__Paren__66EA454A">
+          <End Role="TemplateOptions" Type="Self.TemplateOptions" Multiplicity="0..1" />
+          <End Role="TempOptionParams" Type="Self.TempOptionParams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TemplateOptions">
+              <PropertyRef Name="OptionId" />
+            </Principal>
+            <Dependent Role="TempOptionParams">
+              <PropertyRef Name="ParentOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Users__RoleId__3A179ED3">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Users" Type="Self.Users" Multiplicity="*" />
           <ReferentialConstraint>
@@ -449,18 +462,6 @@
             </Principal>
             <Dependent Role="Users">
               <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Product_ProductOption">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="ProductId" />
-            </Principal>
-            <Dependent Role="ProductOptions">
-              <PropertyRef Name="OptionProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -502,27 +503,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ProductOptions_ProductOptionParams">
-          <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="0..1" />
-          <End Role="ProductOptionParams" Type="Self.ProductOptionParams" Multiplicity="*" />
+        <Association Name="FK_ProductOptions_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ProductOptions">
-              <PropertyRef Name="OptionId" />
+            <Principal Role="Product">
+              <PropertyRef Name="ProductId" />
             </Principal>
-            <Dependent Role="ProductOptionParams">
-              <PropertyRef Name="ParentOptionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductOptions_ProductOptions">
-          <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="0..1" />
-          <End Role="ProductOptions1" Type="Self.ProductOptions" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductOptions">
-              <PropertyRef Name="OptionId" />
-            </Principal>
-            <Dependent Role="ProductOptions1">
-              <PropertyRef Name="OptionParentId" />
+            <Dependent Role="ProductOptions">
+              <PropertyRef Name="OptionProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -566,15 +555,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_TemplateOptions_TempOptionParams">
-          <End Role="TemplateOptions" Type="Self.TemplateOptions" Multiplicity="0..1" />
-          <End Role="TempOptionParams" Type="Self.TempOptionParams" Multiplicity="*" />
+        <Association Name="FK_TempOptionParams_TempOptionParams">
+          <End Role="TempOptionParams" Type="Self.TempOptionParams" Multiplicity="0..1" />
+          <End Role="TempOptionParams1" Type="Self.TempOptionParams" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="TemplateOptions">
-              <PropertyRef Name="OptionId" />
+            <Principal Role="TempOptionParams">
+              <PropertyRef Name="ParameterId" />
             </Principal>
-            <Dependent Role="TempOptionParams">
-              <PropertyRef Name="ParentOptionId" />
+            <Dependent Role="TempOptionParams1">
+              <PropertyRef Name="Delete" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -606,25 +595,25 @@
           <EntitySet Name="TemplateOptions" EntityType="Self.TemplateOptions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TempOptionParams" EntityType="Self.TempOptionParams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Customers__RankI__038683F8" Association="Self.FK__Customers__RankI__038683F8">
+          <AssociationSet Name="FK__Customers__RankI__44952D46" Association="Self.FK__Customers__RankI__44952D46">
             <End Role="Ranks" EntitySet="Ranks" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__RankI__056ECC6A" Association="Self.FK__Customers__RankI__056ECC6A">
-            <End Role="Ranks" EntitySet="Ranks" />
-            <End Role="Customers" EntitySet="Customers" />
-          </AssociationSet>
-          <AssociationSet Name="FK__HtmlBlock__SiteB__31B762FC" Association="Self.FK__HtmlBlock__SiteB__31B762FC">
+          <AssociationSet Name="FK__HtmlBlocksChildren_HtmlBlocks" Association="Self.FK__HtmlBlocksChildren_HtmlBlocks">
             <End Role="HtmlBlocks" EntitySet="HtmlBlocks" />
             <End Role="HtmlBlocksChildren" EntitySet="HtmlBlocksChildren" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__Customer__0B27A5C0" Association="Self.FK__Orders__Customer__0B27A5C0">
+          <AssociationSet Name="FK__Orders__Customer__4A4E069C" Association="Self.FK__Orders__Customer__4A4E069C">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__OrderCus__0A338187" Association="Self.FK__Orders__OrderCus__0A338187">
+          <AssociationSet Name="FK__Orders__OrderCus__4959E263" Association="Self.FK__Orders__OrderCus__4959E263">
             <End Role="OrderCustomFields" EntitySet="OrderCustomFields" />
             <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Product__Product__662B2B3B" Association="Self.FK__Product__Product__662B2B3B">
+            <End Role="SEO" EntitySet="SEO" />
+            <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK__Product__ProductDescription" Association="Self.FK__Product__ProductDescription">
             <End Role="ProductDescription" EntitySet="ProductDescription" />
@@ -638,11 +627,7 @@
             <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__SEO" Association="Self.FK__Product__SEO">
-            <End Role="SEO" EntitySet="SEO" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductCa__Categ__4F47C5E3" Association="Self.FK__ProductCa__Categ__4F47C5E3">
+          <AssociationSet Name="FK__ProductCa__Categ__6AEFE058" Association="Self.FK__ProductCa__Categ__6AEFE058">
             <End Role="SEO" EntitySet="SEO" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
@@ -650,25 +635,29 @@
             <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductGa__GameS__4E53A1AA" Association="Self.FK__ProductGa__GameS__4E53A1AA">
+          <AssociationSet Name="FK__ProductGa__GameS__69FBBC1F" Association="Self.FK__ProductGa__GameS__69FBBC1F">
             <End Role="SEO" EntitySet="SEO" />
             <End Role="ProductGame" EntitySet="ProductGame" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductSu__SubCa__503BEA1C" Association="Self.FK__ProductSu__SubCa__503BEA1C">
+          <AssociationSet Name="FK__ProductOp__Paren__65F62111" Association="Self.FK__ProductOp__Paren__65F62111">
+            <End Role="ProductOptions" EntitySet="ProductOptions" />
+            <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductSu__SubCa__6BE40491" Association="Self.FK__ProductSu__SubCa__6BE40491">
             <End Role="SEO" EntitySet="SEO" />
             <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK__Realms__ProductG__3E1D39E1" Association="Self.FK__Realms__ProductG__3E1D39E1">
+          <AssociationSet Name="FK__Realms__ProductG__4F47C5E3" Association="Self.FK__Realms__ProductG__4F47C5E3">
             <End Role="ProductGame" EntitySet="ProductGame" />
             <End Role="Realms" EntitySet="Realms" />
           </AssociationSet>
-          <AssociationSet Name="FK__Users__RoleId__6BAEFA67" Association="Self.FK__Users__RoleId__6BAEFA67">
+          <AssociationSet Name="FK__TempOptio__Paren__66EA454A" Association="Self.FK__TempOptio__Paren__66EA454A">
+            <End Role="TemplateOptions" EntitySet="TemplateOptions" />
+            <End Role="TempOptionParams" EntitySet="TempOptionParams" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Users__RoleId__3A179ED3" Association="Self.FK__Users__RoleId__3A179ED3">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Product_ProductOption" Association="Self.FK_Product_ProductOption">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="ProductOptions" EntitySet="ProductOptions" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductCategory_ProductGame" Association="Self.FK_ProductCategory_ProductGame">
             <End Role="ProductGame" EntitySet="ProductGame" />
@@ -682,13 +671,9 @@
             <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
             <End Role="ProductOptionParams1" EntitySet="ProductOptionParams" />
           </AssociationSet>
-          <AssociationSet Name="FK_ProductOptions_ProductOptionParams" Association="Self.FK_ProductOptions_ProductOptionParams">
+          <AssociationSet Name="FK_ProductOptions_Product" Association="Self.FK_ProductOptions_Product">
+            <End Role="Product" EntitySet="Product" />
             <End Role="ProductOptions" EntitySet="ProductOptions" />
-            <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductOptions_ProductOptions" Association="Self.FK_ProductOptions_ProductOptions">
-            <End Role="ProductOptions" EntitySet="ProductOptions" />
-            <End Role="ProductOptions1" EntitySet="ProductOptions" />
           </AssociationSet>
           <AssociationSet Name="FK_ProductPrice_Product" Association="Self.FK_ProductPrice_Product">
             <End Role="Product" EntitySet="Product" />
@@ -702,9 +687,9 @@
             <End Role="SEO" EntitySet="SEO" />
             <End Role="Article" EntitySet="Article" />
           </AssociationSet>
-          <AssociationSet Name="FK_TemplateOptions_TempOptionParams" Association="Self.FK_TemplateOptions_TempOptionParams">
-            <End Role="TemplateOptions" EntitySet="TemplateOptions" />
+          <AssociationSet Name="FK_TempOptionParams_TempOptionParams" Association="Self.FK_TempOptionParams_TempOptionParams">
             <End Role="TempOptionParams" EntitySet="TempOptionParams" />
+            <End Role="TempOptionParams1" EntitySet="TempOptionParams" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -811,6 +796,10 @@
             <End Role="ProductGame" EntitySet="ProductGame" />
             <End Role="Realms" EntitySet="Realms" />
           </AssociationSet>
+          <AssociationSet Name="FK__ProductOp__Paren__65F62111" Association="WowCarryModel.FK__ProductOp__Paren__65F62111">
+            <End Role="ProductOptions" EntitySet="ProductOptions" />
+            <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
+          </AssociationSet>
           <AssociationSet Name="FK_ProductOptionParams_ProductOptionParams" Association="WowCarryModel.FK_ProductOptionParams_ProductOptionParams">
             <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
             <End Role="ProductOptionParams1" EntitySet="ProductOptionParams" />
@@ -822,6 +811,10 @@
           <AssociationSet Name="FK__Users__RoleId__3A179ED3" Association="WowCarryModel.FK__Users__RoleId__3A179ED3">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__TempOptio__Paren__66EA454A" Association="WowCarryModel.FK__TempOptio__Paren__66EA454A">
+            <End Role="TemplateOptions" EntitySet="TemplateOptions" />
+            <End Role="TempOptionParams" EntitySet="TempOptionParams" />
           </AssociationSet>
           <AssociationSet Name="FK_TempOptionParams_TempOptionParams" Association="WowCarryModel.FK_TempOptionParams_TempOptionParams">
             <End Role="TempOptionParams" EntitySet="TempOptionParams" />
@@ -1019,6 +1012,7 @@
           <Property Name="ParentOptionId" Type="Guid" />
           <Property Name="ParameterSale" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ParameterParentId" Type="Guid" />
+          <NavigationProperty Name="ProductOptions" Relationship="WowCarryModel.FK__ProductOp__Paren__65F62111" FromRole="ProductOptionParams" ToRole="ProductOptions" />
           <NavigationProperty Name="ProductOptionParams1" Relationship="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" FromRole="ProductOptionParams" ToRole="ProductOptionParams1" />
           <NavigationProperty Name="ProductOptionParams2" Relationship="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" FromRole="ProductOptionParams1" ToRole="ProductOptionParams" />
         </EntityType>
@@ -1032,6 +1026,7 @@
           <Property Name="OptionParentId" Type="Guid" />
           <Property Name="OptionProductId" Type="Guid" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK_ProductOptions_Product" FromRole="ProductOptions" ToRole="Product" />
+          <NavigationProperty Name="ProductOptionParams" Relationship="WowCarryModel.FK__ProductOp__Paren__65F62111" FromRole="ProductOptions" ToRole="ProductOptionParams" />
         </EntityType>
         <EntityType Name="ProductPrice">
           <Key>
@@ -1113,6 +1108,7 @@
           <Property Name="OptionName" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <Property Name="OptionType" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="OptionParentId" Type="Guid" />
+          <NavigationProperty Name="TempOptionParams" Relationship="WowCarryModel.FK__TempOptio__Paren__66EA454A" FromRole="TemplateOptions" ToRole="TempOptionParams" />
         </EntityType>
         <EntityType Name="TempOptionParams">
           <Key>
@@ -1125,6 +1121,7 @@
           <Property Name="ParentOptionId" Type="Guid" />
           <Property Name="ParameterSale" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Delete" Type="Guid" />
+          <NavigationProperty Name="TemplateOptions" Relationship="WowCarryModel.FK__TempOptio__Paren__66EA454A" FromRole="TempOptionParams" ToRole="TemplateOptions" />
           <NavigationProperty Name="TempOptionParams1" Relationship="WowCarryModel.FK_TempOptionParams_TempOptionParams" FromRole="TempOptionParams" ToRole="TempOptionParams1" />
           <NavigationProperty Name="TempOptionParams2" Relationship="WowCarryModel.FK_TempOptionParams_TempOptionParams" FromRole="TempOptionParams1" ToRole="TempOptionParams" />
         </EntityType>
@@ -1362,6 +1359,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ProductOp__Paren__65F62111">
+          <End Type="WowCarryModel.ProductOptions" Role="ProductOptions" Multiplicity="0..1" />
+          <End Type="WowCarryModel.ProductOptionParams" Role="ProductOptionParams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductOptions">
+              <PropertyRef Name="OptionId" />
+            </Principal>
+            <Dependent Role="ProductOptionParams">
+              <PropertyRef Name="ParentOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_ProductOptionParams_ProductOptionParams">
           <End Type="WowCarryModel.ProductOptionParams" Role="ProductOptionParams" Multiplicity="0..1" />
           <End Type="WowCarryModel.ProductOptionParams" Role="ProductOptionParams1" Multiplicity="*" />
@@ -1395,6 +1404,18 @@
             </Principal>
             <Dependent Role="Users">
               <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__TempOptio__Paren__66EA454A">
+          <End Type="WowCarryModel.TemplateOptions" Role="TemplateOptions" Multiplicity="0..1" />
+          <End Type="WowCarryModel.TempOptionParams" Role="TempOptionParams" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TemplateOptions">
+              <PropertyRef Name="OptionId" />
+            </Principal>
+            <Dependent Role="TempOptionParams">
+              <PropertyRef Name="ParentOptionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1685,6 +1706,7 @@
           <EntitySetMapping Name="TempOptionParams">
             <EntityTypeMapping TypeName="WowCarryModel.TempOptionParams">
               <MappingFragment StoreEntitySet="TempOptionParams">
+                <ScalarProperty Name="Delete" ColumnName="Delete" />
                 <ScalarProperty Name="ParameterSale" ColumnName="ParameterSale" />
                 <ScalarProperty Name="ParentOptionId" ColumnName="ParentOptionId" />
                 <ScalarProperty Name="ParameterPrice" ColumnName="ParameterPrice" />

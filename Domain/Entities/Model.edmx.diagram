@@ -5,27 +5,27 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6660a71e30804c0094a903298793cac1" Name="Diagram1" ZoomLevel="88">
-        <EntityTypeShape EntityType="WowCarryModel.Article" Width="1.5" PointX="5.25" PointY="18.125" />
-        <EntityTypeShape EntityType="WowCarryModel.Customers" Width="1.5" PointX="7" PointY="2.375" />
-        <EntityTypeShape EntityType="WowCarryModel.HtmlBlocks" Width="1.5" PointX="9.75" PointY="8" />
-        <EntityTypeShape EntityType="WowCarryModel.HtmlBlocksChildren" Width="1.5" PointX="12" PointY="8" />
-        <EntityTypeShape EntityType="WowCarryModel.OrderCustomFields" Width="1.5" PointX="7" PointY="6.75" />
-        <EntityTypeShape EntityType="WowCarryModel.Orders" Width="1.5" PointX="9.25" PointY="1.125" />
-        <EntityTypeShape EntityType="WowCarryModel.Product" Width="1.5" PointX="8.25" PointY="18.5" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductCategory" Width="1.5" PointX="8.25" PointY="14.75" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductDescription" Width="1.5" PointX="6" PointY="23.5" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductGame" Width="1.5" PointX="3" PointY="27.25" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductOptionParams" Width="1.5" PointX="2.75" PointY="0.75" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductOptions" Width="1.5" PointX="10.5" PointY="21.625" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductPrice" Width="1.5" PointX="10.5" PointY="18.625" />
-        <EntityTypeShape EntityType="WowCarryModel.ProductSubCategory" Width="1.5" PointX="3" PointY="24" />
-        <EntityTypeShape EntityType="WowCarryModel.Ranks" Width="1.5" PointX="4.75" PointY="2.75" />
-        <EntityTypeShape EntityType="WowCarryModel.Realms" Width="1.5" PointX="5.25" PointY="27.875" />
-        <EntityTypeShape EntityType="WowCarryModel.Roles" Width="1.5" PointX="0.75" PointY="6.375" />
-        <EntityTypeShape EntityType="WowCarryModel.SEO" Width="1.5" PointX="0.75" PointY="10.25" />
-        <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="2.75" PointY="9.75" />
-        <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="0.75" PointY="0.75" />
-        <EntityTypeShape EntityType="WowCarryModel.Users" Width="1.5" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="WowCarryModel.Article" Width="1.5" PointX="5" PointY="8.875" />
+        <EntityTypeShape EntityType="WowCarryModel.Customers" Width="1.5" PointX="11.375" PointY="0.875" />
+        <EntityTypeShape EntityType="WowCarryModel.HtmlBlocks" Width="1.5" PointX="0.875" PointY="7.125" />
+        <EntityTypeShape EntityType="WowCarryModel.HtmlBlocksChildren" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="WowCarryModel.OrderCustomFields" Width="1.5" PointX="7.125" PointY="0.875" />
+        <EntityTypeShape EntityType="WowCarryModel.Orders" Width="1.5" PointX="9.25" PointY="0.875" />
+        <EntityTypeShape EntityType="WowCarryModel.Product" Width="1.5" PointX="15.375" PointY="8.875" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductCategory" Width="1.5" PointX="11.25" PointY="8.875" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductDescription" Width="1.5" PointX="19.375" PointY="12.125" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductGame" Width="1.5" PointX="9.25" PointY="8.875" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductOptionParams" Width="1.5" PointX="19.375" PointY="8.875" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductOptions" Width="1.5" PointX="17.5" PointY="8.875" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductPrice" Width="1.5" PointX="17.5" PointY="12.125" />
+        <EntityTypeShape EntityType="WowCarryModel.ProductSubCategory" Width="1.5" PointX="13.375" PointY="8.875" />
+        <EntityTypeShape EntityType="WowCarryModel.Ranks" Width="1.5" PointX="13.625" PointY="0.875" />
+        <EntityTypeShape EntityType="WowCarryModel.Realms" Width="1.5" PointX="9.25" PointY="6.375" />
+        <EntityTypeShape EntityType="WowCarryModel.Roles" Width="1.5" PointX="0.75" PointY="4.625" />
+        <EntityTypeShape EntityType="WowCarryModel.SEO" Width="1.5" PointX="6.875" PointY="8.875" />
+        <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="0.625" PointY="1" />
+        <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="WowCarryModel.Users" Width="1.5" PointX="3" PointY="4.25" />
         <AssociationConnector Association="WowCarryModel.FK_ProductGame" />
         <AssociationConnector Association="WowCarryModel.FK_SEO" />
         <AssociationConnector Association="WowCarryModel.FK__Customers__RankI__44952D46" />
@@ -44,9 +44,11 @@
         <AssociationConnector Association="WowCarryModel.FK_ProductCategory_ProductGame" />
         <AssociationConnector Association="WowCarryModel.FK__ProductGa__GameS__69FBBC1F" />
         <AssociationConnector Association="WowCarryModel.FK__Realms__ProductG__4F47C5E3" />
+        <AssociationConnector Association="WowCarryModel.FK__ProductOp__Paren__65F62111" />
         <AssociationConnector Association="WowCarryModel.FK_ProductOptionParams_ProductOptionParams" />
         <AssociationConnector Association="WowCarryModel.FK__ProductSu__SubCa__6BE40491" />
         <AssociationConnector Association="WowCarryModel.FK__Users__RoleId__3A179ED3" />
+        <AssociationConnector Association="WowCarryModel.FK__TempOptio__Paren__66EA454A" />
         <AssociationConnector Association="WowCarryModel.FK_TempOptionParams_TempOptionParams" />
       </Diagram>
     </edmx:Diagrams>
