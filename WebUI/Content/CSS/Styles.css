@@ -600,14 +600,16 @@ header .bottom {
   background: #161828;
   font-size: 30px;
 }
-#logo {
+#logo,
+#logo-mobile {
   float: left;
   margin: 0 0 0 -5px;
   padding-top: 20px;
   position: relative;
   z-index: 2;
 }
-#logo img {
+#logo img,
+#logo-mobile img {
   width: 149px;
 }
 .logo_foot {
@@ -2465,6 +2467,7 @@ footer .disc_link:hover img {
   transform: translate(0, 0);
 }
 #mobile-menu #menuModal .modal-dialog {
+  width: 100%;
   margin: 0;
   top: 0;
   bottom: 0;
@@ -2601,6 +2604,7 @@ footer .disc_link:hover img {
   margin: 0;
   min-width: auto;
   vertical-align: top;
+  font-size: 0;
   width: 48px;
   background: url(/Images/mainImages/icons/plus.svg) 50% 50% no-repeat;
   display: inline-block;

@@ -35,7 +35,8 @@
                         {
                             <li class="dropdown-li">
                                 <span>
-                                    @Html.RouteLink(game.GameName, "GameDetails", new { currentGame = game.GameShortUrl }, new { @class = String.Format(game.GameShortUrl + "_ico cat_plus dropdown-plus") })
+                                    @Html.RouteLink(game.GameName, "GameDetails", new { currentGame = game.GameShortUrl }, new { @class = String.Format(game.GameShortUrl + "_ico") })
+                                    <a class="cat_plus dropdown-plus"></a>
                                 </span>
                                 <div class="dropdown-menu">
                                     <ul class="list-unstyled submenu">
@@ -44,14 +45,15 @@
                                         <li @*if child.children*@ class="dropdown-parent">
                                             <span>
                                                 @Html.RouteLink(b.Value, "Sorted", new { selectedGame = game.GameShortUrl, categoryName = b.Value }, new { @class = "cat_plus_link" })
-
-                                                @*if child.children*@ 
-                                                @Html.RouteLink("+", "Sorted", new { selectedGame = game.GameShortUrl, categoryName = b.Value }, new { @class = "cat_plus submenu-dropdown" })
-
+                                                <a class="cat_plus submenu-dropdown"></a>
                                             </span>
-                                            @*<ul class="list-unstyled dropdown-submenu">
-                                                <li class="subcategory"><a href=""> child3.name </a></li>
-                                            </ul>*@
+                                            @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
+                                            {
+                                                @*<ul class="list-unstyled dropdown-submenu">
+                                                    <li class="subcategory"><a href=""> child3.name </a></li>
+                                                </ul>*@
+                                            }
+
                                         </li>
                                     }
                                 </div>

@@ -24,14 +24,16 @@
             <div class="top">
                 <div id="content">
 
-                    <div id="logo"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
+
 
                     @if (Request.Browser.IsMobileDevice)
                     {
-                        @Html.Action("GameCategoryMenu", "Navigation", new { isMobile = true})
+                        @Html.Action("GameCategoryMenu", "Navigation", new { isMobile = true })
+                        <div id="logo-mobile"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
                     }
                     else
                     {
+                        <div id="logo"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
                         <div class="games-top-menu-block">
                             <div class="hover-button">
                                 <div class="no-category" style="display: inline-block;">@Session["SelectedGame"]</div>
