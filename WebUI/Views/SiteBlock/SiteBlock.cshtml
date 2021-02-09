@@ -1,5 +1,7 @@
 ﻿@model WowCarry.Domain.Entities.HtmlBlocks
 
+@if (Model != null)
+{
 <div class=@Model.ParentCSSClass>
         <h2>@Model.ParentTitle </h2>
         <div class=@Model.ChildCSSClass>
@@ -9,3 +11,4 @@
             }
         </div>
     </div>
+}
