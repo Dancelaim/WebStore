@@ -44,7 +44,6 @@
                                     @if (property.PropertyName.Contains("SelectedGame"))
                                     {
                                         @Html.DropDownListFor(m => m.SelectedGame, Model.GamesList)
-                                        @Html.HiddenFor(m => m.SelectedGame)
                                     }
                                     else if (property.PropertyName.Contains("SelectedCategory"))
                                     {

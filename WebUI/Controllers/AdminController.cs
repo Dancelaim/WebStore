@@ -262,6 +262,7 @@ namespace WowCarry.WebUI.Controllers
                     {
                         return View("Save" + type, new ArticleDetails
                         {
+                            GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), article?.ProductGame.GameName ?? "Select Game"),
                             ArticleId = article.ArticleId,
                             Title = article.Title,
                             ShortDescription = article.ShortDescription,
@@ -277,6 +278,7 @@ namespace WowCarry.WebUI.Controllers
                         });
                     }
                     else {
+                        
                         return View("Save" + type, new ArticleDetails { });
                     }
                 case "Orders":
