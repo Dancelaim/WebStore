@@ -26,38 +26,44 @@
 
                     <div id="logo"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
 
-                    <div class="games-top-menu-block">
-                        <div class="hover-button">
-                            <div class="no-category" style="display: inline-block;">@Session["SelectedGame"]</div>
-                            <i class="fa"></i>
+                    @if (Request.Browser.IsMobileDevice)
+                    {
+                        @Html.Action("GameCategoryMenu", "Navigation", new { isMobile = true})
+                    }
+                    else
+                    {
+                        <div class="games-top-menu-block">
+                            <div class="hover-button">
+                                <div class="no-category" style="display: inline-block;">@Session["SelectedGame"]</div>
+                                <i class="fa"></i>
+                            </div>
+                            <ul class="dropdown-menu">
+                                @Html.Action("GameMenu", "Navigation")
+                            </ul>
                         </div>
-                        <ul class="dropdown-menu">
-                            @Html.Action("GameMenu", "Navigation")
-                        </ul>
-                    </div>
-
-                    <div class="top_curr">
-                        <div class="top_currency">
-                            <div class="pull-left">
-                                <form action="" method="post" enctype="multipart/form-data" id="form-currency">
-                                    <div class="btn-group">
-                                        <div class="hover-button">
-                                            <span> Europe </span>
-                                            <i class="fa"></i>
+                        <div class="top_curr">
+                            <div class="top_currency">
+                                <div class="pull-left">
+                                    <form action="" method="post" enctype="multipart/form-data" id="form-currency">
+                                        <div class="btn-group">
+                                            <div class="hover-button">
+                                                <span> Europe </span>
+                                                <i class="fa"></i>
+                                            </div>
+                                            <ul class="dropdown-menu">
+                                                <li>
+                                                    <button class="currency-select btn btn-link btn-block" type="button" name="EUR">Europe</button>
+                                                </li>
+                                                <li>
+                                                    <button class="currency-select btn btn-link btn-block" type="button" name="USD">US&amp;Oceania</button>
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <ul class="dropdown-menu">
-                                            <li>
-                                                <button class="currency-select btn btn-link btn-block" type="button" name="EUR">Europe</button>
-                                            </li>
-                                            <li>
-                                                <button class="currency-select btn btn-link btn-block" type="button" name="USD">US&amp;Oceania</button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </form>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    }
                     <button id="toggleCart" type="button" class="btn-cart" data-toggle="modal" data-target="#cartModal">
                         Cart(<span id="qty"></span>)
                     </button>
@@ -108,7 +114,10 @@
                 <div id="content">
                     <div class="navbar" id="navbarSupportedContent">
                         <ul class="navbar-nav mr-auto">
-                            @Html.Action("CategoryMenu", "Navigation")
+                            @if(!Request.Browser.IsMobileDevice)
+                            {
+                                @Html.Action("CategoryMenu", "Navigation")
+                            }
                         </ul>
                     </div>
                 </div>
