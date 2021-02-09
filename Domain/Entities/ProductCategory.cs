@@ -27,10 +27,10 @@ namespace WowCarry.Domain.Entities
         public Nullable<System.Guid> ProductSubCategoryId { get; set; }
         public Nullable<System.Guid> CategorySeoId { get; set; }
     
-        public virtual ProductGame ProductGame { get; set; }
-        public virtual ProductSubCategory ProductSubCategory { get; set; }
-        public virtual SEO SEO { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
+        public virtual SEO SEO { get; set; }
+        public virtual ProductSubCategory ProductSubCategory { get; set; }
+        public virtual ProductGame ProductGame { get; set; }
     }
 }

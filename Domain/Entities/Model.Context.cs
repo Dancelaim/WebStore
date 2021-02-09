@@ -27,27 +27,27 @@ namespace WowCarry.Domain.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<ProductCategory> ProductCategory { get; set; }
-        public virtual DbSet<ProductGame> ProductGame { get; set; }
-        public virtual DbSet<ProductPrice> ProductPrice { get; set; }
-        public virtual DbSet<ProductDescription> ProductDescription { get; set; }
-        public virtual DbSet<ProductSubCategory> ProductSubCategory { get; set; }
+        public virtual DbSet<Article> Article { get; set; }
+        public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<HtmlBlocks> HtmlBlocks { get; set; }
         public virtual DbSet<HtmlBlocksChildren> HtmlBlocksChildren { get; set; }
-        public virtual DbSet<Realms> Realms { get; set; }
-        public virtual DbSet<SEO> SEO { get; set; }
-        public virtual DbSet<Product> Product { get; set; }
-        public virtual DbSet<ProductOptionParams> ProductOptionParams { get; set; }
-        public virtual DbSet<ProductOptions> ProductOptions { get; set; }
-        public virtual DbSet<TemplateOptions> TemplateOptions { get; set; }
-        public virtual DbSet<TempOptionParams> TempOptionParams { get; set; }
-        public virtual DbSet<Roles> Roles { get; set; }
-        public virtual DbSet<Users> Users { get; set; }
-        public virtual DbSet<Ranks> Ranks { get; set; }
-        public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<OrderCustomFields> OrderCustomFields { get; set; }
         public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Article> Article { get; set; }
+        public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<ProductCategory> ProductCategory { get; set; }
+        public virtual DbSet<ProductDescription> ProductDescription { get; set; }
+        public virtual DbSet<ProductGame> ProductGame { get; set; }
+        public virtual DbSet<ProductOptionParams> ProductOptionParams { get; set; }
+        public virtual DbSet<ProductOptions> ProductOptions { get; set; }
+        public virtual DbSet<ProductPrice> ProductPrice { get; set; }
+        public virtual DbSet<ProductSubCategory> ProductSubCategory { get; set; }
+        public virtual DbSet<Ranks> Ranks { get; set; }
+        public virtual DbSet<Realms> Realms { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
+        public virtual DbSet<SEO> SEO { get; set; }
+        public virtual DbSet<TemplateOptions> TemplateOptions { get; set; }
+        public virtual DbSet<TempOptionParams> TempOptionParams { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
     
         public virtual int Check_db_Version(Nullable<short> script)
         {

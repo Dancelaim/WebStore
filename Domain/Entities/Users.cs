@@ -14,10 +14,10 @@ namespace WowCarry.Domain.Entities
     
     public partial class Users
     {
+        public System.Guid UserId { get; set; }
         public string UserName { get; set; }
         public string UserPassword { get; set; }
         public Nullable<System.Guid> RoleId { get; set; }
-        public System.Guid UserId { get; set; }
         public string Email { get; set; }
         public string DefaultPage { get; set; }
     

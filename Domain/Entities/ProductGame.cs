@@ -17,10 +17,10 @@ namespace WowCarry.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductGame()
         {
+            this.Article = new HashSet<Article>();
+            this.Product = new HashSet<Product>();
             this.ProductCategory = new HashSet<ProductCategory>();
             this.Realms = new HashSet<Realms>();
-            this.Product = new HashSet<Product>();
-            this.Article = new HashSet<Article>();
         }
     
         public System.Guid ProductGameId { get; set; }
@@ -30,13 +30,13 @@ namespace WowCarry.Domain.Entities
         public Nullable<System.Guid> GameSeoId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductCategory> ProductCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Realms> Realms { get; set; }
-        public virtual SEO SEO { get; set; }
+        public virtual ICollection<Article> Article { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Article> Article { get; set; }
+        public virtual ICollection<ProductCategory> ProductCategory { get; set; }
+        public virtual SEO SEO { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Realms> Realms { get; set; }
     }
 }

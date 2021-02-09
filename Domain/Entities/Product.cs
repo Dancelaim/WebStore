@@ -17,8 +17,8 @@ namespace WowCarry.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Product()
         {
-            this.ProductPrice = new HashSet<ProductPrice>();
             this.ProductOptions = new HashSet<ProductOptions>();
+            this.ProductPrice = new HashSet<ProductPrice>();
         }
     
         public System.Guid ProductId { get; set; }
@@ -38,14 +38,14 @@ namespace WowCarry.Domain.Entities
         public bool ProductEnabled { get; set; }
         public string ProductImageThumb { get; set; }
     
-        public virtual ProductGame ProductGame { get; set; }
-        public virtual ProductSubCategory ProductSubCategory { get; set; }
         public virtual SEO SEO { get; set; }
         public virtual ProductDescription ProductDescription { get; set; }
+        public virtual ProductGame ProductGame { get; set; }
+        public virtual ProductSubCategory ProductSubCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductOptions> ProductOptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrice { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductOptions> ProductOptions { get; set; }
     }
 }

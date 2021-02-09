@@ -17,7 +17,7 @@ namespace WowCarry.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProductOptionParams()
         {
-            this.ProductOptionParamsParent = new HashSet<ProductOptionParams>();
+            this.ProductOptionParams1 = new HashSet<ProductOptionParams>();
         }
     
         public System.Guid ParameterId { get; set; }
@@ -29,8 +29,7 @@ namespace WowCarry.Domain.Entities
         public Nullable<System.Guid> ParameterParentId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductOptionParams> ProductOptionParamsParent { get; set; }
-        public virtual ProductOptionParams ProductOptionParamsChild { get; set; }
-        public virtual ProductOptions ProductOptions { get; set; }
+        public virtual ICollection<ProductOptionParams> ProductOptionParams1 { get; set; }
+        public virtual ProductOptionParams ProductOptionParams2 { get; set; }
     }
 }

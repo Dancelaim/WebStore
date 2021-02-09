@@ -28,7 +28,6 @@ namespace WowCarry.Domain.Entities
         public string ParameterSale { get; set; }
         public Nullable<System.Guid> Delete { get; set; }
     
-        public virtual TemplateOptions TemplateOptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TempOptionParams> TempOptionParams1 { get; set; }
         public virtual TempOptionParams TempOptionParams2 { get; set; }
