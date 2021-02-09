@@ -6,18 +6,18 @@
         <div class="games-list-in">
             @foreach (var game in Model.Games)
             {
-                <div class="game-item @game.GameName">
+            <div class="game-item @game.GameName">
 
-                    <div class="title">@game.GameName</div>
-                    <a href="/wow" class="main-link-mobile"></a>
-                    <div class="links-list">
-                        <a href="/wow" class="main-link">Show Services</a>
-                        @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
-                        {
-                            @Html.RouteLink(b.Value, "Sorted", new { selectedGame = game.GameShortUrl, categoryName = b.Value })
-                        }
-                    </div>
+                <div class="title">@game.GameName</div>
+                @Html.RouteLink("+", "GameDetails", new { currentGame = game.GameShortUrl }, new { @class = ("main-link-mobile") })
+                <div class="links-list">
+                    @Html.RouteLink("Show Services", "GameDetails", new { currentGame = game.GameShortUrl }, new { @class = ("main-link") })
+                    @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
+                    {
+                        @Html.RouteLink(b.Value, "Sorted", new { selectedGame = game.GameShortUrl, categoryName = b.Value })
+                    }
                 </div>
+            </div>
 
             }
             <div class="game-item Heartstone coming-soon">
