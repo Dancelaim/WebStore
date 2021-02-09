@@ -19,20 +19,14 @@
 </head>
 
 <body>
-    <div class="cover">
+    <div class="@(Request.Browser.IsMobileDevice ? "cover mobile-cover" : "cover")">
         <header>
             <div class="top">
                 <div id="content">
-
-
-
-                    @if (Request.Browser.IsMobileDevice)
-                    {
+                    @if (Request.Browser.IsMobileDevice){
                         @Html.Action("GameCategoryMenu", "Navigation", new { isMobile = true })
                         <div id="logo-mobile"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
-                    }
-                    else
-                    {
+                    }else{
                         <div id="logo"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
                         <div class="games-top-menu-block">
                             <div class="hover-button">

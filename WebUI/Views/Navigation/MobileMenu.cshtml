@@ -47,12 +47,12 @@
                                                 @Html.RouteLink(b.Value, "Sorted", new { selectedGame = game.GameShortUrl, categoryName = b.Value }, new { @class = "cat_plus_link" })
                                                 <a class="cat_plus submenu-dropdown"></a>
                                             </span>
-                                            @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
-                                            {
-                                                @*<ul class="list-unstyled dropdown-submenu">
-                                                    <li class="subcategory"><a href=""> child3.name </a></li>
-                                                </ul>*@
-                                            }
+                                            @*  @foreach (var b in Model.ProductCategories.Where(k => k.Key == game.GameName))
+                                                {
+                                                   <ul class="list-unstyled dropdown-submenu">
+                                                        <li class="subcategory"><a href=""> child3.name </a></li>
+                                                    </ul>
+                                            }*@
 
                                         </li>
                                     }
