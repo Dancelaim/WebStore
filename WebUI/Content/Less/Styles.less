@@ -2083,9 +2083,10 @@ footer .disc_link {
     vertical-align:top;
 
     .image {
-        width: 378px;
-        height: 250px;
         background: @color1;
+        img{
+            width:100%;
+        }
     }
 
     h4 {
@@ -2747,6 +2748,9 @@ footer .disc_link {
         }
     }
 }
+#logo-mobile {
+    padding-top: 15px;
+}
 #mobile-menu {
     display: inline-block;
     float: left;
@@ -2810,7 +2814,7 @@ footer .disc_link {
         border: none;
         background: url(/Images/burger.svg) 50% 50% no-repeat;
         box-shadow: none;
-        padding: 33px 32px 31px;
+        padding: 30px 29px 25px;
 
         &:hover {
             background-color: none;
@@ -2826,7 +2830,7 @@ footer .disc_link {
     }
 
     #menuModal .modal-dialog {
-        width:100%;
+        width: 100%;
         margin: 0;
         top: 0;
         bottom: 0;
@@ -2866,7 +2870,7 @@ footer .disc_link {
                                 font-weight: normal;
                                 font-size: 16px;
                                 line-height: 22px;
-                                padding:13px 16px;
+                                padding: 13px 16px;
                             }
                         }
                     }
@@ -2983,7 +2987,7 @@ footer .disc_link {
                             margin: 0;
                             min-width: auto;
                             vertical-align: top;
-                            font-size:0;
+                            font-size: 0;
                             width: 48px;
                             background: url(/Images/mainImages/icons/plus.svg) 50% 50% no-repeat;
                             display: inline-block;
@@ -3301,9 +3305,13 @@ blog-article {
                 height: 44px;
                 overflow: hidden;
                 text-align: left;
+                color:@color4;
             }
         }
     }
+}
+.mobile-read-all{
+    display:none;
 }
 .articles-blog {
     margin: 0 auto;
@@ -4065,6 +4073,7 @@ blog-article {
                     text-align: center;
                     width: 100%;
                     display: block;
+                    padding:0;
                 }
             }
 
@@ -4105,6 +4114,12 @@ blog-article {
         //footer
         //footer end
         //main page
+        .product-layout{
+            width:21%;
+        }
+        .product-layout h4{
+            font-size:16px;
+        }
         .select-games-block.category-games .games-list .game-item .links-list, .select-games-block.category-games .games-list .game-item .title {
             display: none;
         }
@@ -4154,6 +4169,8 @@ blog-article {
             }
 
             .search-bar .search-btn {
+                width: 40px;
+                height: 53px;
                 padding: 16px 10px 12px 10px;
             }
 
@@ -4180,6 +4197,109 @@ blog-article {
     //footer
     //footer end
     //main page
+    .latest-post h2 {
+        margin-bottom: 16px !important;
+    }
+    .product-layout {
+        margin: 0 auto;
+        width: 98%;
+        padding: 16px 0;
+        border-bottom: 1px solid @color9;
+
+        .image {
+            width: 150px;
+            height: 99px;
+            float: left;
+            margin-right: 16px;
+        }
+
+        .caption {
+            width: 100%;
+            float: left;
+            position: relative;
+            margin: -102px 0 0 0;
+            min-height: 99px;
+            padding-left: 164px;
+
+            h4 {
+                margin: 0;
+            }
+
+            .price {
+                position: absolute;
+                bottom: 0;
+                margin: 0;
+            }
+        }
+    }
+    .purchase_block .purchase_block_in .purchase_in .image {
+        padding-bottom: 0;
+        margin-right: 16px;
+        display: inline-block;
+        height: auto;
+    }
+    .purchase_block .purchase_block_in .purchase_in .title {
+        text-align: left;
+        width: 80%;
+        display: inline-block;
+    }
+    .purchase_block .purchase_block_in .purchase_in .text {
+        text-align: left;
+        width: 97%;
+        display: inline-block;
+        padding-left: 70px;
+        padding-top: 6px;
+    }
+    .latest-post .post-item {
+        width: 93%;
+        margin: 0 auto 15px;
+        padding-bottom: 20px;
+        position: relative;
+        display: block;
+        height: auto !important;
+    }
+    .latest-post .post-item .post-heading {
+        padding: 0;
+        margin: 0;
+        position: relative;
+
+        .title a {
+            font-size: 15px;
+        }
+    }
+
+    .latest-post .post-item .post-body {
+        padding-left: 122px;
+        min-height: 61px;
+    }
+    .latest-post .post-item .post-image {
+        display: inline-block;
+        width: 100px;
+        height: 61px;
+        position: absolute;
+        bottom: 16px;
+        left: 16px;
+        img {
+            width: 100%;
+            margin-top: 0;
+        }
+    }
+    .mobile-read-all {
+        display: block;
+        margin: -15px 16px 0;
+        padding: 13px 40px;
+        font-family: @o;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 22px;
+        text-align: center;
+        color: @color1;
+        -webkit-border-radius: 100px;
+        border-radius: 100px;
+        border: 1px solid @color1;
+        text-decoration: none;
+    }
     //main page end
 }
     

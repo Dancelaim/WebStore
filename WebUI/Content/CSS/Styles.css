@@ -1900,9 +1900,10 @@ footer .disc_link:hover img {
   vertical-align: top;
 }
 .product-layout .image {
-  width: 378px;
-  height: 250px;
   background: #6D94C4;
+}
+.product-layout .image img {
+  width: 100%;
 }
 .product-layout h4 {
   margin: 10px 0;
@@ -2463,6 +2464,9 @@ footer .disc_link:hover img {
 #common-home .description ul {
   padding: 0 0 0 40px;
 }
+#logo-mobile {
+  padding-top: 15px;
+}
 #mobile-menu {
   display: inline-block;
   float: left;
@@ -2515,7 +2519,7 @@ footer .disc_link:hover img {
   border: none;
   background: url(/Images/burger.svg) 50% 50% no-repeat;
   box-shadow: none;
-  padding: 33px 32px 31px;
+  padding: 30px 29px 25px;
 }
 #mobile-menu .btn-navbar:hover {
   background-color: none;
@@ -2918,6 +2922,10 @@ blog-article .info_article .article_title .tag a:hover {
   height: 44px;
   overflow: hidden;
   text-align: left;
+  color: #6A7687;
+}
+.mobile-read-all {
+  display: none;
 }
 .articles-blog {
   margin: 0 auto;
@@ -3550,6 +3558,7 @@ blog-article .info_article .article_title .tag a:hover {
     text-align: center;
     width: 100%;
     display: block;
+    padding: 0;
   }
   .purchase_block .purchase_block_in .purchase_in:before {
     display: none;
@@ -3576,6 +3585,12 @@ blog-article .info_article .article_title .tag a:hover {
   }
 }
 @media only screen and (max-width: 850px) {
+  .product-layout {
+    width: 21%;
+  }
+  .product-layout h4 {
+    font-size: 16px;
+  }
   .select-games-block.category-games .games-list .game-item .links-list,
   .select-games-block.category-games .games-list .game-item .title {
     display: none;
@@ -3616,6 +3631,8 @@ blog-article .info_article .article_title .tag a:hover {
     padding: 16px 10px 12px 10px;
   }
   .mobile-cover .top .search-bar .search-btn {
+    width: 40px;
+    height: 53px;
     padding: 16px 10px 12px 10px;
   }
   .mobile-cover .top .txt_acc {
@@ -3631,5 +3648,102 @@ blog-article .info_article .article_title .tag a:hover {
   }
   .mobile-cover .top .btn-cart span {
     font-size: 14px;
+  }
+  .latest-post h2 {
+    margin-bottom: 16px !important;
+  }
+  .product-layout {
+    margin: 0 auto;
+    width: 98%;
+    padding: 16px 0;
+    border-bottom: 1px solid #1A233B;
+  }
+  .product-layout .image {
+    width: 150px;
+    height: 99px;
+    float: left;
+    margin-right: 16px;
+  }
+  .product-layout .caption {
+    width: 100%;
+    float: left;
+    position: relative;
+    margin: -102px 0 0 0;
+    min-height: 99px;
+    padding-left: 164px;
+  }
+  .product-layout .caption h4 {
+    margin: 0;
+  }
+  .product-layout .caption .price {
+    position: absolute;
+    bottom: 0;
+    margin: 0;
+  }
+  .purchase_block .purchase_block_in .purchase_in .image {
+    padding-bottom: 0;
+    margin-right: 16px;
+    display: inline-block;
+    height: auto;
+  }
+  .purchase_block .purchase_block_in .purchase_in .title {
+    text-align: left;
+    width: 80%;
+    display: inline-block;
+  }
+  .purchase_block .purchase_block_in .purchase_in .text {
+    text-align: left;
+    width: 97%;
+    display: inline-block;
+    padding-left: 70px;
+    padding-top: 6px;
+  }
+  .latest-post .post-item {
+    width: 93%;
+    margin: 0 auto 15px;
+    padding-bottom: 20px;
+    position: relative;
+    display: block;
+    height: auto !important;
+  }
+  .latest-post .post-item .post-heading {
+    padding: 0;
+    margin: 0;
+    position: relative;
+  }
+  .latest-post .post-item .post-heading .title a {
+    font-size: 15px;
+  }
+  .latest-post .post-item .post-body {
+    padding-left: 122px;
+    min-height: 61px;
+  }
+  .latest-post .post-item .post-image {
+    display: inline-block;
+    width: 100px;
+    height: 61px;
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+  }
+  .latest-post .post-item .post-image img {
+    width: 100%;
+    margin-top: 0;
+  }
+  .mobile-read-all {
+    display: block;
+    margin: -15px 16px 0;
+    padding: 13px 40px;
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+    text-align: center;
+    color: #6D94C4;
+    -webkit-border-radius: 100px;
+    border-radius: 100px;
+    border: 1px solid #6D94C4;
+    text-decoration: none;
   }
 }

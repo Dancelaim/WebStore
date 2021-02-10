@@ -1,6 +1,15 @@
 ﻿@model IEnumerable<WowCarry.Domain.Entities.Article>
 <div class="latest-post">
-    <h2>Latest news <a href="/blog" class="read-all">Read All</a></h2>
+    <h2>
+        Latest news
+        @if (Request.Browser.IsMobileDevice)
+        { }
+        else
+        {
+            <a href="/blog" class="read-all">Read All</a>
+        }
+
+    </h2>
     <div class="posts">
         @foreach (var art in Model)
         {
@@ -26,5 +35,8 @@
                 <div class="clear"></div>
             </div>
         }
+
     </div>
+    @if (Request.Browser.IsMobileDevice)
+    {<a href="/blog" class="mobile-read-all">Read All</a>}
 </div>
