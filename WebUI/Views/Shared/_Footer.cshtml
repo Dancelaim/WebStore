@@ -14,12 +14,12 @@
                 <div class="col-sm-3 foot_menu">
                     <div class="title">Information</div>
                     <ul class="list-unstyled">
-                        <li><a href="/about">ABOUT US</a></li>
-                        <li><a href="/contacts">CONTACTS</a></li>
-                        <li><a href="/faq">F.A.Q.</a></li>
-                        <li><a href="/privacy-policy">PRIVACY POLICY</a></li>
-                        <li><a href="/terms">TERMS &amp; CONDITIONS</a></li>
-                        <li><a href="/carrycoins">CARRYCOINS</a></li>
+                        @Html.ActionLink("ABOUT US", "AboutUs", "HomePage")
+                        @Html.ActionLink("CONTACTS", "Contacts", "HomePage")
+                        @Html.ActionLink("F.A.Q", "FAQ", "HomePage")
+                        @Html.ActionLink("PRIVACY POLICY", "PrivacyPolicy", "HomePage")
+                        @Html.ActionLink("TERMS & CONDITIONS", "Terms", "HomePage")
+                        @Html.ActionLink("CARRYCOINS", "CarryCoins", "HomePage")
                         <li><a href="/jobs">JOBS</a></li>
                     </ul>
                 </div>

@@ -20,11 +20,41 @@ namespace WebUI.Controllers
             Session["SelectedGame"] = "Select Game";
             return View();
         }
-
         public PartialViewResult RecommendedProducts(string game)
         {
             IEnumerable<Product> result = EntityRepository.Products.Where(p=>p.ProductGame.GameName == game).Take(4);
             return PartialView(result);
+        }
+        public ViewResult AboutUs()
+        {
+            return View();
+
+        }
+        public ViewResult Contacts()
+        {
+            return View();
+        }
+        public ViewResult FAQ()
+        {
+            return View();
+        }
+        public ViewResult PrivacyPolicy()
+        {
+            return View();
+        }
+        public ViewResult Terms()
+        {
+            return View();
+        }
+        public ViewResult CarryCoins()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public void SetSessionData()
+        {
+
         }
     }
 }

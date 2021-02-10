@@ -1432,6 +1432,12 @@
     <Content Include="Views\Blog\LatestPosts.cshtml" />
     <Content Include="Views\Admin\ListArticle.cshtml" />
     <Content Include="Views\Admin\SaveArticle.cshtml" />
+    <Content Include="Views\HomePage\AboutUs.cshtml" />
+    <Content Include="Views\HomePage\Contacts.cshtml" />
+    <Content Include="Views\HomePage\FAQ.cshtml" />
+    <Content Include="Views\HomePage\PrivacyPolicy.cshtml" />
+    <Content Include="Views\HomePage\Terms.cshtml" />
+    <Content Include="Views\HomePage\CarryCoins.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

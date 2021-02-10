@@ -737,12 +737,12 @@ namespace WowCarry.WebUI.Controllers
         }
         #endregion
 
-        private static string MakeValidFileName(string name)
-        {
-            string invalidChars = Regex.Escape(new string(Path.GetInvalidFileNameChars()));
-            string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
+        //private static string MakeValidFileName(string name)
+        //{
+        //    string invalidChars = Regex.Escape(new string(Path.GetInvalidFileNameChars()));
+        //    string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
 
-            return Regex.Replace(name, invalidRegStr, "_");
-        }
+        //    return Regex.Replace(name, invalidRegStr, "_");
+        //}
     }
 }
