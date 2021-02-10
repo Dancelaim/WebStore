@@ -1033,38 +1033,26 @@ header {
     margin: 0;
 
     .search-btn {
-        padding: 17px 20px 18px;
+        padding: 20px 20px 21px 40px;
         text-align: center;
         background: none;
         border: 0 none;
         border-radius: 0;
         box-shadow: none;
         outline: none;
+        background: url(/Images/mainImages/icons/search.svg) 10px 50% no-repeat;
 
         &:focus, &:not(:disabled), &:not(:disabled):focus, &:not(.disabled):active:focus {
             outline: none;
             border: 0 none;
             box-shadow: none;
-            background: none;
         }
 
-        &:hover, &:active,&:not(:disabled):hover, &:not(:disabled):active, {
-            background: @color6;
+        &:hover, &:active, &:not(:disabled):hover, &:not(:disabled):active, {
+            background-color: @color6;
             outline: none;
             border: 0 none;
             box-shadow: none;
-        }
-
-        &:before {
-            content: "\f002";
-            font-size: 20px;
-            font-family: FontAwesome;
-            font-style: normal;
-            font-weight: normal;
-            text-decoration: inherit;
-            color: @color1;
-            display: inline-block;
-            padding-right: 10px;
         }
     }
 }
@@ -4161,8 +4149,30 @@ blog-article {
                 font-size: 0;
             }
 
+            .account_block {
+                padding: 16px 10px 12px 10px;
+            }
+
+            .search-bar .search-btn {
+                padding: 16px 10px 12px 10px;
+            }
+
             .txt_acc {
                 padding-left: 26px;
+            }
+
+            .btn-cart {
+                padding: 13px 10px 12px 39px;
+                width: 63px;
+                height: 53px;
+
+                &:before {
+                    left: 9px;
+                }
+
+                span {
+                    font-size: 14px;
+                }
             }
         }
     }
