@@ -209,6 +209,13 @@ $(document).on("click", ".left-column ul .dropdown", function () {
 })
 
 //Upload product image to Controller
+$(document).ready(function () {
+    var imgThumbPath = $("#ProductImageThumb").val();
+    var imgPath = $("#ProductImage").val();
+    $(".imgThumb").attr("src", imgThumbPath);
+    $(".imgLarge").attr("src", imgPath);
+})
+
 $(".ImageUpload").change(function () {
     var formData = new FormData();
     var file = document.getElementById($(this).attr("id")).files[0];
@@ -221,7 +228,7 @@ $(".ImageUpload").change(function () {
     formData.append("Path", path);
 
     formData.append("RequiredFileName", $("#ProductName").val().toLowerCase().replace(/[.*+?^${}()|/[\]\\]/g, '_') + ($(this).attr("id") == "Thumbfile" ? "" : "_large"));
-    
+
 
     $.ajax({
         cache: false,
@@ -230,15 +237,17 @@ $(".ImageUpload").change(function () {
         data: formData,
         processData: false,
         contentType: false,
-        success: function (data)
-        {
+        success: function (data) {
             if (data != "") {
-            curEl.closest('.imageBlock').find('input').last().val(data)
-            curEl.closest('.imageBlock').find('img').attr("src", data);
+                curEl.closest('.imageBlock').find('input').last().val(data)
+                curEl.closest('.imageBlock').find('img').attr("src", data);
             }
+            $(".imgThumb").attr("src", $("#ProductImageThumb").val() + "?t=" + new Date().getTime());
+            $(".imgLarge").attr("src", $("#ProductImage").val() + "?t=" + new Date().getTime());
         }
     });
-})
+});
+
 //TextArea to HtmlEditor
 $(document).ready(function () {
     var textAreas = document.getElementsByTagName('textarea');

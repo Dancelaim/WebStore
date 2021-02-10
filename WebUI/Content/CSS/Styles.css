@@ -1011,13 +1011,14 @@ header .bottom {
   margin: 0;
 }
 .search-bar .search-btn {
-  padding: 17px 20px 18px;
+  padding: 20px 20px 21px 40px;
   text-align: center;
   background: none;
   border: 0 none;
   border-radius: 0;
   box-shadow: none;
   outline: none;
+  background: url(/Images/mainImages/icons/search.svg) 10px 50% no-repeat;
 }
 .search-bar .search-btn:focus,
 .search-bar .search-btn:not(:disabled),
@@ -1026,27 +1027,15 @@ header .bottom {
   outline: none;
   border: 0 none;
   box-shadow: none;
-  background: none;
 }
 .search-bar .search-btn:hover,
 .search-bar .search-btn:active,
 .search-bar .search-btn:not(:disabled):hover,
 .search-bar .search-btn:not(:disabled):active {
-  background: #161828;
+  background-color: #161828;
   outline: none;
   border: 0 none;
   box-shadow: none;
-}
-.search-bar .search-btn:before {
-  content: "\f002";
-  font-size: 20px;
-  font-family: FontAwesome;
-  font-style: normal;
-  font-weight: normal;
-  text-decoration: inherit;
-  color: #6D94C4;
-  display: inline-block;
-  padding-right: 10px;
 }
 .container {
   width: 100%;
@@ -3623,7 +3612,24 @@ blog-article .info_article .article_title .tag a:hover {
   .mobile-cover .top .search-btn {
     font-size: 0;
   }
+  .mobile-cover .top .account_block {
+    padding: 16px 10px 12px 10px;
+  }
+  .mobile-cover .top .search-bar .search-btn {
+    padding: 16px 10px 12px 10px;
+  }
   .mobile-cover .top .txt_acc {
     padding-left: 26px;
+  }
+  .mobile-cover .top .btn-cart {
+    padding: 13px 10px 12px 39px;
+    width: 63px;
+    height: 53px;
+  }
+  .mobile-cover .top .btn-cart:before {
+    left: 9px;
+  }
+  .mobile-cover .top .btn-cart span {
+    font-size: 14px;
   }
 }

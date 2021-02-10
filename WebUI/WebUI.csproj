@@ -533,6 +533,7 @@
     <Content Include="Images\mainImages\facebook.svg" />
     <Content Include="Images\mainImages\icons\minus.svg" />
     <Content Include="Images\mainImages\icons\plus.svg" />
+    <Content Include="Images\mainImages\icons\search.svg" />
     <Content Include="Images\mainImages\instagram.svg" />
     <Content Include="Images\mainImages\Mastercard-logo.svg" />
     <Content Include="Images\mainImages\PayPal_2014_logo.svg" />
@@ -540,6 +541,7 @@
     <Content Include="Images\mainImages\telegram_foot.svg" />
     <Content Include="Images\mainImages\twitter.svg" />
     <Content Include="Images\mainImages\Visa_2014_logo_detail 1.svg" />
+    <Content Include="Images\name.png" />
     <Content Include="Images\one.svg" />
     <Content Include="Images\Online.svg" />
     <Content Include="Images\our_team.svg" />
