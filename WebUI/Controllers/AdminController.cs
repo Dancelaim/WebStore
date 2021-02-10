@@ -81,10 +81,10 @@ namespace WowCarry.WebUI.Controllers
                             ProductImageThumb = prod.ProductImageThumb,
                             ProductImage = prod.ProductImage,
                             ProductPriority = prod.ProductPriority,
-                            ProductPriceEU = prod.ProductPrice.Where(p => p.Region == "EU").Select(p => p.Price).FirstOrDefault(),
-                            ProductPriceUS = prod.ProductPrice.Where(p => p.Region == "US").Select(p => p.Price).FirstOrDefault(),
-                            ProductSaleEU = prod.ProductPrice.Where(p => p.Region == "EU").Select(p => p.ProductSale).FirstOrDefault(),
-                            ProductSaleUS = prod.ProductPrice.Where(p => p.Region == "US").Select(p => p.ProductSale).FirstOrDefault(),
+                            ProductPriceEU = prod.ProductPrice.Where(p => p.Region == "Europe").Select(p => p.Price).FirstOrDefault(),
+                            ProductPriceUS = prod.ProductPrice.Where(p => p.Region == "US&Oceania").Select(p => p.Price).FirstOrDefault(),
+                            ProductSaleEU = prod.ProductPrice.Where(p => p.Region == "Europe").Select(p => p.ProductSale).FirstOrDefault(),
+                            ProductSaleUS = prod.ProductPrice.Where(p => p.Region == "US&Oceania").Select(p => p.ProductSale).FirstOrDefault(),
                             Description = prod.ProductDescription.Description,
                             SubDescriptionTitle1 = prod.ProductDescription.SubDescriptionTitle1,
                             SubDescription1 = prod.ProductDescription.SubDescription1,
@@ -130,19 +130,22 @@ namespace WowCarry.WebUI.Controllers
                     {
                         return View("Save" + type, new ProductGameDetails
                         {
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), productGame.SEO?.MetaTagTitle ?? "Select Meta tag title from List"),
                             ProductGameId = productGame.ProductGameId,
                             GameName = productGame.GameName,
                             GameDescription = productGame.GameDescription,
                             GameShortUrl = productGame.GameShortUrl,
-                            GameSeoId = productGame.GameSeoId,
-                            ProductCategoryDetailsCollection = ProductGameDetails.PopulateProductGameDetails(productGame)
+                            GameSeoId = productGame.GameSeoId//,
+                            //ProductCategoryDetailsCollection = ProductGameDetails.PopulateProductGameDetails(productGame)
 
                         });
                     }
                     else
                     {
-                        return View("Save" + type, new ProductGameDetails { });
-
+                        return View("Save" + type, new ProductGameDetails 
+                        {
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), "Select Meta tag title from List"),
+                        });
                     }
                 case "HtmlBlocks":
                     HtmlBlocks siteBlock = EntityRepository.HtmlBlocks.Where(p => p.SiteBlockId == Id).FirstOrDefault();
@@ -737,12 +740,12 @@ namespace WowCarry.WebUI.Controllers
         }
         #endregion
 
-        private static string MakeValidFileName(string name)
-        {
-            string invalidChars = Regex.Escape(new string(Path.GetInvalidFileNameChars()));
-            string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
+        //private static string MakeValidFileName(string name)
+        //{
+        //    string invalidChars = Regex.Escape(new string(Path.GetInvalidFileNameChars()));
+        //    string invalidRegStr = string.Format(@"([{0}]*\.+$)|([{0}]+)", invalidChars);
 
-            return Regex.Replace(name, invalidRegStr, "_");
-        }
+        //    return Regex.Replace(name, invalidRegStr, "_");
+        //}
     }
 }

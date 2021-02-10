@@ -51,6 +51,9 @@ namespace WowCarry.Domain.Entities
             [Display(Name = "Category SeoId")]
             public Nullable<System.Guid> CategorySeoId { get; set; }
         }
+        [Display(Name = "Meta tag title")]
+        public SelectList MetaTagTitleList { get; set; }
+        public string SelectedMetaTagTitle { get; set; }
         public static List<ProductCategoryDetails> PopulateProductGameDetails(ProductGame productGame)
         {
             List<ProductCategoryDetails> result = new List<ProductCategoryDetails>();

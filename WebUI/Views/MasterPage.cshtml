@@ -54,8 +54,8 @@ else
                         <span class="text-menu"><a>Games & Categories</a></span>
                         <ul class="dropdown-menu">
                             <li> @Html.RouteLink("Product Games", "AdminItem", new { Action = "List", type = "ProductGame" })</li>
-                            <li> @Html.RouteLink("Product Category", "AdminItem", new { Action = "List", type = "ProductGame" })</li>
-                            <li> @Html.RouteLink("Product SubCategory", "AdminItem", new { Action = "List", type = "ProductGame" })</li>
+                            <li> @Html.RouteLink("Product Category", "AdminItem", new { Action = "List", type = "ProductCategory" })</li>
+                            <li> @Html.RouteLink("Product SubCategory", "AdminItem", new { Action = "List", type = "ProductSubCategory" })</li>
                         </ul>
                             </li>
                             <li><span class="menu-ico ico5"></span><span class="text-menu"> @Html.RouteLink("Html Blocks", "AdminItem", new { Action = "List", type = "HtmlBlocks" }) </span></li>
