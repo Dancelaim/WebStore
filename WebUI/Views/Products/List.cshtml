@@ -18,7 +18,7 @@
                 <div class="product-thumb">
                     <a href="@Url.Action("Details","ProductDetails",new {productUrl= p.SEO.UrlKeyWord})">
                         <div class="image">
-                            <img src=@String.Format(p.ProductImage + ".png") alt="Alternate Text" />
+                            <img src="@p.ProductImageThumb" alt="@p.ProductName" />
                             <div class="clear"></div>
                         </div>
                         <div class="caption">

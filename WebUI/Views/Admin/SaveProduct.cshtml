@@ -39,47 +39,63 @@
                             string[] toIgnore = { "ProductId", "GamesList", "CategoriesList", "MetaTagTitleList", "productGameNames", "productCategoryNames", "MetaTagTitleNames", "Product" };
                             if (!toIgnore.Contains(property.PropertyName))
                             {
-                                <div class="input-block">
-                                    <label>@(property.DisplayName ?? property.PropertyName):</label>
-                                    @if (property.PropertyName.Contains("SelectedGame"))
-                                    {
-                                        @Html.DropDownListFor(m => m.SelectedGame, Model.GamesList)
-                                    }
-                                    else if (property.PropertyName.Contains("SelectedCategory"))
-                                    {
-                                        @Html.DropDownListFor(m => m.SelectedCategory, Model.CategoriesList)
-                                        @Html.HiddenFor(m => m.SelectedCategory)
-                                    }
-                                    else if (property.PropertyName.Contains("SelectedMetaTagTitle"))
-                                    {
-                                        @Html.DropDownListFor(m => m.SelectedMetaTagTitle, Model.MetaTagTitleList)
-                                        @Html.HiddenFor(m => m.SelectedMetaTagTitle)
-                                    }
-                                    else if (property.PropertyName.Contains("ProductImageThumb"))
-                                    {
-                                        <div class="imageBlock">
-                                            <label for="file">Upload Image:</label>
-                                            <input type="file" name="file" id="Thumbfile" class="ImageUpload"  style="width: 100%;" />
-                                            <label for="file">Product Image Thumb path</label>
-                                            @Html.TextBoxFor(m => m.ProductImageThumb, new { @readonly = "readonly"});
+                        <div class="input-block">
+                            <label>@(property.DisplayName ?? property.PropertyName):</label>
+                            @if (property.PropertyName.Contains("SelectedGame"))
+                            {
+                                @Html.DropDownListFor(m => m.SelectedGame, Model.GamesList)
+                            }
+                            else if (property.PropertyName.Contains("SelectedCategory"))
+                            {
+                                @Html.DropDownListFor(m => m.SelectedCategory, Model.CategoriesList)
+                                @Html.HiddenFor(m => m.SelectedCategory)
+                            }
+                            else if (property.PropertyName.Contains("SelectedMetaTagTitle"))
+                            {
+                                @Html.DropDownListFor(m => m.SelectedMetaTagTitle, Model.MetaTagTitleList)
+                                @Html.HiddenFor(m => m.SelectedMetaTagTitle)
+                            }
+                            else if (property.PropertyName.Contains("ProductImageThumb"))
+                            {
+                                <div class="imageBlock">
+                                    <div class="upload-box">
+                                        <label for="Thumbfile">Upload Image:</label>
+                                        <label for="Thumbfile" class="upload-btn btn">Upload</label>
+                                        <input type="file" name="file" id="Thumbfile" class="ImageUpload" style="display:none;" />
+                                    </div>
+                                    <div class="img-prew">
+                                        <label for="file">Product Image Thumb</label>
+                                        <div class="imgPrewIn">
+                                            <img class="imgThumb" src="" />
                                         </div>
-
-                                    }
-                                    else if (property.PropertyName.Contains("ProductImage"))
-                                    {
-                                        <div class="imageBlock">
-                                            <img src="" />
-                                        <label for="file">Upload Image:</label>
-                                        <input type="file" name="file" id="Largefile" class="ImageUpload"  style="width: 100%;" />
-                                        <label for="file">Product Image path</label>
-                                        @Html.TextBoxFor(m => m.ProductImage, new { @readonly = "readonly"});
-                                        </div>
-                                    }
-                                    else
-                                    {
-                                        @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
-                                    }
+                                        @Html.HiddenFor(m => m.ProductImageThumb, new { @readonly = "readonly" })
+                                    </div>
                                 </div>
+
+                            }
+                            else if (property.PropertyName.Contains("ProductImage"))
+                            {
+                                <div class="imageBlock">
+
+                                    <div class="upload-box">
+                                        <label for="Largefile">Upload Image:</label>
+                                        <label for="Largefile" class="upload-btn btn">Upload</label>
+                                        <input type="file" name="file" id="Largefile" class="ImageUpload" style="display:none;" />
+                                    </div>
+                                    <div class="img-prew">
+                                        <label for="file">Product Image</label>
+                                        <div class="imgPrewIn">
+                                            <img class="imgLarge" src="" />
+                                        </div>
+                                        @Html.HiddenFor(m => m.ProductImage, new { @readonly = "readonly" })
+                                    </div>
+                                </div>
+                            }
+                            else
+                            {
+                                @Html.Editor(property.PropertyName, new { @class = "form-control", rows = 5 })
+                            }
+                        </div>
                             }
                         }
                         
