@@ -106,10 +106,6 @@ $(document).on("click", ".siteblock-add", function () {
         cache: false,
         type: 'POST',
         url: '/admin/AddSiteBlock',
-        data: {
-            siteblockId: $("#SiteBlockId").val(),
-            HtmlBlockChildDetailsCollection: $("#HtmlBlockChildDetailsCollection").val()
-        },
         success: function (data) {
             $('.childblock-list').append(data)
             //window.location.href = window.location.href.replace("?type=HtmlBlocks", "?Id=" + data + "&type=HtmlBlocks");

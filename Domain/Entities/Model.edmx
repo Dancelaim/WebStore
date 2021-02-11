@@ -155,7 +155,7 @@
           </Key>
           <Property Name="ProductGameId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="GameName" Type="nvarchar" MaxLength="50" />
-          <Property Name="GameDescription" Type="nvarchar" MaxLength="255" />
+          <Property Name="GameDescription" Type="nvarchar(max)" />
           <Property Name="GameShortUrl" Type="nvarchar" MaxLength="50" />
           <Property Name="GameSeoId" Type="uniqueidentifier" />
         </EntityType>
@@ -1012,7 +1012,7 @@
           </Key>
           <Property Name="ProductGameId" Type="Guid" Nullable="false" />
           <Property Name="GameName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="GameDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="GameDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="GameShortUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="GameSeoId" Type="Guid" />
           <NavigationProperty Name="Article" Relationship="WowCarryModel.FK_ProductGame" FromRole="ProductGame" ToRole="Article" />
