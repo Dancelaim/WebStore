@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WowCarry.Domain.Entities.HtmlBlockDetails.HtmlBlockChildrenDetails>
+
+
+@for(var i = 0; i < Model.Count(); i++)
+{
+    <div class="param-fields">
+        <h2>Child</h2>
+        @Html.HiddenFor(x => Model[i].SiteBlockChildsId)
+        <div class="input-block">
+            <label>Text</label>
+            @Html.TextAreaFor(x => Model[i].Text)
+        </div>
+        <div class="input-block">
+            <label>Title</label>
+            @Html.TextBoxFor(x => Model[i].Title)
+        </div>
+        <div class="input-block">
+            <label>Image</label>
+            @Html.TextBoxFor(x => Model[i].Image)
+        </div>
+        <div class="input-block">
+            <label>CSS Class</label>
+            @Html.TextBoxFor(x => Model[i].CSSClass)
+        </div>
+        <div class="input-block">
+            <label>ChildOrder</label>
+            @Html.TextBoxFor(x => Model[i].ChildOrder)
+        </div>
+        <div><span class="remove-param"></span></div>
+    </div>
+ }

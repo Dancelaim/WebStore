@@ -57,16 +57,16 @@ $(document).on("change", '.ddParent .bootstrap-select select', function () {
         }
     });
 })
-//Remove entity from list
+//Remove SiteBlock from list
 $(document).on("click", '.rmvbtn', function () {
-    var confirm = window.confirm("Are you sure you want to delete this Entity?");
+    var confirm = window.confirm("Are you sure you want to delete " + $(this).closest('tr').find('td:first').text() + " Entity?");
     if (confirm) {
         $.ajax({
             cache: false,
             type: 'POST',
             url: '/admin/Remove',
             data: {
-                Id: $("#SiteBlockId").val(),
+                Id: $(this).closest('.text-center').find("#SiteBlockId").val(),
                 type: $("#HtmlBlocks").val()
             },
             success: function (data) {
@@ -100,7 +100,7 @@ $(document).on("click", ".option-add", function () {
         }
     });
 })
-//Add StieBlock
+//Add SiteBlock children
 $(document).on("click", ".siteblock-add", function () {
     $.ajax({
         cache: false,
@@ -113,7 +113,7 @@ $(document).on("click", ".siteblock-add", function () {
             window.location.href = window.location.href.replace("?type=HtmlBlocks", "?Id=" + data + "&type=HtmlBlocks");
         },
         error: function (ex) {
-            alert('Failed to add option.' + ex);
+            alert('Failed to add SiteBlock.' + ex);
         }
     });
 })

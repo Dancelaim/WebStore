@@ -49,27 +49,12 @@ namespace WowCarry.Domain.Entities
             [Display(Name = "ChildOrder")]
             public int? ChildOrder { get; set; }
         }
-        public static List<HtmlBlockChildrenDetails> PopulateHtmlBlockCollection(HtmlBlocks htmlblocks = null, HtmlBlockDetails htmlBlockDetails = null)
+        public static List<HtmlBlockChildrenDetails> PopulateHtmlBlockCollection(HtmlBlocks htmlblocks = null)
         {
             List<HtmlBlockChildrenDetails> result = new List<HtmlBlockChildrenDetails>();
             if (htmlblocks != null)
             {
                 foreach (var item in htmlblocks.HtmlBlocksChildren)
-                {
-                    result.Add(new HtmlBlockChildrenDetails
-                    {
-                        SiteBlockChildsId = item.SiteBlockChildsId,
-                        Text = item.Text,
-                        Title = item.Title,
-                        Image = item.Image,
-                        CSSClass = item.CSSClass,
-                        ChildOrder = item.ChildOrder
-                    });
-                }
-            }
-            else
-            {
-                foreach (var item in htmlBlockDetails.HtmlBlockChildDetailsCollection)
                 {
                     result.Add(new HtmlBlockChildrenDetails
                     {
