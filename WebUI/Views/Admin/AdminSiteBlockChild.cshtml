@@ -1,30 +1,29 @@
-﻿@model WowCarry.Domain.Entities.HtmlBlockDetails
+﻿@model WowCarry.Domain.Entities.HtmlBlockDetails.HtmlBlockChildrenDetails
 
-
-@for (var i = 0; i < Model.HtmlBlockChildDetailsCollection.Count(); i++)
+@using (Html.BeginCollectionItem("HtmlBlockChildrenDetails"))
 {
     <div class="param-fields">
         <h2>Child</h2>
-        @Html.HiddenFor(x => Model.HtmlBlockChildDetailsCollection.ElementAt(i).SiteBlockChildsId)
+        @Html.HiddenFor(x => Model.SiteBlockChildsId)
         <div class="input-block">
             <label>Text</label>
-            @Html.TextAreaFor(x => Model.HtmlBlockChildDetailsCollection.ElementAt(i).Text)
+            @Html.TextAreaFor(x => Model.Text)
         </div>
         <div class="input-block">
             <label>Title</label>
-            @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection.ElementAt(i).Title)
+            @Html.TextBoxFor(x => Model.Title)
         </div>
         <div class="input-block">
             <label>Image</label>
-            @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection.ElementAt(i).Image)
+            @Html.TextBoxFor(x => Model.Image)
         </div>
         <div class="input-block">
             <label>CSS Class</label>
-            @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection.ElementAt(i).CSSClass)
+            @Html.TextBoxFor(x => Model.CSSClass)
         </div>
         <div class="input-block">
             <label>ChildOrder</label>
-            @Html.TextBoxFor(x => Model.HtmlBlockChildDetailsCollection.ElementAt(i).ChildOrder)
+            @Html.TextBoxFor(x => Model.ChildOrder)
         </div>
         <div><span class="remove-param"></span></div>
     </div>

@@ -419,24 +419,9 @@ namespace WowCarry.WebUI.Controllers
             EntityRepository.SaveContext();
         }
         [HttpPost]
-        public PartialViewResult AddSiteBlock(HtmlBlockDetails siteblock)
+        public PartialViewResult AddSiteBlock()
         {
-            var dbsiteblock = EntityRepository.HtmlBlocks.Where(b => b.SiteBlockId == siteblock.SiteBlockId).FirstOrDefault();
-            if (dbsiteblock != null)
-            {
-                var siteblockchild = new HtmlBlocksChildren();
-                siteblockchild.SiteBlockChildsId = Guid.NewGuid();
-                siteblockchild.SiteBlockId = siteblock.SiteBlockId;
-                dbsiteblock.HtmlBlocksChildren.Add(siteblockchild);
-                EntityRepository.SaveContext();
-                return PartialView("AdminSiteBlockChild", dbsiteblock);
-            }
-            else
-            {
-                var newSiteBlockChild = new HtmlBlockDetails.HtmlBlockChildrenDetails {SiteBlockChildsId = Guid.NewGuid() };
-                siteblock.HtmlBlockChildDetailsCollection.Add(newSiteBlockChild);
-                return PartialView("AdminSiteBlockChild", siteblock);
-            }
+            return PartialView("AdminSiteBlockChild", new HtmlBlockDetails.HtmlBlockChildrenDetails { SiteBlockChildsId = Guid.NewGuid() });
         }
         [HttpPost]
         public void RemoveOption(Guid optionId, Guid prodId)

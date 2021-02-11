@@ -10,7 +10,6 @@
         </div>
     </div>
     @Html.HiddenFor(x => Model.SiteBlockId)
-    @Html.HiddenFor(x => Model.HtmlBlockChildDetailsCollection)
     @Html.ValidationSummary()
     foreach (var property in ViewData.ModelMetadata.Properties)
     {
@@ -26,7 +25,10 @@
     <div class="childblock-list">
         @if (Model.HtmlBlockChildDetailsCollection != null)
         {
-            @Html.Partial("AdminSiteBlockChild", Model)
+            foreach(var child in Model.HtmlBlockChildDetailsCollection)
+            {
+                Html.RenderPartial("AdminSiteBlockChild", child);
+            }
         }
     </div>
 }
