@@ -11,7 +11,7 @@
           </Key>
           <Property Name="ArticleId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="Title" Type="nvarchar" MaxLength="255" />
-          <Property Name="ShortDescription" Type="nvarchar(max)" />
+          <Property Name="ShortDescription" Type="nvarchar" MaxLength="1000" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="ReadTime" Type="nvarchar" MaxLength="55" />
           <Property Name="Tags" Type="nvarchar" MaxLength="255" />
@@ -22,7 +22,7 @@
           <Property Name="Rating" Type="int" />
           <Property Name="ArticleCreateTime" Type="datetime" StoreGeneratedPattern="Computed" />
           <Property Name="ArticleUpdateTime" Type="datetime" StoreGeneratedPattern="Computed" />
-          <Property Name="ArticlePostTime" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="ArticlePostTime" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -847,7 +847,7 @@
           </Key>
           <Property Name="ArticleId" Type="Guid" Nullable="false" />
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ShortDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ShortDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ReadTime" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <Property Name="Tags" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -858,7 +858,7 @@
           <Property Name="Rating" Type="Int32" />
           <Property Name="ArticleCreateTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="ArticleUpdateTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="ArticlePostTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ArticlePostTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" Nullable="false" />
           <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK_ProductGame" FromRole="Article" ToRole="ProductGame" />
           <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK_SEO" FromRole="Article" ToRole="SEO" />
         </EntityType>
