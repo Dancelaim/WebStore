@@ -149,5 +149,16 @@
                 });
             });
 
-            console.log(Intl.DateTimeFormat().resolvedOptions().timeZone)
+            var data = new Object();
+            data['TimeZone'] = Intl.DateTimeFormat().resolvedOptions().timeZone;
+            data['Region'] = 'US';
+
+            $.ajax({
+                cache: false,
+                type: "POST",
+                url: "@Url.Action("SetSessionData", "HomePage")",
+                data: {
+                    dict: data
+                }
+            });
         </script>

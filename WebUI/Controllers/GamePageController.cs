@@ -18,8 +18,9 @@ namespace WebUI.Controllers
         }
         public ActionResult GameDetails(string currentGame)
         {
-            ProductGame result = EntityRepository.Products.Where(p => p.ProductGame.GameName == currentGame).Select(p => p.ProductGame).FirstOrDefault();
-            Session["SelectedGame"] = currentGame;
+            ProductGame result = EntityRepository.Products.Where(p => p.ProductGame.GameShortUrl == currentGame).Select(p => p.ProductGame).FirstOrDefault();
+
+            Session["SelectedGame"] = result.GameName;
             return View(result);
         }
     }

@@ -22,7 +22,7 @@ namespace WowCarry.WebUI
                 name: "",
                 url: "{action}",
                 defaults: new { controller = "HomePage"},
-                constraints: new { action = "AboutUs||Contacts||FAQ||PrivacyPolicy||Terms||CarryCoins" }
+                constraints: new { action = "AboutUs||Contacts||FAQ||PrivacyPolicy||Terms||CarryCoins||SetSessionData" }
             );
             routes.MapRoute(
                 name: "Login",
