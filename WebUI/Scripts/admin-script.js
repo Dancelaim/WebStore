@@ -107,7 +107,8 @@ $(document).on("click", ".siteblock-add", function () {
         type: 'POST',
         url: '/admin/AddSiteBlock',
         data: {
-            siteblockId: $("#SiteBlockId").val()
+            siteblockId: $("#SiteBlockId").val(),
+            HtmlBlockChildDetailsCollection: $("#HtmlBlockChildDetailsCollection").val()
         },
         success: function (data) {
             $('.childblock-list').append(data)
