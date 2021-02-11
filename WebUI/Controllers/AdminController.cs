@@ -587,6 +587,7 @@ namespace WowCarry.WebUI.Controllers
             }
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveGame(ProductGameDetails productGameDetails)
         {
             if (ModelState.IsValid)
