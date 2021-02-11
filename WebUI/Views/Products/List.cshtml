@@ -39,10 +39,15 @@
             </ul>
         </nav>
     </div>
-    <div class="description">
-        @*описание категории*@
-        @if(@Model.productCategory != null)
+    @*описание категории*@
+    @if (@Model.productCategory != null)
+    {
+        <div class="description">
+
             @Model.productCategory.CategoryDescription
+
+           
+
+        </div>
+    }
     </div>
-   
-</div>

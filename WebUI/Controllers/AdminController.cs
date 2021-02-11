@@ -163,7 +163,9 @@ namespace WowCarry.WebUI.Controllers
                     }
                     else
                     {
-                        return View("Save" + type, new HtmlBlockDetails { });
+                        var result = new HtmlBlockDetails { SiteBlockId = Guid.NewGuid(), HtmlBlockChildDetailsCollection = new List<HtmlBlockDetails.HtmlBlockChildrenDetails>() };
+                        result.HtmlBlockChildDetailsCollection.Add(new HtmlBlockDetails.HtmlBlockChildrenDetails());
+                        return View("Save" + type, result);
 
                     }
                 case "SEO":
@@ -420,26 +422,11 @@ namespace WowCarry.WebUI.Controllers
             selectedProduct.ProductOptions.Add(option);
             EntityRepository.SaveContext();
         }
-        //public PartialViewResult AddSiteBlock(HtmlBlockDetails siteblock,Guid siteblockId)
-        //{
-        //    var dbsiteblock = EntityRepository.HtmlBlocks.Where(b => b.SiteBlockId == siteblockId).FirstOrDefault();
-        //    if (dbsiteblock != null)
-        //    {
-        //        var siteblockchild = new HtmlBlocksChildren();
-        //        siteblockchild.SiteBlockChildsId = Guid.NewGuid();
-        //        siteblockchild.SiteBlockId = siteblockId;
-        //        dbsiteblock.HtmlBlocksChildren.Add(siteblockchild);
-        //        EntityRepository.SaveContext();
-        //        return siteblockchild.SiteBlockChildsId.ToString();
-        //    }
-        //    else
-        //    {
-        //        var newSiteBlockChild = new HtmlBlockDetails.HtmlBlockChildrenDetails { };
-        //        siteblock.HtmlBlockChildDetailsCollection.Add(newSiteBlockChild);
-
-        //        return newSiteBlock.SiteBlockId.ToString();
-        //    }
-        //}
+        [HttpPost]
+        public PartialViewResult AddSiteBlock()
+        {
+            return PartialView("AdminSiteBlockChild", new HtmlBlockDetails.HtmlBlockChildrenDetails { SiteBlockChildsId = Guid.NewGuid() });
+        }
         [HttpPost]
         public void RemoveOption(Guid optionId, Guid prodId)
         {
@@ -558,17 +545,6 @@ namespace WowCarry.WebUI.Controllers
             else
             {
                 return View("SaveHtmlBlocks", htmlBlockDetails);
-                //return View("SaveHtmlBlocks", new HtmlBlockDetails
-                //{
-                //    SiteBlockId = htmlBlockDetails.SiteBlockId,
-                //    ParentTitle = htmlBlockDetails.ParentTitle,
-                //    ParentCSSClass = htmlBlockDetails.ParentCSSClass,
-                //    ChildCSSClass = htmlBlockDetails.ChildCSSClass,
-                //    SitePage = htmlBlockDetails.SitePage,
-                //    Order = htmlBlockDetails.Order,
-                //    HtmlBlockChildDetailsCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(null, htmlBlockDetails)
-
-                //});
             }
         }
         [HttpPost]
@@ -600,6 +576,7 @@ namespace WowCarry.WebUI.Controllers
             }
         }
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult SaveGame(ProductGameDetails productGameDetails)
         {
             if (ModelState.IsValid)
@@ -641,6 +618,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Ranks" });
             }
         }
+        [ValidateInput(false)]
         public ActionResult SaveArticle(ArticleDetails ArticleDetails)
         {
             if (ModelState.IsValid)

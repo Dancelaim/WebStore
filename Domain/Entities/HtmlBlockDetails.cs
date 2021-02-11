@@ -48,6 +48,8 @@ namespace WowCarry.Domain.Entities
 
             [Display(Name = "ChildOrder")]
             public int? ChildOrder { get; set; }
+            public Guid UniqueField => Guid.NewGuid();
+
         }
         public static List<HtmlBlockChildrenDetails> PopulateHtmlBlockCollection(HtmlBlocks htmlblocks = null)
         {

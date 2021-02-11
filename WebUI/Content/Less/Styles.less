@@ -2820,7 +2820,7 @@ footer .disc_link {
     }
 }
 //desc styles
-#product-category, #common-home {
+#product-category, #common-home, #product-games {
     .description {
         max-width: 1600px;
         margin: 0 auto;
@@ -3753,6 +3753,79 @@ blog-article {
     margin: 0 auto;
     position: relative;
     max-width: @maxwidth;
+
+    .navigation-article {
+        position: absolute;
+        width: 25%;
+        left: 0;
+        top: 0;
+        bottom: 0;
+
+        .navigation-in {
+
+            &.fixed {
+                position: fixed;
+                top: 30px;
+                width: 305px;
+            }
+
+            &.absolute {
+                position: absolute;
+                top: auto;
+                bottom: 0;
+            }
+
+            ol {
+                padding-left: 18px;
+
+                li {
+                    color: @color1;
+
+                    a {
+                        text-decoration: none;
+                        font-family: @o;
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 22px;
+                        color: @color1;
+
+                        &:hover {
+                            text-decoration: none;
+                            color: @color5;
+                        }
+                    }
+                }
+
+                ul {
+                    padding-left: 32px !important;
+
+                    li {
+                        color: @color1;
+                        padding: 8px 0;
+                    }
+                }
+            }
+
+            ul {
+                li {
+                    list-style-type: disc;
+                }
+            }
+        }
+    }
+
+    .article-block {
+        margin-left: 27%;
+
+        ol {
+            padding-left: 48px;
+
+            li {
+                margin-bottom: 20px;
+            }
+        }
+    }
 
     .description {
         position: relative;

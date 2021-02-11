@@ -2515,7 +2515,8 @@ footer .disc_link:hover img {
   width: 100%;
 }
 #product-category .description,
-#common-home .description {
+#common-home .description,
+#product-games .description {
   max-width: 1600px;
   margin: 0 auto;
   position: relative;
@@ -2528,7 +2529,8 @@ footer .disc_link:hover img {
   margin-top: 0;
 }
 #product-category .description h1,
-#common-home .description h1 {
+#common-home .description h1,
+#product-games .description h1 {
   text-transform: none;
   text-align: left;
   margin: 0;
@@ -2542,7 +2544,8 @@ footer .disc_link:hover img {
   padding: 0;
 }
 #product-category .description h2,
-#common-home .description h2 {
+#common-home .description h2,
+#product-games .description h2 {
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -2553,8 +2556,10 @@ footer .disc_link:hover img {
 }
 #product-category .description ol,
 #common-home .description ol,
+#product-games .description ol,
 #product-category .description ul,
-#common-home .description ul {
+#common-home .description ul,
+#product-games .description ul {
   padding: 0 0 0 40px;
 }
 #logo-mobile {
@@ -3285,6 +3290,61 @@ blog-article .info_article .article_title .tag a:hover {
   margin: 0 auto;
   position: relative;
   max-width: 1600px;
+}
+.blog-article .navigation-article {
+  position: absolute;
+  width: 25%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.blog-article .navigation-article .navigation-in.fixed {
+  position: fixed;
+  top: 30px;
+  width: 305px;
+}
+.blog-article .navigation-article .navigation-in.absolute {
+  position: absolute;
+  top: auto;
+  bottom: 0;
+}
+.blog-article .navigation-article .navigation-in ol {
+  padding-left: 18px;
+}
+.blog-article .navigation-article .navigation-in ol li {
+  color: #6D94C4;
+}
+.blog-article .navigation-article .navigation-in ol li a {
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #6D94C4;
+}
+.blog-article .navigation-article .navigation-in ol li a:hover {
+  text-decoration: none;
+  color: #91B9EF;
+}
+.blog-article .navigation-article .navigation-in ol ul {
+  padding-left: 32px !important;
+}
+.blog-article .navigation-article .navigation-in ol ul li {
+  color: #6D94C4;
+  padding: 8px 0;
+}
+.blog-article .navigation-article .navigation-in ul li {
+  list-style-type: disc;
+}
+.blog-article .article-block {
+  margin-left: 27%;
+}
+.blog-article .article-block ol {
+  padding-left: 48px;
+}
+.blog-article .article-block ol li {
+  margin-bottom: 20px;
 }
 .blog-article .description {
   position: relative;

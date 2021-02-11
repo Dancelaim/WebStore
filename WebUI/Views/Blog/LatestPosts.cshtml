@@ -22,13 +22,13 @@
                 </div>
                 <div class="post-text">
                     <div class="post-heading">
-                        <span class="date">@art.ArticlePostTime?.ToString("MMMM dd, yyyy") </span>
+                        <span class="date"> @art.ArticlePostTime.ToString("MMMM dd, yyyy") </span>
                         <h3 class="title"><a href="@Url.Action("Article", "Blog", new { articleId = art.ArticleId })">@art.Title </a></h3>
                     </div>
                     <div class="post-body">
                         <div class="clear"></div>
                         <div class="short-description">
-                            @art.ShortDescription
+                            @Html.Raw(HttpUtility.HtmlDecode(@art.ShortDescription))
                         </div>
                     </div>
                 </div>
