@@ -215,6 +215,7 @@ namespace WowCarry.WebUI.Controllers
                     {
                         return View("Save" + type, new RankDetails
                         {
+                            RankId = ranks.RankId,
                             Name = ranks.Name,
                             Sale = ranks.Sale
                         });
@@ -230,6 +231,7 @@ namespace WowCarry.WebUI.Controllers
                     {
                         return View("Save" + type, new CustomersDetails
                         {
+                            CustomerId = customers.CustomerId,
                             Name = customers.Name,
                             Password = customers.Password,
                             Email = customers.Email,
@@ -248,6 +250,7 @@ namespace WowCarry.WebUI.Controllers
                     {
                         return View("Save" + type, new RolesDetails
                         {
+                            RoleId = roles.RoleId,
                             RoleName = roles.RoleName
 
                         });
@@ -293,6 +296,7 @@ namespace WowCarry.WebUI.Controllers
                     {
                         return View("Save" + type, new OrderDetails
                         {
+                            OrderId = orders.OrderId,
                             Discord = orders.Discord,
                             Comments = orders.Comment,
                             Email = orders.Email,
