@@ -4,10 +4,6 @@
 Begin Tran
 exec Check_db_Version 40
 
-ALTER TABLE Article 
-ALTER COLUMN ArticlePostTime DATETIME NOT NULL 
-
-
 ALTER TABLE Product 
 ALTER COLUMN ProductEnabled bit NOT NULL 
 

@@ -265,6 +265,7 @@ namespace WowCarry.WebUI.Controllers
                     {
                         return View("Save" + type, new ArticleDetails
                         {
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), article.SEO?.MetaTagTitle ?? "Select Meta tag title from List"),
                             GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), article?.ProductGame.GameName ?? "Select Game"),
                             ArticleId = article.ArticleId,
                             Title = article.Title,
@@ -281,8 +282,12 @@ namespace WowCarry.WebUI.Controllers
                         });
                     }
                     else {
-                        
-                        return View("Save" + type, new ArticleDetails { });
+                       
+                        return View("Save" + type, new ArticleDetails 
+                        {
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), "Select Meta tag title from List"),
+                            GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName),  "Select Game")
+                        });
                     }
                 case "Orders":
                     Orders orders = EntityRepository.Orders.Where(p => p.OrderId == Id).FirstOrDefault();

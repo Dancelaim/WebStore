@@ -11,10 +11,12 @@
        })
         </div>
     </div>
+    @Html.HiddenFor(x => Model.ProductGameId)
+    string[] toIgnore = { "ProductGameId", "GameSeoId", "ProductCategoryDetailsCollection", "MetaTagTitleList" };
     foreach (var property in ViewData.ModelMetadata.Properties)
     {
-        @Html.HiddenFor(x => Model.ProductGameId)
-        if (property.PropertyName != "ProductGameId" && property.PropertyName != "GameSeoId" && property.PropertyName != "ProductCategoryDetailsCollection" && property.PropertyName != "MetaTagTitleList")
+
+        if (!toIgnore.Contains(property.PropertyName))
         {
             if (property.PropertyName.Contains("SelectedMetaTagTitle"))
             {

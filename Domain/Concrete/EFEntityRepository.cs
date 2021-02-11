@@ -40,21 +40,36 @@ namespace WowCarry.Domain.Concrete
                 dbproductGame.GameShortUrl = productGameDetails.GameShortUrl;
                 dbproductGame.GameSeoId = context.SEO.Where(c => c.MetaTagTitle == productGameDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault();
             }
-            //foreach (ProductGameDetails.ProductCategoryDetails item in productGameDetails.ProductCategoryDetailsCollection)
-            //{
-            //    ProductCategory dbProductCategory = context.ProductGame.Find(productGameDetails.ProductGameId).ProductCategory.Where(p => p.ProductCategoryId == item.ProductCategoryId).FirstOrDefault();
-            //    if (dbProductCategory != null)
-            //    {
-            //        dbProductCategory.ProductCategoryName = item.ProductCategoryName;
-            //        dbProductCategory.ProductGameId = item.ProductGameId;
-            //        dbProductCategory.CategoryDescription = item.CategoryDescription;
-            //        dbProductCategory.ProductSubCategoryId = item.ProductSubCategoryId;
-            //        dbProductCategory.CategorySeoId = item.CategorySeoId;
-            //    }
-            //}
+            else
+            {
+                ProductGame productGame = new ProductGame()
+                {
+                    ProductGameId = Guid.NewGuid(),
+                    GameName = productGameDetails.GameName,
+                    GameDescription = productGameDetails.GameDescription,
+                    GameShortUrl = productGameDetails.GameShortUrl,
+                    GameSeoId = context.SEO.Where(c => c.MetaTagTitle == productGameDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault()
+                };
+                    context.ProductGame.Add(productGame);
+             }
+
             context.SaveChanges();
         }
-        public void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
+
+    //foreach (ProductGameDetails.ProductCategoryDetails item in productGameDetails.ProductCategoryDetailsCollection)
+    //{
+    //    ProductCategory dbProductCategory = context.ProductGame.Find(productGameDetails.ProductGameId).ProductCategory.Where(p => p.ProductCategoryId == item.ProductCategoryId).FirstOrDefault();
+    //    if (dbProductCategory != null)
+    //    {
+    //        dbProductCategory.ProductCategoryName = item.ProductCategoryName;
+    //        dbProductCategory.ProductGameId = item.ProductGameId;
+    //        dbProductCategory.CategoryDescription = item.CategoryDescription;
+    //        dbProductCategory.ProductSubCategoryId = item.ProductSubCategoryId;
+    //        dbProductCategory.CategorySeoId = item.CategorySeoId;
+    //    }
+    //}
+
+    public void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
         {
             HtmlBlocks dbhtmlBlocks = context.HtmlBlocks.Find(htmlBlockDetails.SiteBlockId);
             if (dbhtmlBlocks != null)
@@ -106,10 +121,10 @@ namespace WowCarry.Domain.Concrete
             }
             context.SaveChanges();
         }
-        public void SaveArticle(ArticleDetails articlesDetails)
+    public void SaveArticle(ArticleDetails articlesDetails)
         {
             Article dbArticle = context.Article.Find(articlesDetails.ArticleId);
-            if(dbArticle !=null)
+            if (dbArticle != null)
             {
                 dbArticle.Title = articlesDetails.Title;
                 dbArticle.ShortDescription = articlesDetails.ShortDescription;
@@ -119,27 +134,29 @@ namespace WowCarry.Domain.Concrete
                 dbArticle.ImagePath = articlesDetails.ImagePath;
                 dbArticle.Enabled = articlesDetails.Enabled;
                 dbArticle.Rating = articlesDetails.Rating;
-                dbArticle.ArticleCreateTime = articlesDetails.ArticleCreateTime;
-                dbArticle.ArticleUpdateTime = articlesDetails.ArticleUpdateTime;
-                dbArticle.ArticlePostTime = articlesDetails.ArticlePostTime;
+                dbArticle.SEOId = context.SEO.Where(c => c.MetaTagTitle == articlesDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault();
+                dbArticle.ProductGameId = context.ProductGame.Where(c => c.GameName == articlesDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault();
             }
             else
             {
-                dbArticle = new Article();
-                dbArticle.ArticleId = articlesDetails.ArticleId;
-
-                dbArticle.Title = articlesDetails.Title;
-                dbArticle.ShortDescription = articlesDetails.ShortDescription;
-                dbArticle.Description = articlesDetails.Description;
-                dbArticle.ReadTime = articlesDetails.ReadTime;
-                dbArticle.Tags = articlesDetails.Tags;
-                dbArticle.ImagePath = articlesDetails.ImagePath;
-                dbArticle.Enabled = articlesDetails.Enabled;
-                dbArticle.Rating = articlesDetails.Rating;
-                dbArticle.ArticleCreateTime = articlesDetails.ArticleCreateTime;
-                dbArticle.ArticleUpdateTime = articlesDetails.ArticleUpdateTime;
-                dbArticle.ArticlePostTime = articlesDetails.ArticlePostTime;
+                Article article = new Article
+                {
+                    ArticleId = Guid.NewGuid(),
+                    Title = articlesDetails.Title,
+                    ShortDescription = articlesDetails.ShortDescription,
+                    Description = articlesDetails.Description,
+                    ReadTime = articlesDetails.ReadTime,
+                    Tags = articlesDetails.Tags,
+                    ImagePath = articlesDetails.ImagePath,
+                    Enabled = articlesDetails.Enabled,
+                    Rating = articlesDetails.Rating,
+                    SEOId = context.SEO.Where(c => c.MetaTagTitle == articlesDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault(),
+                    ProductGameId = context.ProductGame.Where(c => c.GameName == articlesDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault(),
+                };
+                context.Article.Add(article);
             }
+
+            context.SaveChanges();
         }
         public void SaveRanks(RankDetails rankDetails)
         {
@@ -384,8 +401,6 @@ namespace WowCarry.Domain.Concrete
                     Currency = orderDetails.Currency,
                     CustomerIP = orderDetails.CustomerIP,
                     UserAgent = orderDetails.UserAgent,
-                    OrderCreateTime = orderDetails.OrderCreateTime,
-                    OrderUpdateTime = orderDetails.OrderUpdateTime,
                     EmailSended = orderDetails.EmailSended,
                     EmailSendTime = orderDetails.EmailSendTime,
                     CarryCoinsSpent = orderDetails.CarryCoinsSpent,
@@ -424,8 +439,6 @@ namespace WowCarry.Domain.Concrete
                     dbOrder.Currency = orderDetails.Currency;
                     dbOrder.CustomerIP = orderDetails.CustomerIP;
                     dbOrder.UserAgent = orderDetails.UserAgent;
-                    dbOrder.OrderCreateTime = orderDetails.OrderCreateTime;
-                    dbOrder.OrderUpdateTime = orderDetails.OrderUpdateTime;
                     dbOrder.EmailSended = orderDetails.EmailSended;
                     dbOrder.EmailSendTime = orderDetails.EmailSendTime;
                     dbOrder.CarryCoinsSpent = orderDetails.CarryCoinsSpent;
