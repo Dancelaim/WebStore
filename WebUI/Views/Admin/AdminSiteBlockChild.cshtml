@@ -5,26 +5,26 @@
 {
     <div class="param-fields">
         <h2>Child</h2>
-        @Html.HiddenFor(x => Model[i].SiteBlockChildsId)
+        @Html.HiddenFor(x => Model.ElementAt(i).SiteBlockChildsId)
         <div class="input-block">
             <label>Text</label>
-            @Html.TextAreaFor(x => Model[i].Text)
+            @Html.TextAreaFor(x => Model.ElementAt(i).Text)
         </div>
         <div class="input-block">
             <label>Title</label>
-            @Html.TextBoxFor(x => Model[i].Title)
+            @Html.TextBoxFor(x => Model.ElementAt(i).Title)
         </div>
         <div class="input-block">
             <label>Image</label>
-            @Html.TextBoxFor(x => Model[i].Image)
+            @Html.TextBoxFor(x => Model.ElementAt(i).Image)
         </div>
         <div class="input-block">
             <label>CSS Class</label>
-            @Html.TextBoxFor(x => Model[i].CSSClass)
+            @Html.TextBoxFor(x => Model.ElementAt(i).CSSClass)
         </div>
         <div class="input-block">
             <label>ChildOrder</label>
-            @Html.TextBoxFor(x => Model[i].ChildOrder)
+            @Html.TextBoxFor(x => Model.ElementAt(i).ChildOrder)
         </div>
         <div><span class="remove-param"></span></div>
     </div>

@@ -412,26 +412,25 @@ namespace WowCarry.WebUI.Controllers
             EntityRepository.SaveContext();
         }
         [HttpPost]
-        //public PartialViewResult AddSiteBlock(HtmlBlockDetails siteblock,Guid siteblockId)
-        //{
-        //    var dbsiteblock = EntityRepository.HtmlBlocks.Where(b => b.SiteBlockId == siteblockId).FirstOrDefault();
-        //    if (dbsiteblock != null)
-        //    {
-        //        var siteblockchild = new HtmlBlocksChildren();
-        //        siteblockchild.SiteBlockChildsId = Guid.NewGuid();
-        //        siteblockchild.SiteBlockId = siteblockId;
-        //        dbsiteblock.HtmlBlocksChildren.Add(siteblockchild);
-        //        EntityRepository.SaveContext();
-        //        return siteblockchild.SiteBlockChildsId.ToString();
-        //    }
-        //    else
-        //    {
-        //        var newSiteBlockChild = new HtmlBlockDetails.HtmlBlockChildrenDetails { };
-        //        siteblock.HtmlBlockChildDetailsCollection.Add(newSiteBlockChild);
-
-        //        return newSiteBlock.SiteBlockId.ToString();
-        //    }
-        //}
+        public PartialViewResult AddSiteBlock(HtmlBlockDetails siteblock, Guid siteblockId)
+        {
+            var dbsiteblock = EntityRepository.HtmlBlocks.Where(b => b.SiteBlockId == siteblockId).FirstOrDefault();
+            if (dbsiteblock != null)
+            {
+                var siteblockchild = new HtmlBlocksChildren();
+                siteblockchild.SiteBlockChildsId = Guid.NewGuid();
+                siteblockchild.SiteBlockId = siteblockId;
+                dbsiteblock.HtmlBlocksChildren.Add(siteblockchild);
+                EntityRepository.SaveContext();
+                return PartialView(siteblockchild);
+            }
+            else
+            {
+                var newSiteBlockChild = new HtmlBlockDetails.HtmlBlockChildrenDetails { };
+                siteblock.HtmlBlockChildDetailsCollection.Add(newSiteBlockChild);
+                return PartialView(newSiteBlockChild);
+            }
+        }
         [HttpPost]
         public void RemoveOption(Guid optionId, Guid prodId)
         {
