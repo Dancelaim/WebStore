@@ -7,37 +7,67 @@
             @Html.ActionLink("Exit", "Admin", null, new { @class = "btn btn-default exitBtn" })
         </div>
     </div>
-    @Html.HiddenFor(x => Model.ArticleId)
-    string[] toIgnore = { "ArticleId", "ArticleCreateTime", "ArticleUpdateTime", "ArticlePostTime", "SEOId", "ProductGameId", "GamesList", "MetaTagTitleList" };
+    <div class="panel-body">
+        @Html.HiddenFor(x => Model.ArticleId)
+        @{string[] toIgnore = { "ArticleId", "ArticleCreateTime", "ArticleUpdateTime", "ArticlePostTime", "SEOId", "ProductGameId", "GamesList", "MetaTagTitleList" };
 
-    foreach (var property in ViewData.ModelMetadata.Properties)
-    {
+            foreach (var property in ViewData.ModelMetadata.Properties)
+            {
 
-        if (!toIgnore.Contains(property.PropertyName))
-        {
+                if (!toIgnore.Contains(property.PropertyName))
+                {
 
-            if (property.PropertyName.Contains("SelectedGame"))
-            {
-                <div class="input-block">
-                    <label>Game Name:</label>
-                    @Html.DropDownListFor(m => m.SelectedGame, Model.GamesList)
-                </div>
-            }
-            else if (property.PropertyName.Contains("SelectedMetaTagTitle"))
-            {
-                <div class="input-block">
-                    <label>Meta tag title:</label>
-                    @Html.DropDownListFor(m => m.SelectedMetaTagTitle, Model.MetaTagTitleList)
-                </div>
-            }
-            else
-            {
-                <div class="input-block">
-                    <label>@(property.DisplayName ?? property.PropertyName):</label>
-                    @Html.Editor(property.PropertyName, new { @class = "form-control" })
-                </div>
+                    if (property.PropertyName.Contains("SelectedGame"))
+                    {
+                        <div class="input-block">
+                            <label>Game Name:</label>
+                            @Html.DropDownListFor(m => m.SelectedGame, Model.GamesList)
+                        </div>
+                    }
+                    else if (property.PropertyName.Contains("ShortDescription"))
+                    {
+                        <div class="input-block">
+                            <label>ShortDescription:</label>
+                            @Html.TextArea(property.PropertyName, null, new { @class = "textarea-desc", maxlength = 10 })
+                        </div>
+                    }
+                    else if (property.PropertyName.Contains("Description"))
+                    {
+                        <div class="input-block">
+                            <label>Description:</label>
+                            @Html.TextArea(property.PropertyName, null, new { @class = "textarea-desc" })
+                        </div>
+                    }
+                    else if (property.PropertyName.Contains("SelectedMetaTagTitle"))
+                    {
+                        <div class="input-block">
+                            <label>Meta tag title:</label>
+                            @Html.DropDownListFor(m => m.SelectedMetaTagTitle, Model.MetaTagTitleList)
+                        </div>
+                    }
+                    else if (property.PropertyName.Contains("Enabled"))
+                    {
+                        <div class="input-block">
+                            <label>Status:</label>
+                           @Html.CheckBoxFor(m => m.Enabled)
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="input-block">
+                            <label>@(property.DisplayName ?? property.PropertyName):</label>
+                            @Html.Editor(property.PropertyName, new { @class = "form-control" })
+                        </div>
+                    }
+                }
+
             }
         }
-
-    }   
+    </div>
+    <div class="panel-footer">
+        <div class="save-btns">
+            <input type="submit" value="Save" class="btn" id="SubmitOption" />
+            @Html.ActionLink("Exit", "Admin", null, new { @class = "btn btn-default exitBtn" })
+        </div>
+    </div>
 }
