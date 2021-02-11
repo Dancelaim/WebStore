@@ -155,8 +155,9 @@ namespace WowCarry.Domain.Concrete
                     Enabled = articlesDetails.Enabled,
                     Rating = articlesDetails.Rating,
                     SEOId = context.SEO.Where(c => c.MetaTagTitle == articlesDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault(),
-                    ProductGameId = context.ProductGame.Where(c => c.GameName == articlesDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault(),
+                    ProductGameId = context.ProductGame.Where(c => c.GameName == articlesDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault()
                 };
+                
                 context.Article.Add(article);
             }
 

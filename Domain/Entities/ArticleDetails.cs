@@ -40,7 +40,7 @@ namespace WowCarry.Domain.Entities
         public string ImagePath { get; set; }
 
         [Display(Name = "Enabled")]
-        public Nullable<bool> Enabled { get; set; }
+        public bool Enabled { get; set; }
 
         [Display(Name = "Rating")]
         public Nullable<int> Rating { get; set; }

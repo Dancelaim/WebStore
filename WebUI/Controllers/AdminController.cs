@@ -163,7 +163,9 @@ namespace WowCarry.WebUI.Controllers
                     }
                     else
                     {
-                        return View("Save" + type, new HtmlBlockDetails {});
+                        var result = new HtmlBlockDetails { SiteBlockId = Guid.NewGuid(), HtmlBlockChildDetailsCollection = new List<HtmlBlockDetails.HtmlBlockChildrenDetails>() };
+                        result.HtmlBlockChildDetailsCollection.Add(new HtmlBlockDetails.HtmlBlockChildrenDetails());
+                        return View("Save" + type, result);
 
                     }
                 case "SEO":
@@ -417,22 +419,21 @@ namespace WowCarry.WebUI.Controllers
             EntityRepository.SaveContext();
         }
         [HttpPost]
-        public PartialViewResult AddSiteBlock(HtmlBlockDetails siteblock, Guid siteblockId)
+        public PartialViewResult AddSiteBlock(HtmlBlockDetails siteblock)
         {
-            var dbsiteblock = EntityRepository.HtmlBlocks.Where(b => b.SiteBlockId == siteblockId).FirstOrDefault();
+            var dbsiteblock = EntityRepository.HtmlBlocks.Where(b => b.SiteBlockId == siteblock.SiteBlockId).FirstOrDefault();
             if (dbsiteblock != null)
             {
                 var siteblockchild = new HtmlBlocksChildren();
                 siteblockchild.SiteBlockChildsId = Guid.NewGuid();
-                siteblockchild.SiteBlockId = siteblockId;
+                siteblockchild.SiteBlockId = siteblock.SiteBlockId;
                 dbsiteblock.HtmlBlocksChildren.Add(siteblockchild);
                 EntityRepository.SaveContext();
                 return PartialView("AdminSiteBlockChild", dbsiteblock);
             }
             else
             {
-                var newSiteBlockChild = new HtmlBlockDetails.HtmlBlockChildrenDetails { };
-                siteblock.HtmlBlockChildDetailsCollection = new List<HtmlBlockDetails.HtmlBlockChildrenDetails>();
+                var newSiteBlockChild = new HtmlBlockDetails.HtmlBlockChildrenDetails {SiteBlockChildsId = Guid.NewGuid() };
                 siteblock.HtmlBlockChildDetailsCollection.Add(newSiteBlockChild);
                 return PartialView("AdminSiteBlockChild", siteblock);
             }
@@ -555,17 +556,6 @@ namespace WowCarry.WebUI.Controllers
             else
             {
                 return View("SaveHtmlBlocks", htmlBlockDetails);
-                //return View("SaveHtmlBlocks", new HtmlBlockDetails
-                //{
-                //    SiteBlockId = htmlBlockDetails.SiteBlockId,
-                //    ParentTitle = htmlBlockDetails.ParentTitle,
-                //    ParentCSSClass = htmlBlockDetails.ParentCSSClass,
-                //    ChildCSSClass = htmlBlockDetails.ChildCSSClass,
-                //    SitePage = htmlBlockDetails.SitePage,
-                //    Order = htmlBlockDetails.Order,
-                //    HtmlBlockChildDetailsCollection = HtmlBlockDetails.PopulateHtmlBlockCollection(null, htmlBlockDetails)
-
-                //});
             }
         }
         [HttpPost]

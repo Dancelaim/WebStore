@@ -20,9 +20,9 @@
           <Property Name="ImagePath" Type="nvarchar" MaxLength="255" />
           <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="Rating" Type="int" />
-          <Property Name="ArticleCreateTime" Type="datetime" />
-          <Property Name="ArticleUpdateTime" Type="datetime" />
-          <Property Name="ArticlePostTime" Type="datetime" />
+          <Property Name="ArticleCreateTime" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="ArticleUpdateTime" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="ArticlePostTime" Type="datetime" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -93,8 +93,8 @@
           <Property Name="Currency" Type="nvarchar" MaxLength="55" />
           <Property Name="CustomerIP" Type="nvarchar" MaxLength="55" />
           <Property Name="UserAgent" Type="nvarchar" MaxLength="255" />
-          <Property Name="OrderCreateTime" Type="datetime" />
-          <Property Name="OrderUpdateTime" Type="datetime" />
+          <Property Name="OrderCreateTime" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="OrderUpdateTime" Type="datetime" StoreGeneratedPattern="Computed" />
           <Property Name="EmailSended" Type="bit" />
           <Property Name="EmailSendTime" Type="datetime" />
           <Property Name="CarryCoinsSpent" Type="decimal" Precision="18" Scale="2" />
@@ -856,9 +856,9 @@
           <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <Property Name="Rating" Type="Int32" />
-          <Property Name="ArticleCreateTime" Type="DateTime" Precision="3" />
-          <Property Name="ArticleUpdateTime" Type="DateTime" Precision="3" />
-          <Property Name="ArticlePostTime" Type="DateTime" Precision="3" />
+          <Property Name="ArticleCreateTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ArticleUpdateTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ArticlePostTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK_ProductGame" FromRole="Article" ToRole="ProductGame" />
           <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK_SEO" FromRole="Article" ToRole="SEO" />
         </EntityType>
@@ -936,8 +936,8 @@
           <Property Name="Currency" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <Property Name="CustomerIP" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <Property Name="UserAgent" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="OrderCreateTime" Type="DateTime" Precision="3" />
-          <Property Name="OrderUpdateTime" Type="DateTime" Precision="3" />
+          <Property Name="OrderCreateTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="OrderUpdateTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="EmailSended" Type="Boolean" />
           <Property Name="EmailSendTime" Type="DateTime" Precision="3" />
           <Property Name="CarryCoinsSpent" Type="Decimal" Precision="18" Scale="2" />
