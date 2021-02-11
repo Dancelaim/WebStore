@@ -638,6 +638,7 @@ namespace WowCarry.WebUI.Controllers
                 return RedirectToAction("List", new { type = "Ranks" });
             }
         }
+        [ValidateInput(false)]
         public ActionResult SaveArticle(ArticleDetails ArticleDetails)
         {
             if (ModelState.IsValid)
