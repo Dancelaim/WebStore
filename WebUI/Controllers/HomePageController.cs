@@ -52,9 +52,15 @@ namespace WebUI.Controllers
         }
 
         [HttpPost]
-        public void SetSessionData()
+        public void SetSessionData(Dictionary<string,string> dict)
         {
-
+            if (dict.Count() > 0)
+            {
+                foreach (var keyValuePair in dict)
+                {
+                    Session[keyValuePair.Key] = keyValuePair.Value;
+                }
+            }
         }
     }
 }
