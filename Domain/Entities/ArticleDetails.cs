@@ -46,13 +46,13 @@ namespace WowCarry.Domain.Entities
         public Nullable<int> Rating { get; set; }
 
         [Display(Name = "ArticleCreateTime")]
-        public Nullable<System.DateTime> ArticleCreateTime { get; set; }
+        public DateTime? ArticleCreateTime { get; set; }
 
         [Display(Name = "ArticleUpdateTime")]
-        public Nullable<System.DateTime> ArticleUpdateTime { get; set; }
+        public DateTime? ArticleUpdateTime { get; set; }
 
         [Display(Name = "ArticlePostTime")]
-        public System.DateTime ArticlePostTime { get; set; }
+        public DateTime? ArticlePostTime { get; set; }
 
 
 

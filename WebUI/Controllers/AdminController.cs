@@ -416,7 +416,6 @@ namespace WowCarry.WebUI.Controllers
             selectedProduct.ProductOptions.Add(option);
             EntityRepository.SaveContext();
         }
-        [HttpPost]
         //public PartialViewResult AddSiteBlock(HtmlBlockDetails siteblock,Guid siteblockId)
         //{
         //    var dbsiteblock = EntityRepository.HtmlBlocks.Where(b => b.SiteBlockId == siteblockId).FirstOrDefault();
