@@ -1561,6 +1561,121 @@ header {
     }
 }
 /***End Product page styles***/
+/**Information pages styles***/
+#common-information.about-us {
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -200px;
+        right: -200px;
+        background: url(/Images/mainImages/bg-about-us.jpg) 50% 0 no-repeat;
+        opacity: 0.2;
+    }
+
+    h1, .MsoNormal {
+        position: relative;
+        text-align: center;
+    }
+}
+/**********about us**************/
+.about_us_block {
+    position: relative;
+    text-align: justify;
+
+    > h2 {
+        display: none;
+    }
+
+    .about_us_box {
+        text-align: justify;
+        line-height: 0;
+        font-size: 1px;
+        text-justify: newspaper;
+        zoom: 1;
+
+        &:after {
+            display: inline-block;
+            content: '';
+            width: 100%;
+            text-align: justify;
+        }
+
+        .parent-box {
+            width: 45%;
+            display: inline-block;
+            text-align: center;
+            font-family: @o;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 25px;
+            line-height: 34px;
+            vertical-align: top;
+            margin-top: 95px;
+            position: relative;
+
+            &:before {
+                content: '';
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                bottom: 0;
+                font-family: @o;
+                font-size: 115px;
+                font-weight: bold;
+                color: @color10;
+                line-height: 75px;
+                opacity: .5;
+            }
+
+            &.weare_box {
+                &:before {
+                    content: 'WE ARE';
+                }
+            }
+
+            &.team_box {
+                &:before {
+                    content: 'OUR TEAM';
+                }
+            }
+
+            &.orders_box {
+                &:before {
+                    content: '80,000';
+                }
+            }
+
+            &.years_box {
+                &:before {
+                    content: '11 YEARS';
+                }
+            }
+
+            .title {
+                padding-bottom: 15px;
+                text-transform: uppercase;
+                font-family: @o;
+                font-style: normal;
+                font-weight: normal;
+                font-size: 40px;
+                line-height: 54px;
+                position: relative;
+            }
+
+            .text {
+                position: relative;
+            }
+        }
+    }
+}
+
+
+/**End Information pages styles***/
 /***Checkout styles***/
 #product-checkout {
     h2 {
@@ -4196,6 +4311,22 @@ blog-article {
     //header end
     //footer
     //footer end
+    //info pages
+    .about_us_block .about_us_box .parent-box {
+        width: 100%;
+    }
+    #common-information.about-us{
+        padding:15px 20px;
+    }
+    .about_us_block .about_us_box .parent-box .img_bg img {
+        width: 100%;
+    }
+
+    .about_us_block:before {
+        background-size: 570%;
+        top: -489px;
+    }
+    //info pages and
     //main page
     .latest-post h2 {
         margin-bottom: 16px !important;
