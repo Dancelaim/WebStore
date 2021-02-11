@@ -17,9 +17,9 @@ Create table Article
 	,ImagePath nvarchar(255)
 	,[Enabled] bit
 	,Rating int
-	,ArticleCreateTime datetime  DEFAULT GETDATE()
-	,ArticleUpdateTime datetime  DEFAULT GETDATE()
-	,ArticlePostTime datetime  DEFAULT GETDATE()
+	,ArticleCreateTime datetime  DEFAULT GETDATE() NOT NULL 
+	,ArticleUpdateTime datetime  DEFAULT GETDATE() NOT NULL 
+	,ArticlePostTime datetime  DEFAULT GETDATE() NOT NULL 
 
 	CONSTRAINT FK_ProductGame FOREIGN KEY (ProductGameId) REFERENCES ProductGame(ProductGameId),
 	CONSTRAINT FK_SEO FOREIGN KEY (SEOId) REFERENCES SEO(SEOId)

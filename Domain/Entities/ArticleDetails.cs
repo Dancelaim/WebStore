@@ -46,18 +46,31 @@ namespace WowCarry.Domain.Entities
         public Nullable<int> Rating { get; set; }
 
         [Display(Name = "ArticleCreateTime")]
-        public Nullable<System.DateTime> ArticleCreateTime { get; set; }
+        public DateTime? ArticleCreateTime { get; set; }
 
         [Display(Name = "ArticleUpdateTime")]
-        public Nullable<System.DateTime> ArticleUpdateTime { get; set; }
+        public DateTime? ArticleUpdateTime { get; set; }
 
         [Display(Name = "ArticlePostTime")]
-        public System.DateTime ArticlePostTime { get; set; }
+        public DateTime? ArticlePostTime { get; set; }
 
+
+
+        /// <summary>
+        /// List for Game
+        /// </summary>
         [Display(Name = "Game name")]
         public SelectList GamesList { get; set; }
-        public virtual ProductGame ProductGame { get; set; }
-        public virtual SEO SEO { get; set; }
+
+        [Required(ErrorMessage = "Product Game is required")]
+        public string SelectedGame { get; set; }
+
+        /// <summary>
+        /// List for SEO
+        /// </summary>
+        [Display(Name = "Meta tag title")]
+        public SelectList MetaTagTitleList { get; set; }
+        public string SelectedMetaTagTitle { get; set; }
     }
 
 }

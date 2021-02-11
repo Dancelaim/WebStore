@@ -41,7 +41,8 @@
     </div>
     <div class="description">
         @*описание категории*@
-        @Model.productCategory.CategoryDescription
+        @if(@Model.productCategory != null)
+            @Model.productCategory.CategoryDescription
     </div>
    
 </div>
