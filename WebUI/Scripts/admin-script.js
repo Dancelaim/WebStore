@@ -110,7 +110,8 @@ $(document).on("click", ".siteblock-add", function () {
             siteblockId: $("#SiteBlockId").val()
         },
         success: function (data) {
-            window.location.href = window.location.href.replace("?type=HtmlBlocks", "?Id=" + data + "&type=HtmlBlocks");
+            $('.childblock-list').append(data)
+            //window.location.href = window.location.href.replace("?type=HtmlBlocks", "?Id=" + data + "&type=HtmlBlocks");
         },
         error: function (ex) {
             alert('Failed to add SiteBlock.' + ex);

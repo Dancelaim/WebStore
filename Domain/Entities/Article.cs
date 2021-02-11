@@ -23,7 +23,7 @@ namespace WowCarry.Domain.Entities
         public Nullable<System.Guid> ProductGameId { get; set; }
         public Nullable<System.Guid> SEOId { get; set; }
         public string ImagePath { get; set; }
-        public Nullable<bool> Enabled { get; set; }
+        public bool Enabled { get; set; }
         public Nullable<int> Rating { get; set; }
         public Nullable<System.DateTime> ArticleCreateTime { get; set; }
         public Nullable<System.DateTime> ArticleUpdateTime { get; set; }

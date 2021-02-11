@@ -18,7 +18,7 @@
           <Property Name="ProductGameId" Type="uniqueidentifier" />
           <Property Name="SEOId" Type="uniqueidentifier" />
           <Property Name="ImagePath" Type="nvarchar" MaxLength="255" />
-          <Property Name="Enabled" Type="bit" />
+          <Property Name="Enabled" Type="bit" Nullable="false" />
           <Property Name="Rating" Type="int" />
           <Property Name="ArticleCreateTime" Type="datetime" />
           <Property Name="ArticleUpdateTime" Type="datetime" />
@@ -854,7 +854,7 @@
           <Property Name="ProductGameId" Type="Guid" />
           <Property Name="SEOId" Type="Guid" />
           <Property Name="ImagePath" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Enabled" Type="Boolean" />
+          <Property Name="Enabled" Type="Boolean" Nullable="false" />
           <Property Name="Rating" Type="Int32" />
           <Property Name="ArticleCreateTime" Type="DateTime" Precision="3" />
           <Property Name="ArticleUpdateTime" Type="DateTime" Precision="3" />

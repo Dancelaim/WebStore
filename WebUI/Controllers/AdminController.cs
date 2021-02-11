@@ -163,7 +163,7 @@ namespace WowCarry.WebUI.Controllers
                     }
                     else
                     {
-                        return View("Save" + type, new HtmlBlockDetails { });
+                        return View("Save" + type, new HtmlBlockDetails {});
 
                     }
                 case "SEO":
@@ -427,13 +427,14 @@ namespace WowCarry.WebUI.Controllers
                 siteblockchild.SiteBlockId = siteblockId;
                 dbsiteblock.HtmlBlocksChildren.Add(siteblockchild);
                 EntityRepository.SaveContext();
-                return PartialView(siteblockchild);
+                return PartialView("AdminSiteBlockChild", dbsiteblock);
             }
             else
             {
                 var newSiteBlockChild = new HtmlBlockDetails.HtmlBlockChildrenDetails { };
+                siteblock.HtmlBlockChildDetailsCollection = new List<HtmlBlockDetails.HtmlBlockChildrenDetails>();
                 siteblock.HtmlBlockChildDetailsCollection.Add(newSiteBlockChild);
-                return PartialView(newSiteBlockChild);
+                return PartialView("AdminSiteBlockChild", siteblock);
             }
         }
         [HttpPost]
