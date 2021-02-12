@@ -163,7 +163,7 @@ namespace WowCarry.Domain.Concrete
 
             context.SaveChanges();
         }
-        public void SaveRanks(RankDetails rankDetails)
+    public void SaveRanks(RankDetails rankDetails)
         {
             Ranks dbRanks = context.Ranks.Find(rankDetails.RankId);
             if (dbRanks != null)
@@ -173,10 +173,13 @@ namespace WowCarry.Domain.Concrete
             }
             else
             {
-                dbRanks = new Ranks();
-                dbRanks.RankId = rankDetails.RankId;
-                dbRanks.Name = rankDetails.Name;
-                dbRanks.Sale = rankDetails.Sale;
+                Ranks ranks = new Ranks()
+                {
+                    RankId = Guid.NewGuid(),
+                    Name = rankDetails.Name,
+                    Sale = rankDetails.Sale
+                };
+                context.Ranks.Add(ranks);
             }
             context.SaveChanges();
         }
@@ -380,6 +383,7 @@ namespace WowCarry.Domain.Concrete
             {
                 OrderCustomFields orderCustomFields = new OrderCustomFields
                 {
+                    OrderCustomFieldsId = Guid.NewGuid(),
                     ShlCharacterName = orderDetails.ShlCharacterName,
                     ShlRealmName = orderDetails.ShlRealmName,
                     ShlFaction = orderDetails.ShlFaction,
@@ -396,6 +400,7 @@ namespace WowCarry.Domain.Concrete
                 context.OrderCustomFields.Add(orderCustomFields);
                 Orders orders = new Orders
                 {
+                    OrderId = Guid.NewGuid(),
                     Discord = orderDetails.Discord,
                     Comment = orderDetails.Comments,
                     Email = orderDetails.Email,
@@ -458,6 +463,7 @@ namespace WowCarry.Domain.Concrete
             {
                 SEO dbSeo = new SEO
                 {
+                    SEOId = Guid.NewGuid(),
                     MetaTagTitle = seoDetails.MetaTagTitle,
                     MetaTagDescription = seoDetails.MetaTagDescription,
                     MetaTagKeyWords = seoDetails.MetaTagKeyWords,
@@ -470,6 +476,7 @@ namespace WowCarry.Domain.Concrete
                     UrlKeyWord = seoDetails.UrlKeyWord,
                     SEOImage = seoDetails.SEOImage
                 };
+                context.SEO.Add(dbSeo);
             }
             else
             {
@@ -487,11 +494,11 @@ namespace WowCarry.Domain.Concrete
                         dbSeo.MetaRobots = seoDetails.MetaRobots;
                         dbSeo.UrlKeyWord = seoDetails.UrlKeyWord;
                         dbSeo.SEOImage = seoDetails.SEOImage;
-                        }
-
                     }
-            context.SaveChanges();
             }
+                    
+            context.SaveChanges();
+        }
         public void SaveUsers(UsersDetails userDetails)
         {
             Users dbUsers = context.Users.Find(userDetails.UserId);
@@ -503,8 +510,21 @@ namespace WowCarry.Domain.Concrete
                 dbUsers.Email = userDetails.Email;
                 dbUsers.RoleId = userDetails.RoleId;
 
-                context.SaveChanges();
+              
             }
+            else
+            {
+                Users user = new Users
+                {
+                    UserId = Guid.NewGuid(),
+                    UserName = userDetails.UserName,
+                    UserPassword = userDetails.UserPassword,
+                    Email = userDetails.Email,
+                    RoleId = userDetails.RoleId,
+                };
+                context.Users.Add(user);
+            }
+            context.SaveChanges();
         }
         public void SaveTemplateOption(TemplateOptionDetails tempOptionsDetails)
         {
@@ -525,8 +545,13 @@ namespace WowCarry.Domain.Concrete
                         dbParam.ParameterSale = item.ParameterSale;
                     }
                 }
-                context.SaveChanges();
+                
             }
+            else
+            {
+                
+            }
+            context.SaveChanges();
         }
         public void SaveCustomers(CustomersDetails customersDetails)
         {
@@ -537,10 +562,23 @@ namespace WowCarry.Domain.Concrete
                 dbcustomers.Password = customersDetails.Password;
                 dbcustomers.RankId = customersDetails.RankId;
                 dbcustomers.Email = customersDetails.Email;
-                dbcustomers.CarryCoinsValue = customersDetails.CarryCoinsValue;
-
-                context.SaveChanges();
+                dbcustomers.CarryCoinsValue = customersDetails.CarryCoinsValue;   
             }
+            else
+            {
+                Customers customers = new Customers
+                {
+                    CustomerId = Guid.NewGuid(),
+                    Name = customersDetails.Name,
+                    Password = customersDetails.Password,
+                    RankId = customersDetails.RankId,
+                    Email = customersDetails.Email,
+                    CarryCoinsValue = customersDetails.CarryCoinsValue,
+            };
+                 context.Customers.Add(customers);
+
+            }
+            context.SaveChanges();
         }
         public void SaveRoles(RolesDetails rolesDetails)
         {
@@ -549,6 +587,15 @@ namespace WowCarry.Domain.Concrete
             {
                 dbroles.RoleName = rolesDetails.RoleName;
             }
+            else
+            {
+                Roles roles = new Roles
+                {
+                    RoleName = rolesDetails.RoleName
+                };
+                context.Roles.Add(roles);
+            }
+            context.SaveChanges();
         }
         public void SaveContext()
         {
