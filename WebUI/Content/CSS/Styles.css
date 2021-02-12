@@ -2515,7 +2515,8 @@ footer .disc_link:hover img {
   width: 100%;
 }
 #product-category .description,
-#common-home .description {
+#common-home .description,
+#product-games .description {
   max-width: 1600px;
   margin: 0 auto;
   position: relative;
@@ -2528,7 +2529,8 @@ footer .disc_link:hover img {
   margin-top: 0;
 }
 #product-category .description h1,
-#common-home .description h1 {
+#common-home .description h1,
+#product-games .description h1 {
   text-transform: none;
   text-align: left;
   margin: 0;
@@ -2542,7 +2544,8 @@ footer .disc_link:hover img {
   padding: 0;
 }
 #product-category .description h2,
-#common-home .description h2 {
+#common-home .description h2,
+#product-games .description h2 {
   font-family: 'Open Sans', sans-serif;
   font-style: normal;
   font-weight: 600;
@@ -2553,8 +2556,10 @@ footer .disc_link:hover img {
 }
 #product-category .description ol,
 #common-home .description ol,
+#product-games .description ol,
 #product-category .description ul,
-#common-home .description ul {
+#common-home .description ul,
+#product-games .description ul {
   padding: 0 0 0 40px;
 }
 #logo-mobile {
