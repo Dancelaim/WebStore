@@ -1,18 +1,19 @@
 ﻿@model WowCarry.Domain.Entities.RankDetails
-@using (Html.BeginForm("SaveRanks", "Admin", FormMethod.Post))
+using (Html.BeginForm("SaveRanks", "Admin", FormMethod.Post))
 {
-    <div class="panel-heading">
-        <div class="save-btns">
+<div class="panel-heading">
+    <div class="save-btns">
 
-            <input type="submit" value="Save" class="btn" id="SubmitOption" />
-            @Html.ActionLink("Exit", "Admin", null, new
-       {
-           @class = "btn btn-default exitBtn"
-       })
-        </div>
+        <input type="submit" value="Save" class="btn" id="SubmitOption" />
+        @Html.ActionLink("Exit", "Admin", null, new
+   {
+       @class = "btn btn-default exitBtn"
+   })
     </div>
+</div>
+<div class="panel-body">
     @Html.HiddenFor(x => Model.RankId)
-    foreach (var property in ViewData.ModelMetadata.Properties)
+    @foreach (var property in ViewData.ModelMetadata.Properties)
     {
 
         if (property.PropertyName != "RankId")
@@ -24,4 +25,16 @@
         }
 
     }
-}
+    }
+</div>
+<div class="panel-footer">
+    <div class="save-btns">
+
+        <input type="submit" value="Save" class="btn" id="SubmitOption" />
+        @Html.ActionLink("Exit", "Admin", null, new
+   {
+       @class = "btn btn-default exitBtn"
+   })
+    </div>
+</div>
+

@@ -1,26 +1,38 @@
 ﻿@model WowCarry.Domain.Entities.SeoDetails
-@using (Html.BeginForm("SaveSEO", "Admin", FormMethod.Post))
+using (Html.BeginForm("SaveSEO", "Admin", FormMethod.Post))
 {
-    <div class="panel-heading">
-        <div class="save-btns">
+<div class="panel-heading">
+    <div class="save-btns">
 
-            <input type="submit" value="Save" class="btn" id="SubmitOption" />
-            @Html.ActionLink("Exit", "Admin", null, new
-       {
-           @class = "btn btn-default exitBtn"
-       })
-        </div>
+        <input type="submit" value="Save" class="btn" id="SubmitOption" />
+        @Html.ActionLink("Exit", "Admin", null, new
+   {
+       @class = "btn btn-default exitBtn"
+   })
     </div>
-    foreach (var property in ViewData.ModelMetadata.Properties)
+</div>
+<div class="panel-body">
+    @foreach (var property in ViewData.ModelMetadata.Properties)
     {
         @Html.HiddenFor(x => Model.SEOId)
         if (property.PropertyName != "SEOId")
         {
-        <div class="input-block">
-            <label>@(property.DisplayName ?? property.PropertyName):</label>
-            @Html.Editor(property.PropertyName, new { @class = "form-control" })
-        </div>
+            <div class="input-block">
+                <label>@(property.DisplayName ?? property.PropertyName):</label>
+                @Html.Editor(property.PropertyName, new { @class = "form-control" })
+            </div>
         }
 
     }
- }
+    }
+</div>
+<div class="panel-footer">
+    <div class="save-btns">
+
+        <input type="submit" value="Save" class="btn" id="SubmitOption" />
+        @Html.ActionLink("Exit", "Admin", null, new
+   {
+       @class = "btn btn-default exitBtn"
+   })
+    </div>
+</div>
