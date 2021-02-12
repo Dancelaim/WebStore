@@ -164,7 +164,6 @@ namespace WowCarry.WebUI.Controllers
                     else
                     {
                         var result = new HtmlBlockDetails { SiteBlockId = Guid.NewGuid(), HtmlBlockChildDetailsCollection = new List<HtmlBlockDetails.HtmlBlockChildrenDetails>() };
-                        result.HtmlBlockChildDetailsCollection.Add(new HtmlBlockDetails.HtmlBlockChildrenDetails());
                         return View("Save" + type, result);
 
                     }
