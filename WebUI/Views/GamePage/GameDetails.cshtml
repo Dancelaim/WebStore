@@ -7,7 +7,7 @@
     @if (@Model.GameDescription != null)
     {
         <div class="description">
-            @Model.GameDescription
+            @Html.Raw(HttpUtility.HtmlDecode(@Model.GameDescription))
         </div>
     }
 </div>
