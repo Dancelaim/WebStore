@@ -91,6 +91,20 @@ namespace WowCarry.Domain.Concrete
                         dbhtmlBlocksChildren.CSSClass = item.CSSClass;
                         dbhtmlBlocksChildren.ChildOrder = item.ChildOrder;
                     }
+                    else
+                    {
+                        dbhtmlBlocksChildren = new HtmlBlocksChildren { };
+                        dbhtmlBlocksChildren.SiteBlockChildsId = item.SiteBlockChildsId;
+                        dbhtmlBlocksChildren.SiteBlockId = dbhtmlBlocks.SiteBlockId;
+                        dbhtmlBlocksChildren.Text = item.Text;
+                        dbhtmlBlocksChildren.Title = item.Title;
+                        dbhtmlBlocksChildren.Image = item.Image;
+                        dbhtmlBlocksChildren.CSSClass = item.CSSClass;
+                        dbhtmlBlocksChildren.ChildOrder = item.ChildOrder;
+
+                        context.HtmlBlocksChildren.Add(dbhtmlBlocksChildren);
+                    }
+
                 }
             }
             else
