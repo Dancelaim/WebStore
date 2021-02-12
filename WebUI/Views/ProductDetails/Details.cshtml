@@ -17,8 +17,8 @@
                     <div class="price-info">
                         <div class="price"></div>
 
-                        <div class="coins_info"> 2.30 <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> and discounted price for registered users* </div>
-                        <div class="reg_info"><a href="#"><b>Sign In</b></a> or <a href="#"><b>Register</b></a> to start saving. </div>
+                        <div class="coins_info"> 2.30 <a href="/CarryCoins" target="_blank"><b>Carrycoins</b></a> and discounted price for registered users* </div>
+                        <div class="reg_info"><a href="#" data-toggle="modal" data-target="#loginModal"><b>Sign In</b></a> or <a href="#" data-toggle="modal" data-target="#registerModal"><b>Register</b></a> to start saving. </div>
                     </div>
                     <div class="buttons">
                         @Html.HiddenFor(x => x.ProductId)
@@ -27,11 +27,11 @@
                     </div>
                 </div>
                 <div class="info-product-coins">
-                    * With each purchase registered users get 5% of the price added to their account as <a href="/carrycoins/#carrycoins_system" target="_blank"><b>Carrycoins</b></a> as well as increasing <a href="/carrycoins" target="_blank"><b>discounts</b></a> for regular buyers.
+                    * With each purchase registered users get 5% of the price added to their account as <a href="/CarryCoins" target="_blank"><b>Carrycoins</b></a> as well as increasing <a href="/CarryCoins" target="_blank"><b>discounts</b></a> for regular buyers.
                 </div>
                 <div class="product-tags">
                     Tags:
-                    <a href="">Raid</a>,
+                    
                 </div>
             </div>
 
@@ -44,7 +44,7 @@
                     <h1 class="product_title">@Model.ProductName</h1>
                 </div>
                 <div class="acc-body description" id="description">
-                    @Model.ProductDescription.Description
+                    @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.Description))
                 </div>
             </div>
             <div class="clear"> </div>
@@ -53,17 +53,18 @@
                 <div class="right-block">
                     <div class="subdescription">
                         <h3>@Model.ProductDescription.SubDescriptionTitle2</h3>
-                        @Model.ProductDescription.SubDescription2
+                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.SubDescription2))
+                       
                     </div>
                     <div class="subdescription">
                         <h3>@Model.ProductDescription.SubDescriptionTitle3</h3>
-                        @Model.ProductDescription.SubDescription3
+                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.SubDescription3))
                     </div>
                 </div>
                 <div class="left-block">
                     <div class="subdescription">
                         <h3>@Model.ProductDescription.SubDescriptionTitle1</h3>
-                        @Model.ProductDescription.SubDescription1
+                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.SubDescription1))
                     </div>
                 </div>
                 <div class="clear"></div>

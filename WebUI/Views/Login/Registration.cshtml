@@ -26,15 +26,15 @@
                     </div>
                 </div>
                 <div id="password-box" class="form-group password-box required">
-                    <label class="control-label" for="password-input">Password</label>
+                    <label class="control-label" for="NewPassword">Password</label>
                     <div class="col-sm-12">
-                        <input type="password" name="password" value="" placeholder="" id="password-input" class="form-control">
+                        @Html.TextBox("NewPassword", "", new { @class = "form-control" })
                     </div>
                 </div>
                 <div id="confirm-box" class="form-group confirm-box required">
-                    <label class="control-label" for="confirm-input">Confilm password</label>
+                    <label class="control-label" for="PasswordConfirm">Confilm password</label>
                     <div class="col-sm-12">
-                        @Html.TextBox("Password", "", new { @class = "form-control" })
+                        @Html.TextBox("PasswordConfirm", "", new { @class = "form-control" })
                     </div>
                 </div>
                 <div id="agree-checkbox" class="form-group agree-checkbox required">

@@ -1311,6 +1311,7 @@ header .bottom {
 }
 #product-product .product_left .buttons button {
   background: #6D94C4;
+  border-color: transparent;
   border-radius: 100px;
   color: #10111B;
   font-size: 20px;
@@ -2644,6 +2645,7 @@ footer .disc_link:hover img {
   background: -webkit-linear-gradient(top, #161828 0%, #212656 100%);
   background: linear-gradient(to bottom, #161828 0%, #212656 100%);
   border: 0 none;
+  width: 80%;
 }
 #mobile-menu #menuModal .modal-dialog .modal-content .modal-body {
   padding: 0;
@@ -3540,6 +3542,14 @@ blog-article .info_article .article_title .tag a:hover {
 }
 /**Blog Pages and**/
 @media only screen and (max-width: 1600px) {
+  .container {
+    padding: 15px 20px;
+  }
+  #common-home.container,
+  #product-product.container,
+  footer .container {
+    padding: 0;
+  }
   .top {
     padding: 0 15px !important;
   }
