@@ -1389,6 +1389,7 @@ header {
         .buttons {
             button {
                 background: @color1;
+                border-color:transparent;
                 border-radius: 100px;
                 color: @color3;
                 font-size: 20px;
@@ -2960,6 +2961,7 @@ footer .disc_link {
             background: -webkit-linear-gradient(top,@color6 0%,@color10 100%);
             background: linear-gradient(to bottom,@color6 0%,@color10 100%);
             border: 0 none;
+            width:80%;
 
             .modal-body {
                 padding: 0;
@@ -4057,6 +4059,12 @@ blog-article {
 /**Blog Pages and**/
 //Media styles
 @media only screen and (max-width: 1600px) {
+    .container{
+        padding:15px 20px;
+    }
+    #common-home.container, #product-product.container, footer .container {
+        padding: 0;
+    }
     //header
     .top {
         padding: 0 15px !important;

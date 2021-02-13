@@ -23,10 +23,13 @@
         <header>
             <div class="top">
                 <div id="content">
-                    @if (Request.Browser.IsMobileDevice){
+                    @if (Request.Browser.IsMobileDevice)
+                    {
                         @Html.Action("GameCategoryMenu", "Navigation", new { isMobile = true })
                         <div id="logo-mobile"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
-                    }else{
+                    }
+                    else
+                    {
                         <div id="logo"><a href="/"> <img src="~/Images/logo.svg" alt="logo" /> </a></div>
                         <div class="games-top-menu-block">
                             <div class="hover-button">
@@ -87,14 +90,12 @@
                                 }
                             </li>
                         </ul>
-
-                        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
-                            @Html.Action("Login", "Login", new { isWebView = true })
-                        </div>
-                        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
-                            @Html.Action("Registration", "Login")
-                        </div>
-
+                    </div>
+                    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+                        @Html.Action("Login", "Login", new { isWebView = true })
+                    </div>
+                    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel" aria-hidden="true">
+                        @Html.Action("Registration", "Login")
                     </div>
 
                     <form action="" class="search-bar">

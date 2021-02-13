@@ -55,7 +55,8 @@ namespace WebUI.HtmlHelpers
         }
         public static IDisposable BeginCollectionItem<TModel>(this HtmlHelper<TModel> html, string collectionName)
         {
-            string itemIndex = Guid.NewGuid().ToString();
+            string collectionIndexFieldName = String.Format("{0}.Index", collectionName);
+            string itemIndex = GetCollectionItemIndex(collectionIndexFieldName);
             string collectionItemName = String.Format("{0}[{1}]", collectionName, itemIndex);
 
             TagBuilder indexField = new TagBuilder("input");
@@ -87,6 +88,23 @@ namespace WebUI.HtmlHelpers
             {
                 _templateInfo.HtmlFieldPrefix = _previousPrefix;
             }
+        }
+        private static string GetCollectionItemIndex(string collectionIndexFieldName)
+        {
+            Queue<string> previousIndices = (Queue<string>)HttpContext.Current.Items[collectionIndexFieldName];
+            if (previousIndices == null)
+            {
+                HttpContext.Current.Items[collectionIndexFieldName] = previousIndices = new Queue<string>();
+
+                string previousIndicesValues = HttpContext.Current.Request[collectionIndexFieldName];
+                if (!String.IsNullOrWhiteSpace(previousIndicesValues))
+                {
+                    foreach (string index in previousIndicesValues.Split(','))
+                        previousIndices.Enqueue(index);
+                }
+            }
+
+            return previousIndices.Count > 0 ? previousIndices.Dequeue() : Guid.NewGuid().ToString();
         }
     }
 
