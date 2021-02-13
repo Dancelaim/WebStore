@@ -108,6 +108,7 @@ $(document).on("click", ".siteblock-add", function () {
         url: '/admin/AddSiteBlock',
         success: function (data) {
             $('.childblock-list').append(data)
+            TaToHtmlEditor()
             //window.location.href = window.location.href.replace("?type=HtmlBlocks", "?Id=" + data + "&type=HtmlBlocks");
         },
         error: function (ex) {
@@ -115,6 +116,12 @@ $(document).on("click", ".siteblock-add", function () {
         }
     });
 })
+//Remove SiteBlock children
+$(document).on("click", ".remove-htmlbox", function () {
+    $(this).closest(".param-fields").remove();
+});
+
+
 //Remove Option
 $(document).on("click", ".remove-option", function () {
     var confirm = window.confirm("Are you sure you want to delete" + " " + $(this).closest('.opt-head').text() + " option");
@@ -247,10 +254,13 @@ $(".ImageUpload").change(function () {
 });
 
 //TextArea to HtmlEditor
-$(document).ready(function () {
+$(document).ready(TaToHtmlEditor());
+
+function TaToHtmlEditor(){
     var textAreas = document.getElementsByTagName('textarea');
     for (let i = 0; i <= textAreas.length - 1; i++) {
+        
         CKEDITOR.replace(textAreas[i].id);
     }
-});
+};
 
