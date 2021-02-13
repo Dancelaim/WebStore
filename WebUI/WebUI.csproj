@@ -1441,6 +1441,8 @@
     <Content Include="Views\HomePage\Terms.cshtml" />
     <Content Include="Views\HomePage\CarryCoins.cshtml" />
     <Content Include="Views\Admin\AdminSiteBlockChild.cshtml" />
+    <Content Include="Views\Admin\ListProductCategory.cshtml" />
+    <Content Include="Views\Admin\SaveProductCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

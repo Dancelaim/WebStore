@@ -257,8 +257,8 @@ $(".ImageUpload").change(function () {
     var path = "/Images/Product/" + $("#SelectedGame").val().toLowerCase();
     formData.append("Path", path);
 
-    &.ajax({
-        change: false,
+    $.ajax({
+        cache: false,
         type: 'POST',
         url: '/admin/Upload',
         data: formData,

@@ -26,10 +26,36 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<Orders> Orders => context.Orders;
         public IEnumerable<Roles> Roles => context.Roles;
         public IEnumerable<Article> Articles => context.Article;
+        public IEnumerable<ProductCategory> ProductCategory => context.ProductCategory;
 
 
 
+        public void SaveProductCategory(ProductCategoryDetails productCategoryDetails)
+        {
+            ProductCategory dbproductCategories = context.ProductCategory.Find(productCategoryDetails.ProductCategoryId);
+            if(dbproductCategories != null)
+            {
+                dbproductCategories.ProductCategoryId = productCategoryDetails.ProductCategoryId;
+                dbproductCategories.ProductCategoryName = productCategoryDetails.ProductCategoryName;
+                dbproductCategories.CategoryDescription = productCategoryDetails.CategoryDescription;
+                dbproductCategories.CategorySeoId = context.SEO.Where(c => c.MetaTagTitle == productCategoryDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault();
+                dbproductCategories.ProductGameId = context.ProductGame.Where(c => c.GameName == productCategoryDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault();
 
+            }
+            else
+            {
+                ProductCategory productCategories = new ProductCategory()
+                {
+                    ProductCategoryId = Guid.NewGuid(),
+                    ProductCategoryName = productCategoryDetails.ProductCategoryName,
+                    CategoryDescription = productCategoryDetails.CategoryDescription,
+                    CategorySeoId = context.SEO.Where(c => c.MetaTagTitle == productCategoryDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault(),
+                    ProductGameId = context.ProductGame.Where(c => c.GameName == productCategoryDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault()
+            };
+                context.ProductCategory.Add(productCategories);
+            }
+            context.SaveChanges();
+        }
         public void SaveGame(ProductGameDetails productGameDetails)
         {
             ProductGame dbproductGame = context.ProductGame.Find(productGameDetails.ProductGameId);
