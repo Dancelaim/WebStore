@@ -49,7 +49,18 @@
                     {
                         <div class="input-block">
                             <label>Status:</label>
-                           @Html.CheckBoxFor(m => m.Enabled)
+                            @Html.CheckBoxFor(m => m.Enabled)
+                        </div>
+                    }
+                    else if (property.PropertyName.Contains("ImagePath"))
+                    {
+                        <div class="imageBlock">
+                            <div class="upload-box">
+                                <label for="ImagePath">Upload Image:</label>
+                                <label for="ImagePath" class="upload-btn btn">Upload</label>
+                                <input type="file" name="file" id="ArticleImagePath" class="ImageUpload" style="display:none;" />
+                                @Html.HiddenFor(m => m.ImagePath, new { @readonly = "readonly" })
+                            </div>
                         </div>
                     }
                     else
