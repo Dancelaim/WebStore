@@ -1,5 +1,5 @@
-﻿@model WowCarry.Domain.Entities.ArticleDetails
-@using (Html.BeginForm("SaveArticle", "Admin", FormMethod.Post))
+﻿@model WowCarry.Domain.Entities.ProductCategoryDetails
+@using (Html.BeginForm("SaveProductCategory", "Admin", FormMethod.Post))
 {
     <div class="panel-heading">
         <div class="save-btns">
@@ -8,8 +8,8 @@
         </div>
     </div>
     <div class="panel-body">
-        @Html.HiddenFor(x => Model.ArticleId)
-        @{string[] toIgnore = { "ArticleId", "ArticleCreateTime", "ArticleUpdateTime", "ArticlePostTime", "SEOId", "ProductGameId", "GamesList", "MetaTagTitleList" };
+        @Html.HiddenFor(x => Model.ProductCategoryId)
+        @{string[] toIgnore = { "ProductCategoryId",   "SEOId", "ProductGameId", "GamesList", "MetaTagTitleList" , "ProductSubCategoryId","CategorySeoId" };
 
             foreach (var property in ViewData.ModelMetadata.Properties)
             {
@@ -24,17 +24,17 @@
                             @Html.DropDownListFor(m => m.SelectedGame, Model.GamesList)
                         </div>
                     }
-                    else if (property.PropertyName.Contains("ShortDescription"))
+                    else if (property.PropertyName.Contains("ProductCategoryName"))
                     {
                         <div class="input-block">
-                            <label>ShortDescription:</label>
+                            <label>ProductCategoryName:</label>
                             @Html.TextArea(property.PropertyName, null, new { @class = "textarea-desc", maxlength = 10 })
                         </div>
                     }
-                    else if (property.PropertyName.Contains("Description"))
+                    else if (property.PropertyName.Contains("CategoryDescription"))
                     {
                         <div class="input-block">
-                            <label>Description:</label>
+                            <label>CategoryDescription:</label>
                             @Html.TextArea(property.PropertyName, null, new { @class = "textarea-desc" })
                         </div>
                     }
@@ -44,25 +44,7 @@
                             <label>Meta tag title:</label>
                             @Html.DropDownListFor(m => m.SelectedMetaTagTitle, Model.MetaTagTitleList)
                         </div>
-                    }
-                    else if (property.PropertyName.Contains("Enabled"))
-                    {
-                        <div class="input-block">
-                            <label>Status:</label>
-                            @Html.CheckBoxFor(m => m.Enabled)
-                        </div>
-                    }
-                    else if (property.PropertyName.Contains("ImagePath"))
-                    {
-                        <div class="imageBlock">
-                            <div class="upload-box">
-                                <label for="ImagePath">Upload Image:</label>
-                                <label for="ImagePath" class="upload-btn btn">Upload</label>
-                                <input type="file" name="file" id="ArticleImagePath" class="ImageUpload" style="display:none;" />
-                                @Html.HiddenFor(m => m.ImagePath, new { @readonly = "readonly" })
-                            </div>
-                        </div>
-                    }
+                    }               
                     else
                     {
                         <div class="input-block">

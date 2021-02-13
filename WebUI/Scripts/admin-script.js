@@ -253,6 +253,33 @@ $(".ImageUpload").change(function () {
     });
 });
 
+& (".ArticleImageUpload").change(function () {
+    var formData = new FormData();
+    var file = document.getElementById($(this).attr("id")).files[0];
+
+    formData.append("File", file);
+
+    var curEl = $(this);
+
+    var path = "/Images/Product/" + $("#SelectedGame").val().toLowerCase();
+    formData.append("Path", path);
+
+    $.ajax({
+        cache: false,
+        type: 'POST',
+        url: '/admin/Upload',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            if (data != "") { 
+                curEl.closest('.imageBlock').find('input').last().val(data);
+            }
+        }
+        //$(".ArticleImagePath").attr("src", $("#ImagePath").val() + "?t=" + new Date().getTime());   
+    });
+});
+
 //TextArea to HtmlEditor
 $(document).ready(TaToHtmlEditor());
 

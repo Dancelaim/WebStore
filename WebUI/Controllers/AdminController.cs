@@ -49,6 +49,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("List" + type, EntityRepository.Orders);
                 case "Article":
                     return View("List" + type, EntityRepository.Articles);
+                case "ProductCategory":
+                    return View("List" + type, EntityRepository.ProductCategory);
                 default: return View("Admin");
             }
         }
@@ -332,6 +334,27 @@ namespace WowCarry.WebUI.Controllers
                     {
                         return View("Save" + type, new OrderDetails { });
                     }
+                case "ProductCategory":
+                    ProductCategory productCategory = EntityRepository.ProductCategory.Where(p => p.ProductCategoryId == Id).FirstOrDefault();
+                    if(productCategory != null)
+                    {
+                        return View("Save" + type, new ProductCategoryDetails
+                        {
+                            ProductCategoryId = productCategory.ProductCategoryId,
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), productCategory.SEO?.MetaTagTitle ?? "Select Meta tag title from List"),
+                            GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), productCategory?.ProductGame.GameName ?? "Select Game"),
+                            ProductCategoryName = productCategory.ProductCategoryName,
+                            CategoryDescription = productCategory.CategoryDescription
+                        });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new ProductCategoryDetails {
+
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), "Select Meta tag title from List"),
+                            GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), "Select Game")
+                        });
+                    }
                 default: return View("Admin");
             }
         }
@@ -544,6 +567,19 @@ namespace WowCarry.WebUI.Controllers
             else
             {
                 return View("SaveHtmlBlocks", htmlBlockDetails);
+            }
+        }
+        public ActionResult SaveProductCategory(ProductCategoryDetails productCategoryDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveProductCategory(productCategoryDetails);
+                TempData["message"] = string.Format("Product Category  has been saved");
+                return RedirectToAction("List", new { type = "ProductCategory" });
+            }
+            else
+            {
+                return View("List", productCategoryDetails);
             }
         }
         [HttpPost]

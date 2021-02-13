@@ -23,6 +23,7 @@ namespace WowCarry.Domain.Abstract
         IEnumerable<Orders> Orders { get; }
         IEnumerable<Roles> Roles { get; }
         IEnumerable<Article> Articles { get; }
+        IEnumerable<ProductCategory> ProductCategory { get; }
 
 
 
@@ -40,6 +41,7 @@ namespace WowCarry.Domain.Abstract
         void SaveRoles(RolesDetails rolesDetails);
         void SaveOrders(OrderDetails orderDetails);
         void SaveArticle(ArticleDetails articleDetails);
+        void SaveProductCategory(ProductCategoryDetails productCategoryDetails);
         void RemoveHtmlBlock(Guid htmlBlockId);
     }
 }
