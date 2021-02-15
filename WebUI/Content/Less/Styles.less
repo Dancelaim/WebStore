@@ -50,8 +50,8 @@ font-weight: @h1weight;
 h1 {
     font-size: @hsize;
     text-align: left;
-    margin: 0 auto 16px;
-    line-height: 54px;
+    margin: 0 auto;
+    line-height: 35px;
     max-width: 1600px;
 }
 
@@ -114,9 +114,14 @@ margin: 0;
 
 
 table thead {
-background: @color6;
+    background: @color6;
+    border:0 none;
 }
-
+.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th {
+    border: 1px solid @color9 !important;
+    color: @color2;
+    padding: 8px;
+}
 input, select, textarea, input[type=text], input[type=password] {
 -webkit-appearance: none;
 
@@ -1062,7 +1067,9 @@ header {
     max-width: 1600px;
     padding: 15px 0;
 }
-
+#common-home.container, #product-product.container, footer .container {
+    padding: 0;
+}
 .logo_foot {
     float: left;
     height: 48px;
@@ -1389,7 +1396,7 @@ header {
         .buttons {
             button {
                 background: @color1;
-                border-color:transparent;
+                border-color: transparent;
                 border-radius: 100px;
                 color: @color3;
                 font-size: 20px;
@@ -1418,83 +1425,52 @@ header {
 
     .desc-content {
         float: left;
-        border: 0;
-        width: 65%;
-        padding-top: 10px;
+        border: 0 none;
+        width: 66%;
+        padding-top: 29px;
+        color: @color4;
 
-        .acc-block {
+        .desc-block .read_more, .desc-block .hide_text {
+            position: absolute;
+            bottom: 15px;
+            right: 0;
+            font-family: @o;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 16px;
+            line-height: 22px;
+            color: @color1;
+            cursor: pointer;
+        }
+
+        .desc-block {
+            position: relative;
+            padding-bottom: 46px;
             border-bottom: 1px solid @color9;
+        }
 
-            .acc-body {
-                display: none;
-                padding-bottom: 15px;
-            }
-
-            .acc-head {
-                color: @color1;
-                font-family: @o;
-                font-style: normal;
-                font-weight: normal;
-                font-size: 20px;
-                line-height: 23px;
-                padding: 0 40px 0 0;
-                cursor: pointer;
-                position: relative;
-                transition: all .2s ease;
-
-                h1 {
-                    display: inline-block;
-                    margin: 0;
-                }
-
-
-                &:before {
-                    background: url(/Images/arrow-down.svg) 0 0 no-repeat;
-                    background-size: 20px;
-                    width: 20px;
-                    height: 20px;
-                    content: '';
-                    position: absolute;
-                    right: 20px;
-                    top: 50%;
-                    margin-top: -10px;
-                    transition: all .2s ease;
-                }
-
-                li {
-                    width: 100%;
-                    position: relative;
-
-                    &:after {
-                        content: 'READ MORE';
-                        position: absolute;
-                        right: 48px;
-                        top: 0px;
-                        font-family: @o;
-                        font-size: 16px;
-                        color: @color1;
-                    }
-                }
-            }
-
-            &.active_block {
-                .acc-head {
-                    &:before {
-                        transform: rotate(180deg);
-                    }
-                }
-            }
+        #tab-description {
+            width: 100%;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            position: relative;
+            font-size: 16px;
+            line-height: 20px;
         }
 
         .product_title {
             font-family: @o;
             font-style: normal;
-            font-weight: 400;
+            font-weight: normal;
             font-size: 20px;
             color: @color2;
             margin-top: 0;
-            padding-top: 0;
+            text-transform: uppercase;
         }
+    }
+
+    .mobile-product-title {
+        display: none;
     }
 }
 
@@ -1515,6 +1491,15 @@ header {
 }
 
 .sub-desc {
+    .center-block {
+        h3 {
+            color: @color1;
+            margin-top: 30px;
+            margin-bottom: 16px;
+            font-size: 20px;
+        }
+    }
+
     .right-block {
         float: right;
         width: 49%;
@@ -4056,7 +4041,110 @@ blog-article {
         }
     }
 }
-/**Blog Pages and**/
+/**Blog Pages end**/
+///game page
+.btns-shl-top {
+    margin: 0 auto;
+    max-width: 1600px;
+    position: relative;
+    > h2{
+        display:none;
+    }
+    .btns-shl-box {
+        text-align: justify;
+
+        &:after {
+            width: 100%;
+            height: 0px;
+            visibility: hidden;
+            overflow: hidden;
+            content: "";
+            display: inline-block;
+        }
+    }
+
+    .item {
+        display: inline-block;
+        filter: drop-shadow(0px 3px 7px rgba(0, 0, 0, 0.3));
+        position: relative;
+        vertical-align: top;
+        max-width: 513px;
+        text-align: left;
+        width: 32%;
+        transition: all 0.4s ease;
+        padding-top: 53px;
+        position: relative;
+        overflow: hidden;
+        max-width: 513px;
+
+        &:before {
+            transition: all 0.4s ease;
+            content: '';
+            position: absolute;
+            top: 53px;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            box-shadow: 0px 0px 16px rgba(109, 148, 196, 0.6);
+            opacity: 0;
+        }
+
+        &:hover {
+            &:before {
+                opacity: 1;
+            }
+        }
+
+        .item_in {
+        }
+
+        .text {
+            position: absolute;
+            right: 40px;
+            top: 0;
+
+            img {
+                height: 193px;
+                width: auto;
+            }
+        }
+
+        .link-all {
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1;
+            font-size: 0;
+        }
+
+        .title {
+            z-index: 1;
+            position: absolute;
+            bottom: 32px;
+            font-family: @o;
+            font-style: normal;
+            font-weight: 600;
+            color: @color2;
+            font-size: 24px;
+            line-height: 33px;
+            left: 24px;
+            text-decoration: none;
+
+            a {
+                color: @color2;
+                text-decoration: none;
+
+                &:hover {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}
+//game page end
 //Media styles
 @media only screen and (max-width: 1600px) {
     .container{
@@ -4099,8 +4187,16 @@ blog-article {
     }
     //main page end
 }
-
+    @media only screen and (min-width: 1520px) {
+        .btns-shl-top .item .icon-btnshl {
+            position: absolute;
+            right: -73px;
+            top: 0;
+        }
+    }
     @media only screen and (min-width: 1425px) {
+        
+
         .select-games-block.category-games .games-list .game-item.coming-soon {
             display: none;
         }
@@ -4111,6 +4207,12 @@ blog-article {
         //header end
         //footer
         //footer end
+        //page product
+        #product-product .desc-content {
+            padding-left:20px;
+            width: 60%;
+        }
+        //page product end
         //main page
         .select-games-block.category-games .games-list .game-item {
             width: 46%;
@@ -4123,7 +4225,7 @@ blog-article {
             padding-top: 11px;
         }
         //main page end
-    }
+        }
 
     @media only screen and (max-width: 1280px) {
         //header
@@ -4139,18 +4241,21 @@ blog-article {
         footer {
             height: auto;
         }
+
         #logo_foot {
             float: inherit;
             display: block;
             text-align: left;
-            padding-left:20px;
+            padding-left: 20px;
         }
+
         .main_blocks {
             display: block;
             float: inherit;
             text-align: center;
             margin-top: 30px;
         }
+
         footer .pow {
             padding: 15px 20px;
             max-width: 100%;
@@ -4160,6 +4265,7 @@ blog-article {
             position: relative;
             top: 0;
         }
+
         .payment_accept {
             position: relative;
             left: 0;
@@ -4170,6 +4276,7 @@ blog-article {
             text-align: left;
             padding-left: 20px;
         }
+
         .social_footer {
             position: relative;
             z-index: 0;
@@ -4189,6 +4296,7 @@ blog-article {
                 display: none;
             }
         }
+
         footer .foot_menu, footer .footer_category {
             position: relative;
             z-index: 999999;
@@ -4246,7 +4354,16 @@ blog-article {
             }
         }
         //footer end
+        //page product
+        #product-product .desc-content {
+            padding-left: 20px;
+            width: 57%;
+        }
+        //page product end
         //main page
+        .btns-shl-top .item .title {
+            font-size: 18px;
+        }
         .select-games-block.category-games .games-list .game-item {
             display: inline-block;
             width: 49%;
@@ -4269,7 +4386,7 @@ blog-article {
                     text-align: center;
                     width: 100%;
                     display: block;
-                    padding:0;
+                    padding: 0;
                 }
             }
 
@@ -4303,19 +4420,104 @@ blog-article {
         }
         //main page end
     }
+@media only screen and (max-width:1180px) {
+    //page product
+    #product-product .desc-content {
+        padding-left: 20px;
+        width: 55%;
+    }
+    //page product end
+}
+@media only screen and (max-width:1100px) {
+    //product page
+    #product-product .image-bg {
+        position: absolute;
 
+        img {
+            display: none;
+        }
+    }
+
+    #product-product .desc-content {
+        float: none;
+        border: 0 none;
+        width: 100%;
+        padding:0 20px;
+        margin: 0 auto;
+    }
+
+    .sub-desc .left-block, .sub-desc .right-block {
+        float: none;
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    #product-product .product_left .product_info {
+        padding-top: 38px;
+        padding-bottom: 20px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    #product-product .product_left {
+        margin: 0 auto;
+        width: 100%;
+        padding: 0 20px;
+        float: none;
+    }
+
+    #product-product .mobile-product-title {
+        display: block;
+        font-size: 26px;
+        color: @color2;
+        position: relative;
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        padding: 11px 20px 15px;
+    }
+    //product page end
+}
     @media only screen and (max-width: 850px) {
         //header
         //header end
         //footer
         //footer end
         //main page
-        .product-layout{
-            width:21%;
+        .btns-shl-top .item {
+
+            .icon-btnshl {
+                left: 0;
+                right: 0;
+                text-align: center;
+
+                img {
+                    height: 135px;
+                }
+            }
+
+            &:last-child {
+                .icon-btnshl img {
+                    height: 115px;
+                }
+            }
         }
-        .product-layout h4{
-            font-size:16px;
+
+        .btns-shl-top .item .title {
+            left: 0;
+            right: 0;
+            text-align: center;
+            bottom: 0;
         }
+        .product-layout {
+            width: 21%;
+        }
+
+        .product-layout h4 {
+            font-size: 16px;
+        }
+
         .select-games-block.category-games .games-list .game-item .links-list, .select-games-block.category-games .games-list .game-item .title {
             display: none;
         }
@@ -4352,166 +4554,224 @@ blog-article {
         }
         //main page end
     }
-@media only screen and (max-width: 766px) {
-    //header
-    .mobile-cover {
-        .top {
-            .btn-cart, .txt_acc, .search-btn {
-                font-size: 0;
-            }
 
-            .account_block {
-                padding: 16px 10px 12px 10px;
-            }
-
-            .search-bar .search-btn {
-                width: 40px;
-                height: 53px;
-                padding: 16px 10px 12px 10px;
-            }
-
-            .txt_acc {
-                padding-left: 26px;
-            }
-
-            .btn-cart {
-                padding: 13px 10px 12px 39px;
-                width: 63px;
-                height: 53px;
-
-                &:before {
-                    left: 9px;
+    @media only screen and (max-width: 766px) {
+        //header
+        .mobile-cover {
+            .top {
+                .btn-cart, .txt_acc, .search-btn {
+                    font-size: 0;
                 }
 
-                span {
-                    font-size: 14px;
+                .account_block {
+                    padding: 16px 10px 12px 10px;
+                }
+
+                .search-bar .search-btn {
+                    width: 40px;
+                    height: 53px;
+                    padding: 16px 10px 12px 10px;
+                }
+
+                .txt_acc {
+                    padding-left: 26px;
+                }
+
+                .btn-cart {
+                    padding: 13px 10px 12px 39px;
+                    width: 63px;
+                    height: 53px;
+
+                    &:before {
+                        left: 9px;
+                    }
+
+                    span {
+                        font-size: 14px;
+                    }
                 }
             }
         }
-    }
-    //header end
-    //footer
-    //footer end
-    //info pages
-    .about_us_block .about_us_box .parent-box {
-        width: 100%;
-    }
-    #common-information.about-us{
-        padding:15px 20px;
-    }
-    .about_us_block .about_us_box .parent-box .img_bg img {
-        width: 100%;
-    }
+        //header end
+        //footer
+        //footer end
+        //product page
+        #product-product .image-bg {
+            position: absolute;
 
-    .about_us_block:before {
-        background-size: 570%;
-        top: -489px;
-    }
-    //info pages and
-    //main page
-    .latest-post h2 {
-        margin-bottom: 16px !important;
-    }
-    .product-layout {
-        margin: 0 auto;
-        width: 98%;
-        padding: 16px 0;
-        border-bottom: 1px solid @color9;
-
-        .image {
-            width: 150px;
-            height: 99px;
-            float: left;
-            margin-right: 16px;
+            img {
+                display: none;
+            }
         }
-
-        .caption {
+        #product-product .desc-content {
+            float: none;
+            border: 0 none;
+            width:85%;
+            margin:0 auto;
+        }
+        .sub-desc .left-block, .sub-desc .right-block {
+            float: none;
+            display: block;
             width: 100%;
-            float: left;
+            margin: 0 auto;
+        }
+        #product-product .product_left .product_info {
+            padding-top: 38px;
+            padding-bottom: 20px;
+            padding-left: 16px;
+            padding-right: 16px;
+        }
+        #product-product .product_left {
+            margin: 0 auto;
+            width: 85%;
+            float: none;
+        }
+        #product-product .mobile-product-title {
+            display: block;
+            font-size: 26px;
+            color: @color2;
             position: relative;
-            margin: -102px 0 0 0;
-            min-height: 99px;
-            padding-left: 164px;
-
-            h4 {
-                margin: 0;
-            }
-
-            .price {
-                position: absolute;
-                bottom: 0;
-                margin: 0;
-            }
+            margin: 0 auto;
+            width: 85%;
+            text-align: center;
+            padding: 11px 0 15px;
         }
-    }
-    .purchase_block .purchase_block_in .purchase_in .image {
-        padding-bottom: 0;
-        margin-right: 16px;
-        display: inline-block;
-        height: auto;
-    }
-    .purchase_block .purchase_block_in .purchase_in .title {
-        text-align: left;
-        width: 80%;
-        display: inline-block;
-    }
-    .purchase_block .purchase_block_in .purchase_in .text {
-        text-align: left;
-        width: 97%;
-        display: inline-block;
-        padding-left: 70px;
-        padding-top: 6px;
-    }
-    .latest-post .post-item {
-        width: 93%;
-        margin: 0 auto 15px;
-        padding-bottom: 20px;
-        position: relative;
-        display: block;
-        height: auto !important;
-    }
-    .latest-post .post-item .post-heading {
-        padding: 0;
-        margin: 0;
-        position: relative;
-
-        .title a {
-            font-size: 15px;
-        }
-    }
-
-    .latest-post .post-item .post-body {
-        padding-left: 122px;
-        min-height: 61px;
-    }
-    .latest-post .post-item .post-image {
-        display: inline-block;
-        width: 100px;
-        height: 61px;
-        position: absolute;
-        bottom: 16px;
-        left: 16px;
-        img {
+        //product page end
+        //info pages
+        .about_us_block .about_us_box .parent-box {
             width: 100%;
-            margin-top: 0;
         }
+
+        #common-information.about-us {
+            padding: 15px 20px;
+        }
+
+        .about_us_block .about_us_box .parent-box .img_bg img {
+            width: 100%;
+        }
+
+        .about_us_block:before {
+            background-size: 570%;
+            top: -489px;
+        }
+        //info pages and
+        //main page
+        .latest-post h2 {
+            margin-bottom: 16px !important;
+        }
+
+        .product-layout {
+            margin: 0 auto;
+            width: 98%;
+            padding: 16px 0;
+            border-bottom: 1px solid @color9;
+
+            .image {
+                width: 150px;
+                height: 99px;
+                float: left;
+                margin-right: 16px;
+            }
+
+            .caption {
+                width: 100%;
+                float: left;
+                position: relative;
+                margin: -102px 0 0 0;
+                min-height: 99px;
+                padding-left: 164px;
+
+                h4 {
+                    margin: 0;
+                }
+
+                .price {
+                    position: absolute;
+                    bottom: 0;
+                    margin: 0;
+                }
+            }
+        }
+
+        .purchase_block .purchase_block_in .purchase_in .image {
+            padding-bottom: 0;
+            margin-right: 16px;
+            display: inline-block;
+            height: auto;
+        }
+
+        .purchase_block .purchase_block_in .purchase_in .title {
+            text-align: left;
+            width: 80%;
+            display: inline-block;
+        }
+
+        .purchase_block .purchase_block_in .purchase_in .text {
+            text-align: left;
+            width: 97%;
+            display: inline-block;
+            padding-left: 70px;
+            padding-top: 6px;
+        }
+
+        .latest-post .post-item {
+            width: 93%;
+            margin: 0 auto 15px;
+            padding-bottom: 20px;
+            position: relative;
+            display: block;
+            height: auto !important;
+        }
+
+        .latest-post .post-item .post-heading {
+            padding: 0;
+            margin: 0;
+            position: relative;
+
+            .title a {
+                font-size: 15px;
+            }
+        }
+
+        .latest-post .post-item .post-body {
+            padding-left: 122px;
+            min-height: 61px;
+        }
+
+        .latest-post .post-item .post-image {
+            display: inline-block;
+            width: 100px;
+            height: 61px;
+            position: absolute;
+            bottom: 16px;
+            left: 16px;
+
+            img {
+                width: 100%;
+                margin-top: 0;
+            }
+        }
+
+        .mobile-read-all {
+            display: block;
+            margin: -15px 16px 0;
+            padding: 13px 40px;
+            font-family: @o;
+            font-style: normal;
+            font-weight: normal;
+            font-size: 16px;
+            line-height: 22px;
+            text-align: center;
+            color: @color1;
+            -webkit-border-radius: 100px;
+            border-radius: 100px;
+            border: 1px solid @color1;
+            text-decoration: none;
+        }
+        //main page end
     }
-    .mobile-read-all {
-        display: block;
-        margin: -15px 16px 0;
-        padding: 13px 40px;
-        font-family: @o;
-        font-style: normal;
-        font-weight: normal;
-        font-size: 16px;
-        line-height: 22px;
-        text-align: center;
-        color: @color1;
-        -webkit-border-radius: 100px;
-        border-radius: 100px;
-        border: 1px solid @color1;
-        text-decoration: none;
+@media only screen and (max-width: 615px) {
+    .btns-shl-top {
+        display: none;
     }
-    //main page end
 }
-    

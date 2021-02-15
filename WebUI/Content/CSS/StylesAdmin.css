@@ -962,7 +962,8 @@ input[type="submit"]:hover {
   font-size: 20px;
   text-decoration: inherit;
 }
-.remove-option {
+.remove-option,
+.remove-htmlbox {
   display: inline-block;
   margin-left: 10px;
   height: 34px;
@@ -971,8 +972,10 @@ input[type="submit"]:hover {
   color: #6A7687;
   position: relative;
   text-align: center;
+  font-size: 0;
 }
-.remove-option:before {
+.remove-option:before,
+.remove-htmlbox:before {
   content: '\f00d';
   font-family: FontAwesome;
   font-style: normal;
