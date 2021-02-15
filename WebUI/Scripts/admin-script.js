@@ -1,13 +1,15 @@
 // JS Admib
-var activeTabId = sessionStorage.getItem("ActiveTabId");
-if (activeTabId == null) {
-    $(".opt-head:first").addClass("active-tab-head");
-    $(".opt-body:first").addClass("active-tab-body");
-} else {
-    $("#" + activeTabId).addClass("active-tab-head");
-    $("." + activeTabId).addClass("active-tab-body");
-    sessionStorage.removeItem("ActiveTabId");
-}
+$(document).ready(function () {
+    var activeTabId = sessionStorage.getItem("ActiveTabId");
+    if (activeTabId == null) {
+        $(".opt-head:first").addClass("active-tab-head");
+        $(".opt-body:first").addClass("active-tab-body");
+    } else {
+        $("#" + activeTabId).addClass("active-tab-head");
+        $("." + activeTabId).addClass("active-tab-body");
+        sessionStorage.removeItem("ActiveTabId");
+    }
+})
 var OptionParents;
 //Product tabs
 $(document).on("click", ".tab-title", function () {
@@ -113,6 +115,7 @@ $(document).on("click", ".option-add", function () {
         success: function (data) {
             $(".options-tabs").append(data);
             PopulateParentOptions();
+            $('.ddParent select').selectpicker('refresh');
         },
         error: function (ex) {
             alert('Failed to add option.' + ex);

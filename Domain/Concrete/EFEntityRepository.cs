@@ -219,8 +219,10 @@ namespace WowCarry.Domain.Concrete
                     ImagePath = articlesDetails.ImagePath,
                     Enabled = articlesDetails.Enabled,
                     Rating = articlesDetails.Rating,
+                    ArticlePostTime = DateTime.Now,
                     SEOId = context.SEO.Where(c => c.MetaTagTitle == articlesDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault(),
                     ProductGameId = context.ProductGame.Where(c => c.GameName == articlesDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault()
+
                 };
                 
                 context.Article.Add(article);

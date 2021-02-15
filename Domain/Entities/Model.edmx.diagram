@@ -5,7 +5,6 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="6660a71e30804c0094a903298793cac1" Name="Diagram1" ZoomLevel="88">
-        <EntityTypeShape EntityType="WowCarryModel.Article" Width="1.5" PointX="5" PointY="8.875" />
         <EntityTypeShape EntityType="WowCarryModel.Customers" Width="1.5" PointX="11.375" PointY="0.875" />
         <EntityTypeShape EntityType="WowCarryModel.HtmlBlocks" Width="1.5" PointX="0.875" PointY="7.125" />
         <EntityTypeShape EntityType="WowCarryModel.HtmlBlocksChildren" Width="1.5" PointX="3" PointY="7" />
@@ -24,8 +23,6 @@
         <EntityTypeShape EntityType="WowCarryModel.TemplateOptions" Width="1.5" PointX="0.625" PointY="1" />
         <EntityTypeShape EntityType="WowCarryModel.TempOptionParams" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="WowCarryModel.Users" Width="1.5" PointX="3" PointY="4.25" />
-        <AssociationConnector Association="WowCarryModel.FK_ProductGame" />
-        <AssociationConnector Association="WowCarryModel.FK_SEO" />
         <AssociationConnector Association="WowCarryModel.FK__Customers__RankI__44952D46" />
         <AssociationConnector Association="WowCarryModel.FK__Orders__Customer__4A4E069C" />
         <AssociationConnector Association="WowCarryModel.FK__HtmlBlocksChildren_HtmlBlocks" />
@@ -51,6 +48,9 @@
         <AssociationConnector Association="WowCarryModel.FK__ProductSu__Produ__65F62111" />
         <AssociationConnector Association="WowCarryModel.FK_ProductCategory_ProductGame" />
         <AssociationConnector Association="WowCarryModel.FK__ProductSu__SubCa__6BE40491" />
+        <EntityTypeShape EntityType="WowCarryModel.Article" Width="1.5" PointX="5" PointY="8.875" />
+        <AssociationConnector Association="WowCarryModel.FK_ProductGame" />
+        <AssociationConnector Association="WowCarryModel.FK_SEO" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

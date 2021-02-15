@@ -27,7 +27,6 @@ namespace WowCarry.Domain.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Article> Article { get; set; }
         public virtual DbSet<Customers> Customers { get; set; }
         public virtual DbSet<HtmlBlocks> HtmlBlocks { get; set; }
         public virtual DbSet<HtmlBlocksChildren> HtmlBlocksChildren { get; set; }
@@ -48,6 +47,7 @@ namespace WowCarry.Domain.Entities
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<ProductCategory> ProductCategory { get; set; }
         public virtual DbSet<ProductSubCategory> ProductSubCategory { get; set; }
+        public virtual DbSet<Article> Article { get; set; }
     
         public virtual int Check_db_Version(Nullable<short> script)
         {

@@ -2516,6 +2516,10 @@ footer .disc_link:hover img {
 .review_block .review_box .image img {
   width: 100%;
 }
+#product-category h1,
+#product-games h1 {
+  margin-bottom: 20px;
+}
 #product-category .description,
 #common-home .description,
 #product-games .description {
