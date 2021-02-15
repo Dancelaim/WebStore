@@ -272,7 +272,7 @@ $(".ImageUpload").change(function () {
     });
 });
 
-& (".ArticleImageUpload").change(function () {
+$(".ArticleImageUpload").change(function () {
     var formData = new FormData();
     var file = document.getElementById($(this).attr("id")).files[0];
 
