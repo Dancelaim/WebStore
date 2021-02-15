@@ -39,7 +39,7 @@
 }
 <script>
     $(document).ready(function () {
-        var htmlString = "<div class=\"opt-head\"id=\"@Model.OptionName.ToString().Replace(' ', '_').Replace("(", "_").Replace(")", "_")\">@Model.OptionName<span class=\"remove - option\"></span></div>"
+        var htmlString = "<div class=\"opt-head\"id=\"@Model.OptionName.ToString().Replace(' ', '_').Replace("(", "_").Replace(")", "_")\">@Model.OptionName<span class=\"remove-option\"></span></div>"
         $('.titles-options').append(htmlString)
     });
 </script>
