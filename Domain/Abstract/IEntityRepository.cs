@@ -43,7 +43,7 @@ namespace WowCarry.Domain.Abstract
         void SaveOrders(OrderDetails orderDetails);
         void SaveArticle(ArticleDetails articleDetails);
         void SaveProductCategory(ProductCategoryDetails productCategoryDetails);
-        void SaveSaveProductSubCategory(ProductSubCategoryDetails productSubCategoryDetails);
+        void SaveProductSubCategory(ProductSubCategoryDetails productSubCategoryDetails);
         void RemoveHtmlBlock(Guid htmlBlockId);
     }
 }
