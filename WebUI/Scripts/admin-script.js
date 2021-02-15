@@ -254,7 +254,7 @@ $(".ImageUpload").change(function () {
 
     var curEl = $(this);
 
-    var path = "/Images/Product/" + $("#SelectedGame").val().toLowerCase();
+    var path = "/Images/Article/" + $("#SelectedGame").val().toLowerCase();
     formData.append("Path", path);
 
     $.ajax({

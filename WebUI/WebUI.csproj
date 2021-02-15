@@ -1443,6 +1443,8 @@
     <Content Include="Views\Admin\AdminSiteBlockChild.cshtml" />
     <Content Include="Views\Admin\ListProductCategory.cshtml" />
     <Content Include="Views\Admin\SaveProductCategory.cshtml" />
+    <Content Include="Views\Admin\ListProductSubCategory.cshtml" />
+    <Content Include="Views\Admin\SaveProductSubCategory.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
