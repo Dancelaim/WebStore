@@ -2,17 +2,20 @@
 
 
 <div id="product-product" class="container">
-    <div class="row">
         <div class="product-info-block">
             <div class="image-bg">
                 <img src="@Model.ProductImage" alt="@Model.ProductName" />
             </div>
-            
+            @if (Request.Browser.IsMobileDevice)
+            {
+                <h1 class="mobile-product-title">@Model.ProductName</h1>
+            }
+
             <div class="product_left">
                 <div class="added-alert">@Model.ProductName added to cart</div>
                 <div class="product_info">
                     <div class="options">
-                        @Html.Action("Options", "Options",new { ProductId = @Model.ProductId } )
+                        @Html.Action("Options", "Options", new { ProductId = @Model.ProductId })
                     </div>
                     <div class="price-info">
                         <div class="price"></div>
@@ -31,7 +34,7 @@
                 </div>
                 <div class="product-tags">
                     Tags:
-                    
+
                 </div>
             </div>
 
@@ -39,33 +42,41 @@
         </div>
         <!--Product Description-->
         <div class="desc-content">
-            <div class="acc-block">
-                <div class="acc-head">
-                    <h1 class="product_title">@Model.ProductName</h1>
-                </div>
-                <div class="acc-body description" id="description">
+
+            <div class="desc-block">
+                <h1 class="product_title">@Model.ProductName</h1>
+                <div class="tab-pane" id="tab-description">
                     @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.Description))
                 </div>
             </div>
             <div class="clear"> </div>
 
             <div class="sub-desc">
-                <div class="right-block">
-                    <div class="subdescription">
-                        <h3>@Model.ProductDescription.SubDescriptionTitle2</h3>
-                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.SubDescription2))
-                       
-                    </div>
-                    <div class="subdescription">
-                        <h3>@Model.ProductDescription.SubDescriptionTitle3</h3>
-                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.SubDescription3))
-                    </div>
-                </div>
-                <div class="left-block">
+                <div class="center-block">
                     <div class="subdescription">
                         <h3>@Model.ProductDescription.SubDescriptionTitle1</h3>
                         @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.SubDescription1))
                     </div>
+                </div>
+
+                <div class="right-block">
+                    <div class="subdescription">
+                        <h3>@Model.ProductDescription.SubDescriptionTitle3</h3>
+                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.SubDescription3))
+                    </div>
+                    <div class="subdescription">
+                        <h3>@Model.ProductDescription.SubDescriptionTitle4</h3>
+                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.SubDescription4))
+                    </div>
+
+                </div>
+                <div class="left-block">
+                    <div class="subdescription">
+                        <h3>@Model.ProductDescription.SubDescriptionTitle2</h3>
+                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ProductDescription.SubDescription2))
+
+                    </div>
+                    
                 </div>
                 <div class="clear"></div>
             </div>
@@ -74,8 +85,7 @@
         <div class="clear"> </div>
         <!--end Product Description-->
     </div>
-</div>
-</div>
+
 <script>
      $("#button-cart").click(function () {
          var prodId = $(this).closest('.buttons').find('#ProductId').val();
@@ -98,5 +108,32 @@
              $('.added-alert').css('opacity', '0');
          }, 3000);
      });
+
+//description script
+	var heightDesc = $('#tab-description').height();
+	if(heightDesc > 71 ){
+		$('#tab-description').height(63);
+		//$("#tab-description").after('...');
+		$("#tab-description").after('<span class="read_more">Show More</span>');
+	}else{
+		$(".tab-content .desc-block").css("padding-bottom", "12px");
+		$('#tab-description').addClass('longText');
+	};
+
+	var heightShortDesc = $('#tab-description').height();
+
+	$('.read_more').on('click', function() {
+
+		if($('#tab-description').height() > heightShortDesc ){
+			$('.read_more').text('Show More');
+			$('#tab-description').height(heightShortDesc);
+			$('#tab-description').removeClass('longText');
+		}else{
+			$('#tab-description').height(heightDesc);
+			$('.read_more').text('Show Less');
+			$('#tab-description').addClass('longText');
+		}
+
+	});
 
 </script>

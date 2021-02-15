@@ -26,10 +26,61 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<Orders> Orders => context.Orders;
         public IEnumerable<Roles> Roles => context.Roles;
         public IEnumerable<Article> Articles => context.Article;
+        public IEnumerable<ProductCategory> ProductCategory => context.ProductCategory;
+        public IEnumerable<ProductSubCategory> ProductSubCategories => context.ProductSubCategory;
 
 
+        public void SaveSaveProductSubCategory(ProductSubCategoryDetails productSubCategoryDetails)
+        {
+            ProductSubCategory dbproductSubCategory = context.ProductSubCategory.Find(productSubCategoryDetails.ProductSubCategoryId);
+            if (dbproductSubCategory != null)
+            {
+                dbproductSubCategory.ProductSubCategoryId = productSubCategoryDetails.ProductSubCategoryId;
+                dbproductSubCategory.ProductCategoryName = productSubCategoryDetails.ProductCategoryName;
+                dbproductSubCategory.CategoryDescription = productSubCategoryDetails.CategoryDescription;
+                dbproductSubCategory.SubCategorySeoId = context.SEO.Where(c => c.MetaTagTitle == productSubCategoryDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault();
+                dbproductSubCategory.ProductCategoryId = context.ProductCategory.Where(c => c.ProductCategoryName == productSubCategoryDetails.SelectedCategoryName).Select(c => c.ProductCategoryId).FirstOrDefault();
+            }
+            else
+            {
+                ProductSubCategory productSubCategorie = new ProductSubCategory
+                {
+                    ProductSubCategoryId = Guid.NewGuid(),
+                    ProductCategoryName = productSubCategoryDetails.ProductCategoryName,
+                    CategoryDescription = productSubCategoryDetails.CategoryDescription,
+                    SubCategorySeoId = context.SEO.Where(c => c.MetaTagTitle == productSubCategoryDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault(),
+                    ProductCategoryId = context.ProductCategory.Where(c => c.ProductCategoryName == productSubCategoryDetails.SelectedCategoryName).Select(c => c.ProductCategoryId).FirstOrDefault()
+            };
+                context.ProductSubCategory.Add(productSubCategorie );
+            }
+            context.SaveChanges();
+        }
+        public void SaveProductCategory(ProductCategoryDetails productCategoryDetails)
+        {
+            ProductCategory dbproductCategories = context.ProductCategory.Find(productCategoryDetails.ProductCategoryId);
+            if(dbproductCategories != null)
+            {
+                dbproductCategories.ProductCategoryId = productCategoryDetails.ProductCategoryId;
+                dbproductCategories.ProductCategoryName = productCategoryDetails.ProductCategoryName;
+                dbproductCategories.CategoryDescription = productCategoryDetails.CategoryDescription;
+                dbproductCategories.CategorySeoId = context.SEO.Where(c => c.MetaTagTitle == productCategoryDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault();
+                dbproductCategories.ProductGameId = context.ProductGame.Where(c => c.GameName == productCategoryDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault();
 
-
+            }
+            else
+            {
+                ProductCategory productCategories = new ProductCategory()
+                {
+                    ProductCategoryId = Guid.NewGuid(),
+                    ProductCategoryName = productCategoryDetails.ProductCategoryName,
+                    CategoryDescription = productCategoryDetails.CategoryDescription,
+                    CategorySeoId = context.SEO.Where(c => c.MetaTagTitle == productCategoryDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault(),
+                    ProductGameId = context.ProductGame.Where(c => c.GameName == productCategoryDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault()
+                };
+                context.ProductCategory.Add(productCategories);
+            }
+            context.SaveChanges();
+        }
         public void SaveGame(ProductGameDetails productGameDetails)
         {
             ProductGame dbproductGame = context.ProductGame.Find(productGameDetails.ProductGameId);
@@ -561,10 +612,17 @@ namespace WowCarry.Domain.Concrete
                 }
                 
             }
-            else
-            {
-                
-            }
+        //    else
+        //    {
+        //            TemplateOptions templateOptions = new TemplateOptions
+        //        {
+        //           OptionId = Guid.NewGuid(),
+        //            OptionName = tempOptionsDetails.TempOptionName,
+        //           OptionType = tempOptionsDetails.TempOptionType, 
+        //        };
+        //
+        //        context.TemplateOptions.Add(templateOptions);
+        //   }
             context.SaveChanges();
         }
         public void SaveCustomers(CustomersDetails customersDetails)

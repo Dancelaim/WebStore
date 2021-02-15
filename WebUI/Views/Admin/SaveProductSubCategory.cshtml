@@ -1,5 +1,5 @@
-﻿@model WowCarry.Domain.Entities.ArticleDetails
-@using (Html.BeginForm("SaveArticle", "Admin", FormMethod.Post))
+﻿@model WowCarry.Domain.Entities.ProductSubCategoryDetails
+@using (Html.BeginForm("SaveProductSubCategory", "Admin", FormMethod.Post))
 {
     <div class="panel-heading">
         <div class="save-btns">
@@ -8,8 +8,8 @@
         </div>
     </div>
     <div class="panel-body">
-        @Html.HiddenFor(x => Model.ArticleId)
-        @{string[] toIgnore = { "ArticleId", "ArticleCreateTime", "ArticleUpdateTime", "ArticlePostTime", "SEOId", "ProductGameId", "GamesList", "MetaTagTitleList" };
+        @Html.HiddenFor(x => Model.ProductSubCategoryId)
+        @{string[] toIgnore = { "ProductSubCategoryId", "", "", "", "", "", "", "" };
 
             foreach (var property in ViewData.ModelMetadata.Properties)
             {
@@ -17,24 +17,24 @@
                 if (!toIgnore.Contains(property.PropertyName))
                 {
 
-                    if (property.PropertyName.Contains("SelectedGame"))
+                    if (property.PropertyName.Contains("SelectedCategoryName"))
                     {
                         <div class="input-block">
                             <label>Game Name:</label>
-                            @Html.DropDownListFor(m => m.SelectedGame, Model.GamesList)
+                            @Html.DropDownListFor(m => m.SelectedCategoryName, Model.CategoryList)
                         </div>
                     }
-                    else if (property.PropertyName.Contains("ShortDescription"))
+                    else if (property.PropertyName.Contains("CategoryDescription"))
                     {
                         <div class="input-block">
-                            <label>ShortDescription:</label>
+                            <label>Category Description:</label>
                             @Html.TextArea(property.PropertyName, null, new { @class = "textarea-desc", maxlength = 10 })
                         </div>
                     }
-                    else if (property.PropertyName.Contains("Description"))
+                    else if (property.PropertyName.Contains("ProductCategoryName"))
                     {
                         <div class="input-block">
-                            <label>Description:</label>
+                            <label>Product Category Name:</label>
                             @Html.TextArea(property.PropertyName, null, new { @class = "textarea-desc" })
                         </div>
                     }
@@ -45,24 +45,7 @@
                             @Html.DropDownListFor(m => m.SelectedMetaTagTitle, Model.MetaTagTitleList)
                         </div>
                     }
-                    else if (property.PropertyName.Contains("Enabled"))
-                    {
-                        <div class="input-block">
-                            <label>Status:</label>
-                            @Html.CheckBoxFor(m => m.Enabled)
-                        </div>
-                    }
-                    else if (property.PropertyName.Contains("ImagePath"))
-                    {
-                        <div class="imageBlock">
-                            <div class="upload-box">
-                                <label for="ImagePath">Upload Image:</label>
-                                <label for="ImagePath" class="upload-btn btn">Upload</label>
-                                <input type="file" name="file" id="ArticleImagePath" class="ImageUpload" style="display:none;" />
-                                @Html.HiddenFor(m => m.ImagePath, new { @readonly = "readonly" })
-                            </div>
-                        </div>
-                    }
+
                     else
                     {
                         <div class="input-block">

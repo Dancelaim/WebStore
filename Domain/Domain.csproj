@@ -147,6 +147,8 @@
     <Compile Include="Entities\Users.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\ProductCategoryDetails.cs" />
+    <Compile Include="Entities\ProductSubCategoryDetails.cs" />
     <Compile Include="Entities\UsersDetails.cs" />
     <Compile Include="Entities\TemplateOptionDetails.cs" />
     <Compile Include="Entities\SeoDetails.cs" />
