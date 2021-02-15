@@ -8,6 +8,7 @@ if (activeTabId == null) {
     $("." + activeTabId).addClass("active-tab-body");
     sessionStorage.removeItem("ActiveTabId");
 }
+var OptionParents;
 //Product tabs
 $(document).on("click", ".tab-title", function () {
     var TabName = $(this).attr("id");
@@ -40,6 +41,26 @@ $(document).on("click", ".opt-head", function () {
     $(this).addClass("active-tab-head");
     $(".options-tabs").find("." + TabName).addClass("active-tab-body");
 })
+//populate Parent Option selectList
+function PopulateParentOptions() {
+
+    var dropDowns = document.querySelectorAll(".ddParent")
+        
+    dropDowns.forEach(function (Item) {
+
+        var parents = Item.closest('.options-tabs').querySelectorAll('.opt-head')
+
+        for (let j = 0; j <= parents.length - 1; j++) {
+
+            var parent = parents[j];
+
+            var option = new Option(parent.textContent, parent.textContent)
+
+            Item.querySelector('select').appendChild(option)
+        }
+        
+    });
+}
 //Populate Parameter parents with ajax
 $(document).on("change", '.ddParent .bootstrap-select select', function () {
     $.ajax({
@@ -90,10 +111,8 @@ $(document).on("click", ".option-add", function () {
             prodId: $("#ProductId").val()
         },
         success: function (data) {
-            $(".tab3 .newOptions").before(data);
-            sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
-            window.location.reload();
-
+            $(".options-tabs").append(data);
+            PopulateParentOptions();
         },
         error: function (ex) {
             alert('Failed to add option.' + ex);

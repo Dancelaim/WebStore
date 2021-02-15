@@ -1,0 +1,26 @@
+﻿@model WowCarry.Domain.Entities.ProductOptionDetails.ProductOptionParamsDetails
+
+@using (Html.BeginCollectionItem("ProductOptionParamCollection"))
+{
+    <div class="param-fields">
+        @Html.HiddenFor(x => Model.ParameterId)
+        <div>
+            @Html.TextBoxFor(x => Model.Paramname, new { @class = "Param_name" })
+        </div>
+        <div>
+            @Html.TextBoxFor(x => Model.ParamTooltip)
+        </div>
+        <div>
+            @Html.TextBoxFor(x => Model.ParamPrice)
+        </div>
+        <div>
+            @Html.TextBoxFor(x => Model.Sale)
+        </div>
+        <div class="pddParent">
+            @Html.DropDownListFor(x => Model.ParentParam, Model.ParamParentList, "Empty")
+            @Html.HiddenFor(x => Model.ParentParam)
+        </div>
+        <div><span class="remove-param"></span></div>
+    </div>
+}
+

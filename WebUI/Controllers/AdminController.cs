@@ -390,41 +390,56 @@ namespace WowCarry.WebUI.Controllers
             }
         }
         [HttpPost]
-        public void AddOption(string optionName, Guid prodId)
+        public PartialViewResult AddSiteBlock()
+        {
+            return PartialView("AdminSiteBlockChild", new HtmlBlockDetails.HtmlBlockChildrenDetails { SiteBlockChildsId = Guid.NewGuid() });
+        }
+        [HttpPost]
+        public PartialViewResult AddOption(ProductOptionsViewModel productOptionViewModel,string optionName, Guid prodId)
         {
             Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
             TemplateOptions selectedOption = EntityRepository.TemplateOptions.Where(t => t.OptionName == optionName).FirstOrDefault();
 
-            ProductOptions option = new ProductOptions
+            ProductOptionDetails option = new ProductOptionDetails
             {
                 OptionId = Guid.NewGuid(),
                 OptionName = selectedOption.OptionName,
-                OptionType = selectedOption.OptionType
-
+                OptionType = selectedOption.OptionType,
+                //ParentOptionList  = new SelectList(selectedProduct.ProductOptions.Select(o => o.OptionName), "Empty"),
+                ParamList = new SelectList(selectedOption.TempOptionParams.Select(p => p.ParameterName), "Empty"),
             };
 
             foreach (var param in selectedOption.TempOptionParams)
             {
-                ProductOptionParams optionParams = new ProductOptionParams
+                ProductOptionDetails.ProductOptionParamsDetails optionParams = new ProductOptionDetails.ProductOptionParamsDetails
                 {
                     ParameterId = Guid.NewGuid(),
-                    ParameterName = param.ParameterName,
-                    ParameterTooltip = param.ParameterTooltip,
-                    ParameterPrice = param.ParameterPrice,
-                    ParentOptionId = option.OptionId,
-                    ParameterSale = param.ParameterSale
-
+                    Paramname = param.ParameterName,
+                    ParamTooltip = param.ParameterTooltip,
+                    ParamPrice = param.ParameterPrice,
+                    Sale = param.ParameterSale,
+                    ParamParentList = new SelectList(Enumerable.Empty<SelectListItem>())
                 };
-                option.ProductOptionParams.Add(optionParams);
+                option.ParamCollection = new List<ProductOptionDetails.ProductOptionParamsDetails>();
+                option.ParamCollection.Add(optionParams);
             }
 
-            selectedProduct.ProductOptions.Add(option);
-            EntityRepository.SaveContext();
+            return PartialView("ProductOption", option);
         }
         [HttpPost]
-        public PartialViewResult AddSiteBlock()
+        public PartialViewResult AddParam(string optionName, string paramName)
         {
-            return PartialView("AdminSiteBlockChild", new HtmlBlockDetails.HtmlBlockChildrenDetails { SiteBlockChildsId = Guid.NewGuid() });
+            TempOptionParams TempOptionParams = EntityRepository.TemplateOptions.Where(po => po.OptionName == optionName).FirstOrDefault().TempOptionParams.Where(p => p.ParameterName == paramName).FirstOrDefault();
+
+            ProductOptionParams parameter = new ProductOptionParams
+            {
+                ParameterId = Guid.NewGuid(),
+                ParameterName = TempOptionParams.ParameterName,
+                ParameterTooltip = TempOptionParams.ParameterTooltip,
+                ParameterPrice = TempOptionParams.ParameterPrice,
+                ParameterSale = TempOptionParams.ParameterSale
+            };
+            return PartialView("ProductOptionParameter", parameter);
         }
         [HttpPost]
         public void RemoveOption(Guid optionId, Guid prodId)
@@ -440,23 +455,6 @@ namespace WowCarry.WebUI.Controllers
             ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.OptionId == optionId).FirstOrDefault();
             ProductOptionParams prodParam = selectedOption.ProductOptionParams.Where(p => p.ParameterId == paramId).FirstOrDefault();
             selectedOption.ProductOptionParams.Remove(prodParam);
-            EntityRepository.SaveContext();
-        }
-        [HttpPost]
-        public void AddParam(string optionName, string paramName, Guid OptId)
-        {
-            TempOptionParams TempOptionParams = EntityRepository.TemplateOptions.Where(po => po.OptionName == optionName).FirstOrDefault().TempOptionParams.Where(p => p.ParameterName == paramName).FirstOrDefault();
-            ProductOptions selectedOption = EntityRepository.ProductOptions.Where(o => o.OptionId == OptId).FirstOrDefault();
-
-            ProductOptionParams parameter = new ProductOptionParams
-            {
-                ParameterId = Guid.NewGuid(),
-                ParameterName = TempOptionParams.ParameterName,
-                ParameterTooltip = TempOptionParams.ParameterTooltip,
-                ParameterPrice = TempOptionParams.ParameterPrice,
-                ParameterSale = TempOptionParams.ParameterSale
-            };
-            selectedOption.ProductOptionParams.Add(parameter);
             EntityRepository.SaveContext();
         }
         #region Save

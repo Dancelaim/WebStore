@@ -37,22 +37,6 @@ namespace WebUI.HtmlHelpers
 
             return item == currentAction ? cssClass : String.Empty;
         }
-        public static MvcHtmlString SetTabsForOptions(this HtmlHelper html, IEnumerable<string> tabNames)
-        {
-            StringBuilder result = new StringBuilder();
-            foreach (string tab in tabNames)
-            {
-                TagBuilder divTag = new TagBuilder("div");
-                TagBuilder spanTag = new TagBuilder("span");
-                spanTag.AddCssClass("remove-option");
-                divTag.InnerHtml = tab.ToString() + spanTag;
-                divTag.AddCssClass("opt-head");
-                divTag.GenerateId(tab.ToString());
-                result.Append(divTag.ToString());
-            }
-
-            return MvcHtmlString.Create(result.ToString()); ;
-        }
         public static IDisposable BeginCollectionItem<TModel>(this HtmlHelper<TModel> html, string collectionName)
         {
             string collectionIndexFieldName = String.Format("{0}.Index", collectionName);
