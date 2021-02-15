@@ -18,19 +18,20 @@ namespace WowCarry.Domain.Entities
         public ProductCategory()
         {
             this.Product = new HashSet<Product>();
+            this.ProductSubCategory = new HashSet<ProductSubCategory>();
         }
     
         public System.Guid ProductCategoryId { get; set; }
         public string ProductCategoryName { get; set; }
         public Nullable<System.Guid> ProductGameId { get; set; }
         public string CategoryDescription { get; set; }
-        public Nullable<System.Guid> ProductSubCategoryId { get; set; }
         public Nullable<System.Guid> CategorySeoId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
         public virtual SEO SEO { get; set; }
-        public virtual ProductSubCategory ProductSubCategory { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductSubCategory> ProductSubCategory { get; set; }
         public virtual ProductGame ProductGame { get; set; }
     }
 }

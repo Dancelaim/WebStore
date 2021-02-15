@@ -19,8 +19,8 @@ namespace WowCarry.Domain.Entities
         {
             this.Article = new HashSet<Article>();
             this.Product = new HashSet<Product>();
-            this.ProductCategory = new HashSet<ProductCategory>();
             this.ProductGame = new HashSet<ProductGame>();
+            this.ProductCategory = new HashSet<ProductCategory>();
             this.ProductSubCategory = new HashSet<ProductSubCategory>();
         }
     
@@ -42,9 +42,9 @@ namespace WowCarry.Domain.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Product> Product { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProductCategory> ProductCategory { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductGame> ProductGame { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ProductCategory> ProductCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductSubCategory> ProductSubCategory { get; set; }
     }

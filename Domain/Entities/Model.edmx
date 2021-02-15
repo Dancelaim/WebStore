@@ -10,7 +10,7 @@
             <PropertyRef Name="ArticleId" />
           </Key>
           <Property Name="ArticleId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" MaxLength="255" />
+          <Property Name="Title" Type="nvarchar" MaxLength="100" />
           <Property Name="ShortDescription" Type="nvarchar" MaxLength="1000" />
           <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="ReadTime" Type="nvarchar" MaxLength="55" />
@@ -22,7 +22,7 @@
           <Property Name="Rating" Type="int" />
           <Property Name="ArticleCreateTime" Type="datetime" StoreGeneratedPattern="Computed" />
           <Property Name="ArticleUpdateTime" Type="datetime" StoreGeneratedPattern="Computed" />
-          <Property Name="ArticlePostTime" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="ArticlePostTime" Type="datetime" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Customers">
           <Key>
@@ -129,7 +129,6 @@
           <Property Name="ProductCategoryName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ProductGameId" Type="uniqueidentifier" />
           <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
-          <Property Name="ProductSubCategoryId" Type="uniqueidentifier" />
           <Property Name="CategorySeoId" Type="uniqueidentifier" />
         </EntityType>
         <EntityType Name="ProductDescription">
@@ -197,7 +196,7 @@
           </Key>
           <Property Name="ProductSubCategoryId" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ProductCategoryName" Type="nvarchar" MaxLength="50" />
-          <Property Name="ProductCategoryId" Type="nvarchar" MaxLength="50" />
+          <Property Name="ProductCategoryId" Type="uniqueidentifier" />
           <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
           <Property Name="SubCategorySeoId" Type="uniqueidentifier" />
         </EntityType>
@@ -381,18 +380,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductCategory__ProductSubCategory">
-          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="0..1" />
-          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductSubCategory">
-              <PropertyRef Name="ProductSubCategoryId" />
-            </Principal>
-            <Dependent Role="ProductCategory">
-              <PropertyRef Name="ProductSubCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__ProductGa__GameS__69FBBC1F">
           <End Role="SEO" Type="Self.SEO" Multiplicity="0..1" />
           <End Role="ProductGame" Type="Self.ProductGame" Multiplicity="*" />
@@ -405,27 +392,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductOp__Optio__67DE6983">
-          <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="0..1" />
-          <End Role="ProductOptions1" Type="Self.ProductOptions" Multiplicity="*" />
+        <Association Name="FK__ProductSu__Produ__65F62111">
+          <End Role="ProductCategory" Type="Self.ProductCategory" Multiplicity="0..1" />
+          <End Role="ProductSubCategory" Type="Self.ProductSubCategory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="ProductOptions">
-              <PropertyRef Name="OptionId" />
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCategoryId" />
             </Principal>
-            <Dependent Role="ProductOptions1">
-              <PropertyRef Name="OptionParentId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductOp__Paren__65F62111">
-          <End Role="ProductOptions" Type="Self.ProductOptions" Multiplicity="0..1" />
-          <End Role="ProductOptionParams" Type="Self.ProductOptionParams" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductOptions">
-              <PropertyRef Name="OptionId" />
-            </Principal>
-            <Dependent Role="ProductOptionParams">
-              <PropertyRef Name="ParentOptionId" />
+            <Dependent Role="ProductSubCategory">
+              <PropertyRef Name="ProductCategoryId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -450,18 +425,6 @@
             </Principal>
             <Dependent Role="Realms">
               <PropertyRef Name="ProductGameId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__TempOptio__Paren__66EA454A">
-          <End Role="TemplateOptions" Type="Self.TemplateOptions" Multiplicity="0..1" />
-          <End Role="TempOptionParams" Type="Self.TempOptionParams" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TemplateOptions">
-              <PropertyRef Name="OptionId" />
-            </Principal>
-            <Dependent Role="TempOptionParams">
-              <PropertyRef Name="ParentOptionId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -643,21 +606,13 @@
             <End Role="SEO" EntitySet="SEO" />
             <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductCategory__ProductSubCategory" Association="Self.FK__ProductCategory__ProductSubCategory">
-            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
-            <End Role="ProductCategory" EntitySet="ProductCategory" />
-          </AssociationSet>
           <AssociationSet Name="FK__ProductGa__GameS__69FBBC1F" Association="Self.FK__ProductGa__GameS__69FBBC1F">
             <End Role="SEO" EntitySet="SEO" />
             <End Role="ProductGame" EntitySet="ProductGame" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductOp__Optio__67DE6983" Association="Self.FK__ProductOp__Optio__67DE6983">
-            <End Role="ProductOptions" EntitySet="ProductOptions" />
-            <End Role="ProductOptions1" EntitySet="ProductOptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductOp__Paren__65F62111" Association="Self.FK__ProductOp__Paren__65F62111">
-            <End Role="ProductOptions" EntitySet="ProductOptions" />
-            <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
+          <AssociationSet Name="FK__ProductSu__Produ__65F62111" Association="Self.FK__ProductSu__Produ__65F62111">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductSu__SubCa__6BE40491" Association="Self.FK__ProductSu__SubCa__6BE40491">
             <End Role="SEO" EntitySet="SEO" />
@@ -666,10 +621,6 @@
           <AssociationSet Name="FK__Realms__ProductG__4F47C5E3" Association="Self.FK__Realms__ProductG__4F47C5E3">
             <End Role="ProductGame" EntitySet="ProductGame" />
             <End Role="Realms" EntitySet="Realms" />
-          </AssociationSet>
-          <AssociationSet Name="FK__TempOptio__Paren__66EA454A" Association="Self.FK__TempOptio__Paren__66EA454A">
-            <End Role="TemplateOptions" EntitySet="TemplateOptions" />
-            <End Role="TempOptionParams" EntitySet="TempOptionParams" />
           </AssociationSet>
           <AssociationSet Name="FK__Users__RoleId__3A179ED3" Association="Self.FK__Users__RoleId__3A179ED3">
             <End Role="Roles" EntitySet="Roles" />
@@ -726,13 +677,11 @@
           <EntitySet Name="OrderCustomFields" EntityType="WowCarryModel.OrderCustomFields" />
           <EntitySet Name="Orders" EntityType="WowCarryModel.Orders" />
           <EntitySet Name="Product" EntityType="WowCarryModel.Product" />
-          <EntitySet Name="ProductCategory" EntityType="WowCarryModel.ProductCategory" />
           <EntitySet Name="ProductDescription" EntityType="WowCarryModel.ProductDescription" />
           <EntitySet Name="ProductGame" EntityType="WowCarryModel.ProductGame" />
           <EntitySet Name="ProductOptionParams" EntityType="WowCarryModel.ProductOptionParams" />
           <EntitySet Name="ProductOptions" EntityType="WowCarryModel.ProductOptions" />
           <EntitySet Name="ProductPrice" EntityType="WowCarryModel.ProductPrice" />
-          <EntitySet Name="ProductSubCategory" EntityType="WowCarryModel.ProductSubCategory" />
           <EntitySet Name="Ranks" EntityType="WowCarryModel.Ranks" />
           <EntitySet Name="Realms" EntityType="WowCarryModel.Realms" />
           <EntitySet Name="Roles" EntityType="WowCarryModel.Roles" />
@@ -776,10 +725,6 @@
             <End Role="ProductGame" EntitySet="ProductGame" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
-          <AssociationSet Name="FK__Product__ProductSubCategory" Association="WowCarryModel.FK__Product__ProductSubCategory">
-            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
           <AssociationSet Name="FK_ProductOptions_Product" Association="WowCarryModel.FK_ProductOptions_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductOptions" EntitySet="ProductOptions" />
@@ -787,22 +732,6 @@
           <AssociationSet Name="FK_ProductPrice_Product" Association="WowCarryModel.FK_ProductPrice_Product">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductPrice" EntitySet="ProductPrice" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Products_ProductCategory" Association="WowCarryModel.FK_Products_ProductCategory">
-            <End Role="ProductCategory" EntitySet="ProductCategory" />
-            <End Role="Product" EntitySet="Product" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductCa__Categ__6AEFE058" Association="WowCarryModel.FK__ProductCa__Categ__6AEFE058">
-            <End Role="SEO" EntitySet="SEO" />
-            <End Role="ProductCategory" EntitySet="ProductCategory" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProductCategory__ProductSubCategory" Association="WowCarryModel.FK__ProductCategory__ProductSubCategory">
-            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
-            <End Role="ProductCategory" EntitySet="ProductCategory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ProductCategory_ProductGame" Association="WowCarryModel.FK_ProductCategory_ProductGame">
-            <End Role="ProductGame" EntitySet="ProductGame" />
-            <End Role="ProductCategory" EntitySet="ProductCategory" />
           </AssociationSet>
           <AssociationSet Name="FK__ProductGa__GameS__69FBBC1F" Association="WowCarryModel.FK__ProductGa__GameS__69FBBC1F">
             <End Role="SEO" EntitySet="SEO" />
@@ -820,10 +749,6 @@
             <End Role="ProductOptionParams" EntitySet="ProductOptionParams" />
             <End Role="ProductOptionParams1" EntitySet="ProductOptionParams" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductSu__SubCa__6BE40491" Association="WowCarryModel.FK__ProductSu__SubCa__6BE40491">
-            <End Role="SEO" EntitySet="SEO" />
-            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
-          </AssociationSet>
           <AssociationSet Name="FK__Users__RoleId__3A179ED3" Association="WowCarryModel.FK__Users__RoleId__3A179ED3">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Users" EntitySet="Users" />
@@ -840,13 +765,39 @@
             <End Role="ProductOptions" EntitySet="ProductOptions" />
             <End Role="ProductOptions1" EntitySet="ProductOptions" />
           </AssociationSet>
+          <EntitySet Name="ProductCategory" EntityType="WowCarryModel.ProductCategory" />
+          <EntitySet Name="ProductSubCategory" EntityType="WowCarryModel.ProductSubCategory" />
+          <AssociationSet Name="FK__Product__ProductSubCategory" Association="WowCarryModel.FK__Product__ProductSubCategory">
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Products_ProductCategory" Association="WowCarryModel.FK_Products_ProductCategory">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductCa__Categ__6AEFE058" Association="WowCarryModel.FK__ProductCa__Categ__6AEFE058">
+            <End Role="SEO" EntitySet="SEO" />
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductSu__Produ__65F62111" Association="WowCarryModel.FK__ProductSu__Produ__65F62111">
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductCategory_ProductGame" Association="WowCarryModel.FK_ProductCategory_ProductGame">
+            <End Role="ProductGame" EntitySet="ProductGame" />
+            <End Role="ProductCategory" EntitySet="ProductCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductSu__SubCa__6BE40491" Association="WowCarryModel.FK__ProductSu__SubCa__6BE40491">
+            <End Role="SEO" EntitySet="SEO" />
+            <End Role="ProductSubCategory" EntitySet="ProductSubCategory" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="Article">
           <Key>
             <PropertyRef Name="ArticleId" />
           </Key>
           <Property Name="ArticleId" Type="Guid" Nullable="false" />
-          <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ShortDescription" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ReadTime" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
@@ -858,7 +809,7 @@
           <Property Name="Rating" Type="Int32" />
           <Property Name="ArticleCreateTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="ArticleUpdateTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="ArticlePostTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="ArticlePostTime" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK_ProductGame" FromRole="Article" ToRole="ProductGame" />
           <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK_SEO" FromRole="Article" ToRole="SEO" />
         </EntityType>
@@ -968,25 +919,10 @@
           <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK__Product__Product__662B2B3B" FromRole="Product" ToRole="SEO" />
           <NavigationProperty Name="ProductDescription" Relationship="WowCarryModel.FK__Product__ProductDescription" FromRole="Product" ToRole="ProductDescription" />
           <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK__Product__ProductGame" FromRole="Product" ToRole="ProductGame" />
-          <NavigationProperty Name="ProductSubCategory" Relationship="WowCarryModel.FK__Product__ProductSubCategory" FromRole="Product" ToRole="ProductSubCategory" />
           <NavigationProperty Name="ProductOptions" Relationship="WowCarryModel.FK_ProductOptions_Product" FromRole="Product" ToRole="ProductOptions" />
           <NavigationProperty Name="ProductPrice" Relationship="WowCarryModel.FK_ProductPrice_Product" FromRole="Product" ToRole="ProductPrice" />
+          <NavigationProperty Name="ProductSubCategory" Relationship="WowCarryModel.FK__Product__ProductSubCategory" FromRole="Product" ToRole="ProductSubCategory" />
           <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK_Products_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
-        </EntityType>
-        <EntityType Name="ProductCategory">
-          <Key>
-            <PropertyRef Name="ProductCategoryId" />
-          </Key>
-          <Property Name="ProductCategoryId" Type="Guid" Nullable="false" />
-          <Property Name="ProductCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProductGameId" Type="Guid" />
-          <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="ProductSubCategoryId" Type="Guid" />
-          <Property Name="CategorySeoId" Type="Guid" />
-          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK_Products_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
-          <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK__ProductCa__Categ__6AEFE058" FromRole="ProductCategory" ToRole="SEO" />
-          <NavigationProperty Name="ProductSubCategory" Relationship="WowCarryModel.FK__ProductCategory__ProductSubCategory" FromRole="ProductCategory" ToRole="ProductSubCategory" />
-          <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK_ProductCategory_ProductGame" FromRole="ProductCategory" ToRole="ProductGame" />
         </EntityType>
         <EntityType Name="ProductDescription">
           <Key>
@@ -1017,9 +953,9 @@
           <Property Name="GameSeoId" Type="Guid" />
           <NavigationProperty Name="Article" Relationship="WowCarryModel.FK_ProductGame" FromRole="ProductGame" ToRole="Article" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__ProductGame" FromRole="ProductGame" ToRole="Product" />
-          <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK_ProductCategory_ProductGame" FromRole="ProductGame" ToRole="ProductCategory" />
           <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK__ProductGa__GameS__69FBBC1F" FromRole="ProductGame" ToRole="SEO" />
           <NavigationProperty Name="Realms" Relationship="WowCarryModel.FK__Realms__ProductG__4F47C5E3" FromRole="ProductGame" ToRole="Realms" />
+          <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK_ProductCategory_ProductGame" FromRole="ProductGame" ToRole="ProductCategory" />
         </EntityType>
         <EntityType Name="ProductOptionParams">
           <Key>
@@ -1060,19 +996,6 @@
           <Property Name="ProductId" Type="Guid" Nullable="false" />
           <Property Name="ProductSale" Type="Decimal" Precision="18" Scale="1" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK_ProductPrice_Product" FromRole="ProductPrice" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="ProductSubCategory">
-          <Key>
-            <PropertyRef Name="ProductSubCategoryId" />
-          </Key>
-          <Property Name="ProductSubCategoryId" Type="Guid" Nullable="false" />
-          <Property Name="ProductCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ProductCategoryId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="SubCategorySeoId" Type="Guid" />
-          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__ProductSubCategory" FromRole="ProductSubCategory" ToRole="Product" />
-          <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK__ProductCategory__ProductSubCategory" FromRole="ProductSubCategory" ToRole="ProductCategory" />
-          <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK__ProductSu__SubCa__6BE40491" FromRole="ProductSubCategory" ToRole="SEO" />
         </EntityType>
         <EntityType Name="Ranks">
           <Key>
@@ -1118,8 +1041,8 @@
           <Property Name="SEOImage" Type="String" MaxLength="55" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Article" Relationship="WowCarryModel.FK_SEO" FromRole="SEO" ToRole="Article" />
           <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__Product__662B2B3B" FromRole="SEO" ToRole="Product" />
-          <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK__ProductCa__Categ__6AEFE058" FromRole="SEO" ToRole="ProductCategory" />
           <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK__ProductGa__GameS__69FBBC1F" FromRole="SEO" ToRole="ProductGame" />
+          <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK__ProductCa__Categ__6AEFE058" FromRole="SEO" ToRole="ProductCategory" />
           <NavigationProperty Name="ProductSubCategory" Relationship="WowCarryModel.FK__ProductSu__SubCa__6BE40491" FromRole="SEO" ToRole="ProductSubCategory" />
         </EntityType>
         <EntityType Name="TemplateOptions">
@@ -1267,18 +1190,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Product__ProductSubCategory">
-          <End Type="WowCarryModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="0..1" />
-          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductSubCategory">
-              <PropertyRef Name="ProductSubCategoryId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ProductSubCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_ProductOptions_Product">
           <End Type="WowCarryModel.Product" Role="Product" Multiplicity="0..1" />
           <End Type="WowCarryModel.ProductOptions" Role="ProductOptions" Multiplicity="*" />
@@ -1302,58 +1213,6 @@
             </Principal>
             <Dependent Role="ProductPrice">
               <PropertyRef Name="ProductId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Products_ProductCategory">
-          <End Type="WowCarryModel.ProductCategory" Role="ProductCategory" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductCategory">
-              <PropertyRef Name="ProductCategoryId" />
-            </Principal>
-            <Dependent Role="Product">
-              <PropertyRef Name="ProductCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductCa__Categ__6AEFE058">
-          <End Type="WowCarryModel.SEO" Role="SEO" Multiplicity="0..1" />
-          <End Type="WowCarryModel.ProductCategory" Role="ProductCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SEO">
-              <PropertyRef Name="SEOId" />
-            </Principal>
-            <Dependent Role="ProductCategory">
-              <PropertyRef Name="CategorySeoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProductCategory__ProductSubCategory">
-          <End Type="WowCarryModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="0..1" />
-          <End Type="WowCarryModel.ProductCategory" Role="ProductCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductSubCategory">
-              <PropertyRef Name="ProductSubCategoryId" />
-            </Principal>
-            <Dependent Role="ProductCategory">
-              <PropertyRef Name="ProductSubCategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ProductCategory_ProductGame">
-          <End Type="WowCarryModel.ProductGame" Role="ProductGame" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Type="WowCarryModel.ProductCategory" Role="ProductCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProductGame">
-              <PropertyRef Name="ProductGameId" />
-            </Principal>
-            <Dependent Role="ProductCategory">
-              <PropertyRef Name="ProductGameId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1405,18 +1264,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductSu__SubCa__6BE40491">
-          <End Type="WowCarryModel.SEO" Role="SEO" Multiplicity="0..1" />
-          <End Type="WowCarryModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SEO">
-              <PropertyRef Name="SEOId" />
-            </Principal>
-            <Dependent Role="ProductSubCategory">
-              <PropertyRef Name="SubCategorySeoId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Users__RoleId__3A179ED3">
           <End Type="WowCarryModel.Roles" Role="Roles" Multiplicity="0..1" />
           <End Type="WowCarryModel.Users" Role="Users" Multiplicity="*" />
@@ -1462,6 +1309,109 @@
             </Principal>
             <Dependent Role="ProductOptions1">
               <PropertyRef Name="OptionParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProductCategory">
+          <Key>
+            <PropertyRef Name="ProductCategoryId" />
+          </Key>
+          <Property Name="ProductCategoryId" Type="Guid" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductGameId" Type="Guid" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CategorySeoId" Type="Guid" />
+          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK_Products_ProductCategory" FromRole="ProductCategory" ToRole="Product" />
+          <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK__ProductCa__Categ__6AEFE058" FromRole="ProductCategory" ToRole="SEO" />
+          <NavigationProperty Name="ProductSubCategory" Relationship="WowCarryModel.FK__ProductSu__Produ__65F62111" FromRole="ProductCategory" ToRole="ProductSubCategory" />
+          <NavigationProperty Name="ProductGame" Relationship="WowCarryModel.FK_ProductCategory_ProductGame" FromRole="ProductCategory" ToRole="ProductGame" />
+        </EntityType>
+        <EntityType Name="ProductSubCategory">
+          <Key>
+            <PropertyRef Name="ProductSubCategoryId" />
+          </Key>
+          <Property Name="ProductSubCategoryId" Type="Guid" Nullable="false" />
+          <Property Name="ProductCategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ProductCategoryId" Type="Guid" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SubCategorySeoId" Type="Guid" />
+          <NavigationProperty Name="Product" Relationship="WowCarryModel.FK__Product__ProductSubCategory" FromRole="ProductSubCategory" ToRole="Product" />
+          <NavigationProperty Name="ProductCategory" Relationship="WowCarryModel.FK__ProductSu__Produ__65F62111" FromRole="ProductSubCategory" ToRole="ProductCategory" />
+          <NavigationProperty Name="SEO" Relationship="WowCarryModel.FK__ProductSu__SubCa__6BE40491" FromRole="ProductSubCategory" ToRole="SEO" />
+        </EntityType>
+        <Association Name="FK__Product__ProductSubCategory">
+          <End Type="WowCarryModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="0..1" />
+          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductSubCategory">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductSubCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Products_ProductCategory">
+          <End Type="WowCarryModel.ProductCategory" Role="ProductCategory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="WowCarryModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCategoryId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductCa__Categ__6AEFE058">
+          <End Type="WowCarryModel.SEO" Role="SEO" Multiplicity="0..1" />
+          <End Type="WowCarryModel.ProductCategory" Role="ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEO">
+              <PropertyRef Name="SEOId" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="CategorySeoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductSu__Produ__65F62111">
+          <End Type="WowCarryModel.ProductCategory" Role="ProductCategory" Multiplicity="0..1" />
+          <End Type="WowCarryModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductCategory">
+              <PropertyRef Name="ProductCategoryId" />
+            </Principal>
+            <Dependent Role="ProductSubCategory">
+              <PropertyRef Name="ProductCategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductCategory_ProductGame">
+          <End Type="WowCarryModel.ProductGame" Role="ProductGame" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="WowCarryModel.ProductCategory" Role="ProductCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductGame">
+              <PropertyRef Name="ProductGameId" />
+            </Principal>
+            <Dependent Role="ProductCategory">
+              <PropertyRef Name="ProductGameId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductSu__SubCa__6BE40491">
+          <End Type="WowCarryModel.SEO" Role="SEO" Multiplicity="0..1" />
+          <End Type="WowCarryModel.ProductSubCategory" Role="ProductSubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SEO">
+              <PropertyRef Name="SEOId" />
+            </Principal>
+            <Dependent Role="ProductSubCategory">
+              <PropertyRef Name="SubCategorySeoId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1596,18 +1546,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProductCategory">
-            <EntityTypeMapping TypeName="WowCarryModel.ProductCategory">
-              <MappingFragment StoreEntitySet="ProductCategory">
-                <ScalarProperty Name="CategorySeoId" ColumnName="CategorySeoId" />
-                <ScalarProperty Name="ProductSubCategoryId" ColumnName="ProductSubCategoryId" />
-                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
-                <ScalarProperty Name="ProductGameId" ColumnName="ProductGameId" />
-                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
-                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProductDescription">
             <EntityTypeMapping TypeName="WowCarryModel.ProductDescription">
               <MappingFragment StoreEntitySet="ProductDescription">
@@ -1669,17 +1607,6 @@
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Region" ColumnName="Region" />
                 <ScalarProperty Name="ProductPriceId" ColumnName="ProductPriceId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProductSubCategory">
-            <EntityTypeMapping TypeName="WowCarryModel.ProductSubCategory">
-              <MappingFragment StoreEntitySet="ProductSubCategory">
-                <ScalarProperty Name="SubCategorySeoId" ColumnName="SubCategorySeoId" />
-                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
-                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
-                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
-                <ScalarProperty Name="ProductSubCategoryId" ColumnName="ProductSubCategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1759,6 +1686,28 @@
                 <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductCategory">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductCategory">
+              <MappingFragment StoreEntitySet="ProductCategory">
+                <ScalarProperty Name="CategorySeoId" ColumnName="CategorySeoId" />
+                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
+                <ScalarProperty Name="ProductGameId" ColumnName="ProductGameId" />
+                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductSubCategory">
+            <EntityTypeMapping TypeName="WowCarryModel.ProductSubCategory">
+              <MappingFragment StoreEntitySet="ProductSubCategory">
+                <ScalarProperty Name="SubCategorySeoId" ColumnName="SubCategorySeoId" />
+                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
+                <ScalarProperty Name="ProductCategoryId" ColumnName="ProductCategoryId" />
+                <ScalarProperty Name="ProductCategoryName" ColumnName="ProductCategoryName" />
+                <ScalarProperty Name="ProductSubCategoryId" ColumnName="ProductSubCategoryId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -65,7 +65,6 @@ namespace WowCarry.Domain.Entities
                     ProductCategoryName = item.ProductCategoryName,
                     ProductGameId = item.ProductGameId,
                     CategoryDescription = item.CategoryDescription,
-                    ProductSubCategoryId = item.ProductSubCategoryId,
                     CategorySeoId = item.CategorySeoId
                 });
             }

@@ -41,11 +41,11 @@ namespace WowCarry.Domain.Entities
         public virtual SEO SEO { get; set; }
         public virtual ProductDescription ProductDescription { get; set; }
         public virtual ProductGame ProductGame { get; set; }
-        public virtual ProductSubCategory ProductSubCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductOptions> ProductOptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProductPrice> ProductPrice { get; set; }
+        public virtual ProductSubCategory ProductSubCategory { get; set; }
         public virtual ProductCategory ProductCategory { get; set; }
     }
 }

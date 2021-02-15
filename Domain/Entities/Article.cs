@@ -27,7 +27,7 @@ namespace WowCarry.Domain.Entities
         public Nullable<int> Rating { get; set; }
         public Nullable<System.DateTime> ArticleCreateTime { get; set; }
         public Nullable<System.DateTime> ArticleUpdateTime { get; set; }
-        public System.DateTime ArticlePostTime { get; set; }
+        public Nullable<System.DateTime> ArticlePostTime { get; set; }
     
         public virtual ProductGame ProductGame { get; set; }
         public virtual SEO SEO { get; set; }
