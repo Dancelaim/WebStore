@@ -51,11 +51,11 @@ else
                             <li><span class="menu-ico ico3"></span><span class="text-menu"> @Html.RouteLink("TemplateOptions", "AdminItem", new { Action = "List", type = "TemplateOption" }) </span></li>
                             <li class="dropdown">
                                 <span class="menu-ico ico4"></span>
-                                <span class="text-menu"><a>Games & Categories</a></span>
+                                <span class="text-menu"><a>Catalog</a></span>
                                 <ul class="dropdown-menu">
-                                    <li> @Html.RouteLink("Product Games", "AdminItem", new { Action = "List", type = "ProductGame" })</li>
-                                    <li> @Html.RouteLink("Product Category", "AdminItem", new { Action = "List", type = "ProductCategory" })</li>
-                                    <li> @Html.RouteLink("Product SubCategory", "AdminItem", new { Action = "List", type = "ProductSubCategory" })</li>
+                                    <li><span class="menu-ico ico4-1"></span><span class="text-menu"> @Html.RouteLink("Product Games", "AdminItem", new { Action = "List", type = "ProductGame" })</span></li>
+                                    <li><span class="menu-ico ico4-2"></span><span class="text-menu"> @Html.RouteLink("Product Category", "AdminItem", new { Action = "List", type = "ProductCategory" })</span></li>
+                                    <li><span class="menu-ico ico4-3"></span><span class="text-menu"> @Html.RouteLink("Product SubCategory", "AdminItem", new { Action = "List", type = "ProductSubCategory" })</span></li>
                                 </ul>
                             </li>
                             <li><span class="menu-ico ico5"></span><span class="text-menu"> @Html.RouteLink("Html Blocks", "AdminItem", new { Action = "List", type = "HtmlBlocks" }) </span></li>
@@ -66,8 +66,8 @@ else
                             <li><span class="menu-ico ico10"></span><span class="text-menu">@Html.RouteLink("Ranks", "AdminItem", new { Action = "List", type = "Ranks" }) </span></li>
                             <li><span class="menu-ico ico11"></span><span class="text-menu">@Html.RouteLink("Customers", "AdminItem", new { Action = "List", type = "Customers" })</span></li>
                             <li><span class="menu-ico ico12"></span><span class="text-menu">@Html.RouteLink("Roles", "AdminItem", new { Action = "List", type = "Roles" })</span></li>
-                            <li><span class="menu-ico ico12"></span><span class="text-menu">@Html.RouteLink("Article", "AdminItem", new { Action = "List", type = "Article" })</span></li>
-                            <li><span class="menu-ico ico12"></span><span class="text-menu">@Html.RouteLink("Article", "AdminItem", new { Action = "List", type = "ProductSubCategory" })</span></li>
+                            <li><span class="menu-ico ico13"></span><span class="text-menu">@Html.RouteLink("Article", "AdminItem", new { Action = "List", type = "Article" })</span></li>
+                            
 
                         }
                         else if (User.IsInRole("Price Admin"))

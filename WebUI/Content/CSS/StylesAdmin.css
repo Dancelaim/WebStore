@@ -369,7 +369,16 @@ body {
   content: '\f1de';
 }
 .left-column ul .menu-ico.ico4:before {
+  content: '\f212';
+}
+.left-column ul .menu-ico.ico4-1:before {
   content: '\f11b';
+}
+.left-column ul .menu-ico.ico4-2:before {
+  content: '\f016';
+}
+.left-column ul .menu-ico.ico4-3:before {
+  content: '\f0c5';
 }
 .left-column ul .menu-ico.ico5:before {
   content: '\f16b';
@@ -404,6 +413,9 @@ body {
 .left-column ul .menu-ico.ico12:before {
   content: '\f0b1';
 }
+.left-column ul .menu-ico.ico13:before {
+  content: '\f044';
+}
 .left-column ul .text-menu {
   display: block;
 }
@@ -435,10 +447,19 @@ body {
 .left-column ul li.dropdown .dropdown-menu {
   transition: all 0.3s ease;
 }
+.left-column ul li.dropdown .dropdown-menu .menu-ico {
+  margin-left: 17px;
+}
+.left-column ul li.dropdown .dropdown-menu li .text-menu a {
+  padding-left: 63px;
+}
+.left-column ul li.dropdown .dropdown-menu li .text-menu:after {
+  content: '';
+}
 .left-column ul li.dropdown .dropdown-menu li a:before {
   content: '\f101';
   position: absolute;
-  left: 34px;
+  left: 47px;
   top: 15px;
   font-family: FontAwesome;
   font-style: normal;
@@ -556,6 +577,7 @@ input[type="submit"]:hover {
   height: 300px;
 }
 .stat-info h2 {
+  color: #10111B;
   padding: 15px 20px;
   border-bottom: 1px solid #10111B;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);

@@ -313,3 +313,16 @@ function TaToHtmlEditor(){
     }
 };
 
+//block added options
+$(function () {
+
+    var optionslist = document.getElementById("Template_Options").options;
+    var existingsOptions = document.querySelectorAll()
+   // disabledOptionsList = $('.opt-body').find('.text-box:first');
+
+    console.log(optionslist);
+    
+    //optionslist[3].disabled = true;
+    //$('#Template_Options').selectpicker('refresh');
+
+});
