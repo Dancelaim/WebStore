@@ -147,6 +147,7 @@ $(document).on("click", ".option-add", function () {
         success: function (data) {
             $(".options-tabs").append(data);
             PopulateParentOption();
+            DisableOptions();
         },
         error: function (ex) {
             alert('Failed to add option.' + ex);
@@ -190,7 +191,7 @@ $(document).on("click", ".remove-option", function () {
             },
             success: function (data) {
                 sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
-                window.location.reload();
+                DisableOptions();
             },
             error: function (ex) {
                 alert('Failed to remove option.' + ex);
@@ -334,7 +335,7 @@ $(".ArticleImageUpload").change(function () {
 });
 
 //TextArea to HtmlEditor
-$(document).ready(TaToHtmlEditor());
+$(TaToHtmlEditor());
 
 function TaToHtmlEditor(){
     var textAreas = document.getElementsByTagName('textarea');
@@ -345,15 +346,21 @@ function TaToHtmlEditor(){
 };
 
 //block added options
-$(function () {
+$(DisableOptions());
 
+function DisableOptions(){
     var optionslist = document.getElementById("Template_Options").options;
-    var existingsOptions = document.querySelectorAll()
-   // disabledOptionsList = $('.opt-body').find('.text-box:first');
+    var existingsOptions = document.querySelectorAll('.OptionName input');
+    // disabledOptionsList = $('.opt-body').find('.text-box:first');
+    existingsOptions.forEach(function (opt) {
+        for (var optl of optionslist){
+            if (optl.value == opt.value) {
+                optl.disabled = true;
+            }
+        }
+    })
 
-    console.log(optionslist);
-    
-    //optionslist[3].disabled = true;
-    //$('#Template_Options').selectpicker('refresh');
 
-});
+    $('#Template_Options').selectpicker('refresh');
+
+};

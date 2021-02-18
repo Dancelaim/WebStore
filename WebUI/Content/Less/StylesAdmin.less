@@ -822,97 +822,99 @@ padding-bottom: 60px;
             max-height: 100%;
         }
     }
+.bootstrap-select .dropdown-menu li.disabled {
+    opacity: 0.3;
+}
+.panel-body, .options-body, .opt-body, .newOptions {
+    .dropdown.bootstrap-select {
+        width: 70% !important;
 
-    .panel-body, .options-body, .opt-body, .newOptions {
-        .dropdown.bootstrap-select {
-            width: 70% !important;
+        .no-results {
+            color: @color4;
+            background: @color6;
+        }
 
-            .no-results {
-                color: @color4;
+        button, .btn {
+            background: @color6;
+            outline: none;
+            border-color: @color4;
+            color: @color4;
+            box-shadow: none;
+
+
+            &:hover:focus {
+                outline: none !important;
                 background: @color6;
-            }
-
-            button, .btn {
-                background: @color6;
-                outline: none;
-                border-color: @color4;
-                color: @color4;
                 box-shadow: none;
-
-
-                &:hover:focus {
-                    outline: none !important;
-                    background: @color6;
-                    box-shadow: none;
-                }
-
-                &:hover, &:active, &:focus {
-                    outline: none !important;
-                    background: @color6;
-                    box-shadow: none;
-                }
             }
 
-            .dropdown-menu {
-                margin-top: -1px;
-                margin-bottom: -1px;
-                border-radius: 0 0 25px 25px;
-                border-top: 0 none;
-                border-color: @color4;
+            &:hover, &:active, &:focus {
+                outline: none !important;
                 background: @color6;
-                position: relative;
-                right: -1px;
-
-                .bs-searchbox .form-control {
-                    border-color: @color4;
-                    background: @color6;
-                }
-
-                .dropdown-item {
-                    color: @color4;
-                    padding: 6px;
-
-                    &:hover, &.active, &:active {
-                        background: @color9;
-                        color: @color4;
-                    }
-                }
-            }
-
-            &.show {
-                .dropdown-toggle:after {
-                    transform: rotate(270deg);
-                }
-
-                button {
-                    border-radius: 25px 25px 0 0;
-                }
-
-                &.dropup {
-                    button {
-                        border-radius: 0 0 25px 25px;
-                    }
-
-                    .dropdown-menu {
-                        border-radius: 25px 25px 0 0;
-                    }
-                }
-            }
-
-            .dropdown-toggle:after {
-                transition: all 0.3s ease;
-                border: 0 none;
-                content: '\f054';
-                transform: rotate(90deg);
-                font-family: FontAwesome;
-                font-style: normal;
-                font-weight: normal;
-                text-decoration: inherit;
-                font-size: 16px;
-                color: @color4;
+                box-shadow: none;
             }
         }
+
+        .dropdown-menu {
+            margin-top: -1px;
+            margin-bottom: -1px;
+            border-radius: 0 0 25px 25px;
+            border-top: 0 none;
+            border-color: @color4;
+            background: @color6;
+            position: relative;
+            right: -1px;
+
+            .bs-searchbox .form-control {
+                border-color: @color4;
+                background: @color6;
+            }
+
+            .dropdown-item {
+                color: @color4;
+                padding: 6px;
+
+                &:hover, &.active, &:active {
+                    background: @color9;
+                    color: @color4;
+                }
+            }
+        }
+
+        &.show {
+            .dropdown-toggle:after {
+                transform: rotate(270deg);
+            }
+
+            button {
+                border-radius: 25px 25px 0 0;
+            }
+
+            &.dropup {
+                button {
+                    border-radius: 0 0 25px 25px;
+                }
+
+                .dropdown-menu {
+                    border-radius: 25px 25px 0 0;
+                }
+            }
+        }
+
+        .dropdown-toggle:after {
+            transition: all 0.3s ease;
+            border: 0 none;
+            content: '\f054';
+            transform: rotate(90deg);
+            font-family: FontAwesome;
+            font-style: normal;
+            font-weight: normal;
+            text-decoration: inherit;
+            font-size: 16px;
+            color: @color4;
+        }
     }
+}
 
     .logo-head {
         float: left;
