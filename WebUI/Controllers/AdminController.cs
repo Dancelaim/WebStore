@@ -749,17 +749,40 @@ namespace WowCarry.WebUI.Controllers
             switch (type)
             {
                 case "Product":
+                    EntityRepository.RemoveProduct(Id);
+                    break;
                 case "TemplateOptions":
+                    EntityRepository.RemoveTemplateOption(Id);
+                    break;
                 case "ProductGame":
+                    EntityRepository.RemoveGame(Id);
+                    break;
                 case "HtmlBlocks":
                     EntityRepository.RemoveHtmlBlock(Id);
                     break;
                 case "SEO":
+                    EntityRepository.RemoveSEO(Id);
+                    break;
                 case "Users":
+                    EntityRepository.RemoveUsers(Id);
+                    break;
                 case "Ranks":
+                    EntityRepository.RemoveRanks(Id);
+                    break;
                 case "Customers":
+                    EntityRepository.RemoveCustomers(Id);
+                    break;
                 case "Roles":
-                case "Orders":
+                    EntityRepository.RemoveRoles(Id);
+                    break;
+                //case "Orders":
+                //    EntityRepository.RemoveOrders(Id);
+                //    break;
+                case "ProductCategory":
+                    EntityRepository.RemoveProductCategory(Id);
+                    break;
+                case "ProductSubCategory":
+                    EntityRepository.RemoveProductSubCategory(Id);
                     break;
             }
         }
