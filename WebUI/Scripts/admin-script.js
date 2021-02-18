@@ -75,9 +75,6 @@ $(document).on("click", ".opt-head", function () {
                 
                 !EmptyExists ? Item.querySelector('select').appendChild(new Option("Empty", "Empty", true)) : Item.querySelector('select').appendChild(new Option(parent.value))
             }
-            
-            
-           
         });
     });
 
