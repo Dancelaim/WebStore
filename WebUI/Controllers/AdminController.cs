@@ -51,6 +51,8 @@ namespace WowCarry.WebUI.Controllers
                     return View("List" + type, EntityRepository.Articles);
                 case "ProductCategory":
                     return View("List" + type, EntityRepository.ProductCategory);
+                case "ProductSubCategory":
+                    return View("List" + type, EntityRepository.ProductSubCategories);
                 default: return View("Admin");
             }
         }
@@ -355,6 +357,27 @@ namespace WowCarry.WebUI.Controllers
                             GamesList = new SelectList(EntityRepository.Games.Select(g => g.GameName), "Select Game")
                         });
                     }
+                case "ProductSubCategory":
+                    ProductSubCategory productSubCategory = EntityRepository.ProductSubCategories.Where(p => p.ProductSubCategoryId  == Id).FirstOrDefault();
+                    if (productSubCategory != null)
+                    {
+                        return View("Save" + type, new ProductSubCategoryDetails
+                        {
+                            ProductSubCategoryId = productSubCategory.ProductSubCategoryId,
+                            ProductCategoryName = productSubCategory.ProductCategoryName,
+                            CategoryDescription = productSubCategory.CategoryDescription,
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), productSubCategory.SEO?.MetaTagTitle ?? "Select Meta tag title from List"),
+                            CategoryList = new SelectList(EntityRepository.ProductCategory.Select(s => s.ProductCategoryName), productSubCategory.ProductCategory?.ProductCategoryName ?? "Select Product Category from List")
+                    });
+                    }
+                    else
+                    {
+                        return View("Save" + type, new ProductSubCategoryDetails
+                        {
+                            MetaTagTitleList = new SelectList(EntityRepository.SEOs.Select(s => s.MetaTagTitle), "Select Meta tag title from List"),
+                            CategoryList = new SelectList(EntityRepository.ProductCategory.Select(s => s.ProductCategoryName),  "Select Product Category from List")
+                        });
+                    }
                 default: return View("Admin");
             }
         }
@@ -496,6 +519,19 @@ namespace WowCarry.WebUI.Controllers
         #region Save
         [HttpPost]
         [ValidateInput(false)]
+        public ActionResult SaveProductSubCategory(ProductSubCategoryDetails productSubCategoryDetails)
+        {
+            if (ModelState.IsValid)
+            {
+                EntityRepository.SaveProductSubCategory(productSubCategoryDetails);
+                TempData["message"] = string.Format("HTML BLock has been saved");
+                return RedirectToAction("List", new { type = "ProductSubCategory" });
+            }
+            else
+            {
+                return View("List", productSubCategoryDetails);
+            }
+        }
         public ActionResult SaveProduct(ProductDetails productDetails, bool navigateToProdOpt = false)
         {
             if (ModelState.IsValid)
