@@ -1,7 +1,7 @@
 ﻿@model WebUI.Models.ProductOptionsViewModel
 
 
-@using (Html.BeginForm("SaveProductOption", "A-dmin", FormMethod.Post, new { @id = "OptionForm" }))
+@using (Html.BeginForm("SaveProductOption", "Admin", FormMethod.Post, new { @id = "OptionForm" }))
 {
     @Html.HiddenFor(x => x.ProductId)
     <div class="panel-heading">

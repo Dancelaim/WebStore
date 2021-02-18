@@ -10,7 +10,7 @@ $(document).ready(function () {
         sessionStorage.removeItem("ActiveTabId");
     }
 })
-var OptionParents;
+//var OptionParents;
 //Product tabs
 $(document).on("click", ".tab-title", function () {
     var TabName = $(this).attr("id");
@@ -43,42 +43,71 @@ $(document).on("click", ".opt-head", function () {
     $(this).addClass("active-tab-head");
     $(".options-tabs").find("." + TabName).addClass("active-tab-body");
 })
-//populate Parent Option selectList
-function PopulateParentOptions() {
+    //populate Parent Option selectList
+ function PopulateParentOption() {
 
     var dropDowns = document.querySelectorAll(".ddParent")
-        
+
     dropDowns.forEach(function (Item) {
+        Item.querySelector('select').length = 0
+        var parents = document.querySelectorAll('.OptionName input')
 
-        var parents = Item.closest('.options-tabs').querySelectorAll('.opt-head')
+        parents.forEach(function (parent) {
 
-        for (let j = 0; j <= parents.length - 1; j++) {
+            var values = Item.querySelector('select').options
 
-            var parent = parents[j];
+            var isExists = false
+            var EmptyExists = false
 
-            var option = new Option(parent.textContent, parent.textContent)
+            for (value of values)
+            {
+                if (value.innerText == parent.value) {
+                    isExists = true
+                }
 
-            Item.querySelector('select').appendChild(option)
-        }
-        
+                if (value.innerText == "Empty") {
+                    EmptyExists = true
+                }
+            }
+            var curOptVal = $(Item).closest('.opt-body').find('.OptionName input').val()
+
+            if (!isExists && parent.value != curOptVal) {
+                
+                !EmptyExists ? Item.querySelector('select').appendChild(new Option("Empty", "Empty", true)) : Item.querySelector('select').appendChild(new Option(parent.value))
+            }
+        });
+    });
+
+    $('.ddParent select').selectpicker('refresh');
+}
+
+//AddEmpty value to selectors
+function AddEmptyValues() {
+
+    var selects = document.querySelectorAll('select')
+    selects.forEach(function (select) {
+        select.appendChild(new Option("Empty", "Empty", true))
+        select.selectpicker('refresh');
     });
 }
 //Populate Parameter parents with ajax
 $(document).on("change", '.ddParent .bootstrap-select select', function () {
-    $.ajax({
-        cache: false,
-        type: 'POST',
-        url: '/admin/PopulateSelectLists',
-        data: {
-            optionId: $(this).closest('.opt-body').find(".hiddenOptId").val(),
-            prodId:  $("#ProductId").val(),
-            parentName: $(this).val()
-        },
-        success: function (data) {
-            sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
-            window.location.reload();
-        }
-    });
+
+    var dropDowns = this.closest('.opt-body').getElementsByClassName('pddParent')
+
+    for (var i of dropDowns) {
+        i.querySelector('select').length = 0
+        var parentOptionName = this.value.replace(/[)(]/g, '').replace(/\s/g, '_')
+
+        var parentOption = document.getElementsByClassName(parentOptionName);
+        var paramParents = parentOption[0].querySelectorAll('.Param_name')
+
+        paramParents.forEach(function (parent) {
+            i.querySelector('select').appendChild(new Option(parent.value))
+        });
+    }
+
+    $('.pddParent select').selectpicker('refresh');
 })
 //Remove SiteBlock from list
 $(document).on("click", '.rmvbtn', function () {
@@ -114,8 +143,8 @@ $(document).on("click", ".option-add", function () {
         },
         success: function (data) {
             $(".options-tabs").append(data);
-            PopulateParentOptions();
-            $('.ddParent select').selectpicker('refresh');
+            PopulateParentOption();
+            DisableOptions();
         },
         error: function (ex) {
             alert('Failed to add option.' + ex);
@@ -159,7 +188,7 @@ $(document).on("click", ".remove-option", function () {
             },
             success: function (data) {
                 sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
-                window.location.reload();
+                DisableOptions();
             },
             error: function (ex) {
                 alert('Failed to remove option.' + ex);
@@ -216,7 +245,7 @@ $(document).on("click", ".param-add", function () {
     }
 })
 //Activate LiveSearch for dropdowns
-$(document).ready(function () {
+$(function () {
     $('select').selectpicker({
         liveSearch: true
     });
@@ -303,7 +332,7 @@ $(".ArticleImageUpload").change(function () {
 });
 
 //TextArea to HtmlEditor
-$(document).ready(TaToHtmlEditor());
+$(TaToHtmlEditor());
 
 function TaToHtmlEditor(){
     var textAreas = document.getElementsByTagName('textarea');
@@ -313,3 +342,22 @@ function TaToHtmlEditor(){
     }
 };
 
+//block added options
+$(DisableOptions());
+
+function DisableOptions(){
+    var optionslist = document.getElementById("Template_Options").options;
+    var existingsOptions = document.querySelectorAll('.OptionName input');
+    // disabledOptionsList = $('.opt-body').find('.text-box:first');
+    existingsOptions.forEach(function (opt) {
+        for (var optl of optionslist){
+            if (optl.value == opt.value) {
+                optl.disabled = true;
+            }
+        }
+    })
+
+
+    $('#Template_Options').selectpicker('refresh');
+
+};
