@@ -30,7 +30,7 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<ProductSubCategory> ProductSubCategories => context.ProductSubCategory;
 
 
-        public void SaveSaveProductSubCategory(ProductSubCategoryDetails productSubCategoryDetails)
+        public void SaveProductSubCategory(ProductSubCategoryDetails productSubCategoryDetails)
         {
             ProductSubCategory dbproductSubCategory = context.ProductSubCategory.Find(productSubCategoryDetails.ProductSubCategoryId);
             if (dbproductSubCategory != null)

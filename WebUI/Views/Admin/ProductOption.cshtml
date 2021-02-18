@@ -1,16 +1,27 @@
-﻿@model WowCarry.Domain.Entities.ProductOptionDetails
+﻿@model WowCarry.Domain.Entities.ProductOptionDetails 
+@using System.Text.RegularExpressions
 
 @using (Html.BeginCollectionItem("ProductOptionCollection"))
 {
-    <div class="opt-body @Model.OptionName.ToString().Replace(' ', '_').Replace("(", "_").Replace(")", "_")">
-        @Html.HiddenFor(x => Model.OptionId, new { @class = "hiddenOptId" })
-        <label>Option Name</label>
-        @Html.EditorFor(x => Model.OptionName, new { @class = "form-control" })
-        <label>Option Type</label>
-        @Html.EditorFor(x => Model.OptionType, new { @class = "form-control" })
+    <div class="opt-body @Regex.Replace(@Model.OptionName.Replace(" ","_"), @"[)(]", "")">
+        @Html.HiddenFor(x => Model.OptionId)
+        <div class="OptionName">
+            <label>Option Name</label>
+            @Html.EditorFor(x => Model.OptionName)
+        </div>
+            <label>Option Type</label>
+        @Html.EditorFor(x => Model.OptionType)
         <div class="ddParent">
             <label>Option Parent</label>
-            @Html.DropDownListFor(m => Model.OptionParent, Enumerable.Empty<SelectListItem>())
+            @if (Model.ParentOptionList?.Count() >0)
+            {
+                @Html.DropDownListFor(m => Model.OptionParent, Model.ParentOptionList)
+
+            }
+            else
+            {
+                @Html.DropDownListFor(m => Model.OptionParent, Enumerable.Empty<SelectListItem>())
+            }
             @Html.HiddenFor(x => Model.OptionParent)
         </div>
         <div class="param-list">
@@ -39,7 +50,7 @@
 }
 <script>
     $(document).ready(function () {
-        var htmlString = "<div class=\"opt-head\"id=\"@Model.OptionName.ToString().Replace(' ', '_').Replace("(", "_").Replace(")", "_")\">@Model.OptionName<span class=\"remove-option\"></span></div>"
+        var htmlString = "<div class=\"opt-head\"id=\"@Regex.Replace(@Model.OptionName.Replace(" ","_"), @"[)(]", "")\">@Model.OptionName<span class=\"remove-option\"></span></div>"
         $('.titles-options').append(htmlString)
     });
 </script>
