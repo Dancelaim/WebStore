@@ -395,23 +395,23 @@ namespace WowCarry.WebUI.Controllers
             return View(result);
         }
         #region POST
-        [HttpPost]
-        public void PopulateSelectLists(Guid optionId, Guid prodId, string parentName)
-        {
-            Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
-            ProductOptions parent = selectedProduct.ProductOptions.Where(o => o.OptionName == parentName).FirstOrDefault();
-            ProductOptions option = EntityRepository.ProductOptions.Where(o => o.OptionId == optionId).FirstOrDefault();
-            if (parent != null)
-            {
-                option.OptionParentId = parent.OptionId;
-                EntityRepository.SaveContext();
-            }
-            else
-            {
-                option.OptionParentId = null;
-                EntityRepository.SaveContext();
-            }
-        }
+        //[HttpPost]
+        //public void PopulateSelectLists(Guid optionId, Guid prodId, string parentName)
+        //{
+        //    Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
+        //    ProductOptions parent = selectedProduct.ProductOptions.Where(o => o.OptionName == parentName).FirstOrDefault();
+        //    ProductOptions option = EntityRepository.ProductOptions.Where(o => o.OptionId == optionId).FirstOrDefault();
+        //    if (parent != null)
+        //    {
+        //        option.OptionParentId = parent.OptionId;
+        //        EntityRepository.SaveContext();
+        //    }
+        //    else
+        //    {
+        //        option.OptionParentId = null;
+        //        EntityRepository.SaveContext();
+        //    }
+        //}
         [HttpPost]
         public PartialViewResult AddSiteBlock()
         {
@@ -469,6 +469,19 @@ namespace WowCarry.WebUI.Controllers
         {
             ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.OptionId == optionId).FirstOrDefault();
             Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
+            var options = selectedProduct.ProductOptions.Where(o => o.OptionParentId == selectedOption.OptionId);
+            if (options != null)
+            {
+                foreach (var opt in options)
+                {
+                    opt.OptionParentId = null;
+                    var optParams = opt.ProductOptionParams.Where(p => p.ParameterParentId != null);
+                    foreach (var param in optParams)
+                    {
+                        param.ParameterParentId = null;
+                    }
+                }
+            }
             selectedProduct.ProductOptions.Remove(selectedOption);
             EntityRepository.SaveContext();
         }
