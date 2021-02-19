@@ -756,8 +756,7 @@ namespace WowCarry.WebUI.Controllers
             }
         }
         #endregion
-        [HttpPost]
-        public void Remove(Guid Id, string type)
+        public ActionResult Remove(Guid Id, string type)
         {
             switch (type)
             {
@@ -798,6 +797,7 @@ namespace WowCarry.WebUI.Controllers
                     EntityRepository.RemoveProductSubCategory(Id);
                     break;
             }
+            return RedirectToAction("List", new { type = type });
         }
         [HttpPost]
         public string Upload()

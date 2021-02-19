@@ -11,7 +11,6 @@ function ActiveTabSet() {
         sessionStorage.removeItem("ActiveTabId");
     }
 }
-//var OptionParents;
 //Product tabs
 $(document).on("click", ".tab-title", function () {
    

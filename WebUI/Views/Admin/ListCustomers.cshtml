@@ -21,7 +21,7 @@
             <tr>
                 <td> @Html.ActionLink(item.Name, "CreateEdit", new { Id = item.CustomerId, type = item.GetType().BaseType.Name })</td>
                 <td class="text-center">
-                    @Html.ActionLink("Remove", "Remove", new { Id = item.CustomerId, type = item.GetType().BaseType.Name })
+                    <a href="@Url.Action("Remove", new { Id = item.CustomerId, type = item.GetType().BaseType.Name })">Remove</a>
                 </td>
             </tr>
             }
