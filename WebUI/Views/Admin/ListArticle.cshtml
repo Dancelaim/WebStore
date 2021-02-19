@@ -20,7 +20,9 @@
             {
             <tr>
                 <td> @Html.ActionLink(item.Title, "CreateEdit", new { Id = item.ArticleId, type = item.GetType().BaseType.Name })</td>
-                <td class="text-center"> @Html.ActionLink("Remove", "CreateEdit", new { Id = item.ArticleId, type = item.GetType().BaseType.Name })</td>
+                <td class="text-center">
+                    @Html.ActionLink("Remove", "Remove", new { Id = item.ArticleId, type = item.GetType().BaseType.Name })
+                </td>
             </tr>
             }
         </tbody>

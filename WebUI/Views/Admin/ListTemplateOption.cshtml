@@ -26,19 +26,13 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+            <tr>
 
-                    <td> @Html.ActionLink(item.OptionName, "CreateEdit", new { Id = item.OptionId, type = item.GetType().BaseType.Name })</td>
-                    <td class="text-center">
-                        @using (Html.BeginForm("Delete", "Admin"))
-                        {
-                            @Html.Hidden("GameId", item.OptionId)
-                            <input type="submit"
-                                   class="btn btn-default btn-xs"
-                                   value="Удалить" />
-                        }
-                    </td>
-                </tr>
+                <td> @Html.ActionLink(item.OptionName, "CreateEdit", new { Id = item.OptionId, type = item.GetType().BaseType.Name })</td>
+                <td class="text-center">
+                    @Html.ActionLink("Remove", "Remove", new { Id = item.OptionId, type = item.GetType().BaseType.Name })
+                </td>
+            </tr>
             }
         </tbody>
     </table>
