@@ -1,5 +1,6 @@
 // JS Admib
-$(document).ready(function () {
+$(ActiveTabSet())
+function ActiveTabSet() {
     var activeTabId = sessionStorage.getItem("ActiveTabId");
     if (activeTabId == null) {
         $(".opt-head:first").addClass("active-tab-head");
@@ -9,11 +10,12 @@ $(document).ready(function () {
         $("." + activeTabId).addClass("active-tab-body");
         sessionStorage.removeItem("ActiveTabId");
     }
-})
+}
 //var OptionParents;
 //Product tabs
 $(document).on("click", ".tab-title", function () {
-    var TabName = $(this).attr("id");
+   
+        var TabName = $(this).attr("id");
     switch (TabName) {
         case "tab1":
             $(".tab2, .tab3").removeClass("active-tab");
@@ -36,51 +38,47 @@ $(document).on("click", ".tab-title", function () {
     }
 })
 //Option tabs
-$(document).on("click", ".opt-head", function () {
-    var TabName = $(this).attr("id");
-    $(".opt-head").removeClass("active-tab-head");
-    $(".opt-body").removeClass("active-tab-body");
-    $(this).addClass("active-tab-head");
-    $(".options-tabs").find("." + TabName).addClass("active-tab-body");
-})
-    //populate Parent Option selectList
- function PopulateParentOption() {
+$(document).on("click", ".opt-head",function () {
+    if (this.parentNode) {
+        var TabName = $(this).attr("id");
+        $(".opt-head").removeClass("active-tab-head");
+        $(".opt-body").removeClass("active-tab-body");
 
+        $(this).addClass("active-tab-head");
+        $(".options-tabs").find("." + TabName).addClass("active-tab-body")
+    }
+});
+//populate Parent Option selectList
+function PopulateParentOption() {
     var dropDowns = document.querySelectorAll(".ddParent")
-
     dropDowns.forEach(function (Item) {
         Item.querySelector('select').length = 0
         var parents = document.querySelectorAll('.OptionName input')
 
         parents.forEach(function (parent) {
-
             var values = Item.querySelector('select').options
-
             var isExists = false
             var EmptyExists = false
-
             for (value of values)
             {
                 if (value.innerText == parent.value) {
                     isExists = true
                 }
-
                 if (value.innerText == "Empty") {
                     EmptyExists = true
                 }
             }
             var curOptVal = $(Item).closest('.opt-body').find('.OptionName input').val()
-
             if (!isExists && parent.value != curOptVal) {
-                
-                !EmptyExists ? Item.querySelector('select').appendChild(new Option("Empty", "Empty", true)) : Item.querySelector('select').appendChild(new Option(parent.value))
+                if (!EmptyExists) {
+                    Item.querySelector('select').appendChild(new Option("Empty", "Empty", true))
+                }
+                Item.querySelector('select').appendChild(new Option(parent.value))
             }
         });
     });
-
     $('.ddParent select').selectpicker('refresh');
 }
-
 //AddEmpty value to selectors
 function AddEmptyValues() {
 
@@ -171,31 +169,18 @@ $(document).on("click", ".siteblock-add", function () {
 $(document).on("click", ".remove-htmlbox", function () {
     $(this).closest(".param-fields").remove();
 });
-
-
 //Remove Option
 $(document).on("click", ".remove-option", function () {
+    sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
     var confirm = window.confirm("Are you sure you want to delete" + " " + $(this).closest('.opt-head').text() + " option");
-    var cl = "." + $(this).closest('.opt-head').attr("id");
     if (confirm == true) {
-        $.ajax({
-            cache: false,
-            type: 'POST',
-            url: '/admin/RemoveOption',
-            data: {
-                optionId: $(cl).find("Input:First").val(),
-                prodId: $("#ProductId").val()
-            },
-            success: function (data) {
-                sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
-                DisableOptions();
-            },
-            error: function (ex) {
-                alert('Failed to remove option.' + ex);
-            }
-        });
+        var elem = document.getElementsByClassName($(this).closest('.opt-head').attr("id"))[0]
+        elem.parentElement.removeChild(elem)
+            elem = document.getElementById($(this).closest('.opt-head').attr("id"))
+        elem.parentElement.removeChild(elem).after(ActiveTabSet())
     } 
-
+    DisableOptions()
+    PopulateParentOption();
 })
 //Remove Parameter
 $(document).on("click", ".remove-param", function () {
@@ -263,7 +248,6 @@ $(document).on("click", ".left-column .title span.nav-ico", function () {
 $(document).on("click", ".left-column ul .dropdown", function () {
     $(this).find(".dropdown-menu").toggle();
 })
-
 //Upload product image to Controller
 $(document).ready(function () {
     var imgThumbPath = $("#ProductImageThumb").val();
@@ -271,7 +255,7 @@ $(document).ready(function () {
     $(".imgThumb").attr("src", imgThumbPath);
     $(".imgLarge").attr("src", imgPath);
 })
-
+//Image Upload for product
 $(".ImageUpload").change(function () {
     var formData = new FormData();
     var file = document.getElementById($(this).attr("id")).files[0];
@@ -303,7 +287,7 @@ $(".ImageUpload").change(function () {
         }
     });
 });
-
+//Image Upload for Article
 $(".ArticleImageUpload").change(function () {
     var formData = new FormData();
     var file = document.getElementById($(this).attr("id")).files[0];
@@ -330,10 +314,8 @@ $(".ArticleImageUpload").change(function () {
         //$(".ArticleImagePath").attr("src", $("#ImagePath").val() + "?t=" + new Date().getTime());   
     });
 });
-
 //TextArea to HtmlEditor
 $(TaToHtmlEditor());
-
 function TaToHtmlEditor(){
     var textAreas = document.getElementsByTagName('textarea');
     for (let i = 0; i <= textAreas.length - 1; i++) {
@@ -341,12 +323,13 @@ function TaToHtmlEditor(){
         CKEDITOR.replace(textAreas[i].id);
     }
 };
-
 //block added options
 $(DisableOptions());
-
 function DisableOptions(){
     var optionslist = document.getElementById("Template_Options").options;
+    for (var optl of optionslist) {
+        optl.disabled = false;
+    }
     var existingsOptions = document.querySelectorAll('.OptionName input');
     // disabledOptionsList = $('.opt-body').find('.text-box:first');
     existingsOptions.forEach(function (opt) {
@@ -356,8 +339,5 @@ function DisableOptions(){
             }
         }
     })
-
-
     $('#Template_Options').selectpicker('refresh');
-
 };
