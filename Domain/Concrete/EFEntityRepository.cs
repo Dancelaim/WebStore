@@ -173,7 +173,7 @@ namespace WowCarry.Domain.Concrete
                     foreach (HtmlBlockDetails.HtmlBlockChildrenDetails item in htmlBlockDetails.HtmlBlockChildDetailsCollection)
                     {
                         HtmlBlocksChildren dbhtmlBlocksChildren = new HtmlBlocksChildren { };
-                        dbhtmlBlocksChildren.SiteBlockChildsId = item.SiteBlockChildsId;
+                        dbhtmlBlocksChildren.SiteBlockChildsId = Guid.NewGuid();
                         dbhtmlBlocksChildren.SiteBlockId = dbhtmlBlocks.SiteBlockId;
                         dbhtmlBlocksChildren.Text = item.Text;
                         dbhtmlBlocksChildren.Title = item.Title;
@@ -614,17 +614,29 @@ namespace WowCarry.Domain.Concrete
                 }
 
             }
-            //    else
-            //    {
-            //            TemplateOptions templateOptions = new TemplateOptions
-            //        {
-            //           OptionId = Guid.NewGuid(),
-            //            OptionName = tempOptionsDetails.TempOptionName,
-            //           OptionType = tempOptionsDetails.TempOptionType, 
-            //        };
-            //
-            //        context.TemplateOptions.Add(templateOptions);
-            //   }
+            else
+            {
+                dbtemplateOptions = new TemplateOptions();
+                dbtemplateOptions.OptionId = Guid.NewGuid();
+                dbtemplateOptions.OptionName = tempOptionsDetails.TempOptionName;
+                dbtemplateOptions.OptionType = tempOptionsDetails.TempOptionType;
+
+                if (tempOptionsDetails.TempOptionParamsDetailsCollection != null)
+                {
+                    foreach (TemplateOptionDetails.TempOptionParamsDetails item in tempOptionsDetails.TempOptionParamsDetailsCollection)
+                    {
+                        TempOptionParams dbParam = new TempOptionParams { };
+                        dbParam.ParameterId = Guid.NewGuid();
+                        dbParam.ParentOptionId = dbtemplateOptions.OptionId;
+                        dbParam.ParameterName = item.ParameterName;
+                        dbParam.ParameterPrice = item.ParameterPrice;
+                        dbParam.ParameterTooltip = item.ParameterTooltip;
+                        dbParam.ParameterSale = item.ParameterSale;
+                    }
+                }
+                context.TemplateOptions.Add(dbtemplateOptions);
+
+            }
             context.SaveChanges();
         }
         public void SaveCustomers(CustomersDetails customersDetails)

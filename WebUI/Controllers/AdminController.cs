@@ -636,11 +636,11 @@ namespace WowCarry.WebUI.Controllers
             {
                 EntityRepository.SaveTemplateOption(templateOptionDetails);
                 TempData["message"] = string.Format("Template Option has been saved");
-                return RedirectToAction("List", new { type = "Template Option" });
+                return RedirectToAction("List", new { type = "TemplateOptions" });
             }
             else
             {
-                return RedirectToAction("List", new { type = "Template Option" });
+                return RedirectToAction("List", new { type = "TemplateOptions" });
             }
         }
         [HttpPost]
