@@ -258,15 +258,19 @@ namespace WowCarry.Domain.Concrete
                 dbProductOption.OptionName = productOptionDetails.OptionName;
                 dbProductOption.OptionType = productOptionDetails.OptionType;
                 dbProductOption.OptionProductId = productOptionDetails.OptionProductId;
-                //dbProductOption.OptionParentId = productOptionDetails.OptionParent != null ? ProductOptions.Where(po => po.OptionName == productOptionDetails.OptionParent).FirstOrDefault().OptionProductId : Guid.Empty;
+                if (productOptionDetails.OptionParent is null)
+                {
+                    dbProductOption.OptionParentId = null;
+                }
+                else
+                {
+                    dbProductOption.OptionParentId = ProductOptions.Where(po => po.OptionName == productOptionDetails.OptionParent).Select(po=>po.OptionId).FirstOrDefault();
+                }
             }
             foreach (ProductOptionDetails.ProductOptionParamsDetails item in productOptionDetails.ParamCollection)
             {
-                Guid? parentId = Guid.Empty;
-                if (dbProductOption.OptionParentId != null)
-                {
-                    parentId = context.ProductOptions.Find(dbProductOption.OptionParentId).ProductOptionParams.Where(p => p.ParameterName == item.ParentParam).Select(p => p.ParameterId).FirstOrDefault();
-                }
+                var parentOption = context.ProductOptions.Find(dbProductOption.OptionParentId);
+
                 ProductOptionParams dbParam = context.ProductOptions.Find(productOptionDetails.OptionId).ProductOptionParams.Where(p => p.ParameterId == item.ParameterId).FirstOrDefault();
                 if (dbParam != null)
                 {
@@ -274,7 +278,14 @@ namespace WowCarry.Domain.Concrete
                     dbParam.ParameterPrice = item.ParamPrice;
                     dbParam.ParameterTooltip = item.ParamTooltip;
                     dbParam.ParameterSale = item.Sale;
-                    dbParam.ParameterParentId = parentId.Equals(Guid.Empty) ? null : parentId;
+                    if (dbProductOption.OptionParentId is null)
+                    {
+                        dbParam.ParameterParentId =  null;
+                    }
+                    else
+                    {
+                        dbParam.ParameterParentId = parentOption.ProductOptionParams.Where(p => p.ParameterName == item.ParentParam).Select(p => p.ParameterId).FirstOrDefault();
+                    }
                 }
             }
             context.SaveChanges();

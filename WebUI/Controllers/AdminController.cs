@@ -394,16 +394,16 @@ namespace WowCarry.WebUI.Controllers
                 foreach (var opt in ProductOptions)
                 {
                     var templateOption = EntityRepository.TemplateOptions.Where(t => t.OptionName == opt.OptionName).FirstOrDefault();
-                    var paramParent = selectedProduct.ProductOptions.Where(o => o.OptionId == opt.OptionParentId).FirstOrDefault();
+                    var ParentOpt = selectedProduct.ProductOptions.Where(o => o.OptionId == opt.OptionParentId).FirstOrDefault();
 
                     Options.Add(new ProductOptionDetails
                     {
                         OptionId = opt.OptionId,
                         OptionName = opt.OptionName,
                         OptionType = opt.OptionType,
-                        ParentOptionList = new SelectList(selectedProduct.ProductOptions.Where(o => o.OptionId != opt.OptionId).Select(o => o.OptionName), opt.OptionParentId.HasValue ? opt.ProductOptionsParent.OptionName : "Empty"),
+                        ParentOptionList = new SelectList(selectedProduct.ProductOptions.Where(o => o.OptionId != opt.OptionId).Select(o => o.OptionName).Distinct().ToList(), opt.OptionParentId.HasValue ? opt.ProductOptionsParent.OptionName : "Empty"),
                         ParamList = new SelectList(templateOption.TempOptionParams.Select(p => p.ParameterName), "Empty"),
-                        ParamCollection = ProductOptionDetails.PopulateParamCollection(opt, selectedProduct.ProductOptions.Where(o => o.OptionId == opt.OptionParentId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParameterName), paramParent)
+                        ParamCollection = ProductOptionDetails.PopulateParamCollection(opt, selectedProduct.ProductOptions.Where(o => o.OptionId == opt.OptionParentId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParameterName), ParentOpt)
                     });
                 }
             }
@@ -451,7 +451,7 @@ namespace WowCarry.WebUI.Controllers
                 OptionId = Guid.NewGuid(),
                 OptionName = selectedOption.OptionName,
                 OptionType = selectedOption.OptionType,
-                //ParentOptionList  = new SelectList(selectedProduct.ProductOptions.Select(o => o.OptionName), "Empty"),
+                ParentOptionList  = new SelectList(selectedProduct.ProductOptions.Select(o => o.OptionName), "Empty"),
                 ParamList = new SelectList(selectedOption.TempOptionParams.Select(p => p.ParameterName), "Empty"),
             };
 
@@ -466,11 +466,14 @@ namespace WowCarry.WebUI.Controllers
                     Sale = param.ParameterSale,
                     ParamParentList = new SelectList(Enumerable.Empty<SelectListItem>())
                 };
-                option.ParamCollection = new List<ProductOptionDetails.ProductOptionParamsDetails>();
+                if (option.ParamCollection is null)
+                {
+                    option.ParamCollection = new List<ProductOptionDetails.ProductOptionParamsDetails>();
+                }
                 option.ParamCollection.Add(optionParams);
             }
 
-            return PartialView("ProductOption", option);
+            return PartialView("~/Views/Shared/EditorTemplates/ProductOptionDetails.cshtml", option);
         }
         [HttpPost]
         public PartialViewResult AddParam(string optionName, string paramName)

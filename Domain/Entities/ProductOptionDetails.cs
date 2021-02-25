@@ -61,7 +61,7 @@ namespace WowCarry.Domain.Entities
                     ParamTooltip = item.ParameterTooltip,
                     ParamPrice = item.ParameterPrice,
                     Sale = item.ParameterSale,
-                    ParentParam = item.ProductOptions?.OptionName,
+                    ParentParam = ParentOption?.ProductOptionParams?.Where(p => p.ParameterId == item.ParameterParentId).FirstOrDefault().ParameterName,
                     ParamParentList = new SelectList(paramCollection, item.ParameterParentId !=null ? ParentOption.ProductOptionParams.Where(p=>p.ParameterId == item.ParameterParentId).FirstOrDefault().ParameterName : "Empty")
                 });
             }

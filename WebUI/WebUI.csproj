@@ -1472,8 +1472,8 @@
     <Content Include="Views\Admin\SaveProductCategory.cshtml" />
     <Content Include="Views\Admin\ListProductSubCategory.cshtml" />
     <Content Include="Views\Admin\SaveProductSubCategory.cshtml" />
-    <Content Include="Views\Admin\ProductOption.cshtml" />
-    <Content Include="Views\Admin\ProductOptionParameter.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ProductOptionDetails.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\ProductOptionParamsDetails.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1484,6 +1484,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Infrastructure\Abstract\" />
+    <Folder Include="Views\EditorTemplates\" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

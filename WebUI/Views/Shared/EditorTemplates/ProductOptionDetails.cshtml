@@ -1,7 +1,7 @@
 ﻿@model WowCarry.Domain.Entities.ProductOptionDetails 
 @using System.Text.RegularExpressions
 
-@using (Html.BeginCollectionItem("ProductOptionCollection"))
+@using (Html.BeginCollectionItem("ProductOptions"))
 {
     <div class="opt-body @Regex.Replace(@Model.OptionName.Replace(" ","_"), @"[)(]", "")">
         @Html.HiddenFor(x => Model.OptionId)
@@ -15,14 +15,12 @@
             <label>Option Parent</label>
             @if (Model.ParentOptionList?.Count() >0)
             {
-                @Html.DropDownListFor(m => Model.OptionParent, Model.ParentOptionList)
-
+                @Html.DropDownListFor(m => Model.OptionParent, Model.ParentOptionList, "Empty")
             }
             else
             {
                 @Html.DropDownListFor(m => Model.OptionParent, Enumerable.Empty<SelectListItem>())
             }
-            @Html.HiddenFor(x => Model.OptionParent)
         </div>
         <div class="param-list">
             <div class="param-titles">
@@ -34,10 +32,7 @@
             </div>
             @if (Model.ParamCollection != null)
             {
-                foreach (var param in Model.ParamCollection)
-                {
-                    Html.RenderPartial("ProductOptionParameter", param);
-                }
+                @Html.EditorFor(x => x.ParamCollection)
             }
         </div>
         <div class="add-param-block">

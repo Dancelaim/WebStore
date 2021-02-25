@@ -51,6 +51,7 @@ $(document).on("click", ".opt-head",function () {
 function PopulateParentOption() {
     var dropDowns = document.querySelectorAll(".ddParent")
     dropDowns.forEach(function (Item) {
+        var selectedOption = Item.querySelector('select').value
         Item.querySelector('select').length = 0
         var parents = document.querySelectorAll('.OptionName input')
 
@@ -69,10 +70,18 @@ function PopulateParentOption() {
             }
             var curOptVal = $(Item).closest('.opt-body').find('.OptionName input').val()
             if (!isExists && parent.value != curOptVal) {
-                if (!EmptyExists) {
-                    Item.querySelector('select').appendChild(new Option("Empty", "Empty", true))
+                if (!EmptyExists && selectedOption == '') {
+                    Item.querySelector('select').appendChild(new Option("Empty", "Empty",true))
+                } else if (!EmptyExists) {
+                    Item.querySelector('select').appendChild(new Option("Empty", "Empty"))
                 }
-                Item.querySelector('select').appendChild(new Option(parent.value))
+
+                if (selectedOption == parent.value) {
+                    Item.querySelector('select').appendChild(new Option(parent.value, parent.value, true))
+                    Item.querySelector('select').value = parent.value
+                } else {
+                    Item.querySelector('select').appendChild(new Option(parent.value))
+                }
             }
         });
     });
@@ -88,23 +97,26 @@ function AddEmptyValues() {
     });
 }
 //Populate Parameter parents with ajax
-$(document).on("change", '.ddParent .bootstrap-select select', function () {
+$(document).on("change", '.ddParent .bootstrap-select select',function ()  {
 
-    var dropDowns = this.closest('.opt-body').getElementsByClassName('pddParent')
+        var dropDowns = this.closest('.opt-body').getElementsByClassName('pddParent')
 
-    for (var i of dropDowns) {
-        i.querySelector('select').length = 0
-        var parentOptionName = this.value.replace(/[)(]/g, '').replace(/\s/g, '_')
+        for (var i of dropDowns) {
+            i.querySelector('select').length = 0
+            var parentOptionName = this.value.replace(/[)(]/g, '').replace(/\s/g, '_')
+            if (parentOptionName == "") {
+                $('.pddParent select').selectpicker('refresh');
+            } else {
+                var parentOption = document.getElementsByClassName(parentOptionName);
+                var paramParents = parentOption[0].querySelectorAll('.Param_name')
 
-        var parentOption = document.getElementsByClassName(parentOptionName);
-        var paramParents = parentOption[0].querySelectorAll('.Param_name')
+                paramParents.forEach(function (parent) {
+                    i.querySelector('select').appendChild(new Option(parent.value))
+                });
+            }
+        }
 
-        paramParents.forEach(function (parent) {
-            i.querySelector('select').appendChild(new Option(parent.value))
-        });
-    }
-
-    $('.pddParent select').selectpicker('refresh');
+        $('.pddParent select').selectpicker('refresh');
 })
 //Remove SiteBlock from list
 $(document).on("click", '.rmvbtn', function () {
@@ -170,7 +182,6 @@ $(document).on("click", ".remove-htmlbox", function () {
 });
 //Remove Option
 $(document).on("click", ".remove-option", function () {
-    sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
     var confirm = window.confirm("Are you sure you want to delete" + " " + $(this).closest('.opt-head').text() + " option");
     if (confirm == true) {
         var elem = document.getElementsByClassName($(this).closest('.opt-head').attr("id"))[0]
