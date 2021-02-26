@@ -259,12 +259,12 @@ $(document).on("click", ".left-column ul .dropdown", function () {
     $(this).find(".dropdown-menu").toggle();
 })
 //Upload product image to Controller
-$(document).ready(function () {
-    var imgThumbPath = $("#ProductImageThumb").val();
-    var imgPath = $("#ProductImage").val();
-    $(".imgThumb").attr("src", imgThumbPath);
-    $(".imgLarge").attr("src", imgPath);
-})
+//$(document).ready(function () {
+//    var imgThumbPath = $("#ProductImageThumb").val();
+//    var imgPath = $("#ProductImage").val();
+//    $(".imgThumb").attr("src", imgThumbPath);
+//    $(".imgLarge").attr("src", imgPath);
+//})
 //Image Upload for product
 $(".ImageUpload").change(function () {
     var formData = new FormData();
@@ -309,6 +309,8 @@ $(".ArticleImageUpload").change(function () {
     var path = "/Images/Article/" + $("#SelectedGame").val().toLowerCase();
     formData.append("Path", path);
 
+    formData.append("RequiredFileName", $("#Title").val().toLowerCase().replace(/[.*+?^${}()|/[\]\\]/g, '_'));
+
     $.ajax({
         cache: false,
         type: 'POST',
@@ -318,7 +320,8 @@ $(".ArticleImageUpload").change(function () {
         contentType: false,
         success: function (data) {
             if (data != "") { 
-                curEl.closest('.imageBlock').find('input').last().val(data);
+                curEl.closest('.imageBlock').find('input').last().val(data)
+                curEl.closest('.imageBlock').find('img').attr("src", data);
             }
         }
         //$(".ArticleImagePath").attr("src", $("#ImagePath").val() + "?t=" + new Date().getTime());   
