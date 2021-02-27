@@ -327,6 +327,34 @@ $(".ArticleImageUpload").change(function () {
         //$(".ArticleImagePath").attr("src", $("#ImagePath").val() + "?t=" + new Date().getTime());   
     });
 });
+$(".HtmlBlockChildrenImageUpload").change(function () {
+    var formData = new FormData();
+    var file = document.getElementById($(this).attr("id")).files[0];
+
+    formData.append("File", file);
+
+    var curEl = $(this);
+    var path = "/Images/HtmlBLock/" + $("#ParentTitle").val().toLowerCase();
+    formData.append("Path", path);
+
+    formData.append("RequiredFileName", this.closest('.param-fields').querySelector('.ChildTitle').value.toLowerCase().replace(/[.*+?^${}()|/[\]\\]/g, '_'));
+
+    $.ajax({
+        cache: false,
+        type: 'POST',
+        url: '/admin/Upload',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            if (data != "") {
+                curEl.closest('.imageBlock').find('input').last().val(data)
+                curEl.closest('.imageBlock').find('img').attr("src", data);
+            }
+        }
+    });
+});
+
 //TextArea to HtmlEditor
 $(TaToHtmlEditor());
 function TaToHtmlEditor(){

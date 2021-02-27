@@ -4,8 +4,6 @@
 {
 <div class="param-fields">
     <h2>Item <span class="remove-htmlbox">X</span></h2>
-    
-
     @Html.HiddenFor(x => Model.SiteBlockChildsId)
     <div class="input-block">
         <label>Text</label>
@@ -13,11 +11,21 @@
     </div>
     <div class="input-block">
         <label>Title</label>
-        @Html.TextBoxFor(x => Model.Title)
+        @Html.TextBoxFor(x => Model.Title, new {@class = "ChildTitle" })
     </div>
-    <div class="input-block">
-        <label>Image</label>
-        @Html.TextBoxFor(x => Model.Image)
+    <div class="imageBlock">
+        <div class="upload-box">
+            <label for="Image">Upload Image:</label>
+            <label for="Image" class="upload-btn btn">Upload</label>
+            <input type="file" name="file" id="Image" class="HtmlBlockChildrenImageUpload" style="display:none;" />
+        </div>
+        <div class="img-prew">
+            <label for="file">Html Block Image Prev</label>
+            <div class="imgPrewIn">
+                <img class="imgHtmlBlock" src="@Model.Image" />
+            </div>
+            @Html.HiddenFor(m => m.Image, new { @readonly = "readonly" })
+        </div>
     </div>
     <div class="input-block">
         <label>CSS Class</label>
