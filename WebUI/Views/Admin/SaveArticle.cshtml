@@ -54,14 +54,20 @@
                     }
                     else if (property.PropertyName.Contains("ImagePath"))
                     {
-                        <div class="imageBlock">
-                            <div class="upload-box">
-                                <label for="ImagePath">Upload Image:</label>
-                                <label for="ImagePath" class="upload-btn btn">Upload</label>
-                                <input type="file" name="file" id="ArticleImagePath" class="ImageUpload" style="display:none;" />
-                                @Html.HiddenFor(m => m.ImagePath, new { @readonly = "readonly" })
+                            <div class="imageBlock">
+                                <div class="upload-box">
+                                    <label for="ImagePath">Upload Image:</label>
+                                    <label for="ImagePath" class="upload-btn btn">Upload</label>
+                                    <input type="file" name="file" id="ImagePath" class="ArticleImageUpload" style="display:none;" />
+                                </div>
+                                <div class="img-prew">
+                                    <label for="file">Product Image Path</label>
+                                    <div class="imgPrewIn"> 
+                                        <img class="imgArticle" src="@Model.ImagePath" />
+                                    </div>
+                                    @Html.HiddenFor(m => m.ImagePath, new { @readonly = "readonly" })
+                                </div>
                             </div>
-                        </div>
                     }
                     else
                     {

@@ -252,12 +252,12 @@ $(document).on("click", ".left-column ul .dropdown", function () {
     $(this).find(".dropdown-menu").toggle();
 })
 //Upload product image to Controller
-$(document).ready(function () {
-    var imgThumbPath = $("#ProductImageThumb").val();
-    var imgPath = $("#ProductImage").val();
-    $(".imgThumb").attr("src", imgThumbPath);
-    $(".imgLarge").attr("src", imgPath);
-})
+//$(document).ready(function () {
+//    var imgThumbPath = $("#ProductImageThumb").val();
+//    var imgPath = $("#ProductImage").val();
+//    $(".imgThumb").attr("src", imgThumbPath);
+//    $(".imgLarge").attr("src", imgPath);
+//})
 //Image Upload for product
 $(".ImageUpload").change(function () {
     var formData = new FormData();
@@ -302,6 +302,8 @@ $(".ArticleImageUpload").change(function () {
     var path = "/Images/Article/" + $("#SelectedGame").val().toLowerCase();
     formData.append("Path", path);
 
+    formData.append("RequiredFileName", $("#Title").val().toLowerCase().replace(/[.*+?^${}()|/[\]\\]/g, '_'));
+
     $.ajax({
         cache: false,
         type: 'POST',
@@ -311,12 +313,41 @@ $(".ArticleImageUpload").change(function () {
         contentType: false,
         success: function (data) {
             if (data != "") { 
-                curEl.closest('.imageBlock').find('input').last().val(data);
+                curEl.closest('.imageBlock').find('input').last().val(data)
+                curEl.closest('.imageBlock').find('img').attr("src", data);
             }
         }
         //$(".ArticleImagePath").attr("src", $("#ImagePath").val() + "?t=" + new Date().getTime());   
     });
 });
+$(".HtmlBlockChildrenImageUpload").change(function () {
+    var formData = new FormData();
+    var file = document.getElementById($(this).attr("id")).files[0];
+
+    formData.append("File", file);
+
+    var curEl = $(this);
+    var path = "/Images/HtmlBLock/" + $("#ParentTitle").val().toLowerCase();
+    formData.append("Path", path);
+
+    formData.append("RequiredFileName", this.closest('.param-fields').querySelector('.ChildTitle').value.toLowerCase().replace(/[.*+?^${}()|/[\]\\]/g, '_'));
+
+    $.ajax({
+        cache: false,
+        type: 'POST',
+        url: '/admin/Upload',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (data) {
+            if (data != "") {
+                curEl.closest('.imageBlock').find('input').last().val(data)
+                curEl.closest('.imageBlock').find('img').attr("src", data);
+            }
+        }
+    });
+});
+
 //TextArea to HtmlEditor
 $(TaToHtmlEditor());
 function TaToHtmlEditor(){
