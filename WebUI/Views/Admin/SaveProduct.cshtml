@@ -66,7 +66,7 @@
                                     <div class="img-prew">
                                         <label for="file">Product Image Thumb</label>
                                         <div class="imgPrewIn">
-                                            <img class="imgThumb" src="" />
+                                            <img class="imgThumb" src="@Model.ProductImageThumb" />
                                         </div>
                                         @Html.HiddenFor(m => m.ProductImageThumb, new { @readonly = "readonly" })
                                     </div>
@@ -85,7 +85,7 @@
                                     <div class="img-prew">
                                         <label for="file">Product Image</label>
                                         <div class="imgPrewIn">
-                                            <img class="imgLarge" src="" />
+                                            <img class="imgLarge" src="@Model.ProductImage" />
                                         </div>
                                         @Html.HiddenFor(m => m.ProductImage, new { @readonly = "readonly" })
                                     </div>

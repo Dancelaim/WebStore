@@ -190,7 +190,7 @@ $(document).on("click", ".remove-option", function () {
         elem.parentElement.removeChild(elem).after(ActiveTabSet())
     } 
     DisableOptions()
-    PopulateParentOption();
+    PopulateParentOption()
 })
 //Remove Parameter
 $(document).on("click", ".remove-param", function () {
@@ -216,28 +216,21 @@ $(document).on("click", ".remove-param", function () {
 })
 //Add Parameter
 $(document).on("click", ".param-add", function () {
-    if ($(this).closest(".add-param-block").find("#Parameter_Parent").val().toString() != "") {
         $.ajax({
             cache: false,
             type: 'POST',
             url: "/admin/AddParam",
             data: {
-                optionName: $(this).closest('.add-param-block').find("input").val(),
-                OptId: $(this).closest('.opt-body').find(".hiddenOptId").val(),
-                paramName: $(this).closest(".add-param-block").find("#Parameter_Parent").val()
+                optionName: $(this).closest('.opt-body').find('.OptionName').find("input").val(),
+                paramName: $(this).closest(".add-param-block").find("select").val()
             },
             success: function (data) {
-                sessionStorage.setItem("ActiveTabId", $(".active-tab-head").attr("id"));
-                window.location.reload();
+                $('.param-list').append(data)
             },
             error: function (ex) {
                 alert('Failed to add Parameter.' + ex);
             }
         });
-    }
-    else {
-        alert("Can't add Empty Parameter");
-    }
 })
 //Activate LiveSearch for dropdowns
 $(function () {

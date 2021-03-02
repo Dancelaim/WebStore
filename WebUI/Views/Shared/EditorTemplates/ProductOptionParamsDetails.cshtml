@@ -21,7 +21,7 @@
             }
             else
             {
-                @Html.DropDownListFor(x => Model.ParentParam, Enumerable.Empty<SelectListItem>())
+                @Html.DropDownListFor(x => Model.ParentParam, Enumerable.Empty<SelectListItem>(), "Empty")
             }
             @Html.HiddenFor(x => Model.ParentParam)
         </div>

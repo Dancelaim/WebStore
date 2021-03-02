@@ -34,6 +34,7 @@ namespace WowCarry.Domain.Abstract
         void SaveSEO(SeoDetails seoDetails);
         void SaveProduct(ProductDetails productDetails);
         void SaveProductOption(ProductOptionDetails productOptionsDetails);
+        Task SaveContextAsync();
         void SaveContext();
         void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails);
         void SaveTemplateOption(TemplateOptionDetails templateOptionDetails);
@@ -57,6 +58,7 @@ namespace WowCarry.Domain.Abstract
         void RemoveTemplateOption(Guid OptionId);
         void RemoveUsers(Guid UserId);
         void RemoveCustomers(Guid CustomerId);
+        void RemoveProductOption(Guid productOptionId);
         void RemoveRoles(Guid RoleId);
        // void RemoveOrders(Guid OrderId);
         void RemoveArticle(Guid ArticleId);
