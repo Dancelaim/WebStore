@@ -1,7 +1,5 @@
 ﻿@model WowCarry.Domain.Entities.ProductOptionDetails.ProductOptionParamsDetails
 
-@using (Html.BeginCollectionItem("ProductOptionParamCollection"))
-{
     <div class="param-fields">
         @Html.HiddenFor(x => Model.ParameterId)
         <div>
@@ -17,10 +15,16 @@
             @Html.TextBoxFor(x => Model.Sale)
         </div>
         <div class="pddParent">
-            @Html.DropDownListFor(x => Model.ParentParam, Model.ParamParentList, "Empty")
+            @if (Model.ParamParentList?.Count() > 0)
+            {
+                @Html.DropDownListFor(x => Model.ParentParam, Model.ParamParentList, "Empty")
+            }
+            else
+            {
+                @Html.DropDownListFor(x => Model.ParentParam, Enumerable.Empty<SelectListItem>(), "Empty")
+            }
             @Html.HiddenFor(x => Model.ParentParam)
         </div>
         <div><span class="remove-param"></span></div>
     </div>
-}
 

@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Web;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace WowCarry.WebUI.Controllers
 {
@@ -394,16 +395,16 @@ namespace WowCarry.WebUI.Controllers
                 foreach (var opt in ProductOptions)
                 {
                     var templateOption = EntityRepository.TemplateOptions.Where(t => t.OptionName == opt.OptionName).FirstOrDefault();
-                    var paramParent = selectedProduct.ProductOptions.Where(o => o.OptionId == opt.OptionParentId).FirstOrDefault();
+                    var ParentOpt = selectedProduct.ProductOptions.Where(o => o.OptionId == opt.OptionParentId).FirstOrDefault();
 
                     Options.Add(new ProductOptionDetails
                     {
                         OptionId = opt.OptionId,
                         OptionName = opt.OptionName,
                         OptionType = opt.OptionType,
-                        ParentOptionList = new SelectList(selectedProduct.ProductOptions.Where(o => o.OptionId != opt.OptionId).Select(o => o.OptionName), opt.OptionParentId.HasValue ? opt.ProductOptionsParent.OptionName : "Empty"),
+                        ParentOptionList = new SelectList(selectedProduct.ProductOptions.Where(o => o.OptionId != opt.OptionId).Select(o => o.OptionName).Distinct().ToList(), opt.OptionParentId.HasValue ? opt.ProductOptionsParent.OptionName : "Empty"),
                         ParamList = new SelectList(templateOption.TempOptionParams.Select(p => p.ParameterName), "Empty"),
-                        ParamCollection = ProductOptionDetails.PopulateParamCollection(opt, selectedProduct.ProductOptions.Where(o => o.OptionId == opt.OptionParentId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParameterName), paramParent)
+                        ParamCollection = ProductOptionDetails.PopulateParamCollection(opt, selectedProduct.ProductOptions.Where(o => o.OptionId == opt.OptionParentId).SelectMany(p => p.ProductOptionParams).Select(pr => pr.ParameterName), ParentOpt)
                     });
                 }
             }
@@ -451,7 +452,7 @@ namespace WowCarry.WebUI.Controllers
                 OptionId = Guid.NewGuid(),
                 OptionName = selectedOption.OptionName,
                 OptionType = selectedOption.OptionType,
-                //ParentOptionList  = new SelectList(selectedProduct.ProductOptions.Select(o => o.OptionName), "Empty"),
+                ParentOptionList  = new SelectList(selectedProduct.ProductOptions.Select(o => o.OptionName), "Empty"),
                 ParamList = new SelectList(selectedOption.TempOptionParams.Select(p => p.ParameterName), "Empty"),
             };
 
@@ -466,56 +467,57 @@ namespace WowCarry.WebUI.Controllers
                     Sale = param.ParameterSale,
                     ParamParentList = new SelectList(Enumerable.Empty<SelectListItem>())
                 };
-                option.ParamCollection = new List<ProductOptionDetails.ProductOptionParamsDetails>();
+                if (option.ParamCollection is null)
+                {
+                    option.ParamCollection = new List<ProductOptionDetails.ProductOptionParamsDetails>();
+                }
                 option.ParamCollection.Add(optionParams);
             }
 
-            return PartialView("ProductOption", option);
+            return PartialView("~/Views/Shared/EditorTemplates/ProductOptionDetails.cshtml", option);
         }
         [HttpPost]
         public PartialViewResult AddParam(string optionName, string paramName)
         {
-            TempOptionParams TempOptionParams = EntityRepository.TemplateOptions.Where(po => po.OptionName == optionName).FirstOrDefault().TempOptionParams.Where(p => p.ParameterName == paramName).FirstOrDefault();
+            TempOptionParams TempOptionParams = EntityRepository.TemplateOptions.Where(po => po.OptionName == optionName)?.Select(p => p.TempOptionParams.Where(par => par.ParameterName == paramName).FirstOrDefault()).FirstOrDefault();
 
-            ProductOptionParams parameter = new ProductOptionParams
+            ProductOptionDetails.ProductOptionParamsDetails parameter = new ProductOptionDetails.ProductOptionParamsDetails
             {
                 ParameterId = Guid.NewGuid(),
-                ParameterName = TempOptionParams.ParameterName,
-                ParameterTooltip = TempOptionParams.ParameterTooltip,
-                ParameterPrice = TempOptionParams.ParameterPrice,
-                ParameterSale = TempOptionParams.ParameterSale
+                Paramname = TempOptionParams?.ParameterName,
+                ParamTooltip = TempOptionParams?.ParameterTooltip,
+                ParamPrice = TempOptionParams?.ParameterPrice ?? Decimal.Zero,
+                Sale = TempOptionParams?.ParameterSale
             };
-            return PartialView("ProductOptionParameter", parameter);
+            return PartialView("~/Views/Shared/EditorTemplates/ProductOptionParamsDetails.cshtml", parameter);
         }
-        [HttpPost]
-        public void RemoveOption(Guid optionId, Guid prodId)
-        {
-            ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.OptionId == optionId).FirstOrDefault();
-            Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
-            var options = selectedProduct.ProductOptions.Where(o => o.OptionParentId == selectedOption.OptionId);
-            if (options != null)
-            {
-                foreach (var opt in options)
-                {
-                    opt.OptionParentId = null;
-                    var optParams = opt.ProductOptionParams.Where(p => p.ParameterParentId != null);
-                    foreach (var param in optParams)
-                    {
-                        param.ParameterParentId = null;
-                    }
-                }
-            }
-            selectedProduct.ProductOptions.Remove(selectedOption);
-            EntityRepository.SaveContext();
-        }
-        [HttpPost]
-        public void RemoveParam(Guid optionId, Guid paramId)
-        {
-            ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.OptionId == optionId).FirstOrDefault();
-            ProductOptionParams prodParam = selectedOption.ProductOptionParams.Where(p => p.ParameterId == paramId).FirstOrDefault();
-            selectedOption.ProductOptionParams.Remove(prodParam);
-            EntityRepository.SaveContext();
-        }
+        //[HttpPost]
+        //public void RemoveOption(Guid optionId, Guid prodId)
+        //{
+        //    ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.OptionId == optionId).FirstOrDefault();
+        //    Product selectedProduct = EntityRepository.Products.Where(p => p.ProductId == prodId).FirstOrDefault();
+        //    var options = selectedProduct.ProductOptions.Where(o => o.OptionParentId == selectedOption.OptionId);
+        //    if (options != null)
+        //    {
+        //        foreach (var opt in options)
+        //        {
+        //            opt.OptionParentId = null;
+        //            var optParams = opt.ProductOptionParams.Where(p => p.ParameterParentId != null);
+        //            foreach (var param in optParams)
+        //            {
+        //                param.ParameterParentId = null;
+        //            }
+        //        }
+        //    }
+        //    selectedProduct.ProductOptions.Remove(selectedOption);
+        //}
+        //[HttpPost]
+        //public void RemoveParam(Guid optionId, Guid paramId)
+        //{
+        //    ProductOptions selectedOption = EntityRepository.ProductOptions.Where(po => po.OptionId == optionId).FirstOrDefault();
+        //    ProductOptionParams prodParam = selectedOption.ProductOptionParams.Where(p => p.ParameterId == paramId).FirstOrDefault();
+        //    selectedOption.ProductOptionParams.Remove(prodParam);
+        //}
         #region Save
         [HttpPost]
         [ValidateInput(false)]
@@ -589,13 +591,40 @@ namespace WowCarry.WebUI.Controllers
         {
             if (ModelState.IsValid)
             {
+                List<Guid> userOptionIds = new List<Guid>();
                 foreach (var productOptionDetails in productOptionViewModel.ProductOptions)
                 {
+                    if (productOptionDetails.OptionParent == "Empty")
+                        productOptionDetails.OptionParent = null;
+
                     productOptionDetails.OptionProductId = productOptionViewModel.ProductId;
                     EntityRepository.SaveProductOption(productOptionDetails);
+                    userOptionIds.Add(productOptionDetails.OptionId);
                 }
-                TempData["message"] = string.Format("Options has been saved");
+                var dbOptionIds = EntityRepository.ProductOptions.Where(p => p.OptionProductId == productOptionViewModel.ProductId).Select(o => o.OptionId);
+
+                foreach(var optId in dbOptionIds)
+                {
+                    if (!userOptionIds.Contains(optId))
+                    {
+                        Remove(optId, "ProductOption");
+                    }
+                }
+
+                try
+                {
+                    EntityRepository.SaveContextAsync();
+                }
+                catch(Exception ex)
+                {
+                    TempData["message"] = string.Format(ex.Message);
+                }
+                finally
+                {
+                    TempData["message"] = string.Format("Options has been saved");
+                }
                 return RedirectToAction("List", new { type = "Product" });
+
             }
             else
             {
@@ -637,11 +666,11 @@ namespace WowCarry.WebUI.Controllers
             {
                 EntityRepository.SaveTemplateOption(templateOptionDetails);
                 TempData["message"] = string.Format("Template Option has been saved");
-                return RedirectToAction("List", new { type = "Template Option" });
+                return RedirectToAction("List", new { type = "TemplateOptions" });
             }
             else
             {
-                return RedirectToAction("List", new { type = "Template Option" });
+                return RedirectToAction("List", new { type = "TemplateOptions" });
             }
         }
         [HttpPost]
@@ -757,25 +786,51 @@ namespace WowCarry.WebUI.Controllers
             }
         }
         #endregion
-        [HttpPost]
-        public void Remove(Guid Id, string type)
+        public ActionResult Remove(Guid Id, string type)
         {
             switch (type)
             {
                 case "Product":
+                    EntityRepository.RemoveProduct(Id);
+                    break;
                 case "TemplateOptions":
+                    EntityRepository.RemoveTemplateOption(Id);
+                    break;
                 case "ProductGame":
+                    EntityRepository.RemoveGame(Id);
+                    break;
                 case "HtmlBlocks":
                     EntityRepository.RemoveHtmlBlock(Id);
                     break;
                 case "SEO":
+                    EntityRepository.RemoveSEO(Id);
+                    break;
                 case "Users":
+                    EntityRepository.RemoveUsers(Id);
+                    break;
                 case "Ranks":
+                    EntityRepository.RemoveRanks(Id);
+                    break;
                 case "Customers":
+                    EntityRepository.RemoveCustomers(Id);
+                    break;
                 case "Roles":
-                case "Orders":
+                    EntityRepository.RemoveRoles(Id);
+                    break;
+                //case "Orders":
+                //    EntityRepository.RemoveOrders(Id);
+                //    break;
+                case "ProductOption":
+                    EntityRepository.RemoveProductOption(Id);
+                    break;
+                case "ProductCategory":
+                    EntityRepository.RemoveProductCategory(Id);
+                    break;
+                case "ProductSubCategory":
+                    EntityRepository.RemoveProductSubCategory(Id);
                     break;
             }
+            return RedirectToAction("List", new { type = type });
         }
         [HttpPost]
         public string Upload()

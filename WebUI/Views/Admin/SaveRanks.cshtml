@@ -1,5 +1,5 @@
 ﻿@model WowCarry.Domain.Entities.RankDetails
-using (Html.BeginForm("SaveRanks", "Admin", FormMethod.Post))
+@using(Html.BeginForm("SaveRanks", "Admin", FormMethod.Post))
 {
 <div class="panel-heading">
     <div class="save-btns">
@@ -25,7 +25,6 @@ using (Html.BeginForm("SaveRanks", "Admin", FormMethod.Post))
         }
 
     }
-    }
 </div>
 <div class="panel-footer">
     <div class="save-btns">
@@ -37,4 +36,4 @@ using (Html.BeginForm("SaveRanks", "Admin", FormMethod.Post))
    })
     </div>
 </div>
-
+}

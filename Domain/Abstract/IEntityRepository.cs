@@ -10,6 +10,7 @@ namespace WowCarry.Domain.Abstract
 {
     public interface IEntityRepository
     {
+        #region IEnumerable List
         IEnumerable<ProductGame> Games { get; }
         IEnumerable<Realms> Realms { get; }
         IEnumerable<SEO> SEOs { get; }
@@ -26,13 +27,14 @@ namespace WowCarry.Domain.Abstract
         IEnumerable<ProductCategory> ProductCategory { get; }
         IEnumerable<ProductSubCategory> ProductSubCategories { get; }
 
+        #endregion
 
-
-
+        #region Save List
         void SaveGame(ProductGameDetails productGameDetails);
         void SaveSEO(SeoDetails seoDetails);
         void SaveProduct(ProductDetails productDetails);
         void SaveProductOption(ProductOptionDetails productOptionsDetails);
+        Task SaveContextAsync();
         void SaveContext();
         void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails);
         void SaveTemplateOption(TemplateOptionDetails templateOptionDetails);
@@ -44,6 +46,24 @@ namespace WowCarry.Domain.Abstract
         void SaveArticle(ArticleDetails articleDetails);
         void SaveProductCategory(ProductCategoryDetails productCategoryDetails);
         void SaveProductSubCategory(ProductSubCategoryDetails productSubCategoryDetails);
+
+        #endregion
+
+        #region Remove List
         void RemoveHtmlBlock(Guid htmlBlockId);
+        void RemoveRanks(Guid RankId);
+        void RemoveGame(Guid ProductGameId);
+        void RemoveSEO(Guid SEOId);
+        void RemoveProduct(Guid ProductId);
+        void RemoveTemplateOption(Guid OptionId);
+        void RemoveUsers(Guid UserId);
+        void RemoveCustomers(Guid CustomerId);
+        void RemoveProductOption(Guid productOptionId);
+        void RemoveRoles(Guid RoleId);
+       // void RemoveOrders(Guid OrderId);
+        void RemoveArticle(Guid ArticleId);
+        void RemoveProductCategory(Guid ProductCategoryId);
+        void RemoveProductSubCategory(Guid ProductSubCategoryId);
+        #endregion
     }
 }

@@ -29,7 +29,7 @@ namespace WowCarry.Domain.Concrete
         public IEnumerable<ProductCategory> ProductCategory => context.ProductCategory;
         public IEnumerable<ProductSubCategory> ProductSubCategories => context.ProductSubCategory;
 
-
+        #region SAVE
         public void SaveProductSubCategory(ProductSubCategoryDetails productSubCategoryDetails)
         {
             ProductSubCategory dbproductSubCategory = context.ProductSubCategory.Find(productSubCategoryDetails.ProductSubCategoryId);
@@ -50,15 +50,15 @@ namespace WowCarry.Domain.Concrete
                     CategoryDescription = productSubCategoryDetails.CategoryDescription,
                     SubCategorySeoId = context.SEO.Where(c => c.MetaTagTitle == productSubCategoryDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault(),
                     ProductCategoryId = context.ProductCategory.Where(c => c.ProductCategoryName == productSubCategoryDetails.SelectedCategoryName).Select(c => c.ProductCategoryId).FirstOrDefault()
-            };
-                context.ProductSubCategory.Add(productSubCategorie );
+                };
+                context.ProductSubCategory.Add(productSubCategorie);
             }
             context.SaveChanges();
         }
         public void SaveProductCategory(ProductCategoryDetails productCategoryDetails)
         {
             ProductCategory dbproductCategories = context.ProductCategory.Find(productCategoryDetails.ProductCategoryId);
-            if(dbproductCategories != null)
+            if (dbproductCategories != null)
             {
                 dbproductCategories.ProductCategoryId = productCategoryDetails.ProductCategoryId;
                 dbproductCategories.ProductCategoryName = productCategoryDetails.ProductCategoryName;
@@ -101,26 +101,26 @@ namespace WowCarry.Domain.Concrete
                     GameShortUrl = productGameDetails.GameShortUrl,
                     GameSeoId = context.SEO.Where(c => c.MetaTagTitle == productGameDetails.SelectedMetaTagTitle).Select(c => c.SEOId).FirstOrDefault()
                 };
-                    context.ProductGame.Add(productGame);
-             }
+                context.ProductGame.Add(productGame);
+            }
 
             context.SaveChanges();
         }
 
-    //foreach (ProductGameDetails.ProductCategoryDetails item in productGameDetails.ProductCategoryDetailsCollection)
-    //{
-    //    ProductCategory dbProductCategory = context.ProductGame.Find(productGameDetails.ProductGameId).ProductCategory.Where(p => p.ProductCategoryId == item.ProductCategoryId).FirstOrDefault();
-    //    if (dbProductCategory != null)
-    //    {
-    //        dbProductCategory.ProductCategoryName = item.ProductCategoryName;
-    //        dbProductCategory.ProductGameId = item.ProductGameId;
-    //        dbProductCategory.CategoryDescription = item.CategoryDescription;
-    //        dbProductCategory.ProductSubCategoryId = item.ProductSubCategoryId;
-    //        dbProductCategory.CategorySeoId = item.CategorySeoId;
-    //    }
-    //}
+        //foreach (ProductGameDetails.ProductCategoryDetails item in productGameDetails.ProductCategoryDetailsCollection)
+        //{
+        //    ProductCategory dbProductCategory = context.ProductGame.Find(productGameDetails.ProductGameId).ProductCategory.Where(p => p.ProductCategoryId == item.ProductCategoryId).FirstOrDefault();
+        //    if (dbProductCategory != null)
+        //    {
+        //        dbProductCategory.ProductCategoryName = item.ProductCategoryName;
+        //        dbProductCategory.ProductGameId = item.ProductGameId;
+        //        dbProductCategory.CategoryDescription = item.CategoryDescription;
+        //        dbProductCategory.ProductSubCategoryId = item.ProductSubCategoryId;
+        //        dbProductCategory.CategorySeoId = item.CategorySeoId;
+        //    }
+        //}
 
-    public void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
+        public void SaveHtmlBlock(HtmlBlockDetails htmlBlockDetails)
         {
             HtmlBlocks dbhtmlBlocks = context.HtmlBlocks.Find(htmlBlockDetails.SiteBlockId);
             if (dbhtmlBlocks != null)
@@ -173,7 +173,7 @@ namespace WowCarry.Domain.Concrete
                     foreach (HtmlBlockDetails.HtmlBlockChildrenDetails item in htmlBlockDetails.HtmlBlockChildDetailsCollection)
                     {
                         HtmlBlocksChildren dbhtmlBlocksChildren = new HtmlBlocksChildren { };
-                        dbhtmlBlocksChildren.SiteBlockChildsId = item.SiteBlockChildsId;
+                        dbhtmlBlocksChildren.SiteBlockChildsId = Guid.NewGuid();
                         dbhtmlBlocksChildren.SiteBlockId = dbhtmlBlocks.SiteBlockId;
                         dbhtmlBlocksChildren.Text = item.Text;
                         dbhtmlBlocksChildren.Title = item.Title;
@@ -190,7 +190,7 @@ namespace WowCarry.Domain.Concrete
             }
             context.SaveChanges();
         }
-    public void SaveArticle(ArticleDetails articlesDetails)
+        public void SaveArticle(ArticleDetails articlesDetails)
         {
             Article dbArticle = context.Article.Find(articlesDetails.ArticleId);
             if (dbArticle != null)
@@ -224,13 +224,13 @@ namespace WowCarry.Domain.Concrete
                     ProductGameId = context.ProductGame.Where(c => c.GameName == articlesDetails.SelectedGame).Select(c => c.ProductGameId).FirstOrDefault()
 
                 };
-                
+
                 context.Article.Add(article);
             }
 
             context.SaveChanges();
         }
-    public void SaveRanks(RankDetails rankDetails)
+        public void SaveRanks(RankDetails rankDetails)
         {
             Ranks dbRanks = context.Ranks.Find(rankDetails.RankId);
             if (dbRanks != null)
@@ -252,32 +252,56 @@ namespace WowCarry.Domain.Concrete
         }
         public void SaveProductOption(ProductOptionDetails productOptionDetails)
         {
+            Product dbProduct = context.Product.Find(productOptionDetails.OptionProductId);
             ProductOptions dbProductOption = context.ProductOptions.Find(productOptionDetails.OptionId);
-            if (dbProductOption != null)
+            if (dbProductOption == null)
             {
-                dbProductOption.OptionName = productOptionDetails.OptionName;
-                dbProductOption.OptionType = productOptionDetails.OptionType;
-                dbProductOption.OptionProductId = productOptionDetails.OptionProductId;
-                //dbProductOption.OptionParentId = productOptionDetails.OptionParent != null ? ProductOptions.Where(po => po.OptionName == productOptionDetails.OptionParent).FirstOrDefault().OptionProductId : Guid.Empty;
+                dbProductOption = new ProductOptions();
+                dbProductOption.OptionId = productOptionDetails.OptionId;
             }
-            foreach (ProductOptionDetails.ProductOptionParamsDetails item in productOptionDetails.ParamCollection)
+
+            dbProductOption.OptionName = productOptionDetails.OptionName;
+            dbProductOption.OptionType = productOptionDetails.OptionType;
+            dbProductOption.OptionProductId = productOptionDetails.OptionProductId;
+            if (productOptionDetails.OptionParent is null)
             {
-                Guid? parentId = Guid.Empty;
-                if (dbProductOption.OptionParentId != null)
+                dbProductOption.OptionParentId = null;
+            }
+            else
+            {
+                dbProductOption.OptionParentId = ProductOptions.Where(po => po.OptionName == productOptionDetails.OptionParent).Select(po => po.OptionId).FirstOrDefault();
+            }
+
+            if (productOptionDetails.ParamCollection != null)
+            {
+                foreach (ProductOptionDetails.ProductOptionParamsDetails item in productOptionDetails.ParamCollection)
                 {
-                    parentId = context.ProductOptions.Find(dbProductOption.OptionParentId).ProductOptionParams.Where(p => p.ParameterName == item.ParentParam).Select(p => p.ParameterId).FirstOrDefault();
-                }
-                ProductOptionParams dbParam = context.ProductOptions.Find(productOptionDetails.OptionId).ProductOptionParams.Where(p => p.ParameterId == item.ParameterId).FirstOrDefault();
-                if (dbParam != null)
-                {
+                    var parentOption = context.ProductOptions.Find(dbProductOption.OptionParentId);
+
+                    ProductOptionParams dbParam = context.ProductOptionParams.Find(item.ParameterId);
+                    if (dbParam == null)
+                    {
+                        dbParam = new ProductOptionParams();
+                        dbParam.ParameterId = item.ParameterId;
+                    }
+
                     dbParam.ParameterName = item.Paramname;
                     dbParam.ParameterPrice = item.ParamPrice;
                     dbParam.ParameterTooltip = item.ParamTooltip;
                     dbParam.ParameterSale = item.Sale;
-                    dbParam.ParameterParentId = parentId.Equals(Guid.Empty) ? null : parentId;
+                    dbParam.ParentOptionId = dbProductOption.OptionId;
+                    if (parentOption is null)
+                    {
+                        dbParam.ParameterParentId = null;
+                    }
+                    else
+                    {
+                        dbParam.ParameterParentId = parentOption.ProductOptionParams.Where(p => p.ParameterName == item.ParentParam).Select(p => p.ParameterId).FirstOrDefault();
+                    }
+                    dbProductOption.ProductOptionParams.Add(dbParam);
                 }
             }
-            context.SaveChanges();
+            dbProduct.ProductOptions.Add(dbProductOption);
         }
         public void SaveProduct(ProductDetails productDetails)
         {
@@ -381,7 +405,7 @@ namespace WowCarry.Domain.Concrete
                     dbPricesEU.Price = productDetails.ProductPriceEU ?? 0;
                     dbPricesEU.ProductSale = productDetails.ProductSaleEU;
                 }
-                else if(productDetails.ProductPriceEU != null && dbPricesEU == null)
+                else if (productDetails.ProductPriceEU != null && dbPricesEU == null)
                 {
                     ProductPrice prodPrice = new ProductPrice
                     {
@@ -442,7 +466,7 @@ namespace WowCarry.Domain.Concrete
                     dbProduct.ProductImageThumb = productDetails.ProductImageThumb;
                 }
             }
-                context.SaveChanges();
+            context.SaveChanges();
         }
         public void SaveOrders(OrderDetails orderDetails)
         {
@@ -548,22 +572,22 @@ namespace WowCarry.Domain.Concrete
             else
             {
                 SEO dbSeo = context.SEO.Find(seoDetails.SEOId);
-                    if (dbSeo != null)
-                    {
-                        dbSeo.MetaTagTitle = seoDetails.MetaTagTitle;
-                        dbSeo.MetaTagDescription = seoDetails.MetaTagDescription;
-                        dbSeo.MetaTagKeyWords = seoDetails.MetaTagKeyWords;
-                        dbSeo.SEOTags = seoDetails.SEOTags;
-                        dbSeo.CustomTitle1 = seoDetails.CustomTitle1;
-                        dbSeo.CustomTitle2 = seoDetails.CustomTitle2;
-                        dbSeo.CustomImageTitle = seoDetails.CustomImageTitle;
-                        dbSeo.CustomImageAlt = seoDetails.CustomImageAlt;
-                        dbSeo.MetaRobots = seoDetails.MetaRobots;
-                        dbSeo.UrlKeyWord = seoDetails.UrlKeyWord;
-                        dbSeo.SEOImage = seoDetails.SEOImage;
-                    }
+                if (dbSeo != null)
+                {
+                    dbSeo.MetaTagTitle = seoDetails.MetaTagTitle;
+                    dbSeo.MetaTagDescription = seoDetails.MetaTagDescription;
+                    dbSeo.MetaTagKeyWords = seoDetails.MetaTagKeyWords;
+                    dbSeo.SEOTags = seoDetails.SEOTags;
+                    dbSeo.CustomTitle1 = seoDetails.CustomTitle1;
+                    dbSeo.CustomTitle2 = seoDetails.CustomTitle2;
+                    dbSeo.CustomImageTitle = seoDetails.CustomImageTitle;
+                    dbSeo.CustomImageAlt = seoDetails.CustomImageAlt;
+                    dbSeo.MetaRobots = seoDetails.MetaRobots;
+                    dbSeo.UrlKeyWord = seoDetails.UrlKeyWord;
+                    dbSeo.SEOImage = seoDetails.SEOImage;
+                }
             }
-                    
+
             context.SaveChanges();
         }
         public void SaveUsers(UsersDetails userDetails)
@@ -577,7 +601,7 @@ namespace WowCarry.Domain.Concrete
                 dbUsers.Email = userDetails.Email;
                 dbUsers.RoleId = userDetails.RoleId;
 
-              
+
             }
             else
             {
@@ -612,19 +636,31 @@ namespace WowCarry.Domain.Concrete
                         dbParam.ParameterSale = item.ParameterSale;
                     }
                 }
-                
+
             }
-        //    else
-        //    {
-        //            TemplateOptions templateOptions = new TemplateOptions
-        //        {
-        //           OptionId = Guid.NewGuid(),
-        //            OptionName = tempOptionsDetails.TempOptionName,
-        //           OptionType = tempOptionsDetails.TempOptionType, 
-        //        };
-        //
-        //        context.TemplateOptions.Add(templateOptions);
-        //   }
+            else
+            {
+                dbtemplateOptions = new TemplateOptions();
+                dbtemplateOptions.OptionId = Guid.NewGuid();
+                dbtemplateOptions.OptionName = tempOptionsDetails.TempOptionName;
+                dbtemplateOptions.OptionType = tempOptionsDetails.TempOptionType;
+
+                if (tempOptionsDetails.TempOptionParamsDetailsCollection != null)
+                {
+                    foreach (TemplateOptionDetails.TempOptionParamsDetails item in tempOptionsDetails.TempOptionParamsDetailsCollection)
+                    {
+                        TempOptionParams dbParam = new TempOptionParams { };
+                        dbParam.ParameterId = Guid.NewGuid();
+                        dbParam.ParentOptionId = dbtemplateOptions.OptionId;
+                        dbParam.ParameterName = item.ParameterName;
+                        dbParam.ParameterPrice = item.ParameterPrice;
+                        dbParam.ParameterTooltip = item.ParameterTooltip;
+                        dbParam.ParameterSale = item.ParameterSale;
+                    }
+                }
+                context.TemplateOptions.Add(dbtemplateOptions);
+
+            }
             context.SaveChanges();
         }
         public void SaveCustomers(CustomersDetails customersDetails)
@@ -636,7 +672,7 @@ namespace WowCarry.Domain.Concrete
                 dbcustomers.Password = customersDetails.Password;
                 dbcustomers.RankId = customersDetails.RankId;
                 dbcustomers.Email = customersDetails.Email;
-                dbcustomers.CarryCoinsValue = customersDetails.CarryCoinsValue;   
+                dbcustomers.CarryCoinsValue = customersDetails.CarryCoinsValue;
             }
             else
             {
@@ -648,8 +684,8 @@ namespace WowCarry.Domain.Concrete
                     RankId = customersDetails.RankId,
                     Email = customersDetails.Email,
                     CarryCoinsValue = customersDetails.CarryCoinsValue,
-            };
-                 context.Customers.Add(customers);
+                };
+                context.Customers.Add(customers);
 
             }
             context.SaveChanges();
@@ -671,16 +707,131 @@ namespace WowCarry.Domain.Concrete
             }
             context.SaveChanges();
         }
+        public async Task SaveContextAsync()
+        {
+            //TO DO: TRY CATCH
+             await context.SaveChangesAsync();
+        }
         public void SaveContext()
         {
             context.SaveChanges();
         }
+        #endregion
         public void RemoveHtmlBlock(Guid htmlBlockId)
         {
             var htmblockchildren = context.HtmlBlocksChildren.Where(c => c.SiteBlockId == htmlBlockId);
             context.HtmlBlocksChildren.RemoveRange(htmblockchildren);
             context.HtmlBlocks.Remove(context.HtmlBlocks.Find(htmlBlockId));
             context.SaveChanges();
+        }
+        public void RemoveRanks(Guid RankId)
+        {
+            context.Ranks.Remove(context.Ranks.Find(RankId));
+            context.SaveChanges();
+        }
+        public void RemoveProductSubCategory(Guid ProductSubCategoryId)
+        {
+            context.ProductSubCategory.Remove(context.ProductSubCategory.Find(ProductSubCategoryId));
+            context.SaveChanges();
+        }
+        public void RemoveProductCategory(Guid ProductCategoryId)
+        {
+            context.ProductCategory.Remove(context.ProductCategory.Find(ProductCategoryId));
+            context.SaveChanges();
+        }
+        public void RemoveArticle(Guid ArticleId)
+        {
+            context.Article.Remove(context.Article.Find(ArticleId));
+            context.SaveChanges();
+        }
+        public void RemoveGame(Guid ProductGameId)
+        {
+            context.ProductGame.Remove(context.ProductGame.Find(ProductGameId));
+            context.SaveChanges();
+        }
+        public void RemoveUsers(Guid UserId)
+        {
+            context.Users.Remove(context.Users.Find(UserId));
+            context.SaveChanges();
+        }
+        public void RemoveRoles(Guid RoleId)
+        {
+            context.Roles.Remove(context.Roles.Find(RoleId));
+            context.SaveChanges();
+        }
+        public void RemoveCustomers(Guid CustomerId)
+        {
+            context.Customers.Remove(context.Customers.Find(CustomerId));
+            context.SaveChanges();
+        }
+        public void RemoveProductOption(Guid productOptionId)
+        {
+            var selectedOption = context.ProductOptions.Find(productOptionId);
+
+            var options = context.ProductOptions.Where(c => c.OptionParentId == selectedOption.OptionId);
+            if (options != null)
+            {
+                foreach (var childOpt in options)
+                {
+                    childOpt.OptionParentId = null;
+                    var childOptionParam = context.ProductOptionParams.Where(c => c.ParentOptionId == childOpt.OptionId);
+                    foreach (var param in childOptionParam)
+                    {
+                        param.ParameterParentId = null;
+                    }
+                }
+            }
+            var OptionParams = context.ProductOptionParams.Where(c => c.ParentOptionId == selectedOption.OptionId);
+            foreach (var param in OptionParams)
+            {
+                context.ProductOptionParams.Remove(param);
+            }
+            context.ProductOptions.Remove(selectedOption);
+        }
+        //TODO: ORDERS
+        //public void RemoveOrders(Guid OrderId)
+        //{
+        //    var orderCustomFields = context.OrderCustomFields.Where(c => c.OrderId == OrderId);
+        //    context.OrderCustomFields.RemoveRange(orderCustomFields);
+        //    context.Orders.Remove(context.Orders.Find(OrderId));
+        //    context.SaveChanges();
+        //}
+        public void RemoveSEO(Guid SEOId)
+        {
+            context.SEO.Remove(context.SEO.Find(SEOId));
+            context.SaveChanges();
+        }
+        public void RemoveTemplateOption(Guid OptionId)
+        {
+            var templateOprionParam = context.TempOptionParams.Where(c => c.ParentOptionId == OptionId);
+            context.TempOptionParams.RemoveRange(templateOprionParam);
+            context.TemplateOptions.Remove(context.TemplateOptions.Find(OptionId));
+            context.SaveChanges();
+        }
+        public void RemoveProduct(Guid ProductId)
+        {
+            //Description
+            var product = context.Product.Where(c => c.ProductId == ProductId).FirstOrDefault();
+            var description = context.ProductDescription.Where(c => c.ProductDescriptionId == product.ProductDescriptionId).FirstOrDefault();
+            context.ProductDescription.Remove(description);
+            //Option  +  //ParamOption
+            var selectedOptions = context.ProductOptions.Where(c => c.OptionProductId == ProductId);
+
+            foreach(var opt in selectedOptions)
+            {
+                RemoveProductOption(opt.OptionId);
+            }
+
+            //Price
+            var price = context.ProductPrice.Where(c => c.ProductId == ProductId);
+            context.ProductPrice.RemoveRange(price);
+            //Product
+            context.Product.Remove(product);
+            context.SaveChanges();
+
+            //var paramOption = context.ProductOptionParams.Where(c => c.ParentOptionId == Option.OptionId);
+            //context.ProductOptionParams.RemoveRange(paramOption);
+            //context.ProductOptions.Remove(Option);
         }
     }
 }

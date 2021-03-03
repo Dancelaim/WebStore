@@ -18,12 +18,8 @@
     <div class="panel-body">
         <div class="options-tabs">
             <div class="titles-options">
-                
             </div>
-            @foreach (var opt in Model.ProductOptions)
-            {
-                Html.RenderPartial("ProductOption", opt);
-            }
+            @Html.EditorFor(x => x.ProductOptions)
         </div>
         <div class="clear"></div>
         <div class="newOptions">
@@ -39,13 +35,13 @@
 
                 <input type="submit" value="Save" class="btn" id="SubmitOption" />
                 @Html.ActionLink("Exit", "Admin", null, new
-                {
-                    @class = "btn btn-default exitBtn"
-                })
+           {
+               @class = "btn btn-default exitBtn"
+           })
             </div>
             <div class="clear"></div>
         </div>
-    
 }
+
 
 

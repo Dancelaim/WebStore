@@ -18,18 +18,12 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <td> @Html.ActionLink(item.Name, "CreateEdit", new { Id = item.CustomerId, type = item.GetType().BaseType.Name })</td>
-                    <td class="text-center">
-                        @using (Html.BeginForm("Delete", "Admin"))
-                        {
-                            @Html.Hidden("CustomerId", item.CustomerId)
-                            <input type="submit"
-                                   class="btn btn-default btn-xs"
-                                   value="Удалить" />
-                        }
-                    </td>
-                </tr>
+            <tr>
+                <td> @Html.ActionLink(item.Name, "CreateEdit", new { Id = item.CustomerId, type = item.GetType().BaseType.Name })</td>
+                <td class="text-center">
+                    <a href="@Url.Action("Remove", new { Id = item.CustomerId, type = item.GetType().BaseType.Name })">Remove</a>
+                </td>
+            </tr>
             }
         </tbody>
     </table>

@@ -1,5 +1,5 @@
 ﻿@model WowCarry.Domain.Entities.RolesDetails
-using (Html.BeginForm("SaveRoles", "Admin", FormMethod.Post))
+@using (Html.BeginForm("SaveRoles", "Admin", FormMethod.Post))
 {
     <div class="panel-heading">
         <div class="save-btns">
@@ -15,13 +15,13 @@ using (Html.BeginForm("SaveRoles", "Admin", FormMethod.Post))
         @foreach (var property in ViewData.ModelMetadata.Properties)
         {
         @Html.HiddenFor(x => Model.RoleId)
-        if (property.PropertyName != "RoleId")
-        {
+            if (property.PropertyName != "RoleId")
+            {
         <div class="input-block">
             <label>@(property.DisplayName ?? property.PropertyName):</label>
             @Html.Editor(property.PropertyName, new { @class = "form-control" })
         </div>
-        }
+            }
 
         }
         }
@@ -36,3 +36,5 @@ using (Html.BeginForm("SaveRoles", "Admin", FormMethod.Post))
            })
             </div>
         </div>
+}
+
