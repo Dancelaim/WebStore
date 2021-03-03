@@ -532,6 +532,7 @@ namespace WowCarry.WebUI.Controllers
                 return View("List", productSubCategoryDetails);
             }
         }
+        [ValidateInput(false)]
         public ActionResult SaveProduct(ProductDetails productDetails, bool navigateToProdOpt = false)
         {
             if (ModelState.IsValid)

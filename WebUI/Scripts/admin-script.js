@@ -351,6 +351,7 @@ $(DisableOptions());
 function DisableOptions(){
     var optionslist = document.getElementById("Template_Options").options;
     var existingsOptions = document.querySelectorAll('.OptionName input');
+
     // disabledOptionsList = $('.opt-body').find('.text-box:first');
     existingsOptions.forEach(function (opt) {
         for (var optl of optionslist){
